@@ -53,43 +53,212 @@ export default class CreatorStore {
         },
         clothes: {
             head: {
-                id: 0,
                 component: 0,
-                drawable: 0,
-                texture: 0,
+                drawable: 7,
+                texture: 6
             },
             body: {
-                id: 0,
                 component: 11,
-                drawable: 0,
-                texture: 0,
-                torso: 0
+                drawable: 5,
+                texture: 2
             },
             pants: {
-                id: 0,
                 component: 4,
-                drawable: 0,
-                texture: 0,
+                drawable: 5,
+                texture: 7
             },
             shoes: {
-                id: 0,
                 component: 6,
-                drawable: 0,
-                texture: 0,
+                drawable: 9,
+                texture: 1
             }
         }
     }
 
+    // 0 - head, 11 - body, 4 - pants, 6 - shoes
+    clothes = {
+        male: [
+            {
+                component: 0,
+                drawable: 1,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 3,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 7,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 4,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 4,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 4,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            }
+        ],
+        female: [
+            {
+                component: 0,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 0,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 11,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 4,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 4,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 4,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 15,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 17,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 5,
+                textures: [1, 2, 5, 6, 7]
+            },
+            {
+                component: 6,
+                drawable: 9,
+                textures: [1, 2, 5, 6, 7]
+            }
+        ]
+    };
+
     constructor() {
         makeObservable(this, {
             data: observable,
+            clothes: observable,
 
             fetchData: action.bound,
+            fetchClothes: action.bound,
         })
     }
 
     fetchData(data) {
         return this.data = data;
+    }
+
+    fetchClothes(data) {
+        return this.clothes = data;
     }
 
     destroy() {}

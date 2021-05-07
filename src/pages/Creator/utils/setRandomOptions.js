@@ -1,4 +1,4 @@
-export const setRandomOptions = (store, clothes) => {
+export const setRandomOptions = (store) => {
     const getRandom = (min, max) => {
         return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -50,25 +50,30 @@ export const setRandomOptions = (store, clothes) => {
     store.data.color.eyebrows = getRandom(0, 18);
     store.data.color.eyes = eyesRandom();
 
-    if (store.data.sex === 0) {
-        store.data.clothes.head.id = getRandom(0, clothes.male.head.length);
-        store.data.clothes.head.texture = getRandom(0, clothes.male.head[store.data.clothes.head.id].texture);
-        store.data.clothes.body.id = getRandom(0, clothes.male.body.length);
-        store.data.clothes.body.texture = getRandom(0, clothes.male.body[store.data.clothes.body.id].texture);
-        store.data.clothes.pants.id = getRandom(0, clothes.male.pants.length);
-        store.data.clothes.pants.texture = getRandom(0, clothes.male.pants[store.data.clothes.pants.id].texture);
-        store.data.clothes.shoes.id = getRandom(0, clothes.male.shoes.length);
-        store.data.clothes.shoes.texture = getRandom(0, clothes.male.shoes[store.data.clothes.shoes.id].texture);
-    } else {
-        store.data.clothes.head.id = getRandom(0, clothes.female.head.length);
-        store.data.clothes.head.texture = getRandom(0, clothes.female.head[store.data.clothes.head.id].texture);
-        store.data.clothes.body.id = getRandom(0, clothes.female.body.length);
-        store.data.clothes.body.texture = getRandom(0, clothes.female.body[store.data.clothes.body.id].texture);
-        store.data.clothes.pants.id = getRandom(0, clothes.female.pants.length);
-        store.data.clothes.pants.texture = getRandom(0, clothes.female.pants[store.data.clothes.pants.id].texture);
-        store.data.clothes.shoes.id = getRandom(0, clothes.female.shoes.length);
-        store.data.clothes.shoes.texture = getRandom(0, clothes.female.shoes[store.data.clothes.shoes.id].texture);
+    const getClothesArray = (sex, component) => store.clothes[sex].filter(el => el.component === component);
+
+    const getRandomDrawable = array => array[getRandom(0, array.length - 1)].drawable;
+
+    const getElementByDrawable = (array, drawable) => {
+        const id = array.findIndex(el => el.drawable === drawable);
+        return array[id];
+    };
+
+    const getRandomTexture = element => {
+        const id = getRandom(0, element.textures.length - 1);
+        return element.textures[id];
     }
+
+    const sex = store.data.sex === 0 ? 'male' : 'female';
+
+    store.data.clothes.head.drawable = getRandomDrawable(getClothesArray(sex, 0));
+    store.data.clothes.head.texture = getRandomTexture(getElementByDrawable(getClothesArray(sex, 0), store.data.clothes.head.drawable));
+    store.data.clothes.body.drawable = getRandomDrawable(getClothesArray(sex, 11));
+    store.data.clothes.body.texture = getRandomTexture(getElementByDrawable(getClothesArray(sex, 11), store.data.clothes.body.drawable));
+    store.data.clothes.pants.drawable = getRandomDrawable(getClothesArray(sex, 4));
+    store.data.clothes.pants.texture = getRandomTexture(getElementByDrawable(getClothesArray(sex, 4), store.data.clothes.pants.drawable));
+    store.data.clothes.shoes.drawable = getRandomDrawable(getClothesArray(sex, 6));
+    store.data.clothes.shoes.texture = getRandomTexture(getElementByDrawable(getClothesArray(sex, 6), store.data.clothes.shoes.drawable));
 
     window.alt.emit('client::characterCreator:random', store.data);
 }

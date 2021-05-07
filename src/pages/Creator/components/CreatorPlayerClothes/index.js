@@ -1,1 +1,1 @@
-export { default } from './CratorPlayerClothes';
+export { default } from './CreatorPlayerClothes';

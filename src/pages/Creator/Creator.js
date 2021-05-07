@@ -13,8 +13,6 @@ import {setRandomOptions} from "./utils/setRandomOptions";
 import arrows from "assets/images/creator/arrows.svg";
 import mouse from "assets/images/creator/mouse.svg";
 
-import clothes from "configs/clothes";
-
 import "./Creator.scss";
 
 const Creator = ({store}) => {
@@ -49,7 +47,7 @@ const Creator = ({store}) => {
                     <div
                         className="creator__title_random"
                         onClick={() => {
-                            setRandomOptions(store, clothes);
+                            setRandomOptions(store);
                             showNotify(1, "Настройки успешно изменены");
                         }}
                     >
