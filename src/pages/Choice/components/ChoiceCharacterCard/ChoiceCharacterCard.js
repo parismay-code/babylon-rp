@@ -106,6 +106,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard}) => {
                                     </div>
                                 </>
                         }
+                        <div className='choice-character-card__delete-char'>удалить персонажа</div>
                     </div>
                     <img className='choice-character-card__person' src={getImage()} alt='#'/>
                     <div className='choice-character-card-button' onClick={() => {
