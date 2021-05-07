@@ -1,0 +1,368 @@
+@import '../../../../styles/vars';
+
+.bank-business {
+  position: relative;
+  width: 55%;
+  height: 100%;
+
+  font-family: 'TT Norms Medium', sans-serif;
+  color: $color-white;
+
+  &-content {
+    display: flex;
+    align-items: flex-start;
+    padding: 50px 30px;
+
+    @media (max-width: 1000px) {
+      padding: 25px 15px;
+    }
+
+    @media (max-height: 800px) {
+      padding: 25px 15px;
+    }
+
+    &-diagram {
+      display: flex;
+      align-items: center;
+
+      &-gauge {
+        position: absolute;
+        transform: translateX(-50%);
+        left: 230px;
+
+        height: 320px;
+        width: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 100%;
+
+        background-color: #56565690;
+
+        @media (max-width: 1280px) {
+          left: 180px;
+          width: 240px;
+          height: 240px;
+        }
+
+        @media (max-width: 1000px) {
+          left: 115px;
+          width: 160px;
+          height: 160px;
+        }
+
+        @media (max-height: 800px) {
+          left: 115px;
+          width: 160px;
+          height: 160px;
+        }
+
+        &-balance {
+          text-transform: uppercase;
+          text-align: center;
+          margin-bottom: 130px;
+
+          @media (max-width: 1280px) {
+            margin-bottom: 100px;
+          }
+
+          @media (max-width: 1000px) {
+            margin-bottom: 75px;
+          }
+
+          @media (max-height: 800px) {
+            margin-bottom: 75px;
+          }
+
+          &__value {
+            font-family: "TT Norms Thin", sans-serif;
+            color: #D5DCFF;
+            font-size: 2rem;
+            margin-bottom: 5px;
+
+
+            @media (max-width: 1000px) {
+              font-size: 1.5rem;
+            }
+
+            @media (max-height: 800px) {
+              font-size: 1.5rem;
+            }
+          }
+
+          &__title {
+            font-size: 1rem;
+
+            @media (max-width: 1000px) {
+              font-size: .5rem;
+            }
+
+            @media (max-height: 800px) {
+              font-size: .5rem;
+            }
+          }
+        }
+
+        &__image {
+          position: absolute;
+          bottom: 0;
+
+          width: 100%;
+        }
+      }
+    }
+
+    &-form {
+      margin: 80px 0 0 50px;
+      text-transform: uppercase;
+
+      @media (max-width: 1280px) {
+        margin: 35px 0 0 10px;
+      }
+
+      @media (max-width: 1000px) {
+        margin: 25px 0 0 10px;
+      }
+
+      @media (max-height: 800px) {
+        margin: 25px 0 0 10px;
+      }
+
+      &-choose-business {
+        margin-bottom: 25px;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 20px;
+        }
+
+        @media (max-width: 1000px) {
+          margin-bottom: 10px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 10px;
+        }
+
+        &__title {
+          margin-bottom: 10px;
+
+          @media (max-width: 1000px) {
+            margin-bottom: 5px;
+          }
+
+          @media (max-height: 800px) {
+            margin-bottom: 5px;
+          }
+        }
+
+        & svg {
+          margin-right: 10px;
+          height: 25px;
+
+          cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+
+          @media (max-width: 1000px) {
+            margin-left: -10px;
+            height: 15px;
+
+            &:first-of-type {
+              margin-left: -5px;
+            }
+          }
+
+          @media (max-height: 800px) {
+            margin-left: -10px;
+            height: 15px;
+
+            &:first-of-type {
+              margin-left: -5px;
+            }
+          }
+        }
+      }
+
+      &__business-name {
+        margin-bottom: 10px;
+
+        @media (max-width: 1000px) {
+          margin-bottom: 5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 5px;
+        }
+      }
+
+      &-withdraw {
+        &-title {
+          position: relative;
+          display: flex;
+          align-items: center;
+          margin-bottom: 25px;
+
+          filter: drop-shadow(0 0 10px #B9FE75);
+
+          font-size: 1.5rem;
+
+          @media (max-width: 1280px) {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+          }
+
+          @media (max-width: 1000px) {
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px #B9FE75);
+            font-size: 1.2rem;
+          }
+
+          @media (max-height: 800px) {
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px #B9FE75);
+            font-size: 1.2rem;
+          }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -55px;
+
+            transform: translateY(-50%);
+
+            width: 40px;
+            height: 2px;
+
+            background-color: $color-white;
+            filter: drop-shadow(0 0 3px #FFD4A2);
+
+            @media (max-width: 1280px) {
+              left: -22px;
+              width: 15px;
+            }
+
+            @media (max-width: 1000px) {
+              left: -16px;
+              width: 10px;
+            }
+
+            @media (max-height: 800px) {
+              left: -16px;
+              width: 10px;
+            }
+          }
+
+          &__icon {
+            height: 30px;
+            margin-right: 10px;
+
+            @media (max-width: 1280px) {
+              height: 25px;
+            }
+
+            @media (max-width: 1000px) {
+              height: 15px;
+              margin-right: 5px;
+            }
+
+            @media (max-height: 800px) {
+              height: 15px;
+              margin-right: 5px;
+            }
+          }
+
+          &__text {
+            font-family: "Baron Neue", sans-serif;
+            text-transform: lowercase;
+            margin-top: -5px;
+
+            @media (max-width: 1000px) {
+              margin-top: -3px;
+            }
+
+            @media (max-height: 800px) {
+              margin-top: -3px;
+            }
+          }
+        }
+
+        &__input {
+          outline: none;
+          border: none;
+
+          width: 220px;
+          padding: 20px;
+
+          font-size: 1rem;
+          color: $color-white;
+          text-transform: uppercase;
+          font-family: "TT Norms Medium", sans-serif;
+
+          background: rgba(0, 0, 0, .2);
+
+          @media (max-width: 1280px) {
+            padding: 15px;
+            width: 200px;
+          }
+
+          @media (max-width: 1000px) {
+            padding: 10px;
+            width: 140px;
+          }
+
+          @media (max-height: 800px) {
+            padding: 10px;
+            width: 140px;
+          }
+
+          &::placeholder {
+            color: #ffffff70;
+          }
+        }
+      }
+    }
+  }
+
+  &-withdraw {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid #707070;
+
+    font-family: "Baron Neue", sans-serif;
+    text-transform: lowercase;
+    font-size: 2rem;
+    text-shadow: 0 0 25px #B9FE75;
+
+    cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+    &:hover &__fill {
+      max-width: 100%;
+      opacity: .2;
+
+      transition: max-width .1s ease, opacity .5s;
+    }
+
+    &__fill {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      width: 100%;
+      max-width: 0;
+      height: 100%;
+
+      opacity: 0;
+
+      background: linear-gradient(to left, #B9FE75, $color-blank 80%);
+
+      transition: max-width 1s ease, opacity .2s;
+    }
+  }
+}

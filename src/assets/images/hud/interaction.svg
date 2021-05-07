@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"
+     viewBox="0 0 30 30">
+    <defs>
+        <filter id="interactionsFilter" x="0" y="0" width="30" height="30" filterUnits="userSpaceOnUse">
+            <feOffset dy="1"/>
+            <feGaussianBlur stdDeviation="1" result="blur"/>
+            <feFlood flood-opacity="0.749"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#interactionsFilter)">
+        <path d="M0-1324v-24H12v1.921H1.92v20.16H22.081V-1336H24v12Zm4.44-4.44v-15.121H18.3l2.483-2.519H15.12V-1348H24v8.88h-1.92v-5.537l-2.52,2.557v13.66Z"
+              transform="translate(3 1350)" fill="#aab6ef"/>
+    </g>
+</svg>

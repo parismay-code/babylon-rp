@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34.163" height="26.325" viewBox="0 0 34.163 26.325">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffef84"/>
+      <stop offset="1" stop-color="#d4c357"/>
+    </linearGradient>
+  </defs>
+  <g id="taxi-sign" transform="translate(0 -5.891)">
+    <path id="Контур_1532" data-name="Контур 1532" d="M33.831,12.638H27.476V6.224a.333.333,0,0,0-.333-.333H20.4a.333.333,0,0,0-.333.333v6.414H14.1V6.224a.333.333,0,0,0-.333-.333H7.021a.333.333,0,0,0-.333.333v6.414H.333A.333.333,0,0,0,0,12.971v6.746a.333.333,0,0,0,.333.333H7.079a.333.333,0,0,0,.333-.333V13.3h5.964v6.414a.333.333,0,0,0,.333.333h6.746a.333.333,0,0,0,.333-.333V13.3h5.964v6.414a.333.333,0,0,0,.333.333H33.83a.333.333,0,0,0,.333-.333V12.971A.331.331,0,0,0,33.831,12.638Z" fill="url(#linear-gradient)"/>
+    <path id="Контур_1533" data-name="Контур 1533" d="M.5,30.958H3.8v8.967H6.216V30.958h3.3V28.924H.5Z" transform="translate(-0.167 -7.709)" fill="url(#linear-gradient)"/>
+    <path id="Контур_1534" data-name="Контур 1534" d="M34.92,28.924H32.271l-2.234,3.512-2.157-3.512h-2.8l3.544,5.239-3.726,5.575L20.849,28.925h-2.48l-4.176,11h2.449l.863-2.45h4.113l.832,2.45h5.043l2.45-3.8,2.4,3.8h2.882l-3.836-5.746ZM18.137,35.672l1.432-4.036H19.6l1.387,4.036Z" transform="translate(-4.75 -7.709)" fill="url(#linear-gradient)"/>
+    <rect id="Прямоугольник_1608" data-name="Прямоугольник 1608" width="2.418" height="11" transform="translate(31.455 21.215)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

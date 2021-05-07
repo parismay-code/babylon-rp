@@ -1,0 +1,57 @@
+@import '../../../../../../../styles/vars';
+
+.family-chat-message {
+  position: relative;
+  background: linear-gradient(to right, #21212180, $color-blank);
+  padding: 5px 10px;
+  margin: 0 0 5px 20px;
+
+  font-size: .8rem;
+
+  display: flex;
+
+  @media (max-width: 1280px) {
+    padding: 5px 10px;
+    margin: 0 0 5px 15px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 3px 7px;
+    margin: 0 0 3px 10px;
+
+    font-size: .6rem;
+  }
+
+  @media (max-height: 800px) {
+    padding: 3px 7px;
+    margin: 0 0 3px 10px;
+
+    font-size: .6rem;
+  }
+
+  &__icon {
+    width: 5%;
+    max-height: 30px;
+    margin-right: 5px;
+
+    @media (max-width: 1000px) {
+      margin-right: 3px;
+      max-height: 15px;
+    }
+
+    @media (max-height: 800px) {
+      margin-right: 3px;
+      max-height: 15px;
+    }
+
+
+  }
+
+  &-content {
+    &__text {
+      font-family: "TT Norms Bold", sans-serif;
+      word-wrap: break-word;
+      margin-bottom: 3px;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29.513" height="22.795" viewBox="0 0 29.513 22.795">
+  <defs>
+    <filter id="Контур_66" x="0" y="0" width="29.513" height="19.436" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Контур_67" x="0" y="15.116" width="29.513" height="7.68" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Icon_ionic-md-cash" data-name="Icon ionic-md-cash" transform="translate(3 2)">
+    <g transform="matrix(1, 0, 0, 1, -3, -2)" filter="url(#Контур_66)">
+      <path id="Контур_66-2" data-name="Контур 66" d="M0,0V13.436H23.513V0ZM8.424,11.757H4.2A2.522,2.522,0,0,0,1.68,9.232V5.039A3.362,3.362,0,0,0,5.039,1.68H8.424A7.836,7.836,0,0,0,6.718,6.718,7.836,7.836,0,0,0,8.424,11.757Zm13.41-2.525a2.538,2.538,0,0,0-2.519,2.525H15.089A7.836,7.836,0,0,0,16.8,6.718,7.836,7.836,0,0,0,15.089,1.68h3.385a3.362,3.362,0,0,0,3.359,3.359Z" transform="translate(3 2)" fill="#c9ebc4"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -3, -2)" filter="url(#Контур_67)">
+      <path id="Контур_67-2" data-name="Контур 67" d="M0,0H23.513V1.68H0Z" transform="translate(3 17.12)" fill="#c9ebc4"/>
+    </g>
+  </g>
+</svg>

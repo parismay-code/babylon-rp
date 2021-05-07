@@ -1,0 +1,485 @@
+.background-tower {
+  z-index: 0;
+  position: relative;
+  width: 450px;
+
+  @media (max-width: 1500px) {
+    width: 300px;
+    transform: translateY(100px);
+  }
+
+  @media (max-width: 1000px) {
+    width: 225px;
+    transform: translateY(0px);
+  }
+
+  @media (max-height: 800px) {
+    width: 225px;
+    transform: translateY(0px);
+  }
+
+  @media (min-width: 2500px) {
+    margin-left: 300px;
+    transform: translateY(150px);
+  }
+
+  @media (min-width: 3000px) {
+    margin-left: 750px;
+    transform: translateY(200px);
+  }
+
+  &__tower {
+    position: absolute;
+    width: 100%;
+    left: 10%;
+    top: -5px;
+
+    @media (max-width: 1500px) {
+      top: 50px;
+    }
+  }
+
+  &__cloud {
+    position: absolute;
+
+    // first
+    &:nth-of-type(2) {
+      top: -30px;
+      right: -50px;
+      width: 260px;
+
+      animation-name: cloud1;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 180px;
+        right: -40px;
+        top: 10px;
+
+        animation-name: cloud1_1500;
+      }
+      @media (max-width: 1000px) {
+        top: 40px;
+        right: -25px;
+        width: 130px;
+
+        animation-name: cloud1_1000;
+      }
+
+      @media (max-height: 800px) {
+        top: 40px;
+        right: -25px;
+        width: 130px;
+
+        animation-name: cloud1_1000;
+      }
+    }
+
+    // second
+    &:nth-of-type(3) {
+      top: 150px;
+      right: 60px;
+      width: 120px;
+
+      animation-name: cloud2;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 85px;
+        right: 35px;
+        top: 130px;
+
+        animation-name: cloud2_1500;
+      }
+      @media (max-width: 1000px) {
+        top: 130px;
+        right: 30px;
+        width: 60px;
+
+        animation-name: cloud2_1000;
+      }
+      @media (max-height: 800px) {
+        top: 130px;
+        right: 30px;
+        width: 60px;
+
+        animation-name: cloud2_1000;
+      }
+    }
+
+    // third
+    &:nth-of-type(4) {
+      top: 220px;
+      left: 60px;
+      width: 100px;
+
+      animation-name: cloud3;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 70px;
+        top: 195px;
+        left: 37px;
+
+        animation-name: cloud3_1500;
+      }
+      @media (max-width: 1000px) {
+        top: 175px;
+        left: 30px;
+        width: 50px;
+
+        animation-name: cloud3_1000;
+      }
+      @media (max-height: 800px) {
+        top: 175px;
+        left: 30px;
+        width: 50px;
+
+        animation-name: cloud3_1000;
+      }
+    }
+
+    // fourth
+    &:nth-of-type(5) {
+      top: 300px;
+      left: 130px;
+      width: 200px;
+
+      animation-name: cloud4;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 140px;
+        top: 270px;
+        left: 85px;
+
+        animation-name: cloud4_1500;
+      }
+      @media (max-width: 1000px) {
+        width: 100px;
+        top: 220px;
+        left: 65px;
+
+        animation-name: cloud4_1000;
+      }
+      @media (max-height: 800px) {
+        width: 100px;
+        top: 220px;
+        left: 65px;
+
+        animation-name: cloud4_1000;
+      }
+    }
+
+    // fifth
+    &:nth-of-type(6) {
+      top: 220px;
+      right: -115px;
+      width: 250px;
+
+      animation-name: cloud5;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 180px;
+        top: 210px;
+        right: -95px;
+
+        animation-name: cloud5_1500;
+      }
+      @media (max-width: 1000px) {
+        width: 125px;
+        top: 175px;
+        right: -60px;
+
+        animation-name: cloud5_1000;
+      }
+      @media (max-height: 800px) {
+        width: 125px;
+        top: 175px;
+        right: -60px;
+
+        animation-name: cloud5_1000;
+      }
+    }
+
+    // sixth
+    &:nth-of-type(7) {
+      top: 515px;
+      left: 210px;
+      width: 120px;
+
+      animation-name: cloud6;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 80px;
+        top: 400px;
+        left: 140px;
+
+        animation-name: cloud6_1500;
+      }
+      @media (max-width: 1000px) {
+        width: 60px;
+        top: 310px;
+        left: 105px;
+
+        animation-name: cloud6_1000;
+      }
+      @media (max-height: 800px) {
+        width: 60px;
+        top: 310px;
+        left: 105px;
+
+        animation-name: cloud6_1000;
+      }
+    }
+
+    // eight
+    &:nth-of-type(8) {
+      top: 670px;
+      right: -160px;
+      width: 180px;
+
+      animation-name: cloud7;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(.48, .23, .42, .59);
+      animation-direction: alternate;
+
+      @media (max-width: 1500px) {
+        width: 160px;
+        top: 475px;
+        right: -130px;
+
+        animation-name: cloud7_1500;
+      }
+      @media (max-width: 1000px) {
+        width: 90px;
+        top: 380px;
+        right: -80px;
+
+        animation-name: cloud7_1000;
+      }
+      @media (max-height: 800px) {
+        width: 90px;
+        top: 380px;
+        right: -80px;
+
+        animation-name: cloud7_1000;
+      }
+    }
+  }
+}
+// default
+@keyframes cloud1 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(20px);
+  }
+}
+@keyframes cloud2 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(50px);
+  }
+}
+@keyframes cloud3 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes cloud4 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-40px);
+  }
+}
+@keyframes cloud5 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(70px);
+  }
+}
+@keyframes cloud6 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(50px);
+  }
+}
+@keyframes cloud7 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+// max-width: 1500px
+@keyframes cloud1_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+@keyframes cloud2_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(25px);
+  }
+}
+@keyframes cloud3_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes cloud4_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes cloud5_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(35px);
+  }
+}
+@keyframes cloud6_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(25px);
+  }
+}
+@keyframes cloud7_1500 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50px);
+  }
+}
+
+//max-width: 1000px
+@keyframes cloud1_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+@keyframes cloud2_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(25px);
+  }
+}
+@keyframes cloud3_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes cloud4_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes cloud5_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(35px);
+  }
+}
+@keyframes cloud6_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(25px);
+  }
+}
+@keyframes cloud7_1000 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50px);
+  }
+}

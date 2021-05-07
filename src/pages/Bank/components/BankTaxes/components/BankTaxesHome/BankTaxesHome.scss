@@ -1,0 +1,305 @@
+@import '../../../../../../styles/vars';
+
+.bank-taxes-home {
+  &-element {
+    margin-bottom: 15%;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5%;
+
+      &-house {
+        font-size: 1.4rem;
+
+        &__image {
+          width: 40px;
+          margin-right: 10px;
+
+          @media (max-width: 1280px) {
+            width: 30px;
+          }
+
+          @media (max-width: 1000px) {
+            width: 20px;
+            margin-right: 5px;
+          }
+
+          @media (max-height: 800px) {
+            width: 20px;
+            margin-right: 5px;
+          }
+        }
+      }
+
+      &-info {
+        display: flex;
+        align-items: center;
+
+        line-height: 100%;
+
+        &__price,
+        &__payed {
+          font-size: 2.5rem;
+          font-family: "Baron Neue", sans-serif;
+
+          margin-right: 10px;
+
+          @media (max-width: 1000px) {
+            margin-right: 5px;
+          }
+
+          @media (max-height: 800px) {
+            margin-right: 5px;
+          }
+        }
+
+        &__price {
+          color: #AEBAF8;
+          text-shadow: 0 0 10px #AEBAF8;
+        }
+
+        &__payed {
+          color: #FFD4A2;
+          text-shadow: 0 0 10px #FFD4A2;
+        }
+
+        &-description {
+          opacity: .5;
+          font-size: 1.1rem;
+          margin-right: 30px;
+
+          @media (max-width: 1280px) {
+            margin-right: 20px;
+          }
+
+          @media (max-width: 1000px) {
+            margin-right: 15px;
+          }
+
+          @media (max-height: 800px) {
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+
+      &-input {
+        margin-right: 15px;
+
+        @media (max-width: 1000px) {
+          margin-right: 7px;
+        }
+
+        @media (max-height: 800px) {
+          margin-right: 7px;
+        }
+
+        &__title {
+          opacity: .5;
+          font-size: 1.1rem;
+        }
+
+        &-range {
+          width: 180px;
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+
+          @media (max-width: 1000px) {
+            width: 90px;
+            margin-top: 5px;
+          }
+
+          @media (max-height: 800px) {
+            width: 90px;
+            margin-top: 5px;
+          }
+
+          &__left-arrow,
+          &__right-arrow {
+            height: 20px;
+
+            cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+            @media (max-width: 1000px) {
+              height: 10px;
+            }
+
+            @media (max-height: 800px) {
+              height: 10px;
+            }
+          }
+
+          &__left-arrow {
+            margin-right: 15px;
+
+            @media (max-width: 1000px) {
+              margin-right: 7px;
+            }
+
+            @media (max-height: 800px) {
+              margin-right: 7px;
+            }
+          }
+
+          &__right-arrow {
+            transform: rotate(180deg);
+            margin-left: 15px;
+
+            @media (max-width: 1000px) {
+              margin-left: 7px;
+            }
+
+            @media (max-height: 800px) {
+              margin-left: 7px;
+            }
+          }
+
+          & input {
+            width: 100%;
+            opacity: .3;
+            height: 2px;
+
+            background-color: $color-black;
+            border-radius: 2px;
+
+            outline: none;
+            appearance:none;
+            border:none;
+          }
+
+          & input::-webkit-slider-thumb {
+            appearance: none;
+            outline:none;
+
+            width: 2px;
+            height: 20px;
+
+            background: $color-black;
+
+            cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+            @media (max-width: 1000px) {
+              height: 10px;
+            }
+
+            @media (max-height: 800px) {
+              height: 10px;
+            }
+          }
+        }
+      }
+
+      &__days {
+        padding: 8px;
+        margin-right: 10px;
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 2rem;
+
+        background: #00000050;
+        border: 1px solid #FFD4A250;
+
+        @media (max-width: 1280px) {
+          padding: 5px;
+        }
+
+        @media (max-width: 1000px) {
+          padding: 4px;
+          margin-right: 5px;
+          width: 30px;
+          font-size: 1.5rem;
+        }
+
+        @media (max-height: 800px) {
+          padding: 4px;
+          margin-right: 5px;
+          width: 30px;
+          font-size: 1.5rem;
+        }
+      }
+
+      &-count {
+        width: 150px;
+        padding: 8px 10px 8px 16px;
+        margin-right: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: #00000050;
+        border: 1px solid #B9FE7550;
+
+        font-size: 2rem;
+        color: #B9FE75;
+
+        @media (max-width: 1280px) {
+          width: 120px;
+          padding: 5px 8px 5px 12px;
+        }
+
+        @media (max-width: 1000px) {
+          width: 75px;
+          padding: 4px 5px 4px 8px;
+          margin-right: 5px;
+          font-size: 1.5rem;
+        }
+
+        @media (max-height: 800px) {
+          width: 75px;
+          padding: 4px 5px 4px 8px;
+          margin-right: 5px;
+          font-size: 1.5rem;
+        }
+
+        &__dollar {
+          opacity: .2;
+        }
+      }
+
+      &__buy {
+        width: 150px;
+        padding: 12px;
+
+        font-family: "Baron Neue", sans-serif;
+        font-size: 1.5rem;
+        color: #00000060;
+        line-height: 120%;
+
+        background: linear-gradient(90deg, #FFD4A2cc, #B19576cc);
+
+        outline: none;
+        border: none;
+
+        cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+        @media (max-width: 1280px) {
+          width: 120px;
+          padding: 10px;
+        }
+
+        @media (max-width: 1000px) {
+          width: 75px;
+          padding: 6px;
+          font-size: 1.2rem;
+        }
+
+        @media (max-height: 800px) {
+          width: 75px;
+          padding: 6px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

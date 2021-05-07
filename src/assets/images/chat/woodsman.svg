@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46.832" height="38.376" viewBox="0 0 46.832 38.376">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffef84"/>
+      <stop offset="1" stop-color="#d4c357"/>
+    </linearGradient>
+  </defs>
+  <g id="Сгруппировать_1853" data-name="Сгруппировать 1853" transform="matrix(0.966, -0.259, 0.259, 0.966, -273.913, -500.148)">
+    <g id="Сгруппировать_1852" data-name="Сгруппировать 1852" transform="translate(132.402 564.19)">
+      <path id="Объединение_26" data-name="Объединение 26" d="M-12647.156-3261.059l21.562-19.415-1.061-1.178,5.854-5.269,1.06,1.177.939-.847,2.653,2.946-.94.847,2.595,2.882,8.1,4.288-10.535,9.487-3.562-8.659-2.455-2.728-21.56,19.414Z" transform="translate(12647.155 3286.921)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

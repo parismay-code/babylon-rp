@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="62.55" height="61.907" viewBox="0 0 62.55 61.907">
+  <defs>
+    <filter id="Объединение_18" x="0" y="0" width="62.55" height="61.907" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_2436" data-name="Сгруппировать 2436" transform="translate(-11390 -5873.199)">
+    <g transform="matrix(1, 0, 0, 1, 11390, 5873.2)" filter="url(#Объединение_18)">
+      <path id="Объединение_18-2" data-name="Объединение 18" d="M27.212,29.421l2.851-2.851,2.487,2.487L29.7,31.907ZM0,29.056l2.487-2.487,2.851,2.851L2.852,31.907Zm23.408-3.439,2.487-2.487.364-.365,2.487,2.487L25.894,28.1ZM3.8,25.252l2.487-2.487.364.365,2.487,2.487L6.656,28.1Zm15.162-.665,6.263-6.263,1.418,1.418-1.05,1.05h0l-5.213,5.213Zm-12.014-3.8h0L5.9,19.742l1.418-1.418,6.263,6.263-1.418,1.418Zm9.322-2.308-3.08,3.08-2.851-2.851,3.08-3.08L3.389,5.6l.1-5.6L16.275,12.781,29.056,0l.1,5.6L19.126,15.633l3.08,3.08-2.851,2.851Z" transform="translate(15 15)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

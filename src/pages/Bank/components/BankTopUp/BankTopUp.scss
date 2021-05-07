@@ -1,0 +1,155 @@
+@import '../../../../styles/vars';
+
+.bank-top-up {
+  position: relative;
+  width: 55%;
+  height: 100%;
+  padding: 70px 50px;
+
+  font-family: 'TT Norms Medium', sans-serif;
+  color: $color-white;
+
+  @media (max-width: 1000px) {
+    padding: 35px 25px;
+  }
+
+  @media (max-height: 800px) {
+    padding: 35px 25px;
+  }
+
+  &-header {
+    margin-bottom: 35px;
+
+    @media (max-width: 1000px) {
+      margin-bottom: 20px;
+    }
+
+    @media (max-height: 800px) {
+      margin-bottom: 20px;
+    }
+
+    &-info,
+    &-form {
+      display: flex;
+      align-items: center;
+
+      &-balance,
+      &__description {
+        width: 40%;
+      }
+
+      &-card,
+      &-input {
+        width: 60%;
+      }
+    }
+
+    &-info {
+      margin-bottom: 30px;
+
+      @media (max-width: 1000px) {
+        margin-bottom: 15px;
+      }
+
+      @media (max-height: 800px) {
+        margin-bottom: 15px;
+      }
+
+      &-balance {
+        text-transform: uppercase;
+        font-size: 1.1rem;
+
+        &__title {
+          text-shadow: 0 0 10px #FFFFFF90;
+          margin-bottom: 5px;
+        }
+
+        &__subtitle {
+          font-family: "TT Norms Thin", sans-serif;
+          font-size: 1.8rem;
+          color: #D5DCFF;
+        }
+      }
+
+      &-card {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+
+        &__title {
+          letter-spacing: 1px;
+          font-family: "Baron Neue", sans-serif;
+          margin-bottom: 5px;
+        }
+
+        &__subtitle {
+          font-family: "TT Norms Thin", sans-serif;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    &-form {
+      &__description {
+        opacity: .5;
+        font-size: 1.1rem;
+      }
+
+      &-input {
+        &__count,
+        &__submit {
+          width: 45%;
+          border: none;
+          outline: none;
+        }
+
+        &__count {
+          margin-right: 15px;
+          padding: 15px 20px;
+
+          font-size: 1.1rem;
+          color: #FFFFFF70;
+
+          background-color: #00000030;
+          border: 1px solid #AEBAF880;
+
+          @media (max-width: 1000px) {
+            padding: 7px 10px;
+            margin-right: 7px;
+          }
+
+          @media (max-height: 800px) {
+            padding: 7px 10px;
+            margin-right: 7px;
+          }
+
+          &::placeholder {
+            color: #FFFFFF70;
+          }
+        }
+
+        &__submit {
+          padding: 15px;
+          transform: translateY(2px);
+
+          text-transform: lowercase;
+          color: #000000aa;
+          font-size: 1.2rem;
+          letter-spacing: 2px;
+          font-family: "Baron Neue", sans-serif;
+
+          background: linear-gradient(270deg, #AEBAF8cf, #D5DCFFcf);
+
+          cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+          @media (max-width: 1000px) {
+            padding: 7px;
+          }
+
+          @media (max-height: 800px) {
+            padding: 7px;
+          }
+        }
+      }
+    }
+  }
+}

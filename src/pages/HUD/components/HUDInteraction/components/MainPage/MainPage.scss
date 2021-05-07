@@ -1,0 +1,85 @@
+.hud-interactions-main {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__title {
+    position: absolute;
+    left: 50%;
+
+    font-family: "TT Norms Regular", sans-serif;
+    transform: translate(-50%, 60px);
+    color: #AAB6EF;
+    text-align: center;
+
+    @media (max-width: 1280px) {
+      transform: translate(-50%, 30px);
+
+      font-size: .7rem;
+    }
+
+    @media (max-height: 800px) {
+      transform: translate(-50%, 30px);
+
+      font-size: .7rem;
+    }
+  }
+
+  &-options {
+    width: 100%;
+    height: 100%;
+
+    &__element {
+      position: absolute;
+      transform: translate(-50%, -50%);
+
+      cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+      & svg {
+        max-height: 35px;
+        max-width: 40px;
+
+        transition: fill .2s, opacity .2s;
+
+        @media (max-width: 1280px) {
+          max-height: 17.5px;
+          max-width: 20px;
+        }
+
+        @media (max-height: 800px) {
+          max-height: 17.5px;
+          max-width: 20px;
+        }
+      }
+
+      &_passport {
+        left: 10%;
+        top: 15%;
+      }
+
+      &_property {
+        left: 25%;
+        top: 34%;
+      }
+
+      &_actions {
+        left: 50%;
+        top: 43%;
+      }
+
+      &_money {
+        left: 75%;
+        top: 34%;
+      }
+
+      &_fraction {
+        left: 90%;
+        top: 15%;
+      }
+    }
+  }
+}

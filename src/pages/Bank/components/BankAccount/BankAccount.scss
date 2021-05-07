@@ -1,0 +1,236 @@
+@import '../../../../styles/vars';
+
+.bank-account {
+  position: relative;
+  width: 55%;
+  height: 100%;
+  padding: 50px 30px;
+
+  font-family: 'TT Norms Medium', sans-serif;
+  color: $color-white;
+
+  @media (max-width: 1000px) {
+    padding: 25px 15px;
+  }
+
+  @media (max-height: 800px) {
+    padding: 25px 15px;
+  }
+
+  &-statistic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-gauge {
+      position: absolute;
+
+      height: 480px;
+      width: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 100%;
+
+      background-color: #56565690;
+
+      @media (max-width: 1280px) {
+        width: 360px;
+        height: 360px;
+      }
+
+      @media (max-width: 1000px) {
+        width: 240px;
+        height: 240px;
+      }
+
+      @media (max-height: 800px) {
+        width: 240px;
+        height: 240px;
+      }
+
+      &-balance {
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 200px;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 130px;
+        }
+
+        @media (max-width: 1000px) {
+          margin-bottom: 100px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 100px;
+        }
+
+        &__value {
+          font-family: "TT Norms Thin", sans-serif;
+          color: #D5DCFF;
+          font-size: 2.5rem;
+          margin-bottom: 5px;
+
+          @media (max-width: 1000px) {
+            font-size: 2rem;
+          }
+
+          @media (max-height: 800px) {
+            font-size: 2rem;
+          }
+        }
+
+        &__title {
+          font-size: 1.5rem;
+
+          @media (max-width: 1000px) {
+            font-size: 1rem;
+          }
+
+          @media (max-height: 800px) {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      &__image {
+        position: absolute;
+        bottom: 0;
+
+        width: 100%;
+      }
+    }
+  }
+
+  &-bottom {
+    position: relative;
+    width: 450px;
+    margin: 0 auto 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+
+    @media (max-width: 1154px) {
+      width: 350px;
+    }
+
+    @media (max-width: 1000px) {
+      width: 250px;
+      font-size: 1.1rem;
+      margin: 0 auto 7px auto;
+    }
+
+    @media (max-height: 800px) {
+      width: 250px;
+      font-size: 1.1rem;
+      margin: 0 auto 7px auto;
+    }
+
+    @media (min-width: 3000px) {
+      font-size: 1.1rem;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 1px;
+      height: 50px;
+
+      background: linear-gradient(to bottom, $color-blank, $color-white, $color-blank);
+    }
+
+    &__number,
+    &__bank {
+      width: 50%;
+    }
+
+    &__number {
+      font-family: "TT Norms Thin", sans-serif;
+    }
+
+    &__bank {
+      font-family: "Baron Neue", sans-serif;
+      margin: 0 0 5px 50px;
+
+      color: rgba(255, 255, 255, .7);
+
+      & b {
+        color: $color-white;
+      }
+    }
+  }
+
+  &-navigation {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #00000070;
+    text-transform: lowercase;
+    font-family: "Baron Neue", sans-serif;
+    font-size: 1.3rem;
+
+    @media (max-width: 1154px) {
+      width: 350px;
+    }
+
+    @media (max-width: 1000px) {
+      width: 210px;
+      font-size: .7rem;
+    }
+
+    @media (max-height: 800px) {
+      width: 210px;
+      font-size: .7rem;
+    }
+
+    @media (min-width: 3000px) {
+      font-size: .9rem;
+    }
+
+    &-lock,
+    &-change-pin {
+      width: 50%;
+
+      cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+      &__title {
+        margin-right: 15px;
+
+        @media (max-width: 1000px) {
+          margin-right: 7px;
+        }
+
+        @media (max-height: 800px) {
+          margin-right: 7px;
+        }
+      }
+
+      &__icon {
+        height: 15px;
+
+        @media (max-width: 1000px) {
+          height: 10px;
+        }
+
+        @media (max-height: 800px) {
+          height: 10px;
+        }
+      }
+    }
+
+    &-change-pin {
+      margin-left: 50px;
+    }
+  }
+}

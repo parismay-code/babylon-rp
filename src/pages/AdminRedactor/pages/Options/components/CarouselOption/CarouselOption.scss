@@ -1,0 +1,15 @@
+@import '../../../../../../styles/vars';
+
+.carousel-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  font-family: "Baron Neue", sans-serif;
+  color: $color-black;
+
+  &__title {
+    opacity: .5;
+  }
+}

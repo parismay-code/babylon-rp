@@ -1,0 +1,221 @@
+@import '../../../../styles/vars';
+
+.bank-open-card {
+  position: relative;
+  width: 55%;
+  height: 100%;
+
+  color: $color-white;
+
+  &-element {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 33%;
+
+    cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+    border-bottom: 1px solid #707070;
+
+    &:last-of-type {
+      border: none;
+      height: 34%;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      height: 100%;
+      padding: 70px 0 0 120px;
+
+      font-size: 1.3rem;
+      font-family: "Baron Neue", sans-serif;
+
+      @media (max-width: 1280px) {
+        padding: 50px 0 0 80px;
+      }
+
+      @media (max-width: 1000px) {
+        padding: 35px 0 0 60px;
+      }
+
+      @media (max-height: 800px) {
+        padding: 35px 0 0 60px;
+      }
+
+      &__title {
+        margin-bottom: 5px;
+      }
+    }
+
+    &-bonuses {
+      width: 60%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      opacity: .7;
+
+      font-size: 1.2rem;
+      font-family: 'TT Norms Thin', sans-serif;
+
+      &__element {
+        position: relative;
+        margin-bottom: 15px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: -40px;
+
+          width: 30px;
+          height: 1px;
+
+          background-color: $color-white;
+          opacity: .5;
+
+          @media (max-width: 1000px) {
+            left: -20px;
+            width: 15px;
+          }
+
+          @media (max-height: 800px) {
+            left: -20px;
+            width: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  &-notify {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    background-color: #000000bc;
+
+    opacity: 0;
+
+    font-family: "TT Norms Medium", sans-serif;
+
+    transition: opacity .5s, width 0s .6s, height 0s .6s;
+
+    &-choose {
+      width: 380px;
+      position: absolute;
+      top: 64%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      @media (max-height: 800px) {
+        width: 190px;
+        top: 61%;
+      }
+
+      @media (max-width: 1000px) {
+        width: 190px;
+        top: 63%;
+      }
+
+      @media (min-width: 2000px) {
+        top: 60%;
+      }
+
+      @media (min-width: 3000px) {
+        top: 61%;
+        font-size: .8rem;
+      }
+
+      &__title {
+        width: 60%;
+
+        & span {
+          text-transform: uppercase;
+        }
+
+        @media (max-height: 800px) {
+          font-size: .7rem;
+        }
+      }
+
+      &-buttons {
+        display: flex;
+        align-items: center;
+
+        &__element {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          width: 40px;
+          height: 40px;
+
+          border-radius: 5px;
+
+          cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+
+          transition: border .2s;
+
+          @media (max-width: 1000px) {
+            width: 20px;
+            height: 20px;
+
+            border-radius: 2.5px;
+          }
+
+          @media (max-height: 800px) {
+            width: 20px;
+            height: 20px;
+
+            border-radius: 2.5px;
+          }
+
+          &_no {
+            border: 1px solid #FFC2D0;
+            margin-right: 25px;
+
+            @media (max-width: 1000px) {
+              margin-right: 12.5px;
+            }
+
+            @media (max-height: 800px) {
+              margin-right: 12.5px;
+            }
+
+            &:hover {
+              border: 1px solid #FF7796;
+            }
+          }
+
+          &_yes {
+            border: 1px solid #E8FFD2;
+
+            &:hover {
+              border: 1px solid #B9FE75;
+            }
+          }
+        }
+      }
+    }
+    
+    &_active {
+      width: 100vw;
+      height: 100vh;
+
+      opacity: 1;
+
+      transition: opacity .5s;
+    }
+  }
+}

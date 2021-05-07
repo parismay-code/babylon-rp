@@ -1,0 +1,239 @@
+@import '../../../../styles/vars';
+
+.bank-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  padding: 15px 50px;
+
+  box-shadow: 0 5px 15px #00000020;
+
+  @media (max-width: 1280px) {
+    padding: 10px 40px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 7px 25px;
+  }
+
+  @media (max-height: 800px) {
+    padding: 7px 25px;
+  }
+
+  &::after {
+    content: '';
+    height: 1px;
+    width: 40%;
+
+    position: absolute;
+    bottom: 0;
+    left: 70%;
+    transform: translateX(-50%);
+
+    background: linear-gradient(to right, $color-blank, #AEBAF895, $color-blank, #FFFFFF95, $color-blank);
+  }
+
+  &__logo {
+    display: flex;
+    margin: 0 150px 5px 0;
+
+    font-size: 2.5rem;
+    color: #FFD4A2;
+
+    @media (max-width: 1280px) {
+      margin: 0 120px 5px 0;
+    }
+
+    @media (max-width: 1000px) {
+      margin: 0 75px 3px 0;
+    }
+
+    @media (max-height: 800px) {
+      margin: 0 75px 3px 0;
+    }
+  }
+
+  &-top-up,
+  &-withdraw {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+    transition: text-shadow .2s ease, filter .2s ease;
+
+    &__icon {
+      width: 30px;
+      height: 30px;
+
+      transition: filter .2s ease;
+
+      @media (max-width: 1000px) {
+        width: 15px;
+        height: 15px;
+      }
+
+      @media (max-height: 800px) {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    &__text {
+      font-family: "TT Norms Thin", sans-serif;
+      font-size: 1.5rem;
+      color: #D5DCFF;
+      margin: 0 10% 5px 0;
+    }
+
+    &-mobile {
+      display: flex;
+      align-items: center;
+      opacity: .5;
+
+      cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+      transition: opacity .2s ease;
+
+      &:hover,
+      &.active {
+        opacity: 1;
+        text-shadow: 0 0 5px #ffffffdd;
+      }
+
+      &__icon {
+        width: 25px;
+        margin-right: 5px;
+
+        @media (max-width: 1000px) {
+          width: 15px;
+        }
+
+        @media (max-height: 800px) {
+          width: 15px;
+        }
+      }
+
+      &-text {
+        display: flex;
+        flex-direction: column;
+        width: 140px;
+
+        text-transform: uppercase;
+
+        font-family: "TT Norms Medium", sans-serif;
+        color: $color-white;
+
+        @media (max-width: 1280px) {
+          width: 120px;
+        }
+
+        @media (max-width: 1000px) {
+          width: 70px;
+        }
+
+        @media (max-height: 800px) {
+          width: 70px;
+        }
+
+        &__subtitle {
+          width: 150px;
+          text-transform: lowercase;
+
+          @media (min-width: 3000px) {
+            width: 180px;
+          }
+
+          @media (max-width: 1280px) {
+            width: 140px;
+          }
+
+          @media (max-width: 1000px) {
+            width: 100px;
+          }
+
+          @media (max-height: 800px) {
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  &-withdraw {
+    margin: 0 100px 0 auto;
+
+    @media (max-width: 1280px) {
+      margin: 0 80px 0 auto;
+    }
+
+    @media (max-width: 1000px) {
+      margin: 0 50px 0 auto;
+    }
+
+    @media (max-height: 800px) {
+      margin: 0 50px 0 auto;
+    }
+
+    &:hover,
+    &.active {
+      text-shadow: 0 0 15px #FFD4A2;
+
+      @media (max-width: 1000px) {
+        text-shadow: 0 0 7px #FFD4A2;
+      }
+
+      @media (max-height: 800px) {
+        text-shadow: 0 0 7px #FFD4A2;
+      }
+    }
+
+    &:hover &__icon,
+    &.active &__icon {
+      filter: drop-shadow(0 0 15px #FFD4A2);
+
+      @media (max-width: 1000px) {
+        filter: drop-shadow(0 0 7px #FFD4A2);
+      }
+
+      @media (max-height: 800px) {
+        filter: drop-shadow(0 0 7px #FFD4A2);
+      }
+    }
+
+    &__text {
+      color: #FFD4A2;
+      margin-right: 15%;
+    }
+  }
+
+  &-top-up {
+    &:hover,
+    &.active {
+      text-shadow: 0 0 15px #D5DCFF;
+
+      @media (max-width: 1000px) {
+        text-shadow: 0 0 7px #D5DCFF;
+      }
+
+      @media (max-height: 800px) {
+        text-shadow: 0 0 7px #D5DCFF;
+      }
+    }
+
+    &:hover &__icon,
+    &.active &__icon {
+      filter: drop-shadow(0 0 15px #D5DCFF);
+
+      @media (max-width: 1000px) {
+        filter: drop-shadow(0 0 7px #D5DCFF);
+      }
+
+      @media (max-height: 800px) {
+        filter: drop-shadow(0 0 7px #D5DCFF);
+      }
+    }
+  }
+}

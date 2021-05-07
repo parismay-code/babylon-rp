@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="21" viewBox="0 0 28 21">
+  <defs>
+    <filter id="Объединение_4" x="0" y="0" width="28" height="21" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Объединение_4)">
+    <path id="Объединение_4-2" data-name="Объединение 4" d="M0,15V13.846H22V15Zm1.223-1.73V12.116H20.472V13.27ZM16.4,12.116v-.577h.51V5.769h2.037v5.77h.509v.577Zm-5.093,0v-.577h.51V5.769h2.037v5.77h.509v.577Zm-5.092,0v-.577H9.268v.577Zm-4.074,0v-.577H5.194v.577Zm4.583-.577V5.769H8.759v5.77Zm-4.074,0V5.769H4.685v5.77ZM16.4,5.192V4.615H14.361v.577H11.3V4.615H9.268v.577H6.213V4.615H5.194v.577H2.139V4.615H1.223V3.461H20.472V4.615H19.453v.577ZM1.223,2.884,10.847,0l9.625,2.884Z" transform="translate(3 2)" fill="#eaeaea"/>
+  </g>
+</svg>

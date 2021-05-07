@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="27" viewBox="0 0 37 27">
+  <defs>
+    <filter id="Прямоугольник_1015" x="0" y="0" width="37" height="27" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_723" data-name="Сгруппировать 723" transform="translate(-1515.647 -448)">
+    <g transform="matrix(1, 0, 0, 1, 1515.65, 448)" filter="url(#Прямоугольник_1015)">
+      <g id="Прямоугольник_1015-2" data-name="Прямоугольник 1015" transform="translate(3 2)" fill="none" stroke="#aab6ef" stroke-width="1.9">
+        <rect width="31" height="21" rx="2" stroke="none"/>
+        <rect x="0.95" y="0.95" width="29.1" height="19.1" rx="1.05" fill="none"/>
+      </g>
+    </g>
+    <circle id="Эллипс_18" data-name="Эллипс 18" cx="1.5" cy="1.5" r="1.5" transform="translate(1522.647 459)" fill="#aab6ef"/>
+  </g>
+</svg>

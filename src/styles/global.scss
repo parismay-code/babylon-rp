@@ -1,0 +1,136 @@
+@import 'vars';
+
+@font-face {
+  font-family: 'Buyan Bold';
+  src: url("../assets/fonts/BuyanBold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Buyan Regular';
+  src: url("../assets/fonts/BuyanRegular.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Baron Neue';
+  src: url("../assets/fonts/BaronNeue.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'TT Norms Black';
+  src: url("../assets/fonts/TTNorms-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Black Italic';
+  src: url("../assets/fonts/TTNorms-BlackItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Bold';
+  src: url("../assets/fonts/TTNorms-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Bold Italic';
+  src: url("../assets/fonts/TTNorms-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Extra Bold';
+  src: url("../assets/fonts/TTNorms-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Extra Bold Italic';
+  src: url("../assets/fonts/TTNorms-ExtraBoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Extra Light';
+  src: url("../assets/fonts/TTNorms-ExtraLight.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Extra Light Italic';
+  src: url("../assets/fonts/TTNorms-ExtraLightItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Heavy';
+  src: url("../assets/fonts/TTNorms-Heavy.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Heavy Italic';
+  src: url("../assets/fonts/TTNorms-HeavyItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Italic';
+  src: url("../assets/fonts/TTNorms-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Light Italic';
+  src: url("../assets/fonts/TTNorms-LightItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Medium';
+  src: url("../assets/fonts/TTNorms-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Medium Italic';
+  src: url("../assets/fonts/TTNorms-MediumItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Regular';
+  src: url("../assets/fonts/TTNorms-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Thin';
+  src: url("../assets/fonts/TTNorms-Thin.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'TT Norms Thin Italic';
+  src: url("../assets/fonts/TTNorms-ThinItalic.ttf") format("truetype");
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+  list-style: none;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  display: none;
+}
+
+html {
+  font-size: $font-size-default-high;
+  color: $color-white;
+  overflow: hidden;
+  cursor: url("../assets/images/cursorDefault.svg"), auto;
+
+  @media (max-width: 1000px) {
+    font-size: $font-size-default-low;
+  }
+
+  @media (max-height: 800px) {
+    font-size: $font-size-default-low;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: $font-size-default-middle;
+  }
+
+  @media (min-width: 2600px) {
+    font-size: $font-size-default-max;
+  }
+}
+
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email'] {
+  cursor: url("../assets/images/cursorInput.svg"), text;
+}
+
+body {
+  //background-image: url(../assets/images/hud/bg.png);
+  width: 100vw;
+  height: 100vh;
+}

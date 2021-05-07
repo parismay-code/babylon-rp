@@ -1,0 +1,207 @@
+@import '../../../../styles/vars';
+
+.bank-lock-card {
+  position: relative;
+  width: 55%;
+  height: 100%;
+
+  font-family: 'TT Norms Medium', sans-serif;
+  color: $color-white;
+
+  &-content {
+    padding: 70px 50px;
+
+    @media (max-width: 1000px) {
+      padding: 35px 25px;
+    }
+
+    @media (max-height: 800px) {
+      padding: 35px 25px;
+    }
+
+
+    &-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 50px;
+
+      text-transform: uppercase;
+      font-size: 1.4rem;
+
+      @media (max-width: 1000px) {
+        margin-bottom: 25px;
+      }
+
+      @media (max-height: 800px) {
+        margin-bottom: 25px;
+      }
+
+      &__image {
+        height: 20px;
+        margin-right: 5px;
+
+        @media (max-width: 1000px) {
+          height: 15px;
+        }
+
+        @media (max-height: 800px) {
+          height: 15px;
+        }
+      }
+    }
+
+    &-info {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 40px;
+
+      @media (max-width: 1000px) {
+        margin-bottom: 20px;
+      }
+
+      @media (max-height: 800px) {
+        margin-bottom: 20px;
+      }
+
+      &-balance {
+        text-transform: uppercase;
+        margin-right: 70px;
+
+        @media (max-width: 1000px) {
+          margin-right: 35px;
+        }
+
+        @media (max-height: 800px) {
+          margin-right: 35px;
+        }
+
+        &__value {
+          font-family: "TT Norms Thin", sans-serif;
+          color: #D5DCFF;
+          font-size: 2rem;
+        }
+      }
+
+      &-card {
+        text-transform: uppercase;
+        font-family: "Baron Neue", sans-serif;
+        font-size: 1.5rem;
+
+        &__type {
+          margin-bottom: 3px;
+          color: rgba(255, 255, 255, .7);
+
+          & b {
+            color: $color-white;
+          }
+        }
+
+        &__number {
+          font-family: "TT Norms Thin", sans-serif;
+        }
+      }
+    }
+
+    &-form {
+      display: flex;
+      align-items: center;
+
+      &__account {
+        &-number {
+          width: 180px;
+
+          @media (max-width: 1000px) {
+            width: 130px;
+          }
+
+          @media (max-height: 800px) {
+            width: 130px;
+          }
+        }
+
+        &-pin {
+          width: 160px;
+
+          @media (max-width: 1000px) {
+            width: 110px;
+          }
+
+          @media (max-height: 800px) {
+            width: 110px;
+          }
+        }
+
+        &-number,
+        &-pin {
+          outline: none;
+          border: 1px solid #AEBAF890;
+          
+          margin-right: 50px;
+          padding: 15px;
+
+          background: rgba(0, 0, 0, .2);
+
+          font-size: 1rem;
+          color: #ffffff;
+
+          @media (max-width: 1000px) {
+            margin-right: 25px;
+            padding: 7px;
+          }
+
+          @media (max-height: 800px) {
+            margin-right: 25px;
+            padding: 7px;
+          }
+
+          &::placeholder {
+            color: #ffffff70;
+          }
+        }
+      }
+    }
+  }
+
+  &-submit {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid #707070;
+
+    font-family: "Baron Neue", sans-serif;
+    text-transform: lowercase;
+    font-size: 2rem;
+    text-shadow: 0 0 25px #AEBAF8;
+
+    cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+    &:hover &__fill {
+      max-width: 100%;
+      opacity: .2;
+
+      transition: max-width .1s ease, opacity .5s;
+    }
+
+    &__fill {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      width: 100%;
+      max-width: 0;
+      height: 100%;
+
+      opacity: 0;
+
+      background: linear-gradient(to left, #AEBAF8, $color-blank 80%);
+
+      transition: max-width 1s ease, opacity .2s;
+    }
+  }
+}

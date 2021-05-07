@@ -1,0 +1,34 @@
+<svg id="Сгруппировать_2288" data-name="Сгруппировать 2288" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.691" height="27.207" viewBox="0 0 25.691 27.207">
+  <defs>
+    <filter id="Объединение_7" x="6.028" y="0" width="13.634" height="27.207" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Объединение_9" x="12.057" y="0" width="13.634" height="27.207" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Объединение_8" x="0" y="0" width="13.634" height="27.207" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-3"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Объединение_7)">
+    <path id="Объединение_7-2" data-name="Объединение 7" d="M4.5,21.707V19.734H9.133v1.972Zm.381-2.851V17.613H4.5V10.076H9.134v7.537H8.753v1.243ZM4.5,9.2V8.974a8.546,8.546,0,0,1,.063-1.041,8.079,8.079,0,0,1,.187-1,7.572,7.572,0,0,1,.308-.949A7.064,7.064,0,0,1,5.484,5.1q.12-.211.251-.4t.271-.371q.14-.177.29-.335t.307-.3L6.817,3.5l.213.188q.158.14.308.3t.29.335q.14.177.271.371T8.15,5.1a7.067,7.067,0,0,1,.425.882,7.574,7.574,0,0,1,.308.949,8.073,8.073,0,0,1,.187,1,8.526,8.526,0,0,1,.063,1.041V9.2Z" transform="translate(6.03)" fill="#efcaaa"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Объединение_9)">
+    <path id="Объединение_9-2" data-name="Объединение 9" d="M4.5,21.707V19.734H9.133v1.972Zm.381-2.851V17.613H4.5V10.076H9.134v7.537H8.753v1.243ZM4.5,9.2V8.974a8.546,8.546,0,0,1,.063-1.041,8.079,8.079,0,0,1,.187-1,7.572,7.572,0,0,1,.308-.949A7.064,7.064,0,0,1,5.484,5.1q.12-.211.251-.4t.271-.371q.14-.177.29-.335t.307-.3L6.817,3.5l.213.188q.158.14.308.3t.29.335q.14.177.271.371T8.15,5.1a7.067,7.067,0,0,1,.425.882,7.574,7.574,0,0,1,.308.949,8.073,8.073,0,0,1,.187,1,8.526,8.526,0,0,1,.063,1.041V9.2Z" transform="translate(12.06)" fill="#efcaaa"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Объединение_8)">
+    <path id="Объединение_8-2" data-name="Объединение 8" d="M4.5,21.707V19.734H9.133v1.972Zm.381-2.851V17.613H4.5V10.076H9.134v7.537H8.753v1.243ZM4.5,9.2V8.974a8.546,8.546,0,0,1,.063-1.041,8.079,8.079,0,0,1,.187-1,7.572,7.572,0,0,1,.308-.949A7.064,7.064,0,0,1,5.484,5.1q.12-.211.251-.4t.271-.371q.14-.177.29-.335t.307-.3L6.817,3.5l.213.188q.158.14.308.3t.29.335q.14.177.271.371T8.15,5.1a7.067,7.067,0,0,1,.425.882,7.574,7.574,0,0,1,.308.949,8.073,8.073,0,0,1,.187,1,8.526,8.526,0,0,1,.063,1.041V9.2Z" fill="#efcaaa"/>
+  </g>
+</svg>

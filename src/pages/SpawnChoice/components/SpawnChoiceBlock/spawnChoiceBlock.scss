@@ -1,0 +1,146 @@
+@import '../../../../styles/vars';
+
+.spawn-choice-content {
+  margin-top: 5px;
+  width: 50%;
+
+  &-title {
+    position: relative;
+
+    color: $color-black;
+
+    font-size: 3.5rem;
+    opacity: .7;
+
+    @media (max-width: 1000px) {
+      font-size: 2rem;
+    }
+
+    @media (max-height: 800px) {
+      font-size: 2rem;
+    }
+
+    &__next {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  &-subtitle {
+    width: 80%;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    color: $color-white;
+    filter: drop-shadow(0 1px 2px #000000);
+
+    letter-spacing: 1px;
+    line-height: 1.2rem;
+
+    @media (max-width: 1280px) {
+      width: 100%;
+      text-shadow: 0 2px 2px $color-black-medium-opacity;
+    }
+
+    @media (max-width: 1000px) {
+      margin-top: 10px;
+      font-size: .8rem;
+    }
+
+    @media (max-height: 800px) {
+      width: 80%;
+      margin-top: 10px;
+      font-size: .8rem;
+    }
+
+    &__note {
+      margin-top: 10px;
+
+      @media (max-width: 1000px) {
+        margin-top: 5px;
+      }
+
+      @media (max-height: 800px) {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  &-list {
+    margin-top: 50px;
+
+    font-size: 1.2rem;
+
+    @media (max-width: 1000px) {
+      margin-top: 25px;
+      font-size: 1rem;
+    }
+
+    @media (max-height: 800px) {
+      margin-top: 25px;
+      font-size: 1rem;
+    }
+
+    &__element {
+      position: relative;
+
+      cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+      color: $color-white;
+      text-shadow: 0 2px 4px #000000;
+      letter-spacing: 1px;
+
+      margin-bottom: 20px;
+
+      @media (max-width: 1000px) {
+        margin-bottom: 10px;
+      }
+
+      @media (max-height: 800px) {
+        margin-bottom: 10px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 55%;
+
+        opacity: 0;
+        background-color: $color-white;
+        filter: drop-shadow(0 1px 2px $color-black);
+
+        height: 2px;
+        width: 25px;
+
+        transition: left .2s ease, opacity .1s ease;
+
+        @media (max-width: 1000px) {
+          height: 1px;
+          width: 12.5px;
+        }
+
+        @media (max-height: 800px) {
+          height: 1px;
+          width: 12.5px;
+        }
+      }
+
+      &:hover::before,
+      &.active::before {
+        left: -30px;
+        opacity: 1;
+
+        @media (max-width: 1000px) {
+          left: -15px;
+        }
+
+        @media (max-height: 800px) {
+          left: -15px;
+        }
+      }
+    }
+  }
+}

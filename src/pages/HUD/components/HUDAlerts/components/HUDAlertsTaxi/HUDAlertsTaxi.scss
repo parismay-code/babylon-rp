@@ -1,0 +1,161 @@
+@import '../../../../../../styles/vars';
+
+.hud-alerts-taxi {
+  height: 50px;
+  width: 320px;
+  display: flex;
+  align-items: center;
+
+  text-shadow: 0 1px 1px $color-black;
+
+  @media (max-width: 1280px) {
+    width: 280px;
+    height: 40px;
+  }
+
+  @media (max-width: 1154px) {
+    width: 240px;
+    height: 35px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 160px;
+    height: 25px;
+  }
+
+  @media (max-height: 800px) {
+    width: 160px;
+    height: 25px;
+  }
+
+  &_active &-before {
+    transform: translateX(0);
+  }
+
+  &_active &-content {
+    width: 90%;
+    opacity: 1;
+
+    &-info,
+    &__money {
+      opacity: 1;
+    }
+  }
+
+  &-before {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 30px;
+    height: 100%;
+
+    transform: translateX(-101%);
+
+    @media (max-width: 1280px) {
+      width: 21px;
+    }
+
+    @media (max-width: 1000px) {
+      width: 15px;
+    }
+
+    @media (max-height: 800px) {
+      width: 15px;
+    }
+
+    &__blank,
+    &__colored {
+      width: 10px;
+      height: 10px;
+
+      @media (max-width: 1280px) {
+        width: 7px;
+        height: 7px;
+      }
+
+      @media (max-width: 1000px) {
+        width: 5px;
+        height: 5px;
+      }
+
+      @media (max-height: 800px) {
+        width: 5px;
+        height: 5px;
+      }
+    }
+
+    &__colored {
+      background-color: #FFEF84;
+      opacity: .65;
+    }
+  }
+
+  &-content {
+    height: 100%;
+    padding: 10px 0 10px 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    text-transform: uppercase;
+
+    background: linear-gradient(to right, #FFEF8490, $color-blank);
+
+    @media (max-width: 1280px) {
+      padding: 5px 0 5px 10px;
+    }
+
+    @media (max-width: 1000px) {
+      &__money {
+        font-size: .8rem;
+      }
+    }
+
+    @media (max-height: 800px) {
+      &__money {
+        font-size: .8rem;
+      }
+    }
+
+    &-info,
+    &__money {
+      font-weight: 700;
+      opacity: 0;
+
+      @media (max-width: 1000px) {
+        &__title {
+          font-size: .7rem;
+        }
+      }
+
+      @media (max-height: 800px) {
+        &__title {
+          font-size: .7rem;
+        }
+      }
+
+      &__subtitle {
+        margin-top: 5px;
+        font-size: .7rem;
+
+        @media (max-width: 1280px) {
+          margin-top: 2px;
+        }
+
+        @media (max-width: 1000px) {
+          font-size: .5rem;
+          margin-top: 1px;
+        }
+
+        @media (max-height: 800px) {
+          font-size: .5rem;
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+}

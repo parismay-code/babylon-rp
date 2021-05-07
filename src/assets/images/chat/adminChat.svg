@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42.686" height="54" viewBox="0 0 42.686 54">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#aab6ef"/>
+      <stop offset="1" stop-color="#c373f3"/>
+    </linearGradient>
+    <filter id="Вычитание_105" x="0" y="0.257" width="42.686" height="53.743" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Контур_1485" x="3.643" y="0" width="35.286" height="41.143" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur-2"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_2398" data-name="Сгруппировать 2398" transform="translate(7.5 7.5)">
+    <g transform="matrix(1, 0, 0, 1, -7.5, -7.5)" filter="url(#Вычитание_105)">
+      <path id="Вычитание_105-2" data-name="Вычитание 105" d="M27.686,38.743H0v-4.1H27.686v4.1ZM13.844,27.463a13.779,13.779,0,0,1-5.249-1.026L10,22.572a9.736,9.736,0,0,0,7.648.016l1.406,3.863A13.779,13.779,0,0,1,13.844,27.463ZM2.779,21.945v0A13.849,13.849,0,0,1,4.053,3.833,13.738,13.738,0,0,1,11.359,0l-.509,1.422L9.478,4.914A9.744,9.744,0,0,0,4.715,17.023L2.78,21.943Zm22.127,0v0l-1.935-4.92A9.743,9.743,0,0,0,18.207,4.913L16.835,1.422,16.329,0a13.85,13.85,0,0,1,11.356,13.62,13.7,13.7,0,0,1-2.778,8.321Z" transform="translate(7.5 7.76)" fill="url(#linear-gradient)"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -7.5, -7.5)" filter="url(#Контур_1485)">
+      <path id="Контур_1485-2" data-name="Контур 1485" d="M13.316-14.936l-2.5-6.773L8.3-14.936Zm1.467,3.825H6.83L4.208-4.317A11.879,11.879,0,0,1,2.078-5.48,7.155,7.155,0,0,1,.607-6.951l7.848-19.92L9.7-30.357a7.171,7.171,0,0,1,1.113-.1,6.541,6.541,0,0,1,1.082.1l1.262,3.485,7.736,19.92A13.088,13.088,0,0,1,19.335-5.48a13.453,13.453,0,0,1-1.821,1.164Z" transform="translate(10.54 37.96)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

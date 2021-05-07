@@ -1,0 +1,148 @@
+@import '../../../../../../styles/vars';
+
+.hud-interactions-documents {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &-navigation {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 20px);
+
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: "TT Norms Bold", sans-serif;
+    color: $color-black;
+
+    @media (max-width: 1280px) {
+      transform: translate(-50%, 10px);
+    }
+
+    @media (max-height: 800px) {
+      transform: translate(-50%, 10px);
+    }
+
+    &-back {
+      display: flex;
+      align-items: center;
+
+      opacity: .5;
+
+      transition: opacity .2s;
+
+      cursor: url("../../../../../../assets/images/cursorPointer.svg"), pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &__arrow {
+        transform: scaleX(-1);
+
+        height: 25px;
+        margin-right: 10px;
+
+        @media (max-width: 1280px) {
+          height: 12.5px;
+          margin-right: 5px;
+        }
+
+        @media (max-height: 800px) {
+          height: 12.5px;
+          margin-right: 5px;
+        }
+      }
+
+      &__title {
+        opacity: .5;
+
+        @media (max-width: 1280px) {
+          font-size: .8rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+
+  &__title {
+    position: absolute;
+    left: 50%;
+
+    font-family: "TT Norms Regular", sans-serif;
+    transform: translate(-50%, 80px);
+    color: #AAB6EF;
+    text-align: center;
+
+    @media (max-width: 1280px) {
+      transform: translate(-50%, 30px);
+
+      font-size: .7rem;
+    }
+
+    @media (max-height: 800px) {
+      transform: translate(-50%, 30px);
+
+      font-size: .7rem;
+    }
+  }
+
+  &-options {
+    width: 100%;
+    height: 100%;
+
+    &__element {
+      position: absolute;
+      transform: translate(-50%, -50%);
+
+      cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+      & svg {
+        max-height: 35px;
+        max-width: 40px;
+
+        transition: fill .2s, opacity .2s;
+
+        @media (max-width: 1280px) {
+          max-height: 17.5px;
+          max-width: 20px;
+        }
+
+        @media (max-height: 800px) {
+          max-height: 17.5px;
+          max-width: 20px;
+        }
+      }
+
+      &_passport {
+        left: 10%;
+        top: 15%;
+      }
+
+      &_license {
+        left: 30%;
+        top: 38%;
+      }
+
+      &_certificate {
+        left: 70%;
+        top: 38%;
+      }
+
+      &_fracCertificate {
+        left: 90%;
+        top: 15%;
+      }
+    }
+  }
+}

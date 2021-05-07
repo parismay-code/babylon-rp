@@ -1,0 +1,58 @@
+@import '../../../../../../../styles/vars';
+
+.me-message {
+  position: relative;
+  background: linear-gradient(to right, #21212180, $color-blank);
+  padding: 5px 15px;
+  margin: 0 0 5px 20px;
+
+  color: #AAB6EF;
+  font-family: "TT Norms Bold", sans-serif;
+  font-size: .8rem;
+
+  @media (max-width: 1280px) {
+    padding: 5px 15px;
+    margin: 0 0 5px 15px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 3px 10px;
+    margin: 0 0 3px 10px;
+
+    font-size: .6rem;
+  }
+
+  @media (max-height: 800px) {
+    padding: 3px 10px;
+    margin: 0 0 3px 10px;
+
+    font-size: .6rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 5px;
+
+    width: 6px;
+    height: 6px;
+    background-color: #AAB6EF;
+
+    @media (max-width: 1000px) {
+      top: 4px;
+      left: 2.5px;
+
+      width: 3px;
+      height: 3px;
+    }
+
+    @media (max-height: 800px) {
+      top: 4px;
+      left: 2.5px;
+
+      width: 3px;
+      height: 3px;
+    }
+  }
+}

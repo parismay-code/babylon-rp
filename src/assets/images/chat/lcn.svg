@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="62.547" height="47.925" viewBox="0 0 62.547 47.925">
+  <defs>
+    <filter id="Контур_1506" x="4.562" y="0" width="53.424" height="43.473" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Контур_1507" x="0" y="13.473" width="62.547" height="34.452" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur-2"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="hat" transform="translate(15 -112.525)">
+    <g transform="matrix(1, 0, 0, 1, -15, 112.52)" filter="url(#Контур_1506)">
+      <path id="Контур_1506-2" data-name="Контур 1506" d="M142.184,114.15c0-.045-1.011-9.549-1.018-9.622a3.27,3.27,0,0,0-4.136-2.8l-6.209,1.747a1.284,1.284,0,0,1-.7,0l-6.209-1.747a3.27,3.27,0,0,0-4.136,2.8l-1.018,9.623A74.687,74.687,0,0,0,142.184,114.15Z" transform="translate(-99.2 -86.6)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -15, 112.52)" filter="url(#Контур_1507)">
+      <path id="Контур_1507-2" data-name="Контур 1507" d="M30.872,338.67a70.922,70.922,0,0,1-29.194,0,1.378,1.378,0,0,0-.636,2.682,67.718,67.718,0,0,0,30.463,0,1.378,1.378,0,0,0-.633-2.682Z" transform="translate(15 -310.16)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

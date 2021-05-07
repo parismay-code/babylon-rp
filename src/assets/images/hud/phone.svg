@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.759" height="33.306" viewBox="0 0 25.759 33.306">
+  <defs>
+    <filter id="Контур_61" x="0" y="0" width="25.759" height="33.306" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Контур_62" x="8.804" y="20.124" width="8.15" height="8.15" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Icon_feather-smartphone" data-name="Icon feather-smartphone" transform="translate(4.607 0.903)">
+    <g transform="matrix(1, 0, 0, 1, -4.61, -0.9)" filter="url(#Контур_61)">
+      <path id="Контур_61-2" data-name="Контур 61" d="M9.84,3h11.7a2.34,2.34,0,0,1,2.34,2.34V24.059a2.34,2.34,0,0,1-2.34,2.34H9.84a2.34,2.34,0,0,1-2.34-2.34V5.34A2.34,2.34,0,0,1,9.84,3Z" transform="translate(-2.89 -2.1)" fill="none" stroke="#aab6ef" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -4.61, -0.9)" filter="url(#Контур_62)">
+      <path id="Контур_62-2" data-name="Контур 62" d="M18,27h0" transform="translate(-5.2 -7.38)" fill="none" stroke="#aab6ef" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

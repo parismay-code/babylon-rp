@@ -1,0 +1,25 @@
+@import '../../../../../../styles/vars';
+
+.text-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  font-family: "Baron Neue", sans-serif;
+  color: $color-black;
+
+  &__title {
+    opacity: .5;
+  }
+
+  &__input {
+    width: 250px;
+    padding: 10px 15px;
+
+    outline: none;
+    border: none;
+
+    background: linear-gradient(-45deg, $color-black-light-opacity, #63636390);
+  }
+}

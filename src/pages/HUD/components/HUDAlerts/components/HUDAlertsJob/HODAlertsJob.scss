@@ -1,0 +1,144 @@
+@import '../../../../../../styles/vars';
+
+.hud-alerts-job {
+  width: 320px;
+  height: 50px;
+  margin-bottom: 30px;
+
+  text-shadow: 0 1px 1px $color-black;
+
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 1280px) {
+    width: 280px;
+    height: 40px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 1154px) {
+    width: 240px;
+    height: 35px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 160px;
+    height: 25px;
+
+    margin-bottom: 10px;
+  }
+
+  @media (max-height: 800px) {
+    width: 160px;
+    height: 25px;
+
+    margin-bottom: 10px;
+  }
+
+  &.active &-content {
+    width: 85%;
+    opacity: 1;
+
+    &__title,
+    &__subtitle {
+      opacity: 1;
+    }
+  }
+
+  &.active &__icon {
+    transform: translateX(0);
+  }
+
+  &__icon {
+    height: 100%;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateX(-100%);
+
+    background-color: #AAB4EE90;
+
+    @media (max-width: 1280px) {
+      width: 30px;
+    }
+
+    @media (max-width: 1000px) {
+      width: 20px;
+    }
+
+    @media (max-height: 800px) {
+      width: 20px;
+    }
+
+    & img {
+      height: 50%;
+      filter: drop-shadow(0 1px 1px $color-black);
+    }
+  }
+  
+  &-content {
+    position: relative;
+    width: 0;
+    height: 100%;
+    margin-left: 3px;
+    padding: 10px 0 10px 15px;
+
+    background: linear-gradient(to right, #AAB4EE50, $color-blank);
+    
+    opacity: 0;
+    overflow: hidden;
+    
+    font-size: .9rem;
+
+    @media (max-width: 1280px) {
+      padding: 5px 0 5px 10px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      height: 100%;
+      width: 2px;
+
+      background-color: $color-white;
+    }
+
+    &__title {
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 5px;
+
+      @media (max-width: 1000px) {
+        font-size: .7rem;
+        margin-bottom: 1px;
+      }
+
+      @media (max-height: 800px) {
+        font-size: .7rem;
+        margin-bottom: 1px;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      &__subtitle {
+        font-size: .6rem;
+      }
+    }
+
+    @media (max-height: 800px) {
+      &__subtitle {
+        font-size: .6rem;
+      }
+    }
+
+    &__title,
+    &__subtitle {
+      opacity: 0;
+    }
+  }
+}

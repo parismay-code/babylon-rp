@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="25.9" viewBox="0 0 30 25.9">
+  <defs>
+    <filter id="Прямоугольник_1012" x="0" y="18" width="30" height="7.9" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Прямоугольник_1013" x="0" y="9" width="30" height="7.9" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Прямоугольник_1014" x="0" y="0" width="30" height="7.9" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-3"/>
+      <feFlood flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_720" data-name="Сгруппировать 720" transform="translate(-1745 -270.759)">
+    <g transform="matrix(1, 0, 0, 1, 1745, 270.76)" filter="url(#Прямоугольник_1012)">
+      <rect id="Прямоугольник_1012-2" data-name="Прямоугольник 1012" width="1.9" height="24" transform="translate(3 21.9) rotate(-90)" fill="#aab6ef"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1745, 270.76)" filter="url(#Прямоугольник_1013)">
+      <rect id="Прямоугольник_1013-2" data-name="Прямоугольник 1013" width="1.9" height="24" transform="translate(3 12.9) rotate(-90)" fill="#aab6ef"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1745, 270.76)" filter="url(#Прямоугольник_1014)">
+      <rect id="Прямоугольник_1014-2" data-name="Прямоугольник 1014" width="1.9" height="24" transform="translate(3 3.9) rotate(-90)" fill="#aab6ef"/>
+    </g>
+  </g>
+</svg>

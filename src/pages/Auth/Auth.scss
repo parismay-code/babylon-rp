@@ -1,0 +1,23 @@
+@import '../../styles/vars';
+
+.auth {
+  height: 100vh;
+  width: 100vw;
+  background: $color-white linear-gradient(122deg, #EEE4C1 0%, #AAB6EF2B 1%, #84818A 88%, #7D7A82 100%);
+  transition: background .5s
+}
+
+.project__title {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Baron Neue", serif;
+  font-size: 4vw;
+  color: $color-gray;
+}
+
+.disabled {
+  opacity: .5;
+  transition: opacity .3s;
+}

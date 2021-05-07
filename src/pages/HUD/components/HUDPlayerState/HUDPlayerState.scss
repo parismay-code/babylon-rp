@@ -1,0 +1,688 @@
+@import '../../../../styles/vars';
+
+.hud-player-state {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+
+  transition: 1s;
+
+  @media (max-width: 1000px) {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  @media (max-height: 800px) {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  &_inCar {
+    bottom: 20px;
+    right: 200px;
+
+    @media (max-width: 1280px) {
+      right: 135px;
+    }
+
+    @media (max-width: 1154px) {
+      right: 115px;
+    }
+
+    @media (max-width: 1000px) {
+      right: 80px;
+      bottom: 10px;
+    }
+
+    @media (max-height: 800px) {
+      right: 80px;
+      bottom: 10px;
+    }
+  }
+
+  &_inCar &-sick__element {
+    height: 20px;
+    max-width: 20px;
+    margin-right: 10px;
+
+    @media (max-width: 1280px) {
+      height: 15px;
+      max-width: 15px;
+      margin-right: 5px;
+    }
+
+    @media (max-width: 1000px) {
+      height: 10px;
+      max-width: 10px;
+    }
+
+    @media (max-height: 800px) {
+      height: 10px;
+      max-width: 10px;
+    }
+  }
+
+  &_inCar &-main {
+    margin-top: 2px;
+
+    &-health {
+      margin-right: 10px;
+
+      @media (max-width: 1280px) {
+        margin-right: 5px;
+      }
+    }
+
+    &-health,
+    &-hunger,
+    &-engine {
+      &__top,
+      &__bottom,
+      &__bar {
+        & img {
+          height: 15px;
+
+          @media (max-width: 1280px) {
+            height: 10px;
+          }
+        }
+
+        & div {
+          &::after {
+            width: 120px;
+
+            @media (max-width: 1280px) {
+              width: 80px;
+            }
+
+            @media (max-width: 1000px) {
+              width: 60px;
+            }
+
+            @media (max-height: 800px) {
+              width: 60px;
+            }
+          }
+        }
+      }
+
+      &__top {
+        margin: 0 0 -10px auto;
+
+        & div::after {
+          width: 90px;
+
+          @media (max-width: 1280px) {
+            width: 50px;
+          }
+
+          @media (max-width: 1000px) {
+            width: 40px;
+          }
+
+          @media (max-height: 800px) {
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    &-engine {
+      &__bar {
+        & div::after {
+          width: 250px;
+
+          @media (max-width: 1280px) {
+            width: 170px;
+          }
+
+          @media (max-width: 1000px) {
+            width: 125px;
+          }
+
+          @media (max-height: 800px) {
+            width: 125px;
+          }
+        }
+      }
+    }
+
+    &-health {
+      &-healing-effect {
+        position: absolute;
+        left: 10px;
+        top: -4px;
+
+        width: 10px;
+        height: 10px;
+
+        @media (max-width: 1000px) {
+          width: 5px;
+          height: 5px;
+
+          left: 7px;
+          top: -2px;
+        }
+
+        @media (max-height: 800px) {
+          width: 5px;
+          height: 5px;
+
+          left: 7px;
+          top: -2px;
+        }
+
+        &_active &__element {
+          animation-iteration-count: infinite;
+        }
+      }
+    }
+  }
+
+  &-sick {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    &__element {
+      transform: rotate(275deg);
+      height: 25px;
+      max-width: 25px;
+      margin: 0 5px;
+
+      animation-iteration-count: infinite;
+      animation-duration: 300s;
+
+      fill: #FF7539;
+
+      filter: drop-shadow(0 1px 1px $color-black);
+
+      &_active {
+        animation-name: sickEffect;
+        opacity: 1;
+
+        fill: #FF7A7A;
+      }
+
+      &_disabled {
+        width: 0;
+        height: 0;
+
+        opacity: 0;
+
+        fill: #ffffff;
+        filter: drop-shadow(0 0 5px #7085FF);
+
+        transition: width 0s 1s, height 0s 1s, opacity .2s .8s, fill .2s, filter .2s;
+      }
+
+      @media (max-width: 1280px) {
+        height: 20px;
+        max-width: 20px;
+        margin: 0 2.5px;
+      }
+
+      @media (max-width: 1000px) {
+        height: 15px;
+        max-width: 15px;
+      }
+
+      @media (max-height: 800px) {
+        height: 15px;
+        max-width: 15px;
+      }
+
+      &:last-of-type {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &-main {
+    position: relative;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+
+    transition: .5s;
+
+    @media (max-width: 1280px) {
+      margin-top: 20px;
+    }
+
+    @media (max-width: 1000px) {
+      margin-top: 15px;
+    }
+
+    @media (max-height: 800px) {
+      margin-top: 15px;
+    }
+
+    &-health {
+      margin-right: 30px;
+
+      @media (max-width: 1280px) {
+        margin-right: 15px;
+      }
+    }
+
+    &-health {
+      &-healing-effect {
+        position: absolute;
+        left: 12px;
+        top: -6px;
+
+        width: 12px;
+        height: 12px;
+
+        @media (max-width: 1000px) {
+          width: 6px;
+          height: 6px;
+
+          left: 6px;
+          top: -3px;
+        }
+
+        @media (max-height: 800px) {
+          width: 6px;
+          height: 6px;
+
+          left: 6px;
+          top: -3px;
+        }
+
+        &_active &__element {
+          animation-iteration-count: infinite;
+        }
+
+        &__element {
+          position: absolute;
+          transform: translate(-50%, -50%);
+
+          filter: drop-shadow(0 0 20px #B4F191);
+
+          animation-iteration-count: 0;
+          animation-duration: 1.5s;
+
+          &_first {
+            right: 0;
+            top: 0;
+            width: 8px;
+            height: 8px;
+
+            animation-name: selfHealingFirst;
+
+            @media (max-width: 1000px) {
+              width: 4px;
+              height: 4px;
+
+              animation-name: selfHealingFirst_800x600;
+            }
+
+            @media (max-height: 800px) {
+              width: 4px;
+              height: 4px;
+
+              animation-name: selfHealingFirst_800x600;
+            }
+          }
+          &_second {
+            top: 10%;
+            right: 55%;
+            width: 7px;
+            height: 7px;
+
+            animation-name: selfHealingSecond;
+
+            @media (max-width: 1000px) {
+              width: 3.5px;
+              height: 3.5px;
+
+              animation-name: selfHealingSecond_800x600;
+            }
+
+            @media (max-height: 800px) {
+              width: 3.5px;
+              height: 3.5px;
+
+              animation-name: selfHealingSecond_800x600;
+            }
+          }
+          &_third {
+            top: 20%;
+            right: 100%;
+            width: 8px;
+            height: 8px;
+
+            animation-name: selfHealingThird;
+
+            @media (max-width: 1000px) {
+              width: 4px;
+              height: 4px;
+
+              animation-name: selfHealingThird_800x600;
+            }
+
+            @media (max-height: 800px) {
+              width: 4px;
+              height: 4px;
+
+              animation-name: selfHealingThird_800x600;
+            }
+          }
+          &_fourth {
+            top: 80%;
+            right: 50%;
+            width: 10px;
+            height: 10px;
+
+            animation-name: selfHealingFourth;
+
+            @media (max-width: 1000px) {
+              width: 5px;
+              height: 5px;
+
+              animation-name: selfHealingFourth_800x600;
+            }
+
+            @media (max-height: 800px) {
+              width: 5px;
+              height: 5px;
+
+              animation-name: selfHealingFourth_800x600;
+            }
+          }
+        }
+      }
+    }
+
+    &-health,
+    &-hunger,
+    &-engine {
+      display: flex;
+      flex-direction: column;
+
+      transition: .5s;
+
+      &__top,
+      &__bottom,
+      &__bar {
+        transition: .5s;
+
+        & img {
+          height: 20px;
+          margin: 0 0 1px 2px;
+
+          transition: .5s;
+
+          filter: drop-shadow(0 1px 1px $color-black);
+          transform: rotate3d(1, 1, 1, 5deg);
+
+          @media (max-width: 1000px) {
+            height: 10px;
+          }
+
+          @media (max-height: 800px) {
+            height: 10px;
+          }
+        }
+
+        &_after {
+          height: 3px;
+
+          @media (max-width: 1280px) {
+            height: 2px;
+          }
+
+          @media (max-width: 1000px) {
+            height: 1px;
+          }
+
+          @media (max-height: 800px) {
+            height: 1px;
+          }
+
+          &::after {
+            content: '';
+            display: block;
+            width: 140px;
+            height: 3px;
+            transform: translateY(80%);
+
+            background-color: #AAB4EE;
+
+            opacity: .5;
+
+            transition: 1s;
+
+            @media (max-width: 1280px) {
+              height: 2px;
+            }
+
+            @media (max-width: 1000px) {
+              height: 1px;
+              width: 70px;
+            }
+
+            @media (max-height: 800px) {
+              height: 1px;
+              width: 70px;
+            }
+          }
+        }
+      }
+
+      &__top {
+        margin: 0 0 -15px auto;
+
+        @media (max-width: 1000px) {
+          margin: 0 0 -10px auto;
+        }
+
+        @media (max-height: 800px) {
+          margin: 0 0 -10px auto;
+        }
+
+        & div::after {
+          width: 100px;
+
+          @media (max-width: 1000px) {
+            width: 50px;
+          }
+
+          @media (max-height: 800px) {
+            width: 50px;
+          }
+        }
+      }
+
+      &__bottom {
+        position: relative;
+        margin-bottom: 10px;
+
+        @media (max-width: 1000px) {
+          margin-bottom: 5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    &-engine {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+
+      @media (max-width: 1000px){
+        bottom: -5px;
+      }
+
+      @media (max-height: 800px){
+        bottom: -5px;
+      }
+
+      &__bar {
+        display: flex;
+        align-items: center;
+        margin-left: -30px;
+
+        @media (max-width: 1000px) {
+          margin-left: -25px;
+        }
+
+        @media (max-height: 800px) {
+          margin-left: -25px;
+        }
+
+        & div::after {
+          width: 310px;
+
+          @media (max-width: 1000px) {
+            width: 155px;
+          }
+
+          @media (max-height: 800px) {
+            width: 155px;
+          }
+        }
+
+        & img {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes sickEffect {
+  0% {
+    filter: drop-shadow(0 1px 1px $color-black);
+    transform: rotate(275deg) scale(1);
+    fill: #FF7539;
+  }
+  0.33% {
+    filter: drop-shadow(0 0 5px #FF7539);
+    transform: rotate(275deg) scale(1.2);
+    fill: #FF7539;
+  }
+  0.66% {
+    filter: drop-shadow(0 1px 1px $color-black);
+    transform: rotate(275deg) scale(1);
+    fill: #FF7539;
+  }
+  0.99% {
+    filter: drop-shadow(0 0 5px #FF7539);
+    transform: rotate(275deg) scale(1.2);
+    fill: #FF7539;
+  }
+  1.33% {
+    filter: drop-shadow(0 1px 1px $color-black);
+    transform: rotate(275deg) scale(1);
+    fill: #FF7539;
+  }
+  1.66% {
+    filter: drop-shadow(0 0 5px #FF7539);
+    transform: rotate(275deg) scale(1.2);
+    fill: #FF7539;
+  }
+  1.99% {
+    filter: drop-shadow(0 1px 1px $color-black);
+    transform: rotate(275deg) scale(1);
+    fill: #FF7539;
+  }
+  2% {
+    filter: drop-shadow(0 1px 1px $color-black);
+    transform: rotate(275deg) scale(1);
+    fill: #FF7A7A;
+  }
+  100% {
+    filter: drop-shadow(0 1px 1px $color-black);
+    transform: rotate(275deg) scale(1);
+    fill: #FF7A7A;
+  }
+}
+
+@keyframes selfHealingFirst {
+  from {
+    opacity: 1;
+    transform: translateY(0px) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-17px) rotate(45deg);
+  }
+}
+@keyframes selfHealingSecond {
+  from {
+    opacity: 1;
+    transform: translateY(0px) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px) rotate(25deg);
+  }
+}
+@keyframes selfHealingThird {
+  from {
+    opacity: 1;
+    transform: translateY(0px) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px) rotate(-15deg);
+  }
+}
+@keyframes selfHealingFourth {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-35px);
+  }
+}
+
+@keyframes selfHealingFirst_800x600 {
+  from {
+    opacity: 1;
+    transform: translateY(0px) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8.5px) rotate(45deg);
+  }
+}
+@keyframes selfHealingSecond_800x600 {
+  from {
+    opacity: 1;
+    transform: translateY(0px) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-7.5px) rotate(25deg);
+  }
+}
+@keyframes selfHealingThird_800x600 {
+  from {
+    opacity: 1;
+    transform: translateY(0px) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-7.5px) rotate(-15deg);
+  }
+}
+@keyframes selfHealingFourth_800x600 {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-17.5px);
+  }
+}

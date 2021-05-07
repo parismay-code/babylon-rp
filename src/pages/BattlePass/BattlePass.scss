@@ -1,0 +1,361 @@
+@import '../../styles/vars';
+
+.battle-pass {
+  width: 100vw;
+  height: 100vh;
+
+  font-family: "TT Norms Medium", sans-serif;
+
+  @media (min-width: 3000px) {
+    font-size: .7rem;
+  }
+
+  @media (max-width: 1280px) {
+    font-size: .85rem;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: .7rem;
+  }
+
+  @media (max-height: 800px) {
+    font-size: .7rem;
+  }
+
+  &-content {
+    width: 100%;
+    height: 100%;
+
+    padding-left: 350px;
+
+    background: linear-gradient(-45deg, #7D7A82, #C373F3c0, #AAB6EF);
+
+    @media (max-width: 1000px) {
+      padding-left: 175px;
+    }
+
+    @media (max-height: 800px) {
+      padding-left: 175px;
+    }
+
+    &-season {
+      padding: 40px 0 40px 40px;
+
+      @media (max-width: 1280px) {
+        padding: 30px 0 30px 0;
+      }
+
+      @media (max-width: 1000px) {
+        padding: 20px 0 20px 20px;
+      }
+
+      @media (max-height: 800px) {
+        padding: 20px 0 20px 20px;
+      }
+
+      &__title {
+        margin-bottom: 40px;
+
+        font-family: "Baron Neue", sans-serif;
+        text-transform: uppercase;
+        font-size: 4rem;
+        text-shadow: 0 0 20px $color-white;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 30px;
+          font-size: 3.5rem;
+        }
+
+        @media (max-width: 1000px) {
+          margin-bottom: 20px;
+          text-shadow: 0 0 10px $color-white;
+          font-size: 3rem;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 20px;
+          text-shadow: 0 0 10px $color-white;
+          font-size: 3rem;
+        }
+
+        @media (min-width: 3000px) {
+          font-size: 3rem;
+        }
+      }
+
+      &-coins {
+        margin-bottom: 40px;
+
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 30px;
+        }
+
+        @media (max-width: 1000px) {
+          margin-bottom: 20px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 20px;
+        }
+
+        &-value {
+          padding: 12px 50px 12px 12px;
+          display: flex;
+          align-items: center;
+
+          background: linear-gradient(to right, #00000050, #00000010, $color-blank);
+
+          color: #FFEF84;
+          text-shadow: 0 0 10px #FFD4A2;
+
+          @media (max-width: 1280px) {
+            padding: 10px 45px 10px 10px;
+          }
+
+          @media (max-width: 1000px) {
+            padding: 6px 25px 6px 6px;
+            text-shadow: 0 0 5px #FFD4A2;
+          }
+
+          @media (max-height: 800px) {
+            padding: 6px 25px 6px 6px;
+            text-shadow: 0 0 5px #FFD4A2;
+          }
+
+          &__icon {
+            filter: drop-shadow(0 0 5px #FFD4A2);
+            margin-right: 10px;
+            height: 30px;
+
+            @media (max-width: 1280px) {
+              height: 25px;
+            }
+
+            @media (max-width: 1000px) {
+              margin-right: 5px;
+              height: 15px;
+            }
+
+            @media (max-height: 800px) {
+              margin-right: 5px;
+              height: 15px;
+            }
+          }
+
+          &-text {
+            &__title {
+              font-size: 1.8rem;
+              font-family: "TT Norms Bold", sans-serif;
+
+              @media (max-width: 1280px) {
+                font-size: 1.2rem;
+              }
+
+              @media (max-width: 1000px) {
+                font-size: 1rem;
+              }
+
+              @media (max-height: 800px) {
+                font-size: 1rem;
+              }
+
+              @media (min-width: 3000px) {
+                font-size: 1rem;
+              }
+            }
+
+            &__subtitle {
+              margin-top: -5px;
+              font-size: 1.1rem;
+              font-family: "Baron Neue", sans-serif;
+
+              @media (max-width: 1280px) {
+                font-size: .9rem;
+              }
+
+              @media (max-width: 1000px) {
+                margin-top: -2.5px;
+                font-size: .8rem;
+              }
+
+              @media (max-height: 800px) {
+                margin-top: -2.5px;
+                font-size: .8rem;
+              }
+
+              @media (min-width: 3000px) {
+                font-size: .8rem;
+              }
+            }
+          }
+        }
+
+        &__buy {
+          padding: 10px 30px 12px 30px;
+          font-family: "Baron Neue", sans-serif;
+          font-size: 1.1rem;
+
+          border: 1px solid $color-white;
+
+          cursor: url('../../assets/images/cursorPointer.svg'), pointer;
+
+          transition: .2s;
+
+          &:hover {
+            background-color: #ffffff;
+            color: #C373F3;
+          }
+
+          @media (max-width: 1280px) {
+            padding: 8px 25px 10px 25px;
+            font-size: .9rem;
+          }
+
+          @media (max-width: 1000px) {
+            padding: 5px 15px 6px 15px;
+            font-size: .8rem;
+          }
+
+          @media (max-height: 800px) {
+            padding: 5px 15px 6px 15px;
+            font-size: .8rem;
+          }
+
+          @media (min-width: 3000px) {
+            font-size: .8rem;
+          }
+        }
+      }
+
+      &-quests {
+        margin-bottom: 80px;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 70px;
+        }
+
+        @media (max-width: 1000px) {
+          margin-bottom: 40px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 40px;
+        }
+
+        &__title {
+          margin-bottom: 25px;
+
+          font-family: "Baron Neue", sans-serif;
+          font-size: 2.5rem;
+          text-shadow: 0 0 20px $color-white;
+
+          @media (max-width: 1280px) {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+          }
+
+          @media (max-width: 1000px) {
+            margin-bottom: 12.5px;
+            text-shadow: 0 0 10px $color-white;
+            font-size: 2rem;
+          }
+
+          @media (max-height: 800px) {
+            margin-bottom: 12.5px;
+            text-shadow: 0 0 10px $color-white;
+            font-size: 2rem;
+          }
+
+          @media (min-width: 3000px) {
+            font-size: 2rem;
+          }
+        }
+
+        &-list {
+          display: flex;
+          align-items: flex-start;
+        }
+      }
+
+      &-awards {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &-title {
+          position: absolute;
+          left: -180px;
+          bottom: 0;
+
+          transform: translateY(-155px) rotate(-90deg);
+
+          text-transform: uppercase;
+          font-size: 1.5rem;
+
+          @media (max-width: 1280px) {
+            left: -150px;
+            font-size: 1.2rem;
+            transform: translateY(-145px) rotate(-90deg);
+          }
+
+          @media (max-width: 1000px) {
+            left: -90px;
+            transform: translateY(-90px) rotate(-90deg);
+            font-size: 1rem;
+          }
+
+          @media (max-height: 800px) {
+            left: -90px;
+            transform: translateY(-90px) rotate(-90deg);
+            font-size: 1rem;
+          }
+
+          @media (min-width: 3000px) {
+            left: -170px;
+            font-size: 1rem;
+          }
+
+          &__premium {
+            margin-right: 180px;
+
+            @media (max-width: 1280px) {
+              margin-right: 160px;
+            }
+
+            @media (max-width: 1000px) {
+              margin-right: 90px;
+            }
+
+            @media (max-height: 800px) {
+              margin-right: 90px;
+            }
+          }
+        }
+
+        &-content {
+          display: flex;
+          align-items: center;
+
+          padding-bottom: 5px;
+
+          overflow-x: auto;
+
+          &::-webkit-scrollbar {
+            height: 5px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background-color: #00000020;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #ffffff90;
+          }
+        }
+      }
+    }
+  }
+}

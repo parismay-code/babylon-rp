@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11" height="15" viewBox="0 0 11 15">
+    <g transform="translate(-510.119 -892.689)">
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(510.119 892.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(514.119 892.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(518.119 892.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(518.119 896.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(518.119 900.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(514.119 896.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(514.119 900.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(514.119 904.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(510.119 896.689)" opacity="0.5"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="translate(510.119 900.689)" opacity="0.5"/>
+    </g>
+</svg>

@@ -1,0 +1,49 @@
+@import '../../styles/vars';
+
+.choice {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 0 80px;
+  background: linear-gradient(122deg, #EEE4C1 0%, #AAB6EF2B 1%, #84818A 88%, #7D7A82 100%);
+
+  font-family: "Baron Neue", serif;
+
+  @media (max-width: 1280px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 0 40px;
+  }
+
+  @media (max-height: 800px) {
+    padding: 0 40px;
+  }
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &-content {
+    position: relative;
+    width: 50%;
+    height: 80%;
+    margin-left: 40%;
+
+    &__title {
+      font-size: 2rem;
+      opacity: .1;
+
+      margin-left: -2%;
+    }
+
+    &-characters {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      margin-top: 8%;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import '../../../../../../../styles/vars';
+
+.system-message {
+  position: relative;
+  background: linear-gradient(to right, #AAB4EE90, $color-blank);
+  padding: 5px 15px;
+  margin: 0 0 5px 20px;
+
+  font-size: .8rem;
+
+  @media (max-width: 1280px) {
+    padding: 5px 10px;
+    margin: 0 0 5px 15px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 3px 7px;
+    margin: 0 0 3px 10px;
+
+    font-size: .6rem;
+  }
+
+  @media (max-height: 800px) {
+    padding: 3px 7px;
+    margin: 0 0 3px 10px;
+
+    font-size: .6rem;
+  }
+
+  &__title {
+    margin-bottom: 3px;
+  }
+
+  &__text {
+    text-shadow: 0 1px 1px $color-black;
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+}

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.857" height="24.357" viewBox="0 0 23.857 24.357">
+  <defs>
+    <filter id="Контур_509" x="0" y="0" width="23.857" height="24.357" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="0.5" result="blur"/>
+      <feFlood flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Контур_510" x="8.929" y="4.771" width="8.942" height="12.385" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="0.5" result="blur-2"/>
+      <feFlood flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_582" data-name="Сгруппировать 582" transform="translate(-181.807 -826.307)">
+    <g transform="matrix(1, 0, 0, 1, 181.81, 826.31)" filter="url(#Контур_509)">
+      <path id="Контур_509-2" data-name="Контур 509" d="M21.857,12.429A9.429,9.429,0,1,1,12.429,3,9.429,9.429,0,0,1,21.857,12.429Z" transform="translate(-0.5 -2)" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="210 341"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 181.81, 826.31)" filter="url(#Контур_510)">
+      <path id="Контур_510-2" data-name="Контур 510" d="M18,9v5.657l3.771,1.886" transform="translate(-6.07 -4.23)" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="210 341"/>
+    </g>
+  </g>
+</svg>

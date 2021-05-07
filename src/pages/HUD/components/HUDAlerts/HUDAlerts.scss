@@ -1,0 +1,13 @@
+.hud-alerts {
+  position: absolute;
+  left: 0;
+  bottom: 300px;
+
+  @media (max-width: 1000px) {
+    bottom: 150px;
+  }
+
+  @media (max-height: 800px) {
+    bottom: 150px;
+  }
+}

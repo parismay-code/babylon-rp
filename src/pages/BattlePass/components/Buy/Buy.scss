@@ -1,0 +1,283 @@
+@import '../../../../styles/vars';
+
+.battle-pass-content-buy {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 350px;
+  padding-top: 60px;
+
+  background: linear-gradient(to bottom, #6f83e890, rgba(72, 2, 151, 0.56));
+
+  overflow: hidden;
+
+  @media (max-width: 1280px) {
+    width: 300px;
+    padding-top: 50px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 175px;
+    padding-top: 30px;
+  }
+
+  @media (max-height: 800px) {
+    width: 175px;
+    padding-top: 30px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+
+    width: 2px;
+    height: 100%;
+
+    background: linear-gradient(to bottom, $color-black-high-opacity, #ffffff90, $color-black-high-opacity);
+
+    @media (max-width: 1000px) {
+      width: 1px;
+    }
+
+    @media (max-height: 800px) {
+      width: 1px;
+    }
+  }
+
+  &__confetti,
+  &__tower {
+    pointer-events: none;
+  }
+
+  &__confetti {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &__tower {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 70%;
+  }
+
+  &-content {
+    width: 100%;
+    height: 100%;
+
+    &__pass span:first-of-type {
+      margin-top: 0;
+    }
+
+    &__battle,
+    &__pass {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      font-size: 5rem;
+      font-family: "Baron Neue", sans-serif;
+      filter: drop-shadow(0 0 15px $color-white);
+
+      @media (max-width: 1280px) {
+        font-size: 4.5rem;
+      }
+
+      @media (max-width: 1000px) {
+        filter: drop-shadow(0 0 7.5px $color-white);
+        font-size: 4rem;
+      }
+
+      @media (max-height: 800px) {
+        filter: drop-shadow(0 0 7.5px $color-white);
+        font-size: 4rem;
+      }
+
+      & span {
+        margin-top: 15px;
+
+        @media (max-width: 1000px) {
+          margin-top: 7.5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-top: 7.5px;
+        }
+      }
+    }
+
+    &__button {
+      width: 100%;
+      padding: 5px 0 10px 0;
+      margin: 20px 0 10px 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background-color: $color-white;
+      box-shadow: 0 0 20px #C373F3;
+
+      color: #C373F3;
+      font-family: "Baron Neue", sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+
+      cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+      transition: color .2s, box-shadow .2s;
+
+      @media (max-width: 1280px) {
+        font-size: 2rem;
+      }
+
+      @media (max-width: 1000px) {
+        padding: 2.5px 0 5px 0;
+        margin: 10px 0 5px 0;
+        box-shadow: 0 0 10px #C373F3;
+        letter-spacing: 1px;
+        font-size: 2rem;
+      }
+
+      @media (max-height: 800px) {
+        padding: 2.5px 0 5px 0;
+        margin: 10px 0 5px 0;
+        box-shadow: 0 0 10px #C373F3;
+        letter-spacing: 1px;
+        font-size: 2rem;
+      }
+
+      @media (min-width: 3000px) {
+        font-size: 2rem;
+      }
+
+      &:hover {
+        color: #AAB6EF;
+        box-shadow: 0 0 20px $color-white;
+
+        @media (max-width: 1000px) {
+          box-shadow: 0 0 10px $color-white;
+        }
+
+        @media (max-height: 800px) {
+          box-shadow: 0 0 10px $color-white;
+        }
+      }
+    }
+
+    &-exit {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 1000px) {
+        bottom: 10px;
+        left: 10px;
+      }
+
+      @media (max-height: 800px) {
+        bottom: 10px;
+        left: 10px;
+      }
+
+      &__button {
+        width: 40px;
+        height: 40px;
+        margin-right: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 1.2rem;
+
+        border: 1px solid $color-white;
+
+        @media (max-width: 1280px) {
+          font-size: 1rem;
+        }
+
+        @media (max-width: 1000px) {
+          width: 20px;
+          height: 20px;
+          margin-right: 2.5px;
+          font-size: .8rem;
+        }
+
+        @media (max-height: 800px) {
+          width: 20px;
+          height: 20px;
+          margin-right: 2.5px;
+          font-size: .8rem;
+        }
+
+        @media (min-width: 3000px) {
+          font-size: .8rem;
+        }
+      }
+
+      &__text {
+        font-size: 1.2rem;
+
+        @media (max-width: 1280px) {
+          font-size: 1rem;
+        }
+
+        @media (max-width: 1000px) {
+          font-size: .8rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: .8rem;
+        }
+
+        @media (min-width: 3000px) {
+          font-size: .8rem;
+        }
+      }
+    }
+
+    &__flare {
+      position: absolute;
+      top: 100%;
+      left: -190%;
+      transform: rotate(-45deg);
+
+      height: 100%;
+      width: 100%;
+
+      background: linear-gradient(to right, $color-blank, #AEBAF880, $color-blank);
+
+      animation-name: flare;
+      animation-duration: 6s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+
+      pointer-events: none;
+    }
+  }
+}
+
+@keyframes flare {
+  0% {
+    left: -190%;
+    top: 100%
+  }
+  40% {
+    left: 190%;
+    top: -100%;
+  }
+  100% {
+    left: 190%;
+    top: -100%;
+  }
+}

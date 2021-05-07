@@ -1,0 +1,108 @@
+@import '../../styles/vars';
+
+.bank-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: $color-black;
+  font-family: "TT Norms Regular", sans-serif;
+
+  @media (max-width: 1154px) {
+    font-size: calc(1em + .3rem)
+  }
+
+  @media (max-height: 800px) {
+    font-size: calc(1em - .2rem);
+  }
+
+  @media (max-width: 1000px) {
+    font-size: calc(1em - .3rem);
+  }
+
+  @media (min-width: 3000px) {
+    font-size: calc(1em - .3rem);
+  }
+
+  &__bg {
+    width: 100%;
+  }
+
+  &-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 5% 15%;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      font-size: .8em;
+      text-transform: uppercase;
+
+      &__type {
+        font-family: "TT Norms Bold", sans-serif;
+      }
+
+      &__name {
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+
+        font-family: "TT Norms Thin", sans-serif;
+
+        & span {
+          font-family: "TT Norms Regular", sans-serif;
+        }
+      }
+    }
+
+    &-info {
+      width: 100%;
+      transform: translateY(200%);
+
+      @media (max-width: 1000px) {
+        transform: translateY(160%);
+      }
+
+      &__account-number {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        font-family: "TT Norms Bold", sans-serif;
+
+        opacity: .5;
+      }
+
+      &__create-date {
+        transform: translateY(100%);
+        text-align: right;
+      }
+
+      &__nickname {
+        transform: translateY(300%);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        @media (max-width: 1000px) {
+          transform: translateY(250%);
+        }
+
+        @media (max-height: 800px) {
+          transform: translateY(250%);
+        }
+
+        &_firstname {
+          margin-right: 1%;
+        }
+      }
+    }
+  }
+}

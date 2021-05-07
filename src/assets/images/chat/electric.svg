@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28.157" height="28.157" viewBox="0 0 28.157 28.157">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffef84"/>
+      <stop offset="1" stop-color="#d4c357"/>
+    </linearGradient>
+  </defs>
+  <path id="Icon_metro-power" data-name="Icon metro-power" d="M13.129,1.928,2.571,16.006H13.129L6.09,30.085l24.637-17.6H16.649L27.208,1.928Z" transform="translate(-2.571 -1.928)" fill="url(#linear-gradient)"/>
+</svg>

@@ -1,0 +1,170 @@
+@import '../../../../../../../../styles/vars';
+
+.hud-interactions-main-money {
+  &-header {
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 1280px) {
+      margin-bottom: 10px;
+    }
+
+    @media (max-height: 800px) {
+      margin-bottom: 10px;
+    }
+
+    &-nickname {
+      margin-right: auto;
+
+      &__firstname {
+        margin-right: 5px;
+
+        @media (max-width: 1280px) {
+          margin-right: 2.5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-right: 2.5px;
+        }
+      }
+
+      &__firstname,
+      &__lastname {
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+
+        @media (max-width: 1280px) {
+          font-size: .9rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: .9rem;
+        }
+      }
+
+      &__id {
+        opacity: .5;
+        margin-top: 3px;
+
+        @media (max-width: 1280px) {
+          margin-top: 2px;
+          font-size: .8rem;
+        }
+
+        @media (max-height: 800px) {
+          margin-top: 2px;
+          font-size: .8rem;
+        }
+      }
+    }
+
+    &__icon {
+      height: 25px;
+      margin-right: 5px;
+
+      @media (max-width: 1280px) {
+        height: 12.5px;
+        margin-right: 2.5px;
+      }
+
+      @media (max-height: 800px) {
+        height: 12.5px;
+        margin-right: 2.5px;
+      }
+    }
+  }
+
+  &-content {
+    &__title {
+      text-shadow: 0 0 10px #B9FE75;
+      margin-bottom: 10px;
+
+      @media (max-width: 1280px) {
+        font-size: .8rem;
+        text-shadow: 0 0 5px #b9fe75;
+        margin-bottom: 5px;
+      }
+
+      @media (max-height: 800px) {
+        font-size: .8rem;
+        text-shadow: 0 0 5px #b9fe75;
+        margin-bottom: 5px;
+      }
+    }
+
+    &-input {
+      display: flex;
+      align-items: center;
+
+      &__field,
+      &__submit {
+        outline: none;
+        border: none;
+        color: $color-white;
+      }
+
+      &__field {
+        background-color: #00000060;
+        margin-right: -10px;
+        height: 35px;
+        padding: 10px;
+
+        @media (max-width: 1280px) {
+          margin-right: -5px;
+          height: 25px;
+          padding: 8px;
+          font-size: .8rem;
+        }
+
+        @media (max-height: 800px) {
+          margin-right: -5px;
+          padding: 8px;
+          font-size: .8rem;
+        }
+      }
+
+      &__dollar {
+        color: $color-black;
+        font-family: "TT Norms Medium", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        opacity: .5;
+        transform: translateX(-120%);
+
+        @media (max-width: 1280px) {
+          font-size: 1.2rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: 1.2rem;
+        }
+      }
+
+      &__submit {
+        background-color: #949494;
+        padding: 10px;
+        height: 35px;
+
+        text-transform: uppercase;
+        font-family: "TT Norms Medium", sans-serif;
+        letter-spacing: 1px;
+
+        cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+        @media (max-width: 1280px) {
+          padding: 5px;
+          height: 25px;
+          font-size: .9rem;
+        }
+
+        @media (max-height: 800px) {
+          padding: 5px;
+          font-size: .9rem;
+        }
+      }
+    }
+  }
+}

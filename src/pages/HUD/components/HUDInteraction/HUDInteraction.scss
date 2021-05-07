@@ -1,0 +1,108 @@
+@import '../../../../styles/vars';
+
+.hud-interaction {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 400px;
+  height: 400px;
+  border-radius: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #AAB6EF;
+  background: linear-gradient(135deg, #ffffffa0, #212121a0);
+
+  transition: opacity .2s;
+
+  @media (max-width: 1280px) {
+    width: 200px;
+    height: 200px;
+
+    border: 1px solid #aab6ef;
+  }
+
+  @media (max-height: 800px) {
+    width: 200px;
+    height: 200px;
+
+    border: 1px solid #aab6ef;
+  }
+
+  &-circle {
+    width: 70%;
+    height: 70%;
+    border-radius: 100%;
+
+    background: linear-gradient(135deg, #ffffffa0, #212121a0);
+  }
+
+  &-wave-1,
+  &-wave-2,
+  &-wave-3,
+  &-wave-4 {
+    position: absolute;
+
+    width: 107%;
+    height: 107%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 100%;
+    border: 3px solid #AAB6EF;
+
+    opacity: .8;
+
+    @media (max-width: 1280px) {
+      border: 2px solid #AAB6EF;
+    }
+  }
+
+  &-option-screen {
+    position: absolute;
+    left: 50%;
+    top: 0;
+
+    min-height: 250px;
+    padding: 10px 15px 15px 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    background: linear-gradient(to right, $color-blank, #212121a0);
+
+    transition: padding-left .5s ease, opacity .3s ease, visibility 0s .5s;
+
+    @media (max-width: 1280px) {
+      min-height: 125px;
+      padding: 5px 7.5px 7.5px 0;
+    }
+
+    @media (max-height: 800px) {
+      min-height: 125px;
+      padding: 5px 7.5px 7.5px 0;
+    }
+
+    &_visible {
+      padding: 10px 15px 15px 270px;
+      opacity: 1;
+      visibility: visible;
+
+      transition: padding-left .5s ease, opacity .7s ease;
+
+      @media (max-width: 1280px) {
+        padding: 5px 7.5px 7.5px 135px;
+      }
+
+      @media (max-height: 800px) {
+        padding: 5px 7.5px 7.5px 135px;
+      }
+    }
+  }
+}

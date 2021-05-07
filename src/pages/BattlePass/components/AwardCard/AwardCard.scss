@@ -1,0 +1,326 @@
+@import '../../../../styles/vars';
+
+.battle-pass-award-card {
+  margin-right: 5px;
+
+  &-free {
+    background: linear-gradient(to bottom, #AAB6EF, $color-blank);
+
+    &-content {
+      bottom: 0;
+    }
+  }
+
+  &-premium {
+    background: linear-gradient(to top, #AAB6EF, $color-blank);
+
+    &-content {
+      top: 0;
+    }
+  }
+
+  &-free,
+  &-premium {
+    position: relative;
+    height: 200px;
+    width: 200px;
+
+    @media (max-width: 1280px) {
+      height: 180px;
+      width: 180px;
+    }
+
+    @media (max-width: 1000px) {
+      height: 100px;
+      width: 100px;
+    }
+
+    @media (max-height: 800px) {
+      height: 100px;
+      width: 100px;
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 10px;
+
+      @media (max-width: 1000px) {
+        padding: 5px;
+      }
+
+      @media (max-height: 800px) {
+        padding: 5px;
+      }
+
+      &__re-roll {
+        height: 15px;
+
+        cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+        @media (max-width: 1000px) {
+          height: 7.5px;
+        }
+
+        @media (max-height: 800px) {
+          height: 7.5px;
+        }
+      }
+
+      &-re-roll-cost {
+        display: flex;
+        align-items: center;
+
+        &__icon {
+          height: 15px;
+          margin-right: 5px;
+
+          @media (max-width: 1000px) {
+            height: 7.5px;
+            margin-right: 2.5px;
+          }
+
+          @media (max-height: 800px) {
+            height: 7.5px;
+            margin-right: 2.5px;
+          }
+        }
+      }
+    }
+
+    &-content {
+      padding: 10px;
+
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 40px;
+      height: 100%;
+
+      @media (max-width: 1280px) {
+        width: 30px;
+      }
+
+      @media (max-width: 1000px) {
+        padding: 5px;
+        width: 20px;
+      }
+
+      @media (max-height: 800px) {
+        padding: 5px;
+        width: 20px;
+      }
+
+      &__image {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 128px;
+        height: 128px;
+
+        @media (max-width: 1280px) {
+          width: 90px;
+          height: 90px;
+        }
+
+        @media (max-width: 1000px) {
+          width: 60px;
+          height: 60px;
+        }
+
+        @media (max-height: 800px) {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      &-description {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        width: 160px;
+
+        text-align: center;
+        text-transform: uppercase;
+
+        @media (max-width: 1280px) {
+          width: 150px;
+        }
+
+        @media (max-width: 1000px) {
+          bottom: 7.5px;
+          width: 80px;
+        }
+
+        @media (max-height: 800px) {
+          bottom: 7.5px;
+          width: 80px;
+        }
+
+        &__title {
+          color: $color-black;
+          opacity: .5;
+        }
+
+        &__subtitle {
+          min-height: 25px;
+          text-shadow: 0 0 10px $color-white;
+
+          @media (max-width: 1000px) {
+            min-height: 12.5px;
+            text-shadow: 0 0 5px $color-white;
+          }
+
+          @media (max-height: 800px) {
+            min-height: 12.5px;
+            text-shadow: 0 0 5px $color-white;
+          }
+        }
+      }
+    }
+  }
+
+  &-status {
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1280px) {
+      height: 60px;
+    }
+
+    @media (max-width: 1000px) {
+      height: 40px;
+    }
+
+    @media (max-height: 800px) {
+      height: 40px;
+    }
+
+    &-received-block {
+      width: 40px;
+      height: 40px;
+
+      background-color: $color-white;
+      box-shadow: 0 0 15px $color-white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 1000px) {
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 7.5px $color-white;
+      }
+
+      @media (max-height: 800px) {
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 7.5px $color-white;
+      }
+
+      &__icon {
+        width: 70%;
+      }
+    }
+
+    &-get {
+      position: relative;
+
+      background: linear-gradient(to right, #8860C77F, #49316A7F);
+
+      text-transform: uppercase;
+      font-size: 1.5rem;
+
+      cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
+
+      overflow: hidden;
+
+      @media (max-width: 1280px) {
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 1000px) {
+        font-size: 1rem;
+      }
+
+      @media (max-height: 800px) {
+        font-size: 1rem;
+      }
+
+      @media (min-width: 3000px) {
+        font-size: 1rem;
+      }
+
+      &:hover::before {
+        left: 100%;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -20%;
+        left: -100%;
+        transform: rotate(55deg);
+
+        height: 150%;
+        width: 100%;
+
+        background: linear-gradient(to bottom, $color-blank, #AEBAF89e, $color-blank);
+
+        pointer-events: none;
+
+        transition: left .8s ease;
+      }
+
+      &__text {
+        z-index: 9999;
+        text-shadow: 0 0 30px $color-white;
+
+        @media (max-width: 1000px) {
+          text-shadow: 0 0 15px $color-white;
+        }
+
+        @media (max-height: 800px) {
+          text-shadow: 0 0 15px $color-white;
+        }
+      }
+
+      &__blur {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        background: linear-gradient(to left, #8C8992, #ffffff);
+
+        backdrop-filter: blur(20px);
+
+        z-index: -1;
+      }
+    }
+
+    &_day {
+      font-size: 2.5rem;
+      text-shadow: 0 0 15px $color-white;
+
+      @media (max-width: 1000px) {
+        text-shadow: 0 0 7.5px $color-white;
+      }
+
+      @media (max-height: 800px) {
+        text-shadow: 0 0 7.5px $color-white;
+      }
+    }
+  }
+}

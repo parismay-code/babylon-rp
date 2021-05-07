@@ -1,0 +1,227 @@
+@import '../../../../styles/vars';
+
+.battle-pass-quest-card {
+  position: relative;
+  width: 340px;
+  height: 200px;
+
+  background-color: #2000404F;
+
+  margin-right: 45px;
+
+  @media (max-width: 1280px) {
+    width: 300px;
+    height: 180px;
+    margin-right: 30px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 170px;
+    height: 100px;
+    margin-right: 22.5px;
+  }
+
+  @media (max-height: 800px) {
+    width: 170px;
+    height: 100px;
+    margin-right: 22.5px;
+  }
+
+  &__blur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+
+    z-index: -1;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    @media (max-width: 1280px) {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 1000px) {
+      margin-bottom: 12.5px;
+    }
+
+    @media (max-height: 800px) {
+      margin-bottom: 12.5px;
+    }
+
+    &-status {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background-color: #20004035;
+
+      @media (max-width: 1000px) {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (max-height: 800px) {
+        width: 20px;
+        height: 20px;
+      }
+
+      &_completed {
+        background-color: $color-white;
+        box-shadow: 0 0 20px $color-white;
+
+        @media (max-width: 1000px) {
+          box-shadow: 0 0 10px $color-white;
+        }
+
+        @media (max-height: 800px) {
+          box-shadow: 0 0 10px $color-white;
+        }
+      }
+
+      &__icon {
+        width: 60%;
+      }
+
+      &__quest {
+        font-size: 2rem;
+
+        @media (max-width: 1280px) {
+          font-size: 1.8rem;
+        }
+
+        @media (max-width: 1000px) {
+          font-size: 1.5rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: 1.5rem;
+        }
+
+        @media (min-width: 3000px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &__title {
+      margin-left: 15px;
+      font-family: "TT Norms Extra Bold", sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      @media (max-width: 1280px) {
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 1000px) {
+        margin-left: 7.5px;
+        font-size: 1rem;
+      }
+
+      @media (max-height: 800px) {
+        margin-left: 7.5px;
+        font-size: 1rem;
+      }
+
+      @media (min-width: 3000px) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &-options {
+    padding: 0 20px 0 10px;
+
+    @media (max-width: 1000px) {
+      padding: 0 10px 0 5px;
+    }
+
+    @media (max-height: 800px) {
+      padding: 0 10px 0 5px;
+    }
+
+    &-element {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      min-height: 40px;
+      margin-left: 45px;
+
+      @media (max-width: 1000px) {
+        min-height: 20px;
+        margin-left: 22.5px;
+      }
+
+      @media (max-height: 800px) {
+        min-height: 20px;
+        margin-left: 22.5px;
+      }
+
+      &__icon {
+        position: absolute;
+        left: -40px;
+
+        height: 15px;
+
+        filter: drop-shadow(0 0 15px #FFE99B);
+
+        @media (max-width: 1000px) {
+          left: -20px;
+          height: 7.5px;
+          filter: drop-shadow(0 0 7.5px #FFE99B);
+        }
+
+        @media (max-height: 800px) {
+          left: -20px;
+          height: 7.5px;
+          filter: drop-shadow(0 0 7.5px #FFE99B);
+        }
+      }
+
+      &-points {
+        position: absolute;
+        left: -45px;
+
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 1000px) {
+          left: -22.5px;
+        }
+
+        @media (max-height: 800px) {
+          left: -22.5px;
+        }
+
+        &__icon {
+          height: 15px;
+          margin-right: 3px;
+
+          filter: drop-shadow(0 0 15px #FFE99B);
+
+          @media (max-width: 1000px) {
+            height: 7.5px;
+            margin-right: 1.5px;
+            filter: drop-shadow(0 0 7.5px #FFE99B);
+          }
+
+          @media (max-height: 800px) {
+            height: 7.5px;
+            margin-right: 1.5px;
+            filter: drop-shadow(0 0 7.5px #FFE99B);
+          }
+        }
+      }
+    }
+  }
+}
