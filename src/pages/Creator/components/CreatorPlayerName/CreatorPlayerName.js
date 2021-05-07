@@ -60,7 +60,7 @@ const CreatorPlayerName = ({store}) => {
                              store.data.sex = 1;
                              showNotify(1, 'Пол изменен на женский');
 
-                             window.alt.emit('client::characterCreator:preview', 'sex', 1)
+                             window.alt.emit('client::characterCreator:preview', 'sex', 1);
                          }}>
                         <svg width="57" height="100" viewBox="0 0 40 100" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
