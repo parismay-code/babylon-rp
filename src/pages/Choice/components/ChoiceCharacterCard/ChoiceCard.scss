@@ -268,6 +268,11 @@
   }
 
   &__delete-char {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 600px);
+
     text-align: center;
     color: $color-black-medium-opacity;
 
@@ -377,8 +382,6 @@
 }
 
 .choice-character-card {
-  overflow: hidden;
-
   &:hover,
   &.card-active {
     background-color: rgba(0, 0, 0, 0.3);

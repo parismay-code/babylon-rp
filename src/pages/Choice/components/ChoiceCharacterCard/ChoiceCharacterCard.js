@@ -54,7 +54,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard}) => {
             )
         case 1:
             return (
-                <div className='choice-character-card'>
+                <div className='choice-character-card' style={{overflow: 'hidden'}}>
                     <div className='choice-character-card_lock'/>
                     <div className='choice-character-card-locked'>
                         <img src={lockIcon} alt='#'/>
