@@ -25,10 +25,12 @@ const HUDMain = ({store}) => {
         const handleTabKey = (e) => {
             if (e.keyCode === 9) {
                 e.preventDefault();
+                e.stopPropagation();
             }
 
             if (e.keyCode === 32) {
                 e.preventDefault();
+                e.stopPropagation();
             }
         }
 
