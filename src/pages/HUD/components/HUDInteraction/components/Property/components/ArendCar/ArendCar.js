@@ -147,7 +147,7 @@ const ArendCar = ({currentOption, prevOption, player, transport}) => {
                         name='n_arendTransportSubmit'
                         value='Сдать'
                         onClick={() => {
-                            window.alt.emit('client::interactions:arendCar', transport[currentCar].name, arendTerm, input.current.value);
+                            window.alt.emit('client::interaction:arendCar', transport[currentCar].name, arendTerm, input.current.value);
                         }}
                     />
                 </div>

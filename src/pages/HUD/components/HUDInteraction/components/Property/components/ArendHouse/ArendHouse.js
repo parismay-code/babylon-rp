@@ -88,7 +88,7 @@ const ArendHouse = ({currentOption, prevOption, player, houses}) => {
                         name='n_arendHouseSubmit'
                         value='Сдать'
                         onClick={() => {
-                            window.alt.emit('client::interactions:arendHouse', houses[currentHouse].id, arendTerm, input.current.value);
+                            window.alt.emit('client::interaction:arendHouse', houses[currentHouse].id, arendTerm, input.current.value);
                         }}
                     />
                 </div>

@@ -130,7 +130,7 @@ const GiveKey = ({currentOption, prevOption, player, transport}) => {
             </div>
             <div
                 className='hud-interactions-actions-give-car-key-content__submit'
-                onClick={() => window.alt.emit('client::interactions:giveCarKey', transport[currentCar].name)}
+                onClick={() => window.alt.emit('client::interaction:giveCarKey', transport[currentCar].name)}
             >Передать ключи</div>
             <div className='hud-interactions-actions-give-car-key-content-info'>
                 <div className='hud-interactions-actions-give-car-key-content-info-name'>

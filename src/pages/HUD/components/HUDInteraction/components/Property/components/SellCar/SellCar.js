@@ -144,7 +144,7 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
                         name='n_sellTransportSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interactions:sellCar', transport[currentCar].name, input.current.value);
+                            window.alt.emit('client::interaction:sellCar', transport[currentCar].name, input.current.value);
                         }}
                     />
                 </div>

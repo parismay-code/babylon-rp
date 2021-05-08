@@ -103,18 +103,21 @@ const Actions = ({setCurrentPage, noVisualOption, setNoVisualOption, nextOption,
             <div
                 className='hud-interactions-actions-options__element hud-interactions-actions-options__element_trade'
                 onMouseOver={() => setNoVisualOption('trade')}
+                onClick={() => window.alt.emit('client::interaction:sendTrade')}
             >
                 {tradeIcon}
             </div>
             <div
                 className='hud-interactions-actions-options__element hud-interactions-actions-options__element_shakeHands'
                 onMouseOver={() => setNoVisualOption('shakeHands')}
+                onClick={() => window.alt.emit('client::interaction:shakeHands')}
             >
                 {shakeHandsIcon}
             </div>
             <div
                 className='hud-interactions-actions-options__element hud-interactions-actions-options__element_heal'
                 onMouseOver={() => setNoVisualOption('heal')}
+                onClick={() => window.alt.emit('client::interaction:selfHeal')}
             >
                 {healIcon}
             </div>

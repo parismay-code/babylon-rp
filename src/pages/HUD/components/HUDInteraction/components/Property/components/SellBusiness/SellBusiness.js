@@ -80,7 +80,7 @@ const SellBusiness = ({currentOption, prevOption, player, business}) => {
                         name='n_sellBusinessSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interactions:sellBusiness', business[currentBusiness].id, input.current.value);
+                            window.alt.emit('client::interaction:sellBusiness', business[currentBusiness].id, input.current.value);
                         }}
                     />
                 </div>

@@ -84,7 +84,7 @@ const SellHouse = ({currentOption, prevOption, player, houses}) => {
                         name='n_sellHouseSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interactions:sellHouse', houses[currentHouse].id, input.current.value);
+                            window.alt.emit('client::interaction:sellHouse', houses[currentHouse].id, input.current.value);
                         }}
                     />
                 </div>

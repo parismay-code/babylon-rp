@@ -55,7 +55,7 @@ const Money = ({currentOption, prevOption, player}) => {
                     name='n_giveMoneySubmit'
                     value='Передать'
                     onClick={() => {
-                        window.alt.emit('client::interactions:giveMoney', input.current.value);
+                        window.alt.emit('client::interaction:giveMoney', input.current.value);
                     }}
                 />
             </div>
