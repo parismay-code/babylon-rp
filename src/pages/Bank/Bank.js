@@ -52,7 +52,7 @@ const Bank = ({store}) => {
                 <BankNav store={store} setPage={setPage} currentPage={currentPage}/>
                 {currentPage === 'account' && <BankAccount store={store} setPage={setPage}/>}
                 {currentPage === 'fines' && <BankFines store={store}/>}
-                {currentPage === 'taxes' && <BankTaxes store={store}/>}
+                {currentPage === 'taxes' && <BankTaxes store={store} noNav={false}/>}
                 {currentPage === 'business' && <BankBusiness store={store}/>}
                 {currentPage === 'family' && <div>family</div>}
                 {currentPage === 'organization' && <div>organization</div>}

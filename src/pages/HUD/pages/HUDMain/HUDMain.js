@@ -26,6 +26,10 @@ const HUDMain = ({store}) => {
             if (e.keyCode === 9) {
                 e.preventDefault();
             }
+
+            if (e.keyCode === 32) {
+                e.preventDefault();
+            }
         }
 
         document.getElementsByClassName('hud-main')[0].addEventListener('keydown', e => handleTabKey(e));
