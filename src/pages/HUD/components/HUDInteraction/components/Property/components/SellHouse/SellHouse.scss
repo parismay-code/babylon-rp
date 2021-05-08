@@ -1,0 +1,278 @@
+@import '../../../../../../../../styles/vars';
+
+.hud-interactions-property-sell-house {
+  @media (max-width: 1280px) {
+    font-size: .8rem;
+  }
+
+  @media (max-height: 800px) {
+    font-size: .8rem;
+  }
+
+  &-header {
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 1280px) {
+      margin-bottom: 5px;
+    }
+
+    @media (max-height: 800px) {
+      margin-bottom: 5px;
+    }
+
+    &-nickname {
+      margin-right: auto;
+
+      &__firstname {
+        margin-right: 5px;
+
+        @media (max-width: 1280px) {
+          margin-right: 2.5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-right: 2.5px;
+        }
+      }
+
+      &__firstname,
+      &__lastname {
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+
+        @media (max-width: 1280px) {
+          font-size: .9rem;
+        }
+
+        @media (max-height: 800px) {
+          font-size: .9rem;
+        }
+      }
+
+      &__id {
+        opacity: .5;
+        margin-top: 3px;
+
+        @media (max-width: 1280px) {
+          margin-top: 2px;
+          font-size: .8rem;
+        }
+
+        @media (max-height: 800px) {
+          margin-top: 2px;
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+
+  &-content {
+    &-choose-house {
+      width: 80%;
+
+      &-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        margin-bottom: 10px;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 5px;
+        }
+
+        &__title {
+          text-shadow: 0 0 5px #AAB4EE;
+        }
+
+        &__id {
+          font-family: "Baron Neue", sans-serif;
+          font-size: 2rem;
+          opacity: .5;
+
+          @media (max-width: 1280px) {
+            font-size: 1.5rem;
+          }
+
+          @media (max-height: 800px) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      &-list {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 5px;
+        }
+
+        &__element {
+          height: 30px;
+          margin-right: 10px;
+
+          cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+
+          @media (max-width: 1280px) {
+            height: 15px;
+            margin-right: 5px;
+          }
+
+          @media (max-height: 800px) {
+            height: 15px;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    &-form {
+      margin-bottom: 15px;
+
+      @media (max-width: 1280px) {
+        margin-bottom: 7.5px;
+      }
+
+      @media (max-height: 800px) {
+        margin-bottom: 7.5px;
+      }
+
+      &__title {
+        text-shadow: 0 0 5px #AAB4EE;
+        margin-bottom: 5px;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 2.5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 2.5px;
+        }
+      }
+
+      &-input {
+        display: flex;
+        align-items: center;
+
+        &__field,
+        &__submit {
+          outline: none;
+          border: none;
+          color: $color-white;
+        }
+
+        &__field {
+          background-color: #00000060;
+          margin-right: -10px;
+          height: 35px;
+          padding: 10px;
+
+          @media (max-width: 1280px) {
+            margin-right: -5px;
+            height: 25px;
+            padding: 8px;
+            font-size: .8rem;
+          }
+
+          @media (max-height: 800px) {
+            margin-right: -5px;
+            padding: 8px;
+            font-size: .8rem;
+          }
+        }
+
+        &__dollar {
+          color: $color-black;
+          font-family: "TT Norms Medium", sans-serif;
+          font-size: 1.5rem;
+          font-weight: 700;
+          opacity: .5;
+          transform: translateX(-120%);
+
+          @media (max-width: 1280px) {
+            font-size: 1.2rem;
+          }
+
+          @media (max-height: 800px) {
+            font-size: 1.2rem;
+          }
+        }
+
+        &__submit {
+          background-color: #949494;
+          padding: 10px 15px;
+          height: 35px;
+
+          text-transform: uppercase;
+          font-family: "TT Norms Medium", sans-serif;
+          letter-spacing: 1px;
+
+          cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
+
+          @media (max-width: 1280px) {
+            height: 25px;
+            padding: 5px 7.5px;
+            font-size: .9rem;
+          }
+
+          @media (max-height: 800px) {
+            height: 25px;
+            padding: 5px 7.5px;
+            font-size: .9rem;
+          }
+        }
+      }
+    }
+
+    &-info {
+      &-garden,
+      &-garage,
+      &-cost {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 5px;
+
+        font-family: "TT Norms Regular", sans-serif;
+
+        @media (max-width: 1280px) {
+          margin-bottom: 2.5px;
+        }
+
+        @media (max-height: 800px) {
+          margin-bottom: 2.5px;
+        }
+
+        &__title {
+          text-transform: uppercase;
+          opacity: .5;
+        }
+
+        &__value {
+          text-transform: uppercase;
+        }
+      }
+
+      &-cost {
+        &__value {
+          font-family: "TT Norms Bold", sans-serif;
+        }
+      }
+    }
+  }
+}

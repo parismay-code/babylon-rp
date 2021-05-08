@@ -96,6 +96,7 @@ const Actions = ({setCurrentPage, noVisualOption, setNoVisualOption, nextOption,
             <div
                 className='hud-interactions-actions-options__element hud-interactions-actions-options__element_giveCarKey'
                 onMouseOver={() => setNextOption('giveCarKey')}
+                onClick={() => setCurrentOption('giveCarKey')}
             >
                 {giveCarKeyIcon}
             </div>

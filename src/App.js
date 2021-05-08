@@ -91,7 +91,7 @@ const App = () => {
             //         }
             //     }
             // },
-            {type: 1}
+            // {type: 1}
         ]),
         [adminRedactorData, setAdminRedactorData] = React.useState([]),
         [currentHUD, setHUD] = React.useState(0),

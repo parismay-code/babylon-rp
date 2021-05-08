@@ -9,13 +9,16 @@ import Fraction from "./components/Fraction";
 import Money from "./components/MainPage/components/Money";
 import ArendHouse from "./components/Property/components/ArendHouse";
 import SellBusiness from "./components/Property/components/SellBusiness";
+import SellHouse from "./components/Property/components/SellHouse";
+import SellCar from "./components/Property/components/SellCar";
+import ArendCar from "./components/Property/components/ArendCar";
+import GiveKey from "./components/Actions/components/GiveKey";
 
 import './HUDInteraction.scss';
 
 const HUDInteraction = () => {
     const [currentPage, setCurrentPage] = React.useState('main'),
         [isVisible, setVisible] = React.useState(false),
-        [isOptionVisible, setOptionVisible] = React.useState(true),
         [noVisualOption, setNoVisualOption] = React.useState(null),
         [currentOption, setCurrentOption] = React.useState(null),
         [prevOption, setPrevOption] = React.useState(null),
@@ -193,6 +196,14 @@ const HUDInteraction = () => {
                         houses={houses}/>
             <SellBusiness currentOption={currentOption} prevOption={prevOption} player={player}
                           business={business}/>
+            <SellHouse currentOption={currentOption} prevOption={prevOption} player={player}
+                        houses={houses}/>
+            <SellCar currentOption={currentOption} prevOption={prevOption} player={player}
+                       transport={transport}/>
+            <ArendCar currentOption={currentOption} prevOption={prevOption} player={player}
+                       transport={transport}/>
+            <GiveKey currentOption={currentOption} prevOption={prevOption} player={player}
+                      transport={transport}/>
         </div>
         <div className='hud-interaction' style={isVisible ? {opacity: 1} : {opacity: 0}}>
             <div className='hud-interaction-wave-1'>

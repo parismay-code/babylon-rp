@@ -119,18 +119,21 @@ const Property = ({setCurrentPage, currentOption, setCurrentOption, nextOption, 
             <div
                 className='hud-interactions-property-options__element hud-interactions-property-options__element_sellHouse'
                 onMouseOver={() => setNextOption('sellHouse')}
+                onClick={() => setCurrentOption('sellHouse')}
             >
                 {sellHouseIcon}
             </div>
             <div
                 className='hud-interactions-property-options__element hud-interactions-property-options__element_sellCar'
                 onMouseOver={() => setNextOption('sellCar')}
+                onClick={() => setCurrentOption('sellCar')}
             >
                 {sellCarIcon}
             </div>
             <div
                 className='hud-interactions-property-options__element hud-interactions-property-options__element_arendCar'
                 onMouseOver={() => setNextOption('arendCar')}
+                onClick={() => setCurrentOption('arendCar')}
             >
                 {arendCarIcon}
             </div>
