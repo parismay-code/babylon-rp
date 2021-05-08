@@ -35,62 +35,62 @@ const App = () => {
     const [component, setComponent] = React.useState(null),
         [isRegistered, setRegistered] = React.useState(false),
         [characters, setCharacters] = React.useState([
-            {
-                type: 2,
-                gender: 1,
-                level: 15,
-                nickname: {
-                    firstname: 'Paris',
-                    lastname: 'May'
-                },
-                fraction: {
-                    type: 1,
-                    name: 'lspd'
-                },
-                condition: {
-                    hp: '100'
-                },
-                property: {
-                    money: '500000',
-                    bank: '5000000'
-                },
-                punishment: {
-                    reason: '',
-                    date: '',
-                    admin: {
-                        firstname: '',
-                        lastname: ''
-                    }
-                }
-            },
-            {
-                type: 2,
-                gender: 0,
-                level: 4,
-                nickname: {
-                    firstname: 'Paris',
-                    lastname: 'May'
-                },
-                fraction: {
-                    type: 1,
-                    name: 'lspd'
-                },
-                condition: {
-                    hp: '100'
-                },
-                property: {
-                    money: '15800',
-                    bank: '5000000'
-                },
-                punishment: {
-                    reason: '',
-                    date: '',
-                    admin: {
-                        firstname: '',
-                        lastname: ''
-                    }
-                }
-            },
+            // {
+            //     type: 2,
+            //     gender: 1,
+            //     level: 15,
+            //     nickname: {
+            //         firstname: 'Paris',
+            //         lastname: 'May'
+            //     },
+            //     fraction: {
+            //         type: 1,
+            //         name: 'lspd'
+            //     },
+            //     condition: {
+            //         hp: '100'
+            //     },
+            //     property: {
+            //         money: '500000',
+            //         bank: '5000000'
+            //     },
+            //     punishment: {
+            //         reason: '',
+            //         date: '',
+            //         admin: {
+            //             firstname: '',
+            //             lastname: ''
+            //         }
+            //     }
+            // },
+            // {
+            //     type: 2,
+            //     gender: 0,
+            //     level: 4,
+            //     nickname: {
+            //         firstname: 'Paris',
+            //         lastname: 'May'
+            //     },
+            //     fraction: {
+            //         type: 1,
+            //         name: 'lspd'
+            //     },
+            //     condition: {
+            //         hp: '100'
+            //     },
+            //     property: {
+            //         money: '15800',
+            //         bank: '5000000'
+            //     },
+            //     punishment: {
+            //         reason: '',
+            //         date: '',
+            //         admin: {
+            //             firstname: '',
+            //             lastname: ''
+            //         }
+            //     }
+            // },
             {type: 1}
         ]),
         [adminRedactorData, setAdminRedactorData] = React.useState([]),

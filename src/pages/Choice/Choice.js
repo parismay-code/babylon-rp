@@ -1,11 +1,21 @@
 import * as React from 'react';
+import cn from 'classnames';
 
 import ChoiceCharacterCard from "./components/ChoiceCharacterCard";
 
+import deleteScreen1 from 'assets/images/choice/deleteScreen1.svg';
+import deleteScreen2 from 'assets/images/choice/deleteScreen2.svg';
+
 import './Choice.scss';
 
-const Choice = ({ characters }) => {
-    const [currentCard, setCurrentCard] = React.useState();
+const Choice = ({characters}) => {
+    const [currentCard, setCurrentCard] = React.useState(),
+        [deleteCharId, setDeleteCharId] = React.useState(null);
+
+    const currentScreen = React.useMemo(() => {
+        if (Math.round(Math.random()) === 0) return deleteScreen1;
+        else return deleteScreen2;
+    }, []);
 
     return (
         <div className='choice'>
@@ -20,9 +30,43 @@ const Choice = ({ characters }) => {
                                 el={el}
                                 setCurrentCard={setCurrentCard}
                                 currentCard={currentCard}
+                                setDeleteCharId={setDeleteCharId}
                             />
                         )
                     })}
+                </div>
+            </div>
+            <div className={cn('choice-delete-char-screen', deleteCharId !== null ? 'choice-delete-char-screen_visible' : null)}>
+                <img className='choice-delete-char-screen__bg' src={currentScreen} alt='#'/>
+                <div className='choice-delete-char-screen-content'>
+                    <div className='choice-delete-char-screen-content__title'>
+                        вы действительно хотите <span className='choice-delete-char-screen-content__title_orange'>удалить персонажа </span>
+                        <span
+                            className='choice-delete-char-screen-content__title_blue'>{characters[deleteCharId]?.nickname.firstname} {characters[deleteCharId]?.nickname.lastname} </span>
+                        без возможности восстановления?
+                    </div>
+                    <div className='choice-delete-char-screen-content-choose'>
+                        <div
+                            className='choice-delete-char-screen-content-choose-element'
+                            onClick={() => {
+                                window.alt.emit('client::choice:deleteCharScreenActive', false);
+                                setDeleteCharId(null);
+                            }}
+                        >
+                            <div className='choice-delete-char-screen-content-choose-element__box'>N</div>
+                            <span className='choice-delete-char-screen-content-choose-element__title'> - нет</span>
+                        </div>
+                        <div
+                            className='choice-delete-char-screen-content-choose-element'
+                            onClick={() => {
+                                window.alt.emit('client::choice:deleteChar', deleteCharId);
+                                setDeleteCharId(null);
+                            }}
+                        >
+                            <div className='choice-delete-char-screen-content-choose-element__box'>Y</div>
+                            <span className='choice-delete-char-screen-content-choose-element__title'> - да</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

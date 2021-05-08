@@ -20,7 +20,7 @@ import femaleCrime2 from 'assets/images/choice/femaleCrime2.svg';
 
 import './ChoiceCard.scss';
 
-const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard}) => {
+const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteCharId}) => {
     const money = React.useMemo(() =>
         `$ ${String(el?.property?.money).replace(regExp.money, '$1 ')}`, [el?.property?.money]);
 
@@ -106,7 +106,17 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard}) => {
                                     </div>
                                 </>
                         }
-                        <div className='choice-character-card__delete-char'>удалить персонажа</div>
+                        <div
+                            className='choice-character-card-delete-char'
+                            style={el.level >= 5 ? {display: 'flex'} : {display: 'none'}}
+                            onClick={() => {
+                                setDeleteCharId(id);
+                                window.alt.emit('client::choice:deleteCharScreenActive', true);
+                            }}
+                        >
+                            <div className='choice-character-card-delete-char__bg'/>
+                            <span className='choice-character-card-delete-char__title'>удалить персонажа</span>
+                        </div>
                     </div>
                     <img className='choice-character-card__person' src={getImage()} alt='#'/>
                     <div className='choice-character-card-button' onClick={() => {
