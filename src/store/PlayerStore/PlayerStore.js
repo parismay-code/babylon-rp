@@ -7,10 +7,16 @@ import {
 export default class PlayerStore {
     playerState = {
         id: 0,
+        level: 0,
+        gender: 0,
+        fraction: {
+            type: 1,
+            name: 'lspd'
+        },
         nickname: 'Paris May',
         phone: {
-            number: '8 (800) 555-35-35',
-            balance: 5000
+            number: null,
+            balance: 0
         },
         hp: 100,
         armour: 0,
@@ -34,39 +40,39 @@ export default class PlayerStore {
             createDate: '24/08',
         },
         business: [
-            {
-                id: 123,
-                name: 'Магазин оружия #4',
-                extendPrice: 1500,
-                daysExtended: 7,
-                balance: 132490
-            },
-            {
-                id: 11,
-                name: 'Магазин одежды #3',
-                extendPrice: 1500,
-                daysExtended: 7,
-                balance: 4349040
-            },
-            {
-                id: 23,
-                name: 'Магазин 24/7 #11',
-                extendPrice: 1500,
-                daysExtended: 7,
-                balance: 93930180
-            },
+            // {
+            //     id: 123,
+            //     name: 'Магазин оружия #4',
+            //     extendPrice: 1500,
+            //     daysExtended: 7,
+            //     balance: 132490
+            // },
+            // {
+            //     id: 11,
+            //     name: 'Магазин одежды #3',
+            //     extendPrice: 1500,
+            //     daysExtended: 7,
+            //     balance: 4349040
+            // },
+            // {
+            //     id: 23,
+            //     name: 'Магазин 24/7 #11',
+            //     extendPrice: 1500,
+            //     daysExtended: 7,
+            //     balance: 93930180
+            // },
         ],
         houses: [
-            {
-                id: 435,
-                extendPrice: 150,
-                daysExtended: 3
-            },
-            {
-                id: 790,
-                extendPrice: 500,
-                daysExtended: 7
-            }
+            // {
+            //     id: 435,
+            //     extendPrice: 150,
+            //     daysExtended: 3
+            // },
+            // {
+            //     id: 790,
+            //     extendPrice: 500,
+            //     daysExtended: 7
+            // }
         ],
         isInGreenZone: false,
         isInCar: false,

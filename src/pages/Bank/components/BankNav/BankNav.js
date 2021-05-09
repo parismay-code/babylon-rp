@@ -45,7 +45,15 @@ const BankNav = ({player, setPage, currentPage, sendNotify}) => {
                 key={key}
                 className={cn('bank-nav__element', currentPage === navList[key].page && 'active')}
                 onClick={() => {
-                    if (el.page === 'fines' || el.page === 'taxes' || el.page === 'business') setPage(el.page);
+                    if (el.page === 'fines' || (el.page === 'taxes' && (player.houses > 0 || player.business > 0)) || (el.page === 'business' && player.business.length > 0)) setPage(el.page);
+                    else if (el.page === 'business' && player.business.length === 0) {
+                        sendNotify('У Вас нет ниодного бизнеса');
+                        setPage(player.bank.type ? 'account' : 'open');
+                    }
+                    else if (el.page === 'taxes' && player.business.length === 0 && player.houses.length === 0) {
+                        sendNotify('У Вас нет ниодного дома и бизнеса');
+                        setPage(player.bank.type ? 'account' : 'open');
+                    }
                     else if (player.bank.type) setPage(el.page);
                     else {
                         sendNotify('Для пользования данной услугой необходимо открыть счет');

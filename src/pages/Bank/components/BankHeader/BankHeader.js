@@ -12,7 +12,7 @@ const BankHeader = ({player, setPage, currentPage, sendNotify}) => {
     return <div className='bank-header'>
         <div className='bank-header__logo'>БАНК</div>
         <div className={cn('bank-header-top-up-mobile', currentPage === 'mobile' && 'active')} onClick={() => {
-            if (player.phone) setPage('mobile');
+            if (player.phone.number) setPage('mobile');
             else {
                 sendNotify('У Вас нет мобильного телефона');
                 setPage(player.bank.type ? 'account' : 'open')

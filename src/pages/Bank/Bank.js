@@ -65,7 +65,7 @@ const Bank = ({store, player}) => {
                 <BankNav player={player} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
                 {currentPage === 'account' && <BankAccount player={player} setPage={setPage}/>}
                 {currentPage === 'fines' && <BankFines store={store}/>}
-                {currentPage === 'taxes' && <BankTaxes player={player} noNav={false}/>}
+                {currentPage === 'taxes' && <BankTaxes player={player} noNav={player.houses.length > 0 ? player.business.length <= 0 : true}/>}
                 {currentPage === 'business' && <BankBusiness player={player}/>}
                 {currentPage === 'family' && <div>family</div>}
                 {currentPage === 'organization' && <div>organization</div>}

@@ -100,7 +100,7 @@ const App = () => {
         [currentHUD, setHUD] = React.useState(0),
         [isCursorActive, setCursorActive] = React.useState(false),
         [payPrice, setPayPrice] = React.useState(5203),
-        [pinCode, setPinCode] = React.useState(null);
+        [pinCode, setPinCode] = React.useState('1234');
 
     React.useEffect(() => {
         window.window.alt.emit('client::cef:ready');

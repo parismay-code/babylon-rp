@@ -200,7 +200,13 @@ const ATM = ({store, player, pinCode}) => {
                         <span className='atm-inner-navigation-main-element__title'>пополнить <br/><span>мобильный телефон</span></span>
                     </div>
                     <div className={cn('atm-inner-navigation-main-element', currentComponent === 'taxes' ? 'atm-inner-navigation-main-element_active' : null)}
-                         onClick={() => setCurrentComponent('taxes')}>
+                         onClick={() => {
+                             if (player.houses.length > 0) setCurrentComponent('taxes');
+                             else {
+                                 sendNotify('У Вас нет ниодного дома. Для оплаты бизнеса посетите отделение банка.');
+                                 setCurrentComponent(null);
+                             }
+                         }}>
                         <svg className='atm-inner-navigation-main-element__icon' xmlns="http://www.w3.org/2000/svg"
                              width="29.175" height="22.687"
                              viewBox="0 0 29.175 22.687" fill={currentComponent === 'taxes' ? '#000000' : '#ffffff'}
