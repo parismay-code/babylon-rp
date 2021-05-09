@@ -43,7 +43,7 @@ const Pay = ({money, payPrice, cardData}) => {
                 setTimeout(() => {
                     setType(null);
                     setTimeout(() => {
-                        window.alt.emit('client::pay:type', type);
+                        window.alt.emit('client::pay:type', type, payPrice);
                     }, type === 'bank' ? 500 : 0);
                 }, type === 'bank' ? 3000 : 2000);
             }, type === 'bank' ? 850 : 0);
