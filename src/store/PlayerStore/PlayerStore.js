@@ -124,6 +124,9 @@ export default class PlayerStore {
             case 'ammo': return this.playerState.ammo = obj.data;
             case 'dead': return this.playerState.dead = obj.data;
             case 'effects': return this.playerState.effects = obj.data;
+            case 'level': return this.playerState.level = obj.data;
+            case 'gender': return this.playerState.gender = obj.data;
+            case 'fraction': return this.playerState.fraction = obj.data;
             default: return this.playerState = obj.data;
         }
     }
