@@ -9,6 +9,7 @@ const BankOpenCard = ({store, setCardType, setNotifyVisible}) => {
     const openCard = React.useCallback((type) => {
         setCardType(type);
         setNotifyVisible(true);
+        window.alt.emit('client::bank:openCardStatus', true);
     }, [setCardType, setNotifyVisible]);
 
     return <div className='bank-open-card'>

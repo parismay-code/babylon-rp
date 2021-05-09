@@ -38,8 +38,8 @@ export default class HUDStore {
     }
 
     money = {
-        cash: 0,
-        bank: 0
+        cash: 3405,
+        bank: 540483
     }
 
     mapState = {

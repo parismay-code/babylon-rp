@@ -23,7 +23,9 @@ const Bank = ({store}) => {
     const [currentPage, setPage] = React.useState(store.accountState.accountType ? 'account' : 'open');
 
     const [cardType, setCardType] = React.useState(),
-        [isNotifyVisible, setNotifyVisible] = React.useState(false);
+        [isNotifyVisible, setNotifyVisible] = React.useState(false),
+        [isMainNotifyVisible, setMainNotifyVisible] = React.useState(false),
+        [notifyText, setNotifyText] = React.useState(null);
 
     const cardShadow = React.useMemo(() => {
         switch (cardType) {
@@ -45,11 +47,22 @@ const Bank = ({store}) => {
         })
     }, [cardType]);
 
+    const sendNotify = React.useCallback((text, timeout) => {
+        setNotifyText(text);
+        setMainNotifyVisible(true);
+
+        setTimeout(() => setMainNotifyVisible(false), timeout ? timeout : 3000);
+    }, []);
+
+    React.useEffect(() => {
+        window.alt.on('cef::atm:sendNotify', (text, timeout) => sendNotify(text, timeout));
+    }, [sendNotify]);
+
     return <>
         <div className='bank'>
-            <BankHeader store={store} setPage={setPage} currentPage={currentPage}/>
+            <BankHeader store={store} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
             <div className='bank__inner'>
-                <BankNav store={store} setPage={setPage} currentPage={currentPage}/>
+                <BankNav store={store} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
                 {currentPage === 'account' && <BankAccount store={store} setPage={setPage}/>}
                 {currentPage === 'fines' && <BankFines store={store}/>}
                 {currentPage === 'taxes' && <BankTaxes store={store} noNav={false}/>}
@@ -66,8 +79,8 @@ const Bank = ({store}) => {
                 {currentPage === 'lock' && <BankLockCard store={store}/>}
                 {currentPage === 'changePin' && <BankChangePin store={store}/>}
             </div>
-            <div className='bank__notify'>
-                <span>Вы успешно оплатили штраф</span>
+            <div className='bank__notify' style={isMainNotifyVisible ? {opacity: 1} : {opacity: 0}}>
+                <span>{notifyText}</span>
             </div>
         </div>
         <div className={cn('bank-open-card-notify', isNotifyVisible ? 'bank-open-card-notify_active' : null)}>
@@ -92,12 +105,16 @@ const Bank = ({store}) => {
                 <div className='bank-open-card-notify-choose-buttons'>
                     <div
                         className='bank-open-card-notify-choose-buttons__element bank-open-card-notify-choose-buttons__element_no'
-                        onClick={() => setNotifyVisible(false)}
+                        onClick={() => {
+                            window.alt.emit('client::bank:openCardStatus', false);
+                            setNotifyVisible(false);
+                        }}
                     >N
                     </div>
                     <div
                         className='bank-open-card-notify-choose-buttons__element bank-open-card-notify-choose-buttons__element_yes'
                         onClick={() => {
+                            window.alt.emit('client::bank:openCardStatus', false);
                             window.alt.emit('client::bank:openCard', cardType);
                             setNotifyVisible(false);
                         }}

@@ -7,7 +7,7 @@ import topUp from 'assets/images/bank/topUp.svg';
 
 import './BankHeader.scss';
 
-const BankHeader = ({store, setPage, currentPage}) => {
+const BankHeader = ({store, setPage, currentPage, sendNotify}) => {
     return <div className='bank-header'>
         <div className='bank-header__logo'>БАНК</div>
         <div className={cn('bank-header-top-up-mobile', currentPage === 'mobile' && 'active')} onClick={() => setPage('mobile')}>
@@ -19,14 +19,20 @@ const BankHeader = ({store, setPage, currentPage}) => {
         </div>
         <div className={cn('bank-header-withdraw', currentPage === 'withdraw' && 'active')} onClick={() => {
             if (store.accountState.accountType) setPage('withdraw');
-            else setPage('open');
+            else {
+                sendNotify('Для пользования данной услугой необходимо открыть счет');
+                setPage('open');
+            }
         }}>
             <span className='bank-header-withdraw__text'>снять</span>
             <img className='bank-header-withdraw__icon' src={withdraw} alt='#'/>
         </div>
         <div className={cn('bank-header-top-up', currentPage === 'topUp' && 'active')} onClick={() => {
             if (store.accountState.accountType) setPage('topUp');
-            else setPage('open');
+            else {
+                sendNotify('Для пользования данной услугой необходимо открыть счет');
+                setPage('open');
+            }
         }}>
             <span className='bank-header-top-up__text'>пополнить</span>
             <img className='bank-header-top-up__icon' src={topUp} alt='#'/>

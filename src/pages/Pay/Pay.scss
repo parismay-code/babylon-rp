@@ -1,0 +1,282 @@
+@import '../../styles/vars';
+
+.pay {
+  width: 100vw;
+  height: 100vh;
+
+  background: linear-gradient(to right, rgba(255, 255, 255, .3), rgba(140, 137, 146, .3));
+
+  font-family: "TT Norms Medium", sans-serif;
+
+  &-content {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__title {
+      text-align: center;
+      text-transform: uppercase;
+      font-family: "Baron Neue", sans-serif;
+      font-size: 2rem;
+
+      text-shadow: 0 2px 2px $color-black;
+    }
+
+    &-choose {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 450px;
+      width: 1000px;
+
+      @media (max-width: 1280px) {
+        height: 400px;
+        width: 800px;
+      }
+
+      @media (max-width: 1000px) {
+        height: 225px;
+        width: 500px;
+      }
+
+      @media (max-height: 800px) {
+        height: 225px;
+        width: 500px;
+      }
+
+      &__separator {
+        width: 2px;
+        height: 100%;
+
+        background: linear-gradient(to bottom, $color-black-high-opacity, $color-white, $color-black-high-opacity);
+
+        opacity: .8;
+        filter: drop-shadow(0 0 5px $color-black);
+
+        z-index: 999;
+      }
+
+      &-money {
+        &-content {
+          right: 0;
+
+          &-button {
+            right: 0;
+
+            &__title {
+              right: 70px;
+              text-align: right;
+
+              @media (max-width: 1280px) {
+                right: 50px;
+              }
+
+              @media (max-width: 1000px) {
+                right: 35px;
+              }
+
+              @media (max-height: 800px) {
+                right: 35px;
+              }
+            }
+          }
+
+          &__cash {
+            right: 5px;
+          }
+        }
+
+        &__price {
+          right: 5px;
+        }
+      }
+
+      &-bank {
+        &-content {
+          left: 0;
+
+          &-button {
+            left: 0;
+
+            &__title {
+              left: 70px;
+              text-align: left;
+
+              @media (max-width: 1280px) {
+                left: 50px;
+              }
+
+              @media (max-width: 1000px) {
+                left: 35px;
+              }
+
+              @media (max-height: 800px) {
+                left: 35px;
+              }
+            }
+          }
+
+          &__cash {
+            left: 5px;
+          }
+        }
+
+        &__price {
+          left: 5px;
+        }
+      }
+
+      &-money,
+      &-bank {
+        position: relative;
+        height: 100%;
+        width: 50%;
+
+        &-content {
+          position: absolute;
+
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          overflow: hidden;
+
+          &-button {
+            position: absolute;
+
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(to left, #8C899250, #ffffff50);
+
+            cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+
+            @media (max-width: 1280px) {
+              height: 50px;
+              width: 50px;
+            }
+
+            @media (max-width: 1000px) {
+              height: 35px;
+              width: 35px;
+            }
+
+            @media (max-height: 800px) {
+              height: 35px;
+              width: 35px;
+            }
+
+            &:hover &__title,
+            &_active &__title {
+              width: 210px;
+              padding: 0 70px;
+
+              @media (max-width: 1280px) {
+                width: 190px;
+                padding: 0 50px;
+              }
+
+              @media (max-width: 1000px) {
+                width: 105px;
+                padding: 0 35px;
+              }
+
+              @media (max-height: 800px) {
+                width: 105px;
+                padding: 0 35px;
+              }
+            }
+
+            &__title {
+              position: absolute;
+
+              overflow: hidden;
+
+              width: 0;
+              padding: 0;
+              height: 70px;
+
+              font-size: 1.5rem;
+              line-height: 70px;
+              text-transform: uppercase;
+              text-shadow: 0 2px 2px $color-black;
+
+              background: linear-gradient(to left, #8C899250, #ffffff50);
+
+              transition: width .4s ease, padding .5s ease;
+
+              @media (max-width: 1280px) {
+                height: 50px;
+                line-height: 50px;
+              }
+
+              @media (max-height: 800px) {
+                height: 35px;
+                line-height: 35px;
+              }
+
+              @media (max-width: 1000px) {
+                height: 35px;
+                line-height: 35px;
+                font-size: 1.2rem;
+              }
+
+              & span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+
+            &__icon {
+              height: 30%;
+            }
+          }
+
+          &__cash {
+            position: absolute;
+            bottom: 0;
+
+            opacity: 0;
+          }
+
+          &-button:hover ~ &__cash,
+          &-button_active ~ &__cash {
+            opacity: 1;
+          }
+        }
+
+        &__price {
+          position: absolute;
+          bottom: -1rem;
+
+          animation-duration: 2s;
+          animation-timing-function: ease;
+
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pay {
+  0% {
+    opacity: 0;
+    bottom: -1rem;
+  }
+
+  100% {
+    opacity: 1;
+    bottom: -10rem;
+  }
+}
