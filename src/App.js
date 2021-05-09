@@ -97,7 +97,8 @@ const App = () => {
         [adminRedactorData, setAdminRedactorData] = React.useState([]),
         [currentHUD, setHUD] = React.useState(0),
         [isCursorActive, setCursorActive] = React.useState(false),
-        [payPrice, setPayPrice] = React.useState(5203);
+        [payPrice, setPayPrice] = React.useState(5203),
+        [pinCode, setPinCode] = React.useState(null);
 
     React.useEffect(() => {
         window.window.alt.emit('client::cef:ready');
@@ -139,6 +140,11 @@ const App = () => {
 
         window.alt.on('cef::battlePass:start', () => {
             setComponent('battlePass');
+        });
+
+        window.alt.on('cef::atm:start', pinCode => {
+            setPinCode(pinCode);
+            setComponent('atm');
         });
 
         window.alt.on('cef::pay:start', (price) => {
@@ -204,7 +210,7 @@ const App = () => {
         />}
         {component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}
         {component === 'battlePass' && <BattlePass store={battlePassStore}/>}
-        {component === 'atm' && <ATM store={bankStore}/>}
+        {component === 'atm' && <ATM store={bankStore} pinCode={pinCode}/>}
         {component === 'pay' && <Pay payPrice={payPrice} money={hudStore.money} cardData={bankStore.accountState}/>}
         <Chat store={chatStore} isCursorActive={isCursorActive}
               isVisible={component === 'hud' && currentHUD === 0 && !hudStore.deadState.isDead}/>

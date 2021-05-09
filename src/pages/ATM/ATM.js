@@ -16,13 +16,12 @@ import fleeca from 'assets/images/atm/fleeca.svg';
 
 import './ATM.scss';
 
-const ATM = ({store}) => {
+const ATM = ({store, pinCode}) => {
     const [isCardActive, setCardActive] = React.useState(false),
         [isMenuActive, setMenuActive] = React.useState(false),
         [currentComponent, setCurrentComponent] = React.useState(null),
         [isNotifyVisible, setNotifyVisible] = React.useState(false),
-        [notifyText, setNotifyText] = React.useState(null),
-        [pinCode, setPinCode] = React.useState('1234');
+        [notifyText, setNotifyText] = React.useState(null);
 
     const pinCodeInput = React.useRef(null);
 
@@ -44,8 +43,6 @@ const ATM = ({store}) => {
 
     React.useEffect(() => {
         window.alt.on('cef::atm:sendNotify', (text, timeout) => sendNotify(text, timeout));
-        window.alt.emit('client::atm:getPinCode');
-        window.alt.on('cef::atm:sendPinCode', pinCode => setPinCode(pinCode));
     }, [sendNotify]);
 
     return <div className='atm'>
