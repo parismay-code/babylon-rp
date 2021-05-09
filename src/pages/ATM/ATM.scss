@@ -521,12 +521,6 @@
             color: $color-black;
           }
 
-          &:hover,
-          &_active {
-            background: linear-gradient(45deg, #FFD4A2, #B19576);
-            color: $color-black;
-          }
-
           &:hover &__icon,
           &_active &__icon {
             opacity: 1;
