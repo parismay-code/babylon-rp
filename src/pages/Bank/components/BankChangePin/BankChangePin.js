@@ -7,9 +7,9 @@ import {regExp} from "utils/regExp";
 
 import './BankChangePin.scss';
 
-const BankChangePin = ({store}) => {
+const BankChangePin = ({player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(store.accountState.balance).replace(regExp.money, '$1 ')}`, [store.accountState.balance]);
+        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
 
     const currentPin = React.useRef(null),
         newPin = React.useRef(null),
@@ -31,10 +31,9 @@ const BankChangePin = ({store}) => {
                     <div className='bank-change-pin-content-info-balance__value'>{balance}</div>
                 </div>
                 <div className='bank-change-pin-content-info-card'>
-                    <div className='bank-change-pin-content-info-card__type'>{store.accountState.bank}
-                        <b>{store.accountState.accountType}</b></div>
+                    <div className='bank-change-pin-content-info-card__type'>{player.bank.name} <b>{player.bank.type}</b></div>
                     <div
-                        className='bank-change-pin-content-info-card__number'># {store.accountState.accountNumber}</div>
+                        className='bank-change-pin-content-info-card__number'># {player.bank.account}</div>
                 </div>
             </div>
             <div className='bank-change-pin-content-form'>

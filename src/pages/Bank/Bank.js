@@ -19,8 +19,8 @@ import BankCard from "components/BankCard";
 
 import './Bank.scss';
 
-const Bank = ({store}) => {
-    const [currentPage, setPage] = React.useState(store.accountState.accountType ? 'account' : 'open');
+const Bank = ({store, player}) => {
+    const [currentPage, setPage] = React.useState(player.bank.type ? 'account' : 'open');
 
     const [cardType, setCardType] = React.useState(),
         [isNotifyVisible, setNotifyVisible] = React.useState(false),
@@ -60,24 +60,24 @@ const Bank = ({store}) => {
 
     return <>
         <div className='bank'>
-            <BankHeader store={store} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
+            <BankHeader player={player} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
             <div className='bank__inner'>
-                <BankNav store={store} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
-                {currentPage === 'account' && <BankAccount store={store} setPage={setPage}/>}
+                <BankNav player={player} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
+                {currentPage === 'account' && <BankAccount player={player} setPage={setPage}/>}
                 {currentPage === 'fines' && <BankFines store={store}/>}
-                {currentPage === 'taxes' && <BankTaxes store={store} noNav={false}/>}
-                {currentPage === 'business' && <BankBusiness store={store}/>}
+                {currentPage === 'taxes' && <BankTaxes player={player} noNav={false}/>}
+                {currentPage === 'business' && <BankBusiness player={player}/>}
                 {currentPage === 'family' && <div>family</div>}
                 {currentPage === 'organization' && <div>organization</div>}
                 {currentPage === 'charity' && <div>charity</div>}
-                {currentPage === 'mobile' && <BankTopUpMobile store={store}/>}
-                {currentPage === 'withdraw' && <BankWithdraw store={store}/>}
-                {currentPage === 'topUp' && <BankTopUp store={store}/>}
-                {currentPage === 'transfer' && <BankTransfer store={store}/>}
+                {currentPage === 'mobile' && <BankTopUpMobile player={player}/>}
+                {currentPage === 'withdraw' && <BankWithdraw store={store} player={player}/>}
+                {currentPage === 'topUp' && <BankTopUp store={store} player={player}/>}
+                {currentPage === 'transfer' && <BankTransfer store={store} player={player}/>}
                 {currentPage === 'open' &&
                 <BankOpenCard store={store} setCardType={setCardType} setNotifyVisible={setNotifyVisible}/>}
-                {currentPage === 'lock' && <BankLockCard store={store}/>}
-                {currentPage === 'changePin' && <BankChangePin store={store}/>}
+                {currentPage === 'lock' && <BankLockCard player={player}/>}
+                {currentPage === 'changePin' && <BankChangePin player={player}/>}
             </div>
             <div className='bank__notify' style={isMainNotifyVisible ? {opacity: 1} : {opacity: 0}}>
                 <span>{notifyText}</span>
@@ -85,7 +85,7 @@ const Bank = ({store}) => {
         </div>
         <div className={cn('bank-open-card-notify', isNotifyVisible ? 'bank-open-card-notify_active' : null)}>
             {isNotifyVisible ? <BankCard
-                data={store.accountState}
+                data={player}
                 type={cardType}
                 customStyles={
                     {

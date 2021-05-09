@@ -5,14 +5,14 @@ import BankTaxesHomeElement from "./components/BankTaxesHomeElement";
 
 import './BankTaxesHome.scss';
 
-const BankTaxesHome = ({store}) => {
+const BankTaxesHome = ({player}) => {
     return <div className='bank-taxes-home'>
-        {store.homes.map((el, key) => {
+        {player.houses.map((el, key) => {
             return <BankTaxesHomeElement
                 key={key}
                 id={el.id}
-                price={el.price}
-                payed={el.payed}
+                price={el.extendPrice}
+                payed={el.daysExtended}
             />
         })}
     </div>

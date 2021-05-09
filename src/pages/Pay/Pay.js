@@ -11,14 +11,14 @@ import {regExp} from "utils/regExp";
 
 import './Pay.scss';
 
-const Pay = ({money, payPrice, cardData}) => {
+const Pay = ({player, payPrice}) => {
     const [type, setType] = React.useState(null);
 
     const price = React.useMemo(() =>
         `${String(payPrice).replace(regExp.money, '$1 ')}$`, [payPrice]);
 
-    const paperMoney = React.useMemo(() => `${String(money.cash).replace(regExp.money, '$1 ')}$`, [money.cash]);
-    const bank = React.useMemo(() => `${String(money.bank).replace(regExp.money, '$1 ')}$`, [money.bank]);
+    const paperMoney = React.useMemo(() => `${String(player.money.cash).replace(regExp.money, '$1 ')}$`, [player.money.cash]);
+    const bank = React.useMemo(() => `${String(player.money.card).replace(regExp.money, '$1 ')}$`, [player.money.card]);
 
     const cardWidth = React.useMemo(() => {
         if (document.body.clientWidth <= 1000 || document.body.clientHeight <= 800) return '100px';
@@ -38,7 +38,7 @@ const Pay = ({money, payPrice, cardData}) => {
     React.useEffect(() => {
         if (type) {
             setTimeout(() => {
-                type === 'bank' ? money.bank -= payPrice : money.cash -= payPrice;
+                type === 'bank' ? player.money.card -= payPrice : player.money.cash -= payPrice;
 
                 setTimeout(() => {
                     setType(null);
@@ -48,7 +48,7 @@ const Pay = ({money, payPrice, cardData}) => {
                 }, type === 'bank' ? 3000 : 2000);
             }, type === 'bank' ? 850 : 0);
         }
-    }, [type, money, payPrice]);
+    }, [type, player.money, payPrice]);
 
     return <div className='pay'>
         <div className='pay-content'>
@@ -72,7 +72,7 @@ const Pay = ({money, payPrice, cardData}) => {
                             <img className='pay-content-choose-bank-content-button__icon' src={bankIcon} alt='#'/>
                         </div>
                         <BankCard
-                            data={cardData}
+                            data={player}
                             customStyles={
                                 {
                                     width: cardWidth,

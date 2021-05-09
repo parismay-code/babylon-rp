@@ -5,22 +5,6 @@ import {
 } from "mobx";
 
 export default class HUDStore {
-    isInCar = false;
-
-    playerState = {
-        hp: 100,
-        armour: 0,
-        hunger: 100,
-        thirst: 100,
-        stars: 5,
-        sick: {
-            flu: false,
-            amnesia: false,
-            dependence: false,
-            poisoning: false
-        }
-    };
-
     carState = {
         engine: 100,
         fuel: 50,
@@ -32,16 +16,6 @@ export default class HUDStore {
         cruiseControl: false
     }
 
-    ammo = {
-        charged: 0,
-        clip: 0
-    }
-
-    money = {
-        cash: 3405,
-        bank: 540483
-    }
-
     mapState = {
         area: 'Little Seoul',
         street: 'Паломино-Авеню',
@@ -50,85 +24,26 @@ export default class HUDStore {
         id: 0
     }
 
-    deadState = {
-        isDead: false,
-        knockdown: 300,
-        attacker: {
-            nickname: 'Незнакомец',
-            id: 0
-        }
-    }
-
-    greenZone = false;
-
     time = '22:36';
     date = '01.01.2021';
 
     speakers = [];
 
-    effects = {
-        isHealing: false,
-    };
-
     constructor() {
         makeObservable(this, {
-            isInCar: observable,
-            playerState: observable,
-            money: observable,
             mapState: observable,
             carState: observable,
             time: observable,
             date: observable,
-            ammo: observable,
             speakers: observable,
-            deadState: observable,
-            greenZone: observable,
-            effects: observable,
 
-            fetchPlayerState: action.bound,
-            fetchPlayerMoney: action.bound,
             fetchMapState: action.bound,
             fetchDate: action.bound,
             fetchTime: action.bound,
             fetchCarState: action.bound,
-            fetchAmmo: action.bound,
             fetchSpeaker: action.bound,
             removeSpeaker: action.bound,
-            fetchDeadState: action.bound,
-            setGreenZone: action.bound,
-            fetchEffects: action.bound,
-            setCarHud: action.bound,
         })
-    }
-
-    fetchPlayerState(obj) {
-        switch (obj.type) {
-            case 0:
-                return this.playerState.hp = obj.hp;
-            case 1:
-                return this.playerState.armour = obj.armour;
-            case 2:
-                return this.playerState.hunger = obj.hunger;
-            case 3:
-                return this.playerState.thirst = obj.thirst;
-            case 4:
-                return this.playerState.stars = obj.stars;
-            case 5:
-                return this.playerState.sick = obj.sick;
-            default:
-                return this.playerState = obj.data;
-        }
-    }
-
-    fetchPlayerMoney(obj) {
-        switch (obj.type) {
-            case 0:
-                return this.money.cash = obj.cash;
-            case 1:
-                return this.money.bank = obj.bank;
-            default:
-                return this.money = obj.data;
-        }
     }
 
     fetchMapState(obj) {
@@ -170,14 +85,6 @@ export default class HUDStore {
         }
     }
 
-    fetchAmmo(obj) {
-        switch (obj.type) {
-            case 0: return this.ammo.charged = obj.charged;
-            case 1: return this.ammo.clip = obj.clip;
-            default: return this.ammo = obj.data;
-        }
-    }
-
     fetchSpeaker(obj) {
         this.speakers.push(obj);
         if (this.speakers.length > 4) this.speakers.shift();
@@ -190,25 +97,6 @@ export default class HUDStore {
                 console.log(`deleted ${i} speaker`)
             }
         }
-    }
-
-    fetchDeadState(data) {
-        return this.deadState = data;
-    }
-
-    setGreenZone(bool) {
-        return this.greenZone = bool;
-    }
-
-    fetchEffects(obj) {
-        switch (obj.type) {
-            case 'healing': return this.effects.isHealing = obj.data;
-            default: return this.effects = obj.data;
-        }
-    }
-
-    setCarHud(bool) {
-        return this.isInCar = bool;
     }
 
     destroy() {}

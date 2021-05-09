@@ -7,9 +7,12 @@ import {regExp} from "utils/regExp";
 
 import './BankTransfer.scss';
 
-const BankTransfer = ({store}) => {
+const BankTransfer = ({store, player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(store.accountState.balance ? store.accountState.balance : store.accountState.cash).replace(regExp.money, '$1 ')}`, [store.accountState.balance, store.accountState.cash]);
+        `$ ${String(player.bank.type ? player.money.card : player.money.cash).replace(regExp.money, '$1 ')}`, [player.bank.type, player.money.card,  player.money.cash]);
+
+    const account = React.useRef(null);
+    const value = React.useRef(null);
 
     return <div className='bank-transfer'>
         <div className='bank-transfer-header'>
@@ -19,8 +22,8 @@ const BankTransfer = ({store}) => {
                     <div className='bank-transfer-header-info-balance__subtitle'>{balance}</div>
                 </div>
                 <div className='bank-transfer-header-info-card'>
-                    <div className='bank-transfer-header-info-card__title'>{store.accountState.bank} <b>{store.accountState.accountType}</b></div>
-                    <div className='bank-transfer-header-info-card__subtitle'># {store.accountState.accountNumber}</div>
+                    <div className='bank-transfer-header-info-card__title'>{player.bank.name} <b>{player.bank.type}</b></div>
+                    <div className='bank-transfer-header-info-card__subtitle'># {player.bank.account}</div>
                 </div>
             </div>
             <div className='bank-transfer-header-form'>
@@ -28,7 +31,7 @@ const BankTransfer = ({store}) => {
                     Введите номер счета для <br/>перевода
                 </div>
                 <div className='bank-transfer-header-form-input'>
-                    <input className='bank-transfer-header-form-input__count' type='number' name='n_withdrawCount' placeholder='Счет'/>
+                    <input className='bank-transfer-header-form-input__count' type='number' name='n_withdrawCount' placeholder='Счет' ref={account}/>
                 </div>
             </div>
             <div className='bank-transfer-header-form'>
@@ -36,8 +39,8 @@ const BankTransfer = ({store}) => {
                     Введите сумму, которую <br/>хотите перевести
                 </div>
                 <div className='bank-transfer-header-form-input'>
-                    <input className='bank-transfer-header-form-input__count' type='number' name='n_withdrawCount' placeholder='Сумма'/>
-                    <input className='bank-transfer-header-form-input__submit' type='submit' name='n_withdrawSubmit' value='Перевести'/>
+                    <input className='bank-transfer-header-form-input__count' type='number' name='n_withdrawCount' placeholder='Сумма' ref={value}/>
+                    <input className='bank-transfer-header-form-input__submit' type='submit' name='n_withdrawSubmit' value='Перевести' onClick={() => window.alt.emit('client::bank:transfer', account.current.value, value.current.value )}/>
                 </div>
             </div>
         </div>

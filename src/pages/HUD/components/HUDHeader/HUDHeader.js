@@ -20,7 +20,7 @@ import {regExp} from "utils/regExp";
 
 import './HUDHeader.scss';
 
-const HUDHeader = ({store}) => {
+const HUDHeader = ({player}) => {
     const [altOpened, setAlt] = React.useState(false),
         [isAmmoVisible, setAmmoVisible] = React.useState(false);
 
@@ -30,10 +30,10 @@ const HUDHeader = ({store}) => {
     }, [])
 
     const cashCount = React.useMemo(() =>
-        `$ ${String(store.money.cash).replace(regExp.money, '$1 ')}`, [store.money.cash])
+        `$ ${String(player.money.cash).replace(regExp.money, '$1 ')}`, [player.money.cash])
 
     const bankCount = React.useMemo(() =>
-        `$ ${String(store.money.bank).replace(regExp.money, '$1 ')}`, [store.money.bank])
+        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card])
 
     return <div className='hud-header'>
         <div className='hud-header-logo'>
@@ -42,11 +42,11 @@ const HUDHeader = ({store}) => {
         </div>
         <div className='hud-header-bottom'>
             <div className='hud-header-bottom-stars'>
-                {store.playerState.stars >= 1 && <img src={star} alt='#'/>}
-                {store.playerState.stars >= 2 && <img src={star} alt='#'/>}
-                {store.playerState.stars >= 3 && <img src={star} alt='#'/>}
-                {store.playerState.stars >= 4 && <img src={star} alt='#'/>}
-                {store.playerState.stars === 5 && <img src={star} alt='#'/>}
+                {player.stars >= 1 && <img src={star} alt='#'/>}
+                {player.stars >= 2 && <img src={star} alt='#'/>}
+                {player.stars >= 3 && <img src={star} alt='#'/>}
+                {player.stars >= 4 && <img src={star} alt='#'/>}
+                {player.stars === 5 && <img src={star} alt='#'/>}
             </div>
             <div className='hud-header-bottom-money'>
                 <div className='hud-header-bottom-money__cash'>
@@ -59,8 +59,8 @@ const HUDHeader = ({store}) => {
                 </div>
             </div>
             {isAmmoVisible && <div className='hud-header-bottom-ammo'>
-                <div className='hud-header-bottom-ammo__charged'>{store.ammo.charged}</div>
-                <div className='hud-header-bottom-ammo__clip'>{store.ammo.clip}</div>
+                <div className='hud-header-bottom-ammo__charged'>{player.ammo.charged}</div>
+                <div className='hud-header-bottom-ammo__clip'>{player.ammo.clip}</div>
                 <img className='hud-header-bottom-ammo__icon' src={ammo} alt='#'/>
             </div>}
             <div className='hud-header-bottom-menu'>

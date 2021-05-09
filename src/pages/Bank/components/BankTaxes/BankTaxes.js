@@ -6,7 +6,7 @@ import BankTaxesBusiness from "./components/BankTaxesBusiness";
 
 import './BankTaxes.scss';
 
-const BankTaxes = ({store, noNav}) => {
+const BankTaxes = ({player, noNav}) => {
     const [currentPage, setPage] = React.useState('home');
 
     return <div className='bank-taxes'>
@@ -21,7 +21,7 @@ const BankTaxes = ({store, noNav}) => {
             >Бизнес</div>
         </div> : null}
         <div className='home-taxes-content'>
-            {currentPage === 'home' ? <BankTaxesHome store={store}/> : <BankTaxesBusiness store={store}/>}
+            {currentPage === 'home' ? <BankTaxesHome player={player}/> : <BankTaxesBusiness player={player}/>}
         </div>
     </div>
 }

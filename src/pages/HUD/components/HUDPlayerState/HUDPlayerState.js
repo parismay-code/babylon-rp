@@ -2,10 +2,6 @@ import * as React from 'react';
 import {observer} from "mobx-react-lite";
 import cn from 'classnames';
 
-import temperature from 'assets/images/hud/temperature.svg';
-import amnesia from 'assets/images/hud/amnesia.svg';
-import marijuana from 'assets/images/hud/marijuana.svg';
-import sickness from 'assets/images/hud/sickness.svg';
 import armour from 'assets/images/hud/armour.svg';
 import hp from 'assets/images/hud/hp.svg';
 import thirst from 'assets/images/hud/thirst.svg';
@@ -15,17 +11,11 @@ import healingEffectIcon from 'assets/images/hud/healingEffectIcon.svg';
 
 import './HUDPlayerState.scss';
 
-const HUDPlayerState = ({store, isInCar}) => {
-    const [isHealing, setHealing] = React.useState(false);
-
-    React.useEffect(() => {
-        window.alt.on('cef::hud:selfHeal', bool => setHealing(bool));
-    }, []);
-
-    return <div className={cn('hud-player-state', isInCar && 'hud-player-state_inCar')}>
+const HUDPlayerState = ({player, store}) => {
+    return <div className={cn('hud-player-state', player.isInCar && 'hud-player-state_inCar')}>
         <div className='hud-player-state-sick'>
             <svg
-                className={cn('hud-player-state-sick__element', store.playerState.sick.flu ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
+                className={cn('hud-player-state-sick__element', player.sick.flu ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
                 xmlns="http://www.w3.org/2000/svg" width="27.134"
                 height="13.567" viewBox="0 0 27.134 13.567">
                 <path
@@ -33,7 +23,7 @@ const HUDPlayerState = ({store, isInCar}) => {
                     transform="translate(27.134) rotate(90)"/>
             </svg>
             <svg
-                className={cn('hud-player-state-sick__element', store.playerState.sick.amnesia ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
+                className={cn('hud-player-state-sick__element', player.sick.amnesia ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
                 xmlns="http://www.w3.org/2000/svg" width="21.874"
                 height="24.608" viewBox="0 0 21.874 24.608">
                 <path
@@ -41,7 +31,7 @@ const HUDPlayerState = ({store, isInCar}) => {
                     transform="translate(21.874) rotate(90)"/>
             </svg>
             <svg
-                className={cn('hud-player-state-sick__element', store.playerState.sick.dependence ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
+                className={cn('hud-player-state-sick__element', player.sick.dependence ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
                 xmlns="http://www.w3.org/2000/svg" width="27.133"
                 height="27.133" viewBox="0 0 27.133 27.133">
                 <g transform="translate(27.133) rotate(90)">
@@ -51,7 +41,7 @@ const HUDPlayerState = ({store, isInCar}) => {
                 </g>
             </svg>
             <svg
-                className={cn('hud-player-state-sick__element', store.playerState.sick.poisoning ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
+                className={cn('hud-player-state-sick__element', player.sick.poisoning ? 'hud-player-state-sick__element_active' : 'hud-player-state-sick__element_disabled')}
                 xmlns="http://www.w3.org/2000/svg" width="29.837"
                 height="18.093" viewBox="0 0 29.837 18.093">
                 <path
@@ -64,42 +54,42 @@ const HUDPlayerState = ({store, isInCar}) => {
                 <div className='hud-player-state-main-health__top'>
                     <img src={armour} alt='#'/>
                     <div className='hud-player-state-main-health__top_after'
-                         style={{width: `${store.playerState.armour}%`, backgroundColor: '#7085FF'}}/>
+                         style={{width: `${player.armour}%`, backgroundColor: '#7085FF'}}/>
+                </div>
+                <div
+                    className={cn('hud-player-state-main-health-healing-effect', player.effects.selfHealing ? 'hud-player-state-main-health-healing-effect_active' : null)}>
+                    <img
+                        className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_first'
+                        src={healingEffectIcon} alt='#'/>
+                    <img
+                        className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_second'
+                        src={healingEffectIcon} alt='#'/>
+                    <img
+                        className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_third'
+                        src={healingEffectIcon} alt='#'/>
+                    <img
+                        className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_fourth'
+                        src={healingEffectIcon} alt='#'/>
                 </div>
                 <div className='hud-player-state-main-health__bottom'>
-                    <div
-                        className={cn('hud-player-state-main-health-healing-effect', isHealing ? 'hud-player-state-main-health-healing-effect_active' : null)}>
-                        <img
-                            className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_first'
-                            src={healingEffectIcon} alt='#'/>
-                        <img
-                            className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_second'
-                            src={healingEffectIcon} alt='#'/>
-                        <img
-                            className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_third'
-                            src={healingEffectIcon} alt='#'/>
-                        <img
-                            className='hud-player-state-main-health-healing-effect__element hud-player-state-main-health-healing-effect__element_fourth'
-                            src={healingEffectIcon} alt='#'/>
-                    </div>
                     <img src={hp} alt='#'/>
                     <div className='hud-player-state-main-health__bottom_after'
-                         style={{width: `${store.playerState.hp}%`, backgroundColor: '#B4F191'}}/>
+                         style={{width: `${player.hp}%`, backgroundColor: '#B4F191'}}/>
                 </div>
             </div>
             <div className='hud-player-state-main-hunger'>
                 <div className='hud-player-state-main-hunger__top'>
-                    <img src={hunger} alt='#' style={isInCar ? {opacity: '0'} : {opacity: '1'}}/>
+                    <img src={hunger} alt='#' style={player.isInCar ? {opacity: '0'} : {opacity: '1'}}/>
                     <div className='hud-player-state-main-hunger__top_after'
-                         style={{width: `${store.playerState.hunger}%`, backgroundColor: '#FF9770'}}/>
+                         style={{width: `${player.hunger}%`, backgroundColor: '#FF9770'}}/>
                 </div>
                 <div className='hud-player-state-main-hunger__bottom'>
-                    <img src={thirst} alt='#' style={isInCar ? {opacity: '0'} : {opacity: '1'}}/>
+                    <img src={thirst} alt='#' style={player.isInCar ? {opacity: '0'} : {opacity: '1'}}/>
                     <div className='hud-player-state-main-hunger__bottom_after'
-                         style={{width: `${store.playerState.thirst}%`, backgroundColor: '#91C1F1'}}/>
+                         style={{width: `${player.thirst}%`, backgroundColor: '#91C1F1'}}/>
                 </div>
             </div>
-            <div className='hud-player-state-main-engine' style={isInCar ? {opacity: '1'} : {opacity: '0'}}>
+            <div className='hud-player-state-main-engine' style={player.isInCar ? {opacity: '1'} : {opacity: '0'}}>
                 <div className='hud-player-state-main-engine__bar'>
                     <img src={engine} alt='#'/>
                     <div className='hud-player-state-main-engine__bar_after'

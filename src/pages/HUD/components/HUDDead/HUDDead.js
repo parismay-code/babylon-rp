@@ -5,11 +5,11 @@ import skull from 'assets/images/hud/skull.svg';
 
 import './HUDDead.scss';
 
-const HUDDead = ({knockdown, attacker}) => {
+const HUDDead = ({player}) => {
     const [timer, setTimer] = React.useState(null);
 
     React.useEffect(() => {
-        let time = knockdown;
+        let time = player.dead.knockdown;
 
         const interval = setInterval(() => {
             const minutes = time / 60 % 60;
@@ -25,7 +25,7 @@ const HUDDead = ({knockdown, attacker}) => {
         }, 1000)
 
         return () => clearInterval(interval);
-    }, [knockdown])
+    }, [player.dead.knockdown])
 
     return <div className='hud-dead'>
         <div className='hud-dead__pulse'/>
@@ -44,8 +44,8 @@ const HUDDead = ({knockdown, attacker}) => {
         </div>
         <div className='hud-dead-attacker'>
             <span className='hud-dead-attacker__title'>Вас атаковал</span>
-            <br/>[{attacker.id}]
-            <br/>{attacker.nickname}
+            <br/>[{player.dead.attacker.id}]
+            <br/>{player.dead.attacker.nickname}
         </div>
         <div
             className='hud-dead-submit'

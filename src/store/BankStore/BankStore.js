@@ -5,35 +5,38 @@ import {
 } from "mobx";
 
 export default class BankStore {
-    accountState = {
-        nickname: 'Paris May',
-        phone: '8 (800) 555-35-35',
-        bank: 'fleeca',
-        accountNumber: '5473 1287 8754 2111',
-        createDate: '24/08',
-        accountType: 'premium',
-        balance: 937999092,
-        // accountType: null,
-        // balance: null,
-        cash: 10000,
-        business: [
-            {
-                id: 123,
-                name: 'Магазин оружия #4',
-                balance: 132490
-            },
-            {
-                id: 11,
-                name: 'Магазин одежды #3',
-                balance: 4349040
-            },
-            {
-                id: 23,
-                name: 'Магазин 24/7 #11',
-                balance: 93930180
-            },
-        ]
-    };
+    cards = [
+        {
+            class: 'standard',
+            price: 1200,
+            color: '#AEBAF855',
+            bonuses: [
+                '10% CashBack',
+                '15% остаток на депозите',
+                'Бонусы'
+            ]
+        },
+        {
+            class: 'gold',
+            price: 2200,
+            color: '#EEE48855',
+            bonuses: [
+                '10% CashBack',
+                '15% остаток на депозите',
+                'Бонусы'
+            ]
+        },
+        {
+            class: 'premium',
+            price: 5200,
+            color: '#C89FEF55',
+            bonuses: [
+                '10% CashBack',
+                '15% остаток на депозите',
+                'Бонусы'
+            ]
+        },
+    ];
     fines = [
         {
             id: 0,
@@ -76,57 +79,6 @@ export default class BankStore {
             description: 'Вождение в нетрезвом состоянии',
             structure: 'LSPD',
             price: 800
-        },
-    ];
-    homes = [
-        {
-            id: 435,
-            price: 150,
-            payed: 3
-        },
-        {
-            id: 790,
-            price: 500,
-            payed: 7
-        }
-    ];
-    business = [
-        {
-            id: 95,
-            price: 1500,
-            payed: 4
-        }
-    ];
-    cards = [
-        {
-            class: 'standard',
-            price: 1200,
-            color: '#AEBAF855',
-            bonuses: [
-                '10% CashBack',
-                '15% остаток на депозите',
-                'Бонусы'
-            ]
-        },
-        {
-            class: 'gold',
-            price: 2200,
-            color: '#EEE48855',
-            bonuses: [
-                '10% CashBack',
-                '15% остаток на депозите',
-                'Бонусы'
-            ]
-        },
-        {
-            class: 'premium',
-            price: 5200,
-            color: '#C89FEF55',
-            bonuses: [
-                '10% CashBack',
-                '15% остаток на депозите',
-                'Бонусы'
-            ]
         },
     ];
     withdrawHistory = [
@@ -255,16 +207,12 @@ export default class BankStore {
 
     constructor() {
         makeObservable(this, {
-            accountState: observable,
-            fines: observable,
-            homes: observable,
-            business: observable,
             cards: observable,
+            fines: observable,
             withdrawHistory: observable,
             topUpHistory: observable,
             transferHistory: observable,
 
-            fetchAccountState: action.bound,
             fetchFines: action.bound,
             changeFines: action.bound,
             fetchCards: action.bound,
@@ -275,20 +223,6 @@ export default class BankStore {
             fetchTransferHistory: action.bound,
             addTransfer: action.bound,
         })
-    }
-
-    fetchAccountState(obj) {
-        switch (obj.type) {
-            case 'nickname': return this.accountState.nickname = obj.data;
-            case 'phone': return this.accountState.phone = obj.data;
-            case 'bank': return this.accountState.bank = obj.data;
-            case 'accountNumber': return this.accountState.accountNumber = obj.data;
-            case 'accountType': return this.accountState.accountType = obj.data;
-            case 'createDate': return this.accountState.createDate = obj.data;
-            case 'balance': return this.accountState.balance = obj.data;
-            case 'business': return this.accountState.business = obj.data;
-            default: return this.accountState = obj.data;
-        }
     }
 
     fetchFines(array) {

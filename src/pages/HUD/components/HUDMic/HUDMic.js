@@ -6,21 +6,19 @@ import HUDMicSpeaker from "../HUDMicSpeaker";
 
 import './HUDMic.scss';
 
-const HUDMic = ({store}) => {
-    const [isRadioSet, setRadioSet] = React.useState(false);
+const HUDMic = ({store, player}) => {
     const [isMicrophoneActive, toggleMicrophone] = React.useState(false);
     const [isRadioSetActive, toggleRadioSet] = React.useState(false);
 
     React.useEffect(() => {
         window.alt.on('cef::hud:toggleMicrophone', (bool) => toggleMicrophone(bool));
         window.alt.on('cef::hud:toggleRadioSet', (bool) => toggleRadioSet(bool));
-        window.alt.on('cef::hud:setRadioSet', (bool) => setRadioSet(bool));
         window.alt.on('cef::hud:setNewSpeaker', (obj) => store.fetchSpeaker(obj));
         window.alt.on('cef::hud:removeSpeaker', (id) => store.removeSpeaker(id));
     }, [store]);
 
     return <div className='hud-mic'>
-        {isRadioSet && <div className='hud-mic-speakers'>
+        {player.isRadioSet && <div className='hud-mic-speakers'>
             {store.speakers.map((el, key) => {
                 return <HUDMicSpeaker
                     key={key}
@@ -32,7 +30,7 @@ const HUDMic = ({store}) => {
         </div>}
         <div className='hud-mic-state'>
             <div
-                style={!isRadioSet ? {marginLeft: '3vw'} : null}
+                style={!player.isRadioSet ? {marginLeft: '3vw'} : null}
                 className={cn('hud-mic-state-microphone', !isMicrophoneActive && 'hud-mic-state-microphone_disabled')}
             >
                 <div className='hud-mic-state-microphone__hotkey'>N</div>
@@ -44,7 +42,7 @@ const HUDMic = ({store}) => {
                     />
                 </svg>
             </div>
-            {isRadioSet &&
+            {player.isRadioSet &&
             <div className={cn('hud-mic-state-radio-set', !isRadioSetActive && 'hud-mic-state-radio-set_disabled')}>
                 <div className='hud-mic-state-radio-set__hotkey'>N</div>
                 <svg className='hud-mic-state-radio-set__image' xmlns="http://www.w3.org/2000/svg" width="42"

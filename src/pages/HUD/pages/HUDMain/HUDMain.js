@@ -18,7 +18,7 @@ import greenZone from 'assets/images/hud/greenZone.svg';
 
 import './HUDMain.scss';
 
-const HUDMain = ({store}) => {
+const HUDMain = ({store, player}) => {
     React.useEffect(() => {
         window.alt.emit('client::hud:ready');
 
@@ -38,25 +38,25 @@ const HUDMain = ({store}) => {
     }, []);
 
     return <div className='hud-main'>
-        {!store.deadState.isDead && <>
-            <HUDHeader store={store}/>
-            <HUDPlayerState store={store} isInCar={store.isInCar}/>
-            <HUDSpeedometer store={store} isInCar={store.isInCar}/>
-            <HUDMapInfo store={store} noGeo={false}/>
-            <HUDMic store={store}/>
+        {!player.dead.isDead && <>
+            <HUDHeader player={player}/>
+            <HUDPlayerState player={player} store={store}/>
+            <HUDSpeedometer store={store} isInCar={player.isInCar}/>
+            <HUDMapInfo store={store} player={player} noGeo={false}/>
+            <HUDMic store={store} player={player}/>
         </>}
         <>
             <HUDLevelUp/>
-            {store.deadState.isDead &&
-            <HUDDead knockdown={store.deadState.knockdown} attacker={store.deadState.attacker}/>}
+            {player.dead.isDead &&
+            <HUDDead player={player}/>}
             <HUDNotify/>
             <HUDFriendship/>
             <HUDAlerts/>
         </>
-        {!store.deadState.isDead && <>
+        {!player.dead.isDead && <>
             <HUDInteraction/>
-            {store.effects.isHealing && <div className='hud-main__heal'/>}
-            <div className={cn('hud-main-green-zone', store.greenZone ? 'hud-main-green-zone_active' : null)}>
+            {player.effects.isHealing && <div className='hud-main__heal'/>}
+            <div className={cn('hud-main-green-zone', player.isInGreenZone ? 'hud-main-green-zone_active' : null)}>
                 <img className='hud-main-green-zone__icon' src={greenZone} alt='#'/>
                 <div className='hud-main-green-zone__title'>GreenZone</div>
             </div>

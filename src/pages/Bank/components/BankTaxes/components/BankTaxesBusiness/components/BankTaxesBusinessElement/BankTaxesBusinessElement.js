@@ -5,7 +5,7 @@ import arrow from 'assets/images/bank/arrow.svg';
 
 import {regExp} from "utils/regExp";
 
-const BankTaxesBusinessElement = ({id, price, payed}) => {
+const BankTaxesBusinessElement = ({id, price, payed, name}) => {
     const vip = React.useMemo(() => true, []);
     const maxDays = React.useMemo(() => vip ? 14 : 7, [vip])
 
@@ -23,7 +23,7 @@ const BankTaxesBusinessElement = ({id, price, payed}) => {
         <div className='bank-taxes-business-element-header'>
             <div className='bank-taxes-business-element-header-house'>
                 <img className='bank-taxes-business-element-header-house__image' src={business} alt='#'/>
-                <span className='bank-taxes-business-element-header-house__id'>Бизнес #{id}</span>
+                <span className='bank-taxes-business-element-header-house__id'>{name}</span>
             </div>
             <div className='bank-taxes-business-element-header-info'>
                 <div className='bank-taxes-business-element-header-info__price'>{money}</div>

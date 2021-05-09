@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {observer} from "mobx-react-lite";
 
 import gaugePlaceholder from 'assets/images/bank/gaugePlaceholder.svg';
 import lock from 'assets/images/bank/lock.svg';
@@ -8,7 +9,7 @@ import {regExp} from "utils/regExp";
 
 import './BankAccount.scss';
 
-const BankAccount = ({store, setPage}) => {
+const BankAccount = ({player, setPage}) => {
     React.useEffect(() => {
         const canvas = document.getElementById('id_bankAccountCanvas');
         const ctx = canvas.getContext('2d');
@@ -88,7 +89,7 @@ const BankAccount = ({store, setPage}) => {
     }, []);
 
     const balance = React.useMemo(() =>
-        `$ ${String(store.accountState.balance).replace(regExp.money, '$1 ')}`, [store.accountState.balance]);
+        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
 
     const canvasSize = React.useMemo(() => {
         if (document.body.clientWidth <= 1000 || document.body.clientHeight <= 800) return 300;
@@ -108,8 +109,8 @@ const BankAccount = ({store, setPage}) => {
             <canvas id='id_bankAccountCanvas' width={canvasSize} height={canvasSize} style={{zIndex: 1000}}/>
         </div>
         <div className='bank-account-bottom'>
-            <div className='bank-account-bottom__number'># {store.accountState.accountNumber}</div>
-            <div className='bank-account-bottom__bank'>{store.accountState.bank} <b>{store.accountState.accountType}</b></div>
+            <div className='bank-account-bottom__number'># {player.bank.account}</div>
+            <div className='bank-account-bottom__bank'>{player.bank.name} <b>{player.bank.type}</b></div>
         </div>
         <div className='bank-account-navigation'>
             <div className='bank-account-navigation-lock' onClick={() => setPage('lock')}>
@@ -124,4 +125,4 @@ const BankAccount = ({store, setPage}) => {
     </div>
 }
 
-export default React.memo(BankAccount);
+export default observer(BankAccount);

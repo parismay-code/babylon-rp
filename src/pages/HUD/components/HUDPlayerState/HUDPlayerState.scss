@@ -150,8 +150,8 @@
     &-health {
       &-healing-effect {
         position: absolute;
-        left: 10px;
-        top: -4px;
+        left: 12px;
+        top: 12px;
 
         width: 10px;
         height: 10px;
@@ -160,16 +160,16 @@
           width: 5px;
           height: 5px;
 
-          left: 7px;
-          top: -2px;
+          left: 6px;
+          top: 6px;
         }
 
         @media (max-height: 800px) {
           width: 5px;
           height: 5px;
 
-          left: 7px;
-          top: -2px;
+          left: 6px;
+          top: 6px;
         }
 
         &_active &__element {
@@ -270,8 +270,8 @@
     &-health {
       &-healing-effect {
         position: absolute;
-        left: 12px;
-        top: -6px;
+        left: 15px;
+        top: 15px;
 
         width: 12px;
         height: 12px;
@@ -280,16 +280,16 @@
           width: 6px;
           height: 6px;
 
-          left: 6px;
-          top: -3px;
+          left: 7.5px;
+          top: 7.5px;
         }
 
         @media (max-height: 800px) {
           width: 6px;
           height: 6px;
 
-          left: 6px;
-          top: -3px;
+          left: 7.5px;
+          top: 7.5px;
         }
 
         &_active &__element {

@@ -16,7 +16,7 @@ import fleeca from 'assets/images/atm/fleeca.svg';
 
 import './ATM.scss';
 
-const ATM = ({store, pinCode}) => {
+const ATM = ({store, player, pinCode}) => {
     const [isCardActive, setCardActive] = React.useState(false),
         [isMenuActive, setMenuActive] = React.useState(false),
         [currentComponent, setCurrentComponent] = React.useState(null),
@@ -26,7 +26,7 @@ const ATM = ({store, pinCode}) => {
     const pinCodeInput = React.useRef(null);
 
     const balance = React.useMemo(() =>
-        `$ ${String(store.accountState.balance).replace(regExp.money, '$1 ')}`, [store.accountState.balance]);
+        `$ ${String(player.bank.type ? player.money.card : player.money.cash).replace(regExp.money, '$1 ')}`, [player.bank.type, player.money.card, player.money.cash]);
 
     const cardWidth = React.useMemo(() => {
         if (document.body.clientWidth <= 1000 || document.body.clientHeight <= 800) return '200px';
@@ -85,11 +85,11 @@ const ATM = ({store, pinCode}) => {
                     <div
                         className={cn('atm-inner-navigation-card-info', isMenuActive ? 'atm-inner-navigation-card-info_active' : null)}>
                         <div
-                            className='atm-inner-navigation-card-info__account-number'># {store.accountState.accountNumber}</div>
+                            className='atm-inner-navigation-card-info__account-number'># {player.bank.account}</div>
                         <div className='atm-inner-navigation-card-info-bank'>
-                            <span className='atm-inner-navigation-card-info-bank__name'>{store.accountState.bank}</span>
+                            <span className='atm-inner-navigation-card-info-bank__name'>{player.bank.name} </span>
                             <span
-                                className='atm-inner-navigation-card-info-bank__class'>{store.accountState.accountType}</span>
+                                className='atm-inner-navigation-card-info-bank__class'>{player.bank.type}</span>
                         </div>
                         <div className='atm-inner-navigation-card-info-balance'>
                             <div className='atm-inner-navigation-card-info-balance__value'>{balance}</div>
@@ -104,7 +104,7 @@ const ATM = ({store, pinCode}) => {
                     </div>
                     <div className='atm-inner-navigation-card-input'>
                         <BankCard
-                            data={store.accountState}
+                            data={player}
                             customStyles={
                                 {
                                     width: cardWidth,
@@ -174,7 +174,13 @@ const ATM = ({store, pinCode}) => {
                         <span className='atm-inner-navigation-main-element__title'>Перевести</span>
                     </div>
                     <div className={cn('atm-inner-navigation-main-element', currentComponent === 'topUpMobile' ? 'atm-inner-navigation-main-element_active' : null)}
-                         onClick={() => setCurrentComponent('topUpMobile')}>
+                         onClick={() => {
+                             if (player.phone.number) setCurrentComponent('topUpMobile');
+                             else {
+                                 setCurrentComponent(null);
+                                 sendNotify('У Вас нет мобильного телефона');
+                             }
+                         }}>
                         <svg className='atm-inner-navigation-main-element__icon atm-inner-navigation-main-element__icon_with-stroke' xmlns="http://www.w3.org/2000/svg" width="24"
                              height="33" viewBox="0 0 24 33"
                              opacity={currentComponent === 'topUpMobile' ? '.5' : '1'}>
@@ -208,11 +214,11 @@ const ATM = ({store, pinCode}) => {
                     </div>
                 </div>
             </div>
-            {currentComponent === 'topUp' && isMenuActive && <BankTopUp store={store}/>}
-            {currentComponent === 'withdraw' && isMenuActive && <BankWithdraw store={store}/>}
-            {currentComponent === 'transfer' && isMenuActive && <BankTransfer store={store}/>}
-            {currentComponent === 'topUpMobile' && isMenuActive && <BankTopUpMobile store={store}/>}
-            {currentComponent === 'taxes' && isMenuActive && <BankTaxes store={store} noNav={true}/>}
+            {currentComponent === 'topUp' && isMenuActive && <BankTopUp store={store} player={player}/>}
+            {currentComponent === 'withdraw' && isMenuActive && <BankWithdraw store={store} player={player}/>}
+            {currentComponent === 'transfer' && isMenuActive && <BankTransfer store={store} player={player}/>}
+            {currentComponent === 'topUpMobile' && isMenuActive && <BankTopUpMobile player={player}/>}
+            {currentComponent === 'taxes' && isMenuActive && <BankTaxes player={player} noNav={true}/>}
         </div>
     </div>
 }

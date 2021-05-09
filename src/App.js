@@ -21,6 +21,7 @@ import CreatorStore from "store/CreatorStore";
 import HUDStore from "store/HUDStore";
 import CrimeHUDStore from "store/CrimeHUDStore";
 import BattlePassStore from "store/BattlePassStore";
+import PlayerStore from "store/PlayerStore";
 
 import spawnsData from "configs/spawnData";
 
@@ -32,6 +33,7 @@ const App = () => {
     const hudStore = useLocalStore(() => new HUDStore());
     const crimeHudStore = useLocalStore(() => new CrimeHUDStore());
     const battlePassStore = useLocalStore(() => new BattlePassStore());
+    const playerStore = useLocalStore(() => new PlayerStore());
 
     const [component, setComponent] = React.useState(null),
         [isRegistered, setRegistered] = React.useState(false),
@@ -155,12 +157,14 @@ const App = () => {
         window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
     }, []);
     React.useEffect(() => {
+        window.alt.on('cef::player:setData', obj => playerStore.fetchPlayerState(obj));
+    }, [playerStore]);
+    React.useEffect(() => {
         window.alt.on('cef::auth:getResetCode', (code) => {
             authStore.fetchResetCode(code);
         })
     }, [authStore]);
     React.useEffect(() => {
-        window.alt.on('cef::bank:setAccountData', obj => bankStore.fetchAccountState(obj));
         window.alt.on('cef::bank:setFines', array => bankStore.fetchFines(array));
         window.alt.on('cef::bank:changeFines', obj => bankStore.changeFines(obj));
         window.alt.on('cef::bank:setCards', array => bankStore.fetchCards(array));
@@ -170,17 +174,10 @@ const App = () => {
         window.alt.on('cef::bank:addTopUp', data => bankStore.addTopUp(data));
     }, [bankStore]);
     React.useEffect(() => {
-        window.alt.on('cef::hud:loadState', obj => hudStore.fetchPlayerState(obj));
-        window.alt.on('cef::hud:loadMoney', obj => hudStore.fetchPlayerMoney(obj));
         window.alt.on('cef::hud:setMapState', obj => hudStore.fetchMapState(obj));
         window.alt.on('cef::hud:setDate', date => hudStore.fetchDate(date));
         window.alt.on('cef::hud:setTime', time => hudStore.fetchTime(time));
         window.alt.on('cef::hud:loadCarState', obj => hudStore.fetchCarState(obj));
-        window.alt.on('cef::hud:heal', bool => hudStore.fetchEffects('healing', bool));
-        window.alt.on('cef::hud:kill', data => hudStore.fetchDeadState(data));
-        window.alt.on('cef::hud:setGreenZone', bool => hudStore.setGreenZone(bool));
-        window.alt.on('cef::hud:loadAmmo', obj => hudStore.fetchAmmo(obj));
-        window.alt.on('cef::hud:setCarHud', bool => hudStore.setCarHud(bool));
     }, [hudStore]);
     React.useEffect(() => {
         window.alt.on('cef::chat:setAccess', obj => chatStore.fetchAccess(obj));
@@ -202,18 +199,19 @@ const App = () => {
         {component === 'creator' && <Creator store={creatorStore}/>}
         {component === 'choice' && <Choice characters={characters}/>}
         {component === 'spawnChoice' && <SpawnChoice spawnData={spawnsData}/>}
-        {component === 'bank' && <Bank store={bankStore}/>}
+        {component === 'bank' && <Bank store={bankStore} player={playerStore.playerState}/>}
         {component === 'hud' && <HUD
             defaultStore={hudStore}
             crimeStore={crimeHudStore}
+            player={playerStore.playerState}
             currentHUD={currentHUD}
         />}
         {component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}
         {component === 'battlePass' && <BattlePass store={battlePassStore}/>}
-        {component === 'atm' && <ATM store={bankStore} pinCode={pinCode}/>}
-        {component === 'pay' && <Pay payPrice={payPrice} money={hudStore.money} cardData={bankStore.accountState}/>}
+        {component === 'atm' && <ATM store={bankStore} player={playerStore.playerState} pinCode={pinCode}/>}
+        {component === 'pay' && <Pay payPrice={payPrice} player={playerStore.playerState}/>}
         <Chat store={chatStore} isCursorActive={isCursorActive}
-              isVisible={component === 'hud' && currentHUD === 0 && !hudStore.deadState.isDead}/>
+              isVisible={component === 'hud' && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
     </div>
 }
 

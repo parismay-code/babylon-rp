@@ -6,19 +6,19 @@ import time from 'assets/images/hud/time.svg';
 
 import './HUDMapInfo.scss';
 
-const HUDMapInfo = ({store, noGeo}) => {
+const HUDMapInfo = ({store, player, noGeo}) => {
     return <div className='hud-map-info'>
         <div className='hud-map-info-header'>
             {noGeo ? null : <div className='hud-map-info-header-location'>
-                <div className='hud-map-info-header-location__area'>{store.mapState?.area}</div>
-                <div className='hud-map-info-header-location__street'>{store.mapState?.street}</div>
+                <div className='hud-map-info-header-location__area'>{store.mapState.area}</div>
+                <div className='hud-map-info-header-location__street'>{store.mapState.street}</div>
             </div>}
         </div>
         <div className='hud-map-info-bottom'>
             <div className='hud-map-info-bottom-players'>
                 <img className='hud-map-info-bottom-players__icon' src={players} alt='#'/>
-                <div className='hud-map-info-bottom-players__count'>{store.mapState?.players}</div>
-                <div className='hud-map-info-bottom-players__id'>ID: {store.mapState?.id}</div>
+                <div className='hud-map-info-bottom-players__count'>{store.mapState.players}</div>
+                <div className='hud-map-info-bottom-players__id'>ID: {player.id}</div>
             </div>
             <div className='hud-map-info-bottom-time'>
                 <img className='hud-map-info-bottom-time__icon' src={time} alt='#'/>

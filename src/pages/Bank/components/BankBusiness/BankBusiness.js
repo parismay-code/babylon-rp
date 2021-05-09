@@ -7,8 +7,8 @@ import withdrawIcon from 'assets/images/bank/withdrawIcon.svg';
 import './BankBusiness.scss';
 import {regExp} from "utils/regExp";
 
-const BankBusiness = ({store}) => {
-    const [currentBusiness, setBusiness] = React.useState(store.accountState.business[0]);
+const BankBusiness = ({player}) => {
+    const [currentBusiness, setBusiness] = React.useState(player.business[0]);
 
     const input = React.useRef(null);
 
@@ -88,7 +88,7 @@ const BankBusiness = ({store}) => {
             <div className='bank-business-content-form'>
                 <div className='bank-business-content-form-choose-business'>
                     <div className='bank-business-content-form-choose-business__title'>Выберите бизнес</div>
-                    {store.accountState.business.map((el, key) => {
+                    {player.business.map((el, key) => {
                         return <svg
                             key={key}
                             xmlns="http://www.w3.org/2000/svg"

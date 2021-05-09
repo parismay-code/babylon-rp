@@ -7,7 +7,7 @@ import open from 'assets/images/bank/open.svg';
 
 import './BankNav.scss';
 
-const BankNav = ({store, setPage, currentPage, sendNotify}) => {
+const BankNav = ({player, setPage, currentPage, sendNotify}) => {
     const navList = React.useMemo(() => [
         {
             page: 'account',
@@ -46,7 +46,7 @@ const BankNav = ({store, setPage, currentPage, sendNotify}) => {
                 className={cn('bank-nav__element', currentPage === navList[key].page && 'active')}
                 onClick={() => {
                     if (el.page === 'fines' || el.page === 'taxes' || el.page === 'business') setPage(el.page);
-                    else if (store.accountState.accountType) setPage(el.page);
+                    else if (player.bank.type) setPage(el.page);
                     else {
                         sendNotify('Для пользования данной услугой необходимо открыть счет');
                         setPage('open');
@@ -62,7 +62,7 @@ const BankNav = ({store, setPage, currentPage, sendNotify}) => {
                 <img className='bank-nav-bottom-transfer__icon' src={transfer} alt='#'/>
             </div>
             <div className={cn('bank-nav-bottom-open', currentPage === 'open' && 'active')} onClick={() => {
-                if (!store.accountState.accountType) setPage('open');
+                if (!player.bank.type) setPage('open');
                 else {
                     sendNotify('Для открытия нового счета необходимо заблокировать старый');
                     setPage('lock');

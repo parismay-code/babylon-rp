@@ -5,14 +5,15 @@ import BankTaxesBusinessElement from "./components/BankTaxesBusinessElement";
 
 import './BankTaxesBusiness.scss';
 
-const BankTaxesBusiness = ({store}) => {
+const BankTaxesBusiness = ({player}) => {
     return <div className='bank-taxes-business'>
-        {store.business.map((el, key) => {
+        {player.business.map((el, key) => {
             return <BankTaxesBusinessElement
                 key={key}
                 id={el.id}
-                price={el.price}
-                payed={el.payed}
+                price={el.extendPrice}
+                payed={el.daysExtended}
+                name={el.name}
             />
         })}
     </div>

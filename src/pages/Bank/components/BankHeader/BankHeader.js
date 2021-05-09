@@ -1,5 +1,6 @@
 import * as React from 'react';
 import cn from 'classnames';
+import {observer} from "mobx-react-lite";
 
 import phone from 'assets/images/bank/phone.svg';
 import withdraw from 'assets/images/bank/withdraw.svg';
@@ -7,10 +8,16 @@ import topUp from 'assets/images/bank/topUp.svg';
 
 import './BankHeader.scss';
 
-const BankHeader = ({store, setPage, currentPage, sendNotify}) => {
+const BankHeader = ({player, setPage, currentPage, sendNotify}) => {
     return <div className='bank-header'>
         <div className='bank-header__logo'>БАНК</div>
-        <div className={cn('bank-header-top-up-mobile', currentPage === 'mobile' && 'active')} onClick={() => setPage('mobile')}>
+        <div className={cn('bank-header-top-up-mobile', currentPage === 'mobile' && 'active')} onClick={() => {
+            if (player.phone) setPage('mobile');
+            else {
+                sendNotify('У Вас нет мобильного телефона');
+                setPage(player.bank.type ? 'account' : 'open')
+            }
+        }}>
             <img className='bank-header-top-up-mobile__icon' src={phone} alt='#'/>
             <div className='bank-header-top-up-mobile-text'>
                 <span className='bank-header-top-up-mobile-text__title'>пополнить</span>
@@ -18,7 +25,7 @@ const BankHeader = ({store, setPage, currentPage, sendNotify}) => {
             </div>
         </div>
         <div className={cn('bank-header-withdraw', currentPage === 'withdraw' && 'active')} onClick={() => {
-            if (store.accountState.accountType) setPage('withdraw');
+            if (player.bank.type) setPage('withdraw');
             else {
                 sendNotify('Для пользования данной услугой необходимо открыть счет');
                 setPage('open');
@@ -28,7 +35,7 @@ const BankHeader = ({store, setPage, currentPage, sendNotify}) => {
             <img className='bank-header-withdraw__icon' src={withdraw} alt='#'/>
         </div>
         <div className={cn('bank-header-top-up', currentPage === 'topUp' && 'active')} onClick={() => {
-            if (store.accountState.accountType) setPage('topUp');
+            if (player.bank.type) setPage('topUp');
             else {
                 sendNotify('Для пользования данной услугой необходимо открыть счет');
                 setPage('open');
@@ -40,4 +47,4 @@ const BankHeader = ({store, setPage, currentPage, sendNotify}) => {
     </div>
 }
 
-export default React.memo(BankHeader);
+export default observer(BankHeader);

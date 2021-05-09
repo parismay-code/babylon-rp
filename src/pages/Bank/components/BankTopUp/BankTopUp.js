@@ -7,9 +7,11 @@ import {regExp} from "utils/regExp";
 
 import './BankTopUp.scss';
 
-const BankTopUp = ({store}) => {
+const BankTopUp = ({store, player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(store.accountState.balance).replace(regExp.money, '$1 ')}`, [store.accountState.balance]);
+        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
+
+    const input = React.useRef(null);
 
     return <div className='bank-top-up'>
         <div className='bank-top-up-header'>
@@ -19,8 +21,8 @@ const BankTopUp = ({store}) => {
                     <div className='bank-top-up-header-info-balance__subtitle'>{balance}</div>
                 </div>
                 <div className='bank-top-up-header-info-card'>
-                    <div className='bank-top-up-header-info-card__title'>{store.accountState.bank} <b>{store.accountState.accountType}</b></div>
-                    <div className='bank-top-up-header-info-card__subtitle'># {store.accountState.accountNumber}</div>
+                    <div className='bank-top-up-header-info-card__title'>{player.bank.name} <b>{player.bank.type}</b></div>
+                    <div className='bank-top-up-header-info-card__subtitle'># {player.bank.account}</div>
                 </div>
             </div>
             <div className='bank-top-up-header-form'>
@@ -28,8 +30,8 @@ const BankTopUp = ({store}) => {
                     Введите сумму, на которую <br/>хотите пополнить счет
                 </div>
                 <div className='bank-top-up-header-form-input'>
-                    <input className='bank-top-up-header-form-input__count' type='number' name='n_topUpCount' placeholder='Сумма'/>
-                    <input className='bank-top-up-header-form-input__submit' type='submit' name='n_topUpSubmit' value='Пополнить'/>
+                    <input className='bank-top-up-header-form-input__count' type='number' name='n_topUpCount' placeholder='Сумма' ref={input}/>
+                    <input className='bank-top-up-header-form-input__submit' type='submit' name='n_topUpSubmit' value='Пополнить' onClick={() => window.alt.emit('client::bank:topUp', input.current.value)}/>
                 </div>
             </div>
         </div>

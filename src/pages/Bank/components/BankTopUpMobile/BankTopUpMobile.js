@@ -2,8 +2,14 @@ import * as React from 'react';
 import {observer} from "mobx-react-lite";
 
 import './BankTopUpMobile.scss';
+import {regExp} from "utils/regExp";
 
-const BankTopUpMobile = ({ store }) => {
+const BankTopUpMobile = ({ player }) => {
+    const balance = React.useMemo(() =>
+        `$${String(player.phone.balance).replace(regExp.money, '$1 ')}`, [player.phone.balance]);
+
+    const input = React.useRef(null);
+
     return <div className='bank-top-up-mobile'>
         <div className='bank-top-up-mobile-header'>
             <div className='bank-top-up-mobile-header-title'>
@@ -18,14 +24,14 @@ const BankTopUpMobile = ({ store }) => {
                 </div>
             </div>
             <div className='bank-top-up-mobile-header-balance'>
-                <span className='bank-top-up-mobile-header-balance__count'>$3151</span>
+                <span className='bank-top-up-mobile-header-balance__count'>{balance}</span>
                 <span className='bank-top-up-mobile-header-balance__description'>баланс</span>
             </div>
         </div>
-        <div className='bank-top-up-mobile__phone'>{store.accountState.phone}</div>
+        <div className='bank-top-up-mobile__phone'>{player.phone.number}</div>
         <div className='bank-top-up-mobile-form'>
-            <input className='bank-top-up-mobile-form__count' type='number' name='n_topUpMobileCount' placeholder='Сумма'/>
-            <input className='bank-top-up-mobile-form__submit' type='submit' name='n_topUpMobileSubmit' value='пополнить'/>
+            <input className='bank-top-up-mobile-form__count' type='number' name='n_topUpMobileCount' placeholder='Сумма' ref={input}/>
+            <input className='bank-top-up-mobile-form__submit' type='submit' name='n_topUpMobileSubmit' value='пополнить' onClick={() => window.alt.emit('client::bank:topUpMobile', input.current.value)}/>
         </div>
     </div>
 }
