@@ -10,12 +10,14 @@ import './BankTopUp.scss';
 const BankTopUp = ({store, player}) => {
     const input = React.useRef(null);
 
+    const balance = React.useMemo(() => `$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
+
     return <div className='bank-top-up'>
         <div className='bank-top-up-header'>
             <div className='bank-top-up-header-info'>
                 <div className='bank-top-up-header-info-balance'>
                     <div className='bank-top-up-header-info-balance__title'>Баланс</div>
-                    <div className='bank-top-up-header-info-balance__subtitle'>{`$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`}</div>
+                    <div className='bank-top-up-header-info-balance__subtitle'>{balance}</div>
                 </div>
                 <div className='bank-top-up-header-info-card'>
                     <div className='bank-top-up-header-info-card__title'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>

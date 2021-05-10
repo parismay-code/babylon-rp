@@ -213,7 +213,7 @@ const App = () => {
         {component === 'pay' && <Pay player={playerStore} payPrice={payPrice} />}
         {component === 'clothesShop' && <ClothesShop player={playerStore} hudStore={hudStore} store={shopsStore}/>}
         <Chat store={chatStore} isCursorActive={isCursorActive}
-              isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.dead.isDead}/>
+              isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
     </div>
 }
 
