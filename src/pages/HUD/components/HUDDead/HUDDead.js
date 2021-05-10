@@ -9,7 +9,7 @@ const HUDDead = ({player}) => {
     const [timer, setTimer] = React.useState(null);
 
     React.useEffect(() => {
-        let time = player.dead.knockdown;
+        let time = player.playerState.dead.knockdown;
 
         const interval = setInterval(() => {
             const minutes = time / 60 % 60;
@@ -25,7 +25,7 @@ const HUDDead = ({player}) => {
         }, 1000)
 
         return () => clearInterval(interval);
-    }, [player.dead.knockdown])
+    }, [player.playerState.dead.knockdown])
 
     return <div className='hud-dead'>
         <div className='hud-dead__pulse'/>
@@ -44,8 +44,8 @@ const HUDDead = ({player}) => {
         </div>
         <div className='hud-dead-attacker'>
             <span className='hud-dead-attacker__title'>Вас атаковал</span>
-            <br/>[{player.dead.attacker.id}]
-            <br/>{player.dead.attacker.nickname}
+            <br/>[{player.playerState.dead.attacker.id}]
+            <br/>{player.playerState.dead.attacker.nickname}
         </div>
         <div
             className='hud-dead-submit'

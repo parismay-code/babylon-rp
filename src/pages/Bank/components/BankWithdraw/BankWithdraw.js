@@ -9,7 +9,7 @@ import './BankWithdraw.scss';
 
 const BankWithdraw = ({store, player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
+        `$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
 
     const input = React.useRef(null);
 
@@ -21,8 +21,8 @@ const BankWithdraw = ({store, player}) => {
                     <div className='bank-withdraw-header-info-balance__subtitle'>{balance}</div>
                 </div>
                 <div className='bank-withdraw-header-info-card'>
-                    <div className='bank-withdraw-header-info-card__title'>{player.bank.name} <b>{player.bank.type}</b></div>
-                    <div className='bank-withdraw-header-info-card__subtitle'># {player.bank.account}</div>
+                    <div className='bank-withdraw-header-info-card__title'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>
+                    <div className='bank-withdraw-header-info-card__subtitle'># {player.playerState.bank.account}</div>
                 </div>
             </div>
             <div className='bank-withdraw-header-form'>

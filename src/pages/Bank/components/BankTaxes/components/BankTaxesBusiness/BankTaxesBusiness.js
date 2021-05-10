@@ -7,7 +7,7 @@ import './BankTaxesBusiness.scss';
 
 const BankTaxesBusiness = ({player}) => {
     return <div className='bank-taxes-business'>
-        {player.business.map((el, key) => {
+        {player.playerState.business.map((el, key) => {
             return <BankTaxesBusinessElement
                 key={key}
                 id={el.id}

@@ -9,7 +9,7 @@ import './BankChangePin.scss';
 
 const BankChangePin = ({player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
+        `$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
 
     const currentPin = React.useRef(null),
         newPin = React.useRef(null),
@@ -31,9 +31,9 @@ const BankChangePin = ({player}) => {
                     <div className='bank-change-pin-content-info-balance__value'>{balance}</div>
                 </div>
                 <div className='bank-change-pin-content-info-card'>
-                    <div className='bank-change-pin-content-info-card__type'>{player.bank.name} <b>{player.bank.type}</b></div>
+                    <div className='bank-change-pin-content-info-card__type'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>
                     <div
-                        className='bank-change-pin-content-info-card__number'># {player.bank.account}</div>
+                        className='bank-change-pin-content-info-card__number'># {player.playerState.bank.account}</div>
                 </div>
             </div>
             <div className='bank-change-pin-content-form'>

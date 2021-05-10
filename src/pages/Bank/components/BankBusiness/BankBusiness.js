@@ -8,7 +8,7 @@ import './BankBusiness.scss';
 import {regExp} from "utils/regExp";
 
 const BankBusiness = ({player}) => {
-    const [currentBusiness, setBusiness] = React.useState(player.business[0]);
+    const [currentBusiness, setBusiness] = React.useState(player.playerState.business[0]);
 
     const input = React.useRef(null);
 
@@ -88,7 +88,7 @@ const BankBusiness = ({player}) => {
             <div className='bank-business-content-form'>
                 <div className='bank-business-content-form-choose-business'>
                     <div className='bank-business-content-form-choose-business__title'>Выберите бизнес</div>
-                    {player.business.map((el, key) => {
+                    {player.playerState.business.map((el, key) => {
                         return <svg
                             key={key}
                             xmlns="http://www.w3.org/2000/svg"

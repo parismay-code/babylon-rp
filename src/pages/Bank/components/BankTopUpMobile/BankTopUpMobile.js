@@ -6,7 +6,7 @@ import {regExp} from "utils/regExp";
 
 const BankTopUpMobile = ({ player }) => {
     const balance = React.useMemo(() =>
-        `$${String(player.phone.balance).replace(regExp.money, '$1 ')}`, [player.phone.balance]);
+        `$${String(player.playerState.phone.balance).replace(regExp.money, '$1 ')}`, [player.playerState.phone.balance]);
 
     const input = React.useRef(null);
 
@@ -28,7 +28,7 @@ const BankTopUpMobile = ({ player }) => {
                 <span className='bank-top-up-mobile-header-balance__description'>баланс</span>
             </div>
         </div>
-        <div className='bank-top-up-mobile__phone'>{player.phone.number}</div>
+        <div className='bank-top-up-mobile__phone'>{player.playerState.phone.number}</div>
         <div className='bank-top-up-mobile-form'>
             <input className='bank-top-up-mobile-form__count' type='number' name='n_topUpMobileCount' placeholder='Сумма' ref={input}/>
             <input className='bank-top-up-mobile-form__submit' type='submit' name='n_topUpMobileSubmit' value='пополнить' onClick={() => window.alt.emit('client::bank:topUpMobile', input.current.value)}/>

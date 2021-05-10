@@ -18,7 +18,7 @@ const HUDMapInfo = ({store, player, noGeo}) => {
             <div className='hud-map-info-bottom-players'>
                 <img className='hud-map-info-bottom-players__icon' src={players} alt='#'/>
                 <div className='hud-map-info-bottom-players__count'>{store.mapState.players}</div>
-                <div className='hud-map-info-bottom-players__id'>ID: {player.id}</div>
+                <div className='hud-map-info-bottom-players__id'>ID: {player.playerState.id}</div>
             </div>
             <div className='hud-map-info-bottom-time'>
                 <img className='hud-map-info-bottom-time__icon' src={time} alt='#'/>

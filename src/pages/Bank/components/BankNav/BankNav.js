@@ -45,16 +45,16 @@ const BankNav = ({player, setPage, currentPage, sendNotify}) => {
                 key={key}
                 className={cn('bank-nav__element', currentPage === navList[key].page && 'active')}
                 onClick={() => {
-                    if (el.page === 'fines' || (el.page === 'taxes' && (player.houses > 0 || player.business > 0)) || (el.page === 'business' && player.business.length > 0)) setPage(el.page);
-                    else if (el.page === 'business' && player.business.length === 0) {
+                    if (el.page === 'fines' || (el.page === 'taxes' && (player.playerState.houses > 0 || player.playerState.business > 0)) || (el.page === 'business' && player.playerState.business.length > 0)) setPage(el.page);
+                    else if (el.page === 'business' && player.playerState.business.length === 0) {
                         sendNotify('У Вас нет ниодного бизнеса');
-                        setPage(player.bank.type ? 'account' : 'open');
+                        setPage(player.playerState.bank.type ? 'account' : 'open');
                     }
-                    else if (el.page === 'taxes' && player.business.length === 0 && player.houses.length === 0) {
+                    else if (el.page === 'taxes' && player.playerState.business.length === 0 && player.playerState.houses.length === 0) {
                         sendNotify('У Вас нет ниодного дома и бизнеса');
-                        setPage(player.bank.type ? 'account' : 'open');
+                        setPage(player.playerState.bank.type ? 'account' : 'open');
                     }
-                    else if (player.bank.type) setPage(el.page);
+                    else if (player.playerState.bank.type) setPage(el.page);
                     else {
                         sendNotify('Для пользования данной услугой необходимо открыть счет');
                         setPage('open');
@@ -70,7 +70,7 @@ const BankNav = ({player, setPage, currentPage, sendNotify}) => {
                 <img className='bank-nav-bottom-transfer__icon' src={transfer} alt='#'/>
             </div>
             <div className={cn('bank-nav-bottom-open', currentPage === 'open' && 'active')} onClick={() => {
-                if (!player.bank.type) setPage('open');
+                if (!player.playerState.bank.type) setPage('open');
                 else {
                     sendNotify('Для открытия нового счета необходимо заблокировать старый');
                     setPage('lock');

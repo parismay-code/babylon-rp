@@ -9,7 +9,7 @@ import './BankLockCard.scss';
 
 const BankLockCard = ({player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
+        `$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
 
     const accountNumber = React.useRef(null),
         accountPin = React.useRef(null);
@@ -30,8 +30,8 @@ const BankLockCard = ({player}) => {
                     <div className='bank-lock-card-content-info-balance__value'>{balance}</div>
                 </div>
                 <div className='bank-lock-card-content-info-card'>
-                    <div className='bank-lock-card-content-info-card__type'>{player.bank.name} <b>{player.bank.type}</b></div>
-                    <div className='bank-lock-card-content-info-card__number'># {player.bank.account}</div>
+                    <div className='bank-lock-card-content-info-card__type'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>
+                    <div className='bank-lock-card-content-info-card__number'># {player.playerState.bank.account}</div>
                 </div>
             </div>
             <div className='bank-lock-card-content-form'>

@@ -20,7 +20,7 @@ import BankCard from "components/BankCard";
 import './Bank.scss';
 
 const Bank = ({store, player}) => {
-    const [currentPage, setPage] = React.useState(player.bank.type ? 'account' : 'open');
+    const [currentPage, setPage] = React.useState(player.playerState.bank.type ? 'account' : 'open');
 
     const [cardType, setCardType] = React.useState(),
         [isNotifyVisible, setNotifyVisible] = React.useState(false),
@@ -65,7 +65,7 @@ const Bank = ({store, player}) => {
                 <BankNav player={player} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
                 {currentPage === 'account' && <BankAccount player={player} setPage={setPage}/>}
                 {currentPage === 'fines' && <BankFines store={store}/>}
-                {currentPage === 'taxes' && <BankTaxes player={player} noNav={player.houses.length > 0 ? player.business.length <= 0 : true}/>}
+                {currentPage === 'taxes' && <BankTaxes player={player} noNav={player.playerState.houses.length > 0 ? player.playerState.business.length <= 0 : true}/>}
                 {currentPage === 'business' && <BankBusiness player={player}/>}
                 {currentPage === 'family' && <div>family</div>}
                 {currentPage === 'organization' && <div>organization</div>}

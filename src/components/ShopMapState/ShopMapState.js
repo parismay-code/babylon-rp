@@ -11,7 +11,7 @@ const ShopMapState = ({store, player}) => {
         <div className='shop-map-state-players'>
             <img className='shop-map-state-players__icon' src={players} alt='#'/>
             <div className='shop-map-state-players__count'>{store.mapState.players}</div>
-            <div className='shop-map-state-players__id'>ID: {player.id}</div>
+            <div className='shop-map-state-players__id'>ID: {player.playerState.id}</div>
         </div>
         <div className='shop-map-state-time'>
             <img className='shop-map-state-time__icon' src={time} alt='#'/>

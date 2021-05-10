@@ -11,7 +11,6 @@ import collector from 'assets/images/chat/collector.svg';
 import postal from 'assets/images/chat/postal.svg';
 
 import './JobChatMessage.scss';
-import family from "assets/images/chat/family.svg";
 
 const JobChatMessage = ({ data }) => {
     const getIcon = React.useMemo(() => {

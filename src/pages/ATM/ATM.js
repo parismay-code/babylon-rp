@@ -26,7 +26,7 @@ const ATM = ({store, player, pinCode}) => {
     const pinCodeInput = React.useRef(null);
 
     const balance = React.useMemo(() =>
-        `$ ${String(player.bank.type ? player.money.card : player.money.cash).replace(regExp.money, '$1 ')}`, [player.bank.type, player.money.card, player.money.cash]);
+        `$ ${String(player.playerState.bank.type ? player.playerState.money.card : player.playerState.money.cash).replace(regExp.money, '$1 ')}`, [player.playerState.bank.type, player.playerState.money.card, player.playerState.money.cash]);
 
     const cardWidth = React.useMemo(() => {
         if (document.body.clientWidth <= 1000 || document.body.clientHeight <= 800) return '200px';
@@ -85,11 +85,11 @@ const ATM = ({store, player, pinCode}) => {
                     <div
                         className={cn('atm-inner-navigation-card-info', isMenuActive ? 'atm-inner-navigation-card-info_active' : null)}>
                         <div
-                            className='atm-inner-navigation-card-info__account-number'># {player.bank.account}</div>
+                            className='atm-inner-navigation-card-info__account-number'># {player.playerState.bank.account}</div>
                         <div className='atm-inner-navigation-card-info-bank'>
-                            <span className='atm-inner-navigation-card-info-bank__name'>{player.bank.name} </span>
+                            <span className='atm-inner-navigation-card-info-bank__name'>{player.playerState.bank.name} </span>
                             <span
-                                className='atm-inner-navigation-card-info-bank__class'>{player.bank.type}</span>
+                                className='atm-inner-navigation-card-info-bank__class'>{player.playerState.bank.type}</span>
                         </div>
                         <div className='atm-inner-navigation-card-info-balance'>
                             <div className='atm-inner-navigation-card-info-balance__value'>{balance}</div>
@@ -175,7 +175,7 @@ const ATM = ({store, player, pinCode}) => {
                     </div>
                     <div className={cn('atm-inner-navigation-main-element', currentComponent === 'topUpMobile' ? 'atm-inner-navigation-main-element_active' : null)}
                          onClick={() => {
-                             if (player.phone.number) setCurrentComponent('topUpMobile');
+                             if (player.playerState.phone.number) setCurrentComponent('topUpMobile');
                              else {
                                  setCurrentComponent(null);
                                  sendNotify('У Вас нет мобильного телефона');
@@ -201,7 +201,7 @@ const ATM = ({store, player, pinCode}) => {
                     </div>
                     <div className={cn('atm-inner-navigation-main-element', currentComponent === 'taxes' ? 'atm-inner-navigation-main-element_active' : null)}
                          onClick={() => {
-                             if (player.houses.length > 0) setCurrentComponent('taxes');
+                             if (player.playerState.houses.length > 0) setCurrentComponent('taxes');
                              else {
                                  sendNotify('У Вас нет ниодного дома. Для оплаты бизнеса посетите отделение банка.');
                                  setCurrentComponent(null);

@@ -7,7 +7,7 @@ import BankTaxesBusiness from "./components/BankTaxesBusiness";
 import './BankTaxes.scss';
 
 const BankTaxes = ({player, noNav}) => {
-    const [currentPage, setPage] = React.useState(player.houses.length > 0 ? 'home' : 'business');
+    const [currentPage, setPage] = React.useState(player.playerState.houses.length > 0 ? 'home' : 'business');
 
     return <div className='bank-taxes'>
         {!noNav ? <div className='bank-taxes-nav'>

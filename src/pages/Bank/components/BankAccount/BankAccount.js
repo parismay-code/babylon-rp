@@ -89,7 +89,7 @@ const BankAccount = ({player, setPage}) => {
     }, []);
 
     const balance = React.useMemo(() =>
-        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
+        `$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
 
     const canvasSize = React.useMemo(() => {
         if (document.body.clientWidth <= 1000 || document.body.clientHeight <= 800) return 300;
@@ -109,8 +109,8 @@ const BankAccount = ({player, setPage}) => {
             <canvas id='id_bankAccountCanvas' width={canvasSize} height={canvasSize} style={{zIndex: 1000}}/>
         </div>
         <div className='bank-account-bottom'>
-            <div className='bank-account-bottom__number'># {player.bank.account}</div>
-            <div className='bank-account-bottom__bank'>{player.bank.name} <b>{player.bank.type}</b></div>
+            <div className='bank-account-bottom__number'># {player.playerState.bank.account}</div>
+            <div className='bank-account-bottom__bank'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>
         </div>
         <div className='bank-account-navigation'>
             <div className='bank-account-navigation-lock' onClick={() => setPage('lock')}>

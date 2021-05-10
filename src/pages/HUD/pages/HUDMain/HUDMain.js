@@ -38,25 +38,25 @@ const HUDMain = ({store, player}) => {
     }, []);
 
     return <div className='hud-main'>
-        {!player.dead.isDead && <>
+        {!player.playerState.dead.isDead && <>
             <HUDHeader player={player}/>
             <HUDPlayerState player={player} store={store}/>
-            <HUDSpeedometer store={store} isInCar={player.isInCar}/>
+            <HUDSpeedometer store={store} isInCar={player.playerState.isInCar}/>
             <HUDMapInfo store={store} player={player} noGeo={false}/>
             <HUDMic store={store} player={player}/>
         </>}
         <>
             <HUDLevelUp/>
-            {player.dead.isDead &&
+            {player.playerState.dead.isDead &&
             <HUDDead player={player}/>}
             <HUDNotify/>
             <HUDFriendship/>
             <HUDAlerts/>
         </>
-        {!player.dead.isDead && <>
+        {!player.playerState.dead.isDead && <>
             <HUDInteraction/>
-            {player.effects.isHealing && <div className='hud-main__heal'/>}
-            <div className={cn('hud-main-green-zone', player.isInGreenZone ? 'hud-main-green-zone_active' : null)}>
+            {player.playerState.effects.isHealing && <div className='hud-main__heal'/>}
+            <div className={cn('hud-main-green-zone', player.playerState.isInGreenZone ? 'hud-main-green-zone_active' : null)}>
                 <img className='hud-main-green-zone__icon' src={greenZone} alt='#'/>
                 <div className='hud-main-green-zone__title'>GreenZone</div>
             </div>

@@ -15,11 +15,11 @@ const BankTopUp = ({store, player}) => {
             <div className='bank-top-up-header-info'>
                 <div className='bank-top-up-header-info-balance'>
                     <div className='bank-top-up-header-info-balance__title'>Баланс</div>
-                    <div className='bank-top-up-header-info-balance__subtitle'>{`$ ${String(player.money.card).replace(regExp.money, '$1 ')}`}</div>
+                    <div className='bank-top-up-header-info-balance__subtitle'>{`$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`}</div>
                 </div>
                 <div className='bank-top-up-header-info-card'>
-                    <div className='bank-top-up-header-info-card__title'>{player.bank.name} <b>{player.bank.type}</b></div>
-                    <div className='bank-top-up-header-info-card__subtitle'># {player.bank.account}</div>
+                    <div className='bank-top-up-header-info-card__title'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>
+                    <div className='bank-top-up-header-info-card__subtitle'># {player.playerState.bank.account}</div>
                 </div>
             </div>
             <div className='bank-top-up-header-form'>

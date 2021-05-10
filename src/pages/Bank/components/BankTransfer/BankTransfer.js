@@ -9,7 +9,7 @@ import './BankTransfer.scss';
 
 const BankTransfer = ({store, player}) => {
     const balance = React.useMemo(() =>
-        `$ ${String(player.bank.type ? player.money.card : player.money.cash).replace(regExp.money, '$1 ')}`, [player.bank.type, player.money.card,  player.money.cash]);
+        `$ ${String(player.playerState.bank.type ? player.playerState.money.card : player.playerState.money.cash).replace(regExp.money, '$1 ')}`, [player.playerState.bank.type, player.playerState.money.card,  player.playerState.money.cash]);
 
     const account = React.useRef(null);
     const value = React.useRef(null);
@@ -22,8 +22,8 @@ const BankTransfer = ({store, player}) => {
                     <div className='bank-transfer-header-info-balance__subtitle'>{balance}</div>
                 </div>
                 <div className='bank-transfer-header-info-card'>
-                    <div className='bank-transfer-header-info-card__title'>{player.bank.name} <b>{player.bank.type}</b></div>
-                    <div className='bank-transfer-header-info-card__subtitle'># {player.bank.account}</div>
+                    <div className='bank-transfer-header-info-card__title'>{player.playerState.bank.name} <b>{player.playerState.bank.type}</b></div>
+                    <div className='bank-transfer-header-info-card__subtitle'># {player.playerState.bank.account}</div>
                 </div>
             </div>
             <div className='bank-transfer-header-form'>

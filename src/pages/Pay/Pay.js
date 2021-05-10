@@ -17,8 +17,8 @@ const Pay = ({player, payPrice}) => {
     const price = React.useMemo(() =>
         `${String(payPrice).replace(regExp.money, '$1 ')}$`, [payPrice]);
 
-    const paperMoney = React.useMemo(() => `${String(player.money.cash).replace(regExp.money, '$1 ')}$`, [player.money.cash]);
-    const bank = React.useMemo(() => `${String(player.money.card).replace(regExp.money, '$1 ')}$`, [player.money.card]);
+    const paperMoney = React.useMemo(() => `${String(player.playerState.money.cash).replace(regExp.money, '$1 ')}$`, [player.playerState.money.cash]);
+    const bank = React.useMemo(() => `${String(player.playerState.money.card).replace(regExp.money, '$1 ')}$`, [player.playerState.money.card]);
 
     const cardWidth = React.useMemo(() => {
         if (document.body.clientWidth <= 1000 || document.body.clientHeight <= 800) return '100px';
@@ -38,7 +38,7 @@ const Pay = ({player, payPrice}) => {
     React.useEffect(() => {
         if (type) {
             setTimeout(() => {
-                type === 'bank' ? player.money.card -= payPrice : player.money.cash -= payPrice;
+                type === 'bank' ? player.playerState.money.card -= payPrice : player.playerState.money.cash -= payPrice;
 
                 setTimeout(() => {
                     setType(null);
@@ -48,7 +48,7 @@ const Pay = ({player, payPrice}) => {
                 }, type === 'bank' ? 3000 : 2000);
             }, type === 'bank' ? 850 : 0);
         }
-    }, [type, player.money, payPrice]);
+    }, [type, player.playerState.money, payPrice]);
 
     return <div className='pay'>
         <div className='pay-content'>

@@ -200,20 +200,20 @@ const App = () => {
         {component === 'creator' && <Creator store={creatorStore}/>}
         {component === 'choice' && <Choice characters={characters}/>}
         {component === 'spawnChoice' && <SpawnChoice spawnData={spawnsData}/>}
-        {component === 'bank' && <Bank store={bankStore} player={playerStore.playerState}/>}
+        {component === 'bank' && <Bank store={bankStore} player={playerStore}/>}
         {component === 'hud' && <HUD
             defaultStore={hudStore}
             crimeStore={crimeHudStore}
-            player={playerStore.playerState}
+            player={playerStore}
             currentHUD={currentHUD}
         />}
         {component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}
         {component === 'battlePass' && <BattlePass store={battlePassStore}/>}
-        {component === 'atm' && <ATM store={bankStore} player={playerStore.playerState} pinCode={pinCode}/>}
-        {component === 'pay' && <Pay player={playerStore.playerState} payPrice={payPrice} />}
-        {component === 'clothesShop' && <ClothesShop player={playerStore.playerState} hudStore={hudStore} store={shopsStore}/>}
+        {component === 'atm' && <ATM store={bankStore} player={playerStore} pinCode={pinCode}/>}
+        {component === 'pay' && <Pay player={playerStore} payPrice={payPrice} />}
+        {component === 'clothesShop' && <ClothesShop player={playerStore} hudStore={hudStore} store={shopsStore}/>}
         <Chat store={chatStore} isCursorActive={isCursorActive}
-              isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
+              isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.dead.isDead}/>
     </div>
 }
 

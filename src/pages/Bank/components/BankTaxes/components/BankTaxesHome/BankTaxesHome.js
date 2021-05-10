@@ -7,7 +7,7 @@ import './BankTaxesHome.scss';
 
 const BankTaxesHome = ({player}) => {
     return <div className='bank-taxes-home'>
-        {player.houses.map((el, key) => {
+        {player.playerState.houses.map((el, key) => {
             return <BankTaxesHomeElement
                 key={key}
                 id={el.id}

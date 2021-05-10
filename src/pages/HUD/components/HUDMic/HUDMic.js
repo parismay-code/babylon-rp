@@ -18,7 +18,7 @@ const HUDMic = ({store, player}) => {
     }, [store]);
 
     return <div className='hud-mic'>
-        {player.isRadioSet && <div className='hud-mic-speakers'>
+        {player.playerState.isRadioSet && <div className='hud-mic-speakers'>
             {store.speakers.map((el, key) => {
                 return <HUDMicSpeaker
                     key={key}
@@ -30,7 +30,7 @@ const HUDMic = ({store, player}) => {
         </div>}
         <div className='hud-mic-state'>
             <div
-                style={!player.isRadioSet ? {marginLeft: '3vw'} : null}
+                style={!player.playerState.isRadioSet ? {marginLeft: '3vw'} : null}
                 className={cn('hud-mic-state-microphone', !isMicrophoneActive && 'hud-mic-state-microphone_disabled')}
             >
                 <div className='hud-mic-state-microphone__hotkey'>N</div>
@@ -42,7 +42,7 @@ const HUDMic = ({store, player}) => {
                     />
                 </svg>
             </div>
-            {player.isRadioSet &&
+            {player.playerState.isRadioSet &&
             <div className={cn('hud-mic-state-radio-set', !isRadioSetActive && 'hud-mic-state-radio-set_disabled')}>
                 <div className='hud-mic-state-radio-set__hotkey'>N</div>
                 <svg className='hud-mic-state-radio-set__image' xmlns="http://www.w3.org/2000/svg" width="42"

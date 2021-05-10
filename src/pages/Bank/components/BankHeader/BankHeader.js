@@ -12,10 +12,10 @@ const BankHeader = ({player, setPage, currentPage, sendNotify}) => {
     return <div className='bank-header'>
         <div className='bank-header__logo'>БАНК</div>
         <div className={cn('bank-header-top-up-mobile', currentPage === 'mobile' && 'active')} onClick={() => {
-            if (player.phone.number) setPage('mobile');
+            if (player.playerState.phone.number) setPage('mobile');
             else {
                 sendNotify('У Вас нет мобильного телефона');
-                setPage(player.bank.type ? 'account' : 'open')
+                setPage(player.playerState.bank.type ? 'account' : 'open')
             }
         }}>
             <img className='bank-header-top-up-mobile__icon' src={phone} alt='#'/>
@@ -25,7 +25,7 @@ const BankHeader = ({player, setPage, currentPage, sendNotify}) => {
             </div>
         </div>
         <div className={cn('bank-header-withdraw', currentPage === 'withdraw' && 'active')} onClick={() => {
-            if (player.bank.type) setPage('withdraw');
+            if (player.playerState.bank.type) setPage('withdraw');
             else {
                 sendNotify('Для пользования данной услугой необходимо открыть счет');
                 setPage('open');
@@ -35,7 +35,7 @@ const BankHeader = ({player, setPage, currentPage, sendNotify}) => {
             <img className='bank-header-withdraw__icon' src={withdraw} alt='#'/>
         </div>
         <div className={cn('bank-header-top-up', currentPage === 'topUp' && 'active')} onClick={() => {
-            if (player.bank.type) setPage('topUp');
+            if (player.playerState.bank.type) setPage('topUp');
             else {
                 sendNotify('Для пользования данной услугой необходимо открыть счет');
                 setPage('open');
