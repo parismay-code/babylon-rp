@@ -41,7 +41,7 @@ const HUDMain = ({store, player}) => {
         {!player.playerState.dead.isDead && <>
             <HUDHeader player={player}/>
             <HUDPlayerState player={player} store={store}/>
-            <HUDSpeedometer store={store} isInCar={player.playerState.isInCar}/>
+            <HUDSpeedometer store={store} player={player}/>
             <HUDMapInfo store={store} player={player} noGeo={false}/>
             <HUDMic store={store} player={player}/>
         </>}

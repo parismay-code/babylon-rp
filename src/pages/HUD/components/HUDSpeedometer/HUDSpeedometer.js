@@ -11,7 +11,7 @@ import cruiseControl from 'assets/images/hud/cruiseControl.svg';
 
 import './HUDSpeedometer.scss';
 
-const HUDSpeedometer = ({isInCar, store}) => {
+const HUDSpeedometer = ({player, store}) => {
     const colors = React.useMemo(() => ({
         blue: [
             '#46a4d6',
@@ -68,10 +68,10 @@ const HUDSpeedometer = ({isInCar, store}) => {
     }, [store.carState.speed, store.carState.maxSpeed, colors])
 
     return <div
-        className={cn('hud-speedometer', isInCar && 'hud-speedometer_active')}
-        style={isInCar ? {transition: 'opacity .5s ease .5s'} : {transition: 'opacity .5s ease .3s'}}
+        className={cn('hud-speedometer', player.playerState.isInCar && 'hud-speedometer_active')}
+        style={player.playerState.isInCar ? {transition: 'opacity .5s ease .5s'} : {transition: 'opacity .5s ease .3s'}}
     >
-        <Speedometer isInCar={isInCar} colors={currentColors}/>
+        <Speedometer player={player} colors={currentColors}/>
         <div className='hud-speedometer-content'>
             <div
                 className='hud-speedometer-content-fuel'
@@ -87,7 +87,7 @@ const HUDSpeedometer = ({isInCar, store}) => {
             </div>
             <div
                 className='hud-speedometer-content-speed'
-                style={isInCar ? {transition: 'opacity .5s ease 1s, top .5s ease 1s, transform .5s ease 1s'} :
+                style={player.playerState.isInCar ? {transition: 'opacity .5s ease 1s, top .5s ease 1s, transform .5s ease 1s'} :
                     {transition: 'opacity .5s ease, top .5s ease, transform .5s ease'}}
             >
                 <div className='hud-speedometer-content-speed__count'>{speed()}</div>
@@ -95,7 +95,7 @@ const HUDSpeedometer = ({isInCar, store}) => {
             </div>
             <div
                 className='hud-speedometer-content-state'
-                style={isInCar ? {transition: 'margin-left .5s ease 1s'} :
+                style={player.playerState.isInCar ? {transition: 'margin-left .5s ease 1s'} :
                     {transition: 'margin-left .5s ease'}}
             >
                 <img

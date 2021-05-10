@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-const Speedometer = ({ isInCar, colors }) => {
+const Speedometer = ({ player, colors }) => {
     return <div
         className='hud-speedometer__image'
-        style={isInCar ? {transition: 'transform 1s ease .5s'} : {transition: 'transform 1s ease .3s'}}
+        style={player.playerState.isInCar ? {transition: 'transform 1s ease .5s'} : {transition: 'transform 1s ease .3s'}}
     >
         <svg width="747" height="759" viewBox="0 0 747 759" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M377.5 379.1H374.7V745.2H377.5V379.1Z" fill="url(#paint0_linear)"/>
