@@ -69,10 +69,7 @@ const Creator = ({store}) => {
                 <div id="id_creatorNotify" className="creator__notify"/>
                 <div className="creator__navigation">
                     <div
-                        className={cn(
-                            "creator__navigation-element",
-                            optionsPage === "name" ? "active" : undefined
-                        )}
+                        className={cn("creator__navigation-element", optionsPage === "name" ? "active" : undefined)}
                         ref={navName}
                         onClick={() => handleSwitch("name")}
                     >
