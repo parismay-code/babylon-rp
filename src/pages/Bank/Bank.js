@@ -55,7 +55,7 @@ const Bank = ({store, player}) => {
     }, []);
 
     React.useEffect(() => {
-        window.alt.on('cef::atm:sendNotify', (text, timeout) => sendNotify(text, timeout));
+        window.alt.on('cef::bank:sendNotify', (text, timeout) => sendNotify(text, timeout));
     }, [sendNotify]);
 
     return <>
