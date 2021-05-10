@@ -8,9 +8,6 @@ import {regExp} from "utils/regExp";
 import './BankTopUp.scss';
 
 const BankTopUp = ({store, player}) => {
-    const balance = React.useMemo(() =>
-        `$ ${String(player.money.card).replace(regExp.money, '$1 ')}`, [player.money.card]);
-
     const input = React.useRef(null);
 
     return <div className='bank-top-up'>
@@ -18,7 +15,7 @@ const BankTopUp = ({store, player}) => {
             <div className='bank-top-up-header-info'>
                 <div className='bank-top-up-header-info-balance'>
                     <div className='bank-top-up-header-info-balance__title'>Баланс</div>
-                    <div className='bank-top-up-header-info-balance__subtitle'>{balance}</div>
+                    <div className='bank-top-up-header-info-balance__subtitle'>{`$ ${String(player.money.card).replace(regExp.money, '$1 ')}`}</div>
                 </div>
                 <div className='bank-top-up-header-info-card'>
                     <div className='bank-top-up-header-info-card__title'>{player.bank.name} <b>{player.bank.type}</b></div>

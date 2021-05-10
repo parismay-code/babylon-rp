@@ -149,7 +149,7 @@ const App = () => {
             setComponent('pay');
         });
 
-        window.alt.on('cefr::clothesShop:start', () => setComponent('clothesShop'));
+        window.alt.on('cef::clothesShop:start', () => setComponent('clothesShop'));
 
         window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
     }, []);
