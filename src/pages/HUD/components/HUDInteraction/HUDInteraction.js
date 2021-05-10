@@ -187,7 +187,7 @@ const HUDInteraction = () => {
     React.useEffect(() => {
         toggleOptionScreen();
         setPrevOption(currentOption);
-    }, [currentOption, toggleOptionScreen]);
+    }, [currentOption, toggleOptionScreen, isVisible]);
 
     return <>
         <div ref={optionScreen} className='hud-interaction-option-screen'>

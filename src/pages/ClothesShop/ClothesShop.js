@@ -14,10 +14,7 @@ const ClothesShop = ({player, hudStore, store}) => {
         [currentElement, setElement] = React.useState(store.clothesShopData.filter(el => el.component === currentType && el.isInStock === true)[0].drawable),
         [currentTexture, setTexture] = React.useState(0);
 
-    const emitPreview = React.useCallback((component, drawable, texture) => {
-        window.alt.emit('client::clothesShop:preview', {component, drawable, texture});
-        console.log('preview', {component, drawable, texture});
-    }, []);
+    const emitPreview = React.useCallback((component, drawable, texture) => window.alt.emit('client::clothesShop:preview', {component, drawable, texture}), []);
 
     const price = React.useMemo(() => {
         const array = store.clothesShopData.filter(el => el.component === currentType);
@@ -37,7 +34,6 @@ const ClothesShop = ({player, hudStore, store}) => {
         };
 
         window.alt.emit('client::clothesShop:preview', obj);
-        console.log('buy:', obj);
     }, [currentElement, currentTexture, currentType, price, store.clothesShopData]);
     const handleChangeTexture = React.useCallback(((bool) => {
         const array = store.clothesShopData.filter(el => el.component === currentType);

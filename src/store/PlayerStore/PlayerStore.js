@@ -119,9 +119,7 @@ export default class PlayerStore {
             case 'business': return this.playerState.business = obj.data;
             case 'houses': return this.playerState.houses = obj.data;
             case 'isInGreenZone': return this.playerState.isInGreenZone = obj.data;
-            case 'isInCar':
-                console.log('isInCar changed:', obj.data);
-                return this.playerState.isInCar = obj.data;
+            case 'isInCar': return this.playerState.isInCar = obj.data;
             case 'isRadioSet': return this.playerState.isRadioSet = obj.data;
             case 'ammo': return this.playerState.ammo = obj.data;
             case 'dead': return this.playerState.dead = obj.data;
