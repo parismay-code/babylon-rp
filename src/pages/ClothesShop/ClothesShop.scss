@@ -1,0 +1,115 @@
+@import '../../styles/vars';
+
+.clothes-shop {
+  font-family: 'TT Norms Medium', sans-serif;
+
+  &__light {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+
+    width: 800px;
+    height: 800px;
+
+    background: radial-gradient(closest-side at 50% 50%, #AAB6EF, $color-blank);
+
+    opacity: .75;
+
+    pointer-events: none;
+
+    @media (max-width: 1280px) {
+      width: calc(800px * .8);
+      height: calc(800px * .8);
+    }
+
+    @media (max-width: 1000px) {
+      width: calc(800px * .5);
+      height: calc(800px * .5);
+    }
+
+    @media (max-height: 800px) {
+      width: calc(800px * .5);
+      height: calc(800px * .5);
+    }
+
+    &_right {
+      left: 100%;
+      bottom: 5%;
+    }
+  }
+
+  &__owner {
+    position: absolute;
+    bottom: 290px;
+    left: 15px;
+    transform: translateX(-50%) rotate(-90deg);
+
+    text-shadow: 0 2px 2px $color-black;
+
+    @media (max-width: 1280px) {
+      bottom: calc(290px * .8);
+      left: calc(15px * .8);
+    }
+
+    @media (max-width: 1000px) {
+      bottom: calc(290px * .5);
+      left: calc(15px * .5);
+    }
+
+    @media (max-height: 800px) {
+      bottom: calc(290px * .5);
+      left: calc(15px * .5);
+    }
+  }
+
+  &-content {
+    position: absolute;
+    left: 50%;
+    bottom: 80px;
+    transform: translateX(-50%);
+
+    width: 100vw;
+
+    @media (max-width: 1280px) {
+      bottom: calc(80px * .8);
+    }
+
+    @media (max-width: 1000px) {
+      bottom: calc(80px * .5);
+    }
+
+    @media (max-height: 800px) {
+      bottom: calc(80px * .5);
+    }
+
+    &-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      
+      &-texture {
+        font-family: "Baron Neue", sans-serif;
+        text-align: center;
+
+        &__title {
+          margin-bottom: 15px;
+
+          @media (max-width: 1280px) {
+            margin-bottom: calc(15px * .8);
+          }
+
+          @media (max-width: 1000px) {
+            margin-bottom: calc(15px * .5);
+          }
+
+          @media (max-height: 800px) {
+            margin-bottom: calc(15px * .5);
+          }
+        }
+      }
+    }
+  }
+}

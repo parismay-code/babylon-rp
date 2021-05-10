@@ -8,12 +8,12 @@ import './HUDMapInfo.scss';
 
 const HUDMapInfo = ({store, player, noGeo}) => {
     return <div className='hud-map-info'>
-        <div className='hud-map-info-header'>
-            {noGeo ? null : <div className='hud-map-info-header-location'>
+        {noGeo ? null :<div className='hud-map-info-header'>
+            <div className='hud-map-info-header-location'>
                 <div className='hud-map-info-header-location__area'>{store.mapState.area}</div>
                 <div className='hud-map-info-header-location__street'>{store.mapState.street}</div>
-            </div>}
-        </div>
+            </div>
+        </div>}
         <div className='hud-map-info-bottom'>
             <div className='hud-map-info-bottom-players'>
                 <img className='hud-map-info-bottom-players__icon' src={players} alt='#'/>

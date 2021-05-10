@@ -40,7 +40,7 @@ const BankTransfer = ({store, player}) => {
                 </div>
                 <div className='bank-transfer-header-form-input'>
                     <input className='bank-transfer-header-form-input__count' type='number' name='n_withdrawCount' placeholder='Сумма' ref={value}/>
-                    <input className='bank-transfer-header-form-input__submit' type='submit' name='n_withdrawSubmit' value='Перевести' onClick={() => window.alt.emit('client::bank:transfer', account.current.value, value.current.value )}/>
+                    <input className='bank-transfer-header-form-input__submit' type='submit' name='n_withdrawSubmit' value='Перевести' onClick={() => window.alt.emit('client::bank:transfer', account.current.value, value.current.value)}/>
                 </div>
             </div>
         </div>

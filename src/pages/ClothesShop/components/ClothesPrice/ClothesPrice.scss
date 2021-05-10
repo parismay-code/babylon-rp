@@ -1,0 +1,201 @@
+@import '../../../../styles/vars';
+
+.clothes-shop-price {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+
+  font-family: "TT Norms Light", sans-serif;
+  text-shadow: 0 3px 2px $color-black;
+
+  &-content {
+    position: relative;
+    height: 140px;
+    width: 440px;
+    padding: 20px 80px 20px 40px;
+
+    background: linear-gradient(to right, rgba(180, 180, 180, 0.8), rgba(75, 74, 74, 0.8));
+
+    @media (max-width: 1280px) {
+      height: calc(140px * .8);
+      width: calc(440px * .8);
+      padding: calc(20px * .8) calc(80px * .8) calc(20px * .8) calc(40px * .8);
+    }
+
+    @media (max-width: 1000px) {
+      height: calc(140px * .5);
+      width: calc(440px * .5);
+      padding: calc(20px * .5) calc(80px * .5) calc(20px * .5) calc(40px * .5);
+    }
+
+    @media (max-height: 800px) {
+      height: calc(140px * .5);
+      width: calc(440px * .5);
+      padding: calc(20px * .5) calc(80px * .5) calc(20px * .5) calc(40px * .5);
+    }
+
+    &-price {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      padding-bottom: 10px;
+
+      border-bottom: 1px solid #ffffff7f;
+
+      @media (max-width: 1280px) {
+        padding-bottom: calc(10px * .8);
+      }
+
+      @media (max-width: 1000px) {
+        padding-bottom: calc(10px * .5);
+      }
+
+      @media (max-height: 800px) {
+        padding-bottom: calc(10px * .5);
+      }
+
+      &__title {
+        font-size: 1.4rem;
+
+        @media (max-width: 1280px) {
+          font-size: 1rem;
+        }
+      }
+
+      &__value {
+        padding-right: 10px;
+
+        font-family: "TT Norms Extra Bold", sans-serif;;
+        font-size: 2rem;
+
+        @media (max-width: 1280px) {
+          padding-bottom: calc(10px * .8);
+          font-size: 1.5rem;
+        }
+
+        @media (max-width: 1000px) {
+          padding-bottom: calc(10px * .5);
+        }
+
+        @media (max-height: 800px) {
+          padding-bottom: calc(10px * .5);
+        }
+      }
+    }
+
+    &__buy {
+      position: relative;
+
+      transform: translateY(15px);
+
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(135deg, rgb(180, 180, 180), rgb(75, 74, 74));
+
+      text-transform: uppercase;
+      font-family: "TT Norms Extra Bold", sans-serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+
+      cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+
+      overflow: hidden;
+
+      @media (max-width: 1280px) {
+        height: calc(80px * .8);
+      }
+
+      @media (max-width: 1000px) {
+        height: calc(80px * .5);
+      }
+
+      @media (max-height: 800px) {
+        height: calc(80px * .5);
+      }
+
+      &:hover::before {
+        left: 150%;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -50%;
+        transform: translate(-50%, -50%) rotate(-35deg);
+
+        height: 500%;
+        width: 50%;
+
+        background: linear-gradient(to right, #C374F210, #DADDD8, #C374F210);
+
+        transition: left .4s ease;
+      }
+    }
+
+    &-set-texture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+
+      width: 80px;
+      height: 100%;
+
+      background: linear-gradient(to right, rgba(180, 180, 180, 0.92), rgba(75, 74, 74, 0.92));
+
+      cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+
+      @media (max-width: 1280px) {
+        width: calc(80px * .8);
+      }
+
+      @media (max-width: 1000px) {
+        width: calc(80px * .5);
+      }
+
+      @media (max-height: 800px) {
+        width: calc(80px * .5);
+      }
+
+      &:hover &__icon {
+        backdrop-filter: brightness(40%);
+      }
+
+      &__icon {
+        width: 100%;
+        height: 100%;
+
+        transform: scaleX(-1);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: backdrop-filter .2s;
+
+        & img {
+          width: 10px;
+
+          @media (max-width: 1280px) {
+            width: calc(10px * .8);
+          }
+
+          @media (max-width: 1000px) {
+            width: calc(10px * .5);
+          }
+
+          @media (max-height: 800px) {
+            width: calc(10px * .5);
+          }
+        }
+      }
+    }
+  }
+}

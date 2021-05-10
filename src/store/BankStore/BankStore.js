@@ -243,7 +243,7 @@ export default class BankStore {
         return this.cards = array;
     }
 
-    fetchWithdrawHistory(array) {
+    fetchWithdrawHistory(array) { 
         return this.withdrawHistory = array;
     }
 

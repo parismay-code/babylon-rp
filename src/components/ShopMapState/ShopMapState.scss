@@ -1,0 +1,138 @@
+@import '../../styles/vars';
+
+.shop-map-state {
+  position: absolute;
+  bottom: 5px;
+  left: 30px;
+
+  display: flex;
+  align-items: flex-end;
+
+  filter: drop-shadow(0 1px 1px $color-black);
+
+  font-family: "TT Norms Bold", sans-serif;
+
+  @media (max-width: 1000px) {
+    left: 15px;
+  }
+
+  @media (max-height: 800px) {
+    left: 15px;
+  }
+
+  &-location {
+    width: 200px;
+    text-transform: uppercase;
+
+    @media (max-width: 1000px) {
+      width: 100px;
+    }
+
+    @media (max-height: 800px) {
+      width: 100px;
+    }
+
+    &__area {
+      color: #AAB4EE;
+
+      @media (max-width: 1000px) {
+        font-size: .8rem;
+      }
+
+      @media (max-height: 800px) {
+        font-size: .8rem;
+      }
+    }
+
+    &__street {
+      margin-top: 5px;
+
+      font-size: .8rem;
+
+      @media (max-width: 1000px) {
+        font-size: .6rem;
+      }
+
+      @media (max-height: 800px) {
+        font-size: .6rem;
+      }
+    }
+  }
+
+  &-players,
+  &-time {
+    display: flex;
+    align-items: center;
+    width: 130px;
+
+    @media (max-width: 1000px) {
+      width: 75px;
+    }
+
+    @media (max-height: 800px) {
+      width: 75px;
+    }
+
+    @media (max-width: 1000px) {
+      font-size: .8rem;
+    }
+
+    @media (max-height: 800px) {
+      font-size: .8rem;
+    }
+
+    &__icon {
+      max-width: 20px;
+      height: 20px;
+
+      @media (max-width: 1000px) {
+        max-width: 10px;
+        height: 10px;
+      }
+
+      @media (max-height: 800px) {
+        max-width: 10px;
+        height: 10px;
+      }
+    }
+  }
+
+  &-players {
+    &__icon {
+      margin-right: 5px;
+
+      @media (max-width: 1000px) {
+        margin-right: 2px;
+      }
+
+      @media (max-height: 800px) {
+        margin-right: 2px;
+      }
+    }
+
+    &__count {
+      margin-right: 10px;
+
+      @media (max-width: 1000px) {
+        margin-right: 5px;
+      }
+
+      @media (max-height: 800px) {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &-time {
+    margin-right: 20px;
+    justify-content: space-between;
+
+    @media (max-width: 1000px) {
+      margin-right: 10px;
+    }
+
+    @media (max-height: 800px) {
+      margin-right: 10px;
+    }
+  }
+}

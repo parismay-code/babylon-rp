@@ -11,6 +11,7 @@ import AdminRedactor from "pages/AdminRedactor";
 import BattlePass from "pages/BattlePass";
 import ATM from "pages/ATM";
 import Pay from "pages/Pay";
+import ClothesShop from "pages/ClothesShop";
 
 import Chat from "pages/HUD/components/Chat/Chat";
 
@@ -22,6 +23,7 @@ import HUDStore from "store/HUDStore";
 import CrimeHUDStore from "store/CrimeHUDStore";
 import BattlePassStore from "store/BattlePassStore";
 import PlayerStore from "store/PlayerStore";
+import ShopsStore from "store/ShopsStore";
 
 import spawnsData from "configs/spawnData";
 
@@ -34,6 +36,7 @@ const App = () => {
     const crimeHudStore = useLocalStore(() => new CrimeHUDStore());
     const battlePassStore = useLocalStore(() => new BattlePassStore());
     const playerStore = useLocalStore(() => new PlayerStore());
+    const shopsStore = useLocalStore(() => new ShopsStore());
 
     const [component, setComponent] = React.useState(null),
         [isRegistered, setRegistered] = React.useState(false),
@@ -99,7 +102,7 @@ const App = () => {
         [adminRedactorData, setAdminRedactorData] = React.useState([]),
         [currentHUD, setHUD] = React.useState(0),
         [isCursorActive, setCursorActive] = React.useState(false),
-        [payPrice, setPayPrice] = React.useState(5203),
+        [payPrice, setPayPrice] = React.useState(0),
         [pinCode, setPinCode] = React.useState(null);
 
     React.useEffect(() => {
@@ -110,9 +113,7 @@ const App = () => {
             setComponent('auth');
         });
 
-        window.alt.on('cef::characterCustom:start', () => {
-            setComponent('creator');
-        });
+        window.alt.on('cef::characterCustom:start', () => setComponent('creator'));
 
         window.alt.on('cef::characterChoice:start', array => {
             setCharacters(array);
@@ -126,13 +127,9 @@ const App = () => {
             setComponent('spawnChoice');
         });
 
-        window.alt.on('cef::bank:start', () => {
-            setComponent('bank')
-        });
+        window.alt.on('cef::bank:start', () => setComponent('bank'));
 
-        window.alt.on('cef::hud:start', () => {
-            setComponent('hud');
-        });
+        window.alt.on('cef::hud:start', () => setComponent('hud'));
         window.alt.on('cef::hud:change', int => setHUD(int));
 
         window.alt.on('cef::adminRedactor:start', array => {
@@ -140,9 +137,7 @@ const App = () => {
             setComponent('adminRedactor');
         });
 
-        window.alt.on('cef::battlePass:start', () => {
-            setComponent('battlePass');
-        });
+        window.alt.on('cef::battlePass:start', () => setComponent('battlePass'));
 
         window.alt.on('cef::atm:start', pinCode => {
             setPinCode(pinCode);
@@ -153,6 +148,8 @@ const App = () => {
             setPayPrice(price);
             setComponent('pay');
         });
+
+        window.alt.on('cefr::clothesShop:start', () => setComponent('clothesShop'));
 
         window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
     }, []);
@@ -193,6 +190,10 @@ const App = () => {
         window.alt.on('cef::battlePass:setSeason', name => battlePassStore.setSeason(name));
         window.alt.on('cef::battlePass:setCoins', value => battlePassStore.setSeason(value));
     }, [battlePassStore]);
+    React.useEffect(() => {
+        window.alt.on('cef::shop:setOwner', name => shopsStore.setOwner(name));
+        window.alt.on('cef::clothesShop:setData', array => shopsStore.fetchClothesShopData(array));
+    }, [shopsStore]);
 
     return <div className='app'>
         {component === 'auth' && <Auth isRegistered={isRegistered} store={authStore}/>}
@@ -209,9 +210,10 @@ const App = () => {
         {component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}
         {component === 'battlePass' && <BattlePass store={battlePassStore}/>}
         {component === 'atm' && <ATM store={bankStore} player={playerStore.playerState} pinCode={pinCode}/>}
-        {component === 'pay' && <Pay payPrice={payPrice} player={playerStore.playerState}/>}
+        {component === 'pay' && <Pay player={playerStore.playerState} payPrice={payPrice} />}
+        {component === 'clothesShop' && <ClothesShop player={playerStore.playerState} hudStore={hudStore} store={shopsStore}/>}
         <Chat store={chatStore} isCursorActive={isCursorActive}
-              isVisible={component === 'hud' && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
+              isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
     </div>
 }
 
