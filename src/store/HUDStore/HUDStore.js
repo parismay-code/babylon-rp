@@ -8,6 +8,7 @@ export default class HUDStore {
     carState = {
         engine: 100,
         fuel: 50,
+        maxFuel: 200,
         speed: 0,
         maxSpeed: 240,
         seatBelt: false,
@@ -73,14 +74,15 @@ export default class HUDStore {
 
     fetchCarState(obj) {
         switch (obj.type) {
-            case 0: return this.carState.engine = obj.engine;
-            case 1: return this.carState.fuel = obj.fuel;
-            case 2: return this.carState.speed = obj.speed;
-            case 3: return this.carState.maxSpeed = obj.maxSpeed;
-            case 4: return this.carState.seatBelt = obj.seatBelt;
-            case 5: return this.carState.locked = obj.locked;
-            case 6: return this.carState.launched = obj.launched;
-            case 7: return this.carState.cruiseControl = obj.cruiseControl;
+            case 'engine': return this.carState.engine = obj.data;
+            case 'fuel': return this.carState.fuel = obj.data;
+            case 'maxFuel': return this.carState.maxFuel = obj.data;
+            case 'speed': return this.carState.speed = obj.data;
+            case 'maxSpeed': return this.carState.maxSpeed = obj.data;
+            case 'seatBelt': return this.carState.seatBelt = obj.data;
+            case 'locked': return this.carState.locked = obj.data;
+            case 'launched': return this.carState.launched = obj.data;
+            case 'cruiseControl': return this.carState.cruiseControl = obj.data;
             default: return this.carState = obj.data;
         }
     }

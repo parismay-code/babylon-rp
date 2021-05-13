@@ -78,7 +78,7 @@ const AwardCard = ({data, day}) => {
             <div className='battle-pass-award-card-premium-content'
                  style={{background: `linear-gradient(to bottom, ${premiumColor}, #C373F360, #C373F300)`}}>
                 <img className='battle-pass-award-card-premium-content__image'
-                     src={`../../../../../../publicImages/battlePass/${data.premium.image}`} alt='#'/>
+                     src={`./publicImages/battlePass/${data.premium.image}`} alt='#'/>
                 <div className='battle-pass-award-card-premium-content-description'>
                     <div className='battle-pass-award-card-premium-content-description__subtitle'>{data.premium.subtitle}</div>
                     <div className='battle-pass-award-card-premium-content-description__title'>{data.premium.title}</div>

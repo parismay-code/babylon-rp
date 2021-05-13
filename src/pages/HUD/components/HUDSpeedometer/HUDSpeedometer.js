@@ -40,7 +40,8 @@ const HUDSpeedometer = ({player, store}) => {
             '#4e4749',
             '#2E2F2F',
         ]
-    }), []);
+    }), []),
+        fuel = React.useMemo(() => Math.round(store.carState.fuel / store.carState.maxFuel * 100), [store.carState.fuel, store.carState.maxFuel]);
 
     const wave = React.useRef(null);
 
@@ -82,8 +83,8 @@ const HUDSpeedometer = ({player, store}) => {
                         className='hud-speedometer-content-fuel-top__wave'
                     />
                 </div>
-                <div className='hud-speedometer-content-fuel__bottom' style={{height: `${store.carState.fuel-20}%`}}/>
-                <div className='hud-speedometer-content-fuel__count'>{store.carState.fuel} %</div>
+                <div className='hud-speedometer-content-fuel__bottom' style={{height: `${fuel - 20}%`}}/>
+                <div className='hud-speedometer-content-fuel__count'>{fuel} %</div>
             </div>
             <div
                 className='hud-speedometer-content-speed'

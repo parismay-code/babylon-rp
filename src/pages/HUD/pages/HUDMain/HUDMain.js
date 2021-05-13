@@ -18,7 +18,7 @@ import greenZone from 'assets/images/hud/greenZone.svg';
 
 import './HUDMain.scss';
 
-const HUDMain = ({store, player}) => {
+const HUDMain = ({store, player, targetPlayerData}) => {
     React.useEffect(() => {
         window.alt.emit('client::hud:ready');
 
@@ -54,7 +54,7 @@ const HUDMain = ({store, player}) => {
             <HUDAlerts/>
         </>
         {!player.playerState.dead.isDead && <>
-            <HUDInteraction/>
+            <HUDInteraction targetPlayerData={targetPlayerData}/>
             {player.playerState.effects.isHealing && <div className='hud-main__heal'/>}
             <div className={cn('hud-main-green-zone', player.playerState.isInGreenZone ? 'hud-main-green-zone_active' : null)}>
                 <img className='hud-main-green-zone__icon' src={greenZone} alt='#'/>

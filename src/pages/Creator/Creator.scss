@@ -705,6 +705,7 @@
       border-radius: 3px;
       outline: none;
       appearance:none;
+      -webkit-appearance:none;
       border:none;
 
       @media (max-width: 1000px) {

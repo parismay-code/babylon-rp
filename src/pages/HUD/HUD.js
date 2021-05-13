@@ -3,10 +3,10 @@ import * as React from 'react';
 import HUDMain from "./pages/HUDMain";
 import CrimeHUD from "./pages/CrimeHUD";
 
-const HUD = ({defaultStore, crimeStore, currentHUD, player}) => {
+const HUD = ({defaultStore, crimeStore, currentHUD, player, targetPlayerData}) => {
     return <div className='hud'>
         {
-            currentHUD === 0 ? <HUDMain store={defaultStore} player={player}/>
+            currentHUD === 0 ? <HUDMain store={defaultStore} player={player} targetPlayerData={targetPlayerData}/>
                 : <CrimeHUD defaultStore={defaultStore} crimeStore={crimeStore}/>
         }
     </div>

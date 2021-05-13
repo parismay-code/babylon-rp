@@ -12,6 +12,7 @@ import BattlePass from "pages/BattlePass";
 import ATM from "pages/ATM";
 import Pay from "pages/Pay";
 import ClothesShop from "pages/ClothesShop";
+import GasStation from "pages/GasStation";
 
 import Chat from "pages/HUD/components/Chat/Chat";
 
@@ -103,7 +104,18 @@ const App = () => {
         [currentHUD, setHUD] = React.useState(0),
         [isCursorActive, setCursorActive] = React.useState(false),
         [payPrice, setPayPrice] = React.useState(0),
-        [pinCode, setPinCode] = React.useState(null);
+        [pinCode, setPinCode] = React.useState(null),
+        [targetPlayerData, setTargetPlayerData] = React.useState({}),
+        [gasStation, setGasStation] = React.useState({
+            id: 12,
+            type: 'default',
+            owner: 'Paris May',
+            cost: {
+                low: 10,
+                medium: 20,
+                premium: 30
+            }
+        });
 
     React.useEffect(() => {
         window.window.alt.emit('client::cef:ready');
@@ -131,6 +143,7 @@ const App = () => {
 
         window.alt.on('cef::hud:start', () => setComponent('hud'));
         window.alt.on('cef::hud:change', int => setHUD(int));
+        window.alt.on('cef::interactions:setTargetPlayerData', obj => setTargetPlayerData(obj));
 
         window.alt.on('cef::adminRedactor:start', array => {
             setAdminRedactorData(array);
@@ -150,6 +163,11 @@ const App = () => {
         });
 
         window.alt.on('cef::clothesShop:start', () => setComponent('clothesShop'));
+
+        window.alt.on('cef::gasStation:start', obj => {
+            setComponent('gasStation');
+            setGasStation(obj);
+        })
 
         window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
     }, []);
@@ -206,12 +224,14 @@ const App = () => {
             crimeStore={crimeHudStore}
             player={playerStore}
             currentHUD={currentHUD}
+            targetPlayerData={targetPlayerData}
         />}
         {component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}
         {component === 'battlePass' && <BattlePass store={battlePassStore}/>}
         {component === 'atm' && <ATM store={bankStore} player={playerStore} pinCode={pinCode}/>}
         {component === 'pay' && <Pay player={playerStore} payPrice={payPrice} />}
         {component === 'clothesShop' && <ClothesShop player={playerStore} hudStore={hudStore} store={shopsStore}/>}
+        {component === 'gasStation' && <GasStation data={gasStation} store={hudStore} player={playerStore}/>}
         <Chat store={chatStore} isCursorActive={isCursorActive}
               isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
     </div>

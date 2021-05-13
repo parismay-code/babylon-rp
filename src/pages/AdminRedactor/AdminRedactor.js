@@ -33,7 +33,7 @@ const AdminRedactor = ({data}) => {
                             setPage('options');
                         }}
                     >
-                        <img src={`../../publicImages/adminRedactor/${el.icon}.svg`} alt='#'/>
+                        <img src={`./publicImages/adminRedactor/${el.icon}.svg`} alt='#'/>
                     </div>
                 })}
             </div>
