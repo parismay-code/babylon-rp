@@ -75,7 +75,7 @@ export default class PlayerStore {
             // }
         ],
         isInGreenZone: false,
-        isInCar: true,
+        isInCar: false,
         isRadioSet: false,
         ammo: {
             charged: 0,

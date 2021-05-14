@@ -13,46 +13,46 @@ import './HUDSpeedometer.scss';
 
 const HUDSpeedometer = ({player, store}) => {
     const colors = React.useMemo(() => ({
-        blue: [
-            '#46a4d6',
-            '#6a9cbe',
-            '#718BA0',
-            '#687681',
-            '#565C61',
-            '#434546',
-            '#2E2F2F',
-        ],
-        yellow: [
-            '#ffab00',
-            '#ce9b32',
-            '#b1904b',
-            '#a18a5a',
-            '#8d7f64',
-            '#58544b',
-            '#2E2F2F',
-        ],
-        red: [
-            '#FF0046',
-            '#b05c73',
-            '#926571',
-            '#80636b',
-            '#6E5C61',
-            '#4e4749',
-            '#2E2F2F',
-        ]
-    }), []),
+            blue: [
+                '#46a4d6',
+                '#6a9cbe',
+                '#718BA0',
+                '#687681',
+                '#565C61',
+                '#434546',
+                '#2E2F2F',
+            ],
+            yellow: [
+                '#ffab00',
+                '#ce9b32',
+                '#b1904b',
+                '#a18a5a',
+                '#8d7f64',
+                '#58544b',
+                '#2E2F2F',
+            ],
+            red: [
+                '#FF0046',
+                '#b05c73',
+                '#926571',
+                '#80636b',
+                '#6E5C61',
+                '#4e4749',
+                '#2E2F2F',
+            ]
+        }), []),
         fuel = React.useMemo(() => Math.round(store.carState.fuel / store.carState.maxFuel * 100), [store.carState.fuel, store.carState.maxFuel]);
 
     const wave = React.useRef(null);
 
     React.useEffect(() => {
-        if (wave) {
-            if (!store.carState.launched) {
-                setTimeout(() => wave.current.style.animationPlayState = 'paused', 3000);
-            }
-            else wave.current.style.animationPlayState = 'running';
+        if (!store.carState.launched) {
+            const wavePlayTimeout = setTimeout(() => wave.current.style.animationPlayState = 'paused', 3000);
+
+            return () => clearTimeout(wavePlayTimeout)
         }
-    }, [wave, store.carState.launched]);
+        else wave.current.style.animationPlayState = 'running';
+    }, [store.carState.launched]);
 
     const speed = React.useCallback(() => {
         if (String(store.carState.speed).length === 1) return `00${store.carState.speed}`;
@@ -77,7 +77,8 @@ const HUDSpeedometer = ({player, store}) => {
             <div
                 className='hud-speedometer-content-fuel'
             >
-                <div className='hud-speedometer-content-fuel-top' style={store.carState.fuel === 0 ? {opacity: 0} : null}>
+                <div className='hud-speedometer-content-fuel-top'
+                     style={store.carState.fuel === 0 ? {opacity: 0} : null}>
                     <div
                         ref={wave}
                         className='hud-speedometer-content-fuel-top__wave'
