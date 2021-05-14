@@ -7,7 +7,7 @@ import {
 export default class HUDStore {
     carState = {
         engine: 100,
-        fuel: 50,
+        fuel: 10,
         maxFuel: 200,
         speed: 0,
         maxSpeed: 240,

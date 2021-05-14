@@ -30,7 +30,7 @@ export default class PlayerStore {
             poisoning: false
         },
         money: {
-            cash: 0,
+            cash: 4000,
             card: 0
         },
         bank: {
