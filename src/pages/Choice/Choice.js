@@ -18,7 +18,10 @@ const Choice = ({characters}) => {
     }, []);
 
     React.useEffect(() => {
-        window.alt.on('cef::choice:deleteChar', () => setDeleteCharId(null));
+        window.alt.on('cef::choice:deleteChar', () => {
+            setDeleteCharId(null);
+            window.alt.emit('client::choice:deleteCharScreenActive', false);
+        });
     }, []);
 
     return (
@@ -63,6 +66,7 @@ const Choice = ({characters}) => {
                         <div
                             className='choice-delete-char-screen-content-choose-element'
                             onClick={() => {
+                                window.alt.emit('client::choice:deleteCharScreenActive', false);
                                 window.alt.emit('client::choice:deleteChar');
                                 setDeleteCharId(null);
                             }}
