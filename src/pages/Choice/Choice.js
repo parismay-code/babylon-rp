@@ -17,6 +17,10 @@ const Choice = ({characters}) => {
         else return deleteScreen2;
     }, []);
 
+    React.useEffect(() => {
+        window.alt.on('cef::choice:deleteChar', setDeleteCharId(null));
+    }, []);
+
     return (
         <div className='choice'>
             <div className='choice-content'>
@@ -59,7 +63,7 @@ const Choice = ({characters}) => {
                         <div
                             className='choice-delete-char-screen-content-choose-element'
                             onClick={() => {
-                                window.alt.emit('client::choice:deleteChar', deleteCharId);
+                                window.alt.emit('client::choice:deleteChar');
                                 setDeleteCharId(null);
                             }}
                         >

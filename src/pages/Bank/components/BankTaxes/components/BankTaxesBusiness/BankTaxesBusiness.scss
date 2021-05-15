@@ -171,11 +171,13 @@
 
             outline: none;
             appearance:none;
+            -webkit-appearance: none;
             border:none;
           }
 
           & input::-webkit-slider-thumb {
             appearance: none;
+            -webkit-appearance: none;
             outline:none;
 
             width: 2px;

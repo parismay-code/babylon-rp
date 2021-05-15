@@ -111,7 +111,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteChar
                             style={el.level >= 5 ? {display: 'flex'} : {display: 'none'}}
                             onClick={() => {
                                 setDeleteCharId(id);
-                                window.alt.emit('client::choice:deleteCharScreenActive', true);
+                                window.alt.emit('client::choice:deleteCharScreenActive', true, id);
                             }}
                         >
                             <div className='choice-character-card-delete-char__bg'/>

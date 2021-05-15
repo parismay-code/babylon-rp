@@ -5,6 +5,8 @@
   height: 100%;
   display: flex;
 
+  margin-right: 150px;
+
   &-fuel-bar {
     position: relative;
     height: 100%;
@@ -311,6 +313,7 @@
 
             & input[type="range"]::-webkit-slider-thumb {
               appearance: none;
+              -webkit-appearance: none;
               width: 2px;
               height: 20px;
               background: $color-black;
