@@ -361,13 +361,13 @@ export default class ChatStore {
     ];
     lastMessages = [];
     access = {
-        admin: false,
-        job: false,
-        family: false,
-        fraction: false,
-        megaphone: false,
-        department: false,
-        state: false
+        admin: true,
+        job: true,
+        family: true,
+        fraction: true,
+        megaphone: true,
+        department: true,
+        state: true
     };
     familyIcon = null;
 

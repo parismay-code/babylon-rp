@@ -24,7 +24,7 @@
     font-family: "TT Norms Medium", sans-serif;
     font-weight: 700;
 
-    transition: opacity .5s 1s;
+    transition: opacity 0s;
 
     &__line {
       width: 100%;
@@ -91,7 +91,7 @@
       transform: translateY(-200%);
       opacity: 0;
 
-      transition: transform .2s, opacity .2s;
+      transition: transform 0s, opacity 0s;
 
       &__title {
         font-family: "Baron Neue", sans-serif;
@@ -134,7 +134,7 @@
         font-family: "TT Norms Light", sans-serif;
         text-transform: uppercase;
 
-        transition: height .5s 1.8s;
+        transition: height 0s;
 
         &::before {
           content: '';
@@ -212,7 +212,7 @@
       transform: translateY(-100%);
       opacity: 0;
 
-      transition: transform .2s .3s, opacity .2s .3s;
+      transition: transform 0s, opacity 0s;
 
       &__blur {
         position: absolute;
@@ -318,8 +318,6 @@
               height: 20px;
               background: $color-black;
 
-              cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
-
               outline: none;
 
               @media (max-width: 1000px) {
@@ -386,7 +384,7 @@
 
         box-shadow: 0 0 15px $color-black;
 
-        transition: transform .5s .5s, opacity .2s .5s;
+        transition: transform 0s, opacity 0s;
 
         &__button {
           font-family: "TT Norms Medium", sans-serif;
@@ -408,7 +406,7 @@
           display: flex;
           align-items: flex-start;
 
-          transition: transform .5s 1s, opacity .5s 1s;
+          transition: transform 0s, opacity 0s;
 
           &__full {
             width: 45px;
@@ -458,7 +456,7 @@
       transform: translateY(-200%);
       opacity: 0;
 
-      transition: transform .2s .3s, opacity .2s .3s;
+      transition: transform 0s, opacity 0s;
 
       & span {
         font-family: "TT Norms Regular", sans-serif;
@@ -470,25 +468,35 @@
 
   &_active &-fuel-bar {
     opacity: 1;
+
+    transition: opacity .5s 1s;
   }
 
   &_active &-content {
     &-name {
       transform: translateY(0);
       opacity: 1;
+
+      transition: transform .2s, opacity .2s;
     }
 
     &-liters {
       transform: translateY(0);
       opacity: 1;
 
+      transition: transform .2s .3s, opacity .2s .3s;
+
       &-submit {
         transform: translateX(100%);
         opacity: 1;
 
+        transition: transform .5s .5s, opacity .2s .5s;
+
         &-info {
           transform: translate(-50%, -100%);
           opacity: 1;
+
+          transition: transform .5s 1s, opacity .5s 1s;
         }
       }
     }
@@ -496,12 +504,16 @@
     &-type {
       &-element {
         height: 100%;
+
+        transition: height .5s 1.8s;
       }
     }
 
     &__owner {
       transform: translateY(0);
       opacity: 1;
+
+      transition: transform .2s .3s, opacity .2s .3s;
     }
   }
 }

@@ -123,7 +123,8 @@ const DefaultGasStation = ({data, store, player}) => {
                         <div
                             className='default-gas-station-content-liters-submit-info__full'
                             onClick={() => setLiters(maxLiters <= store.carState.maxFuel - store.carState.fuel ? maxLiters : store.carState.maxFuel - store.carState.fuel)}
-                        >Full</div>
+                        >Full
+                        </div>
                         <div className='default-gas-station-content-liters-submit-info__price'>{price}</div>
                     </div>
                     <div
@@ -143,7 +144,6 @@ const DefaultGasStation = ({data, store, player}) => {
                                         setSubmitTimeout(false);
                                     }, 2000);
                                 }
-                                else if (player.playerState.money.cash < liters * data.cost[type]) console.log('no money');
                             }
                         }}
                     >Заправить

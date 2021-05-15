@@ -13,7 +13,8 @@ const GasStation = ({data, store, player}) => {
         <HUDSpeedometer store={store} player={player}/>
         <div className='gas-station'>
             <div className='gas-station-content'>
-                {data.type === 'default' ? <DefaultGasStation data={data} store={store} player={player}/> :
+                {data.type === 'default' ?
+                    <DefaultGasStation data={data} store={store} player={player}/> :
                     <ElectroGasStation data={data} store={store}/>}
             </div>
             <div className='gas-station-exit'>
