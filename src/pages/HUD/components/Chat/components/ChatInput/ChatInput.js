@@ -10,7 +10,8 @@ const ChatInput = ({store, isCursorActive}) => {
     const [currentChat, setChat] = React.useState("default"),
         [currentCommand, setCommand] = React.useState(null),
         [isCommandsActive, setCommandsActive] = React.useState(false),
-        [isFocused, setFocused] = React.useState(false);
+        [isFocused, setFocused] = React.useState(false),
+        [byInput, setByInput] = React.useState(false);
 
     const chatTypes = React.useMemo(() => [
         {
@@ -90,7 +91,7 @@ const ChatInput = ({store, isCursorActive}) => {
                 const command = chatTypes.filter((el) => el.type === string)[0].command;
                 setChat(string);
                 input.current.focus();
-                input.current.value = command;
+                input.current.value = `${command} `;
             });
             window.alt.on("cef::chat:sendMessage", () => {
                 window.alt.emit("client::chat:sendMessage", String(input.current.value));
@@ -109,8 +110,12 @@ const ChatInput = ({store, isCursorActive}) => {
 
     React.useEffect(() => {
         const command = chatTypes.filter((el) => el.type === currentChat)[0].command;
-        if (isFocused) input.current.value = command;
-    }, [input, isFocused, chatTypes, currentChat]);
+        if (isFocused) {
+            if (currentCommand) input.current.value = byInput ? `/${currentCommand}` : `/${currentCommand} `;
+            else input.current.value = command ? byInput ? command : `${command} ` : null;
+            input.current.focus();
+        }
+    }, [input, isFocused, chatTypes, currentChat, byInput, currentCommand]);
 
     React.useEffect(() => {
         window.alt.on('cef::chat:setLastMessage', (int) => {
@@ -124,42 +129,47 @@ const ChatInput = ({store, isCursorActive}) => {
     }, [currentChat]);
 
     const checkCommand = React.useCallback((text) => {
-        if (text.includes("/me")) {
-            setCommand(0);
+        setByInput(true);
+
+        if (text.match(/^(\/do)/)) {
+            setCommand("do");
             setChat("default");
-        } else if (text.includes("/do")) {
-            setCommand(1);
+        } else if (text.match(/^\/try/)) {
+            setCommand("try");
             setChat("default");
-        } else if (text.includes("/try")) {
-            setCommand(2);
-            setChat("default");
-        } else if (text.includes("/b")) {
+        } else if (text.match(/^\/b/)) {
             setCommand(null);
             setChat("nrp");
-        } else if (text.includes("/a")) {
+        } else if (text.match(/^\/j/)) {
+            setCommand(null);
+            setChat("job");
+        } else if (text.match(/^\/a/)) {
             setCommand(null);
             setChat("admin");
-        } else if (text.includes("/fam")) {
+        } else if (text.match(/^\/fam/)) {
             setCommand(null);
             setChat("family");
-        } else if (text.includes("/fb")) {
+        } else if (text.match(/^\/fb/)) {
             setCommand(null);
             setChat("nrpFraction");
-        } else if (text.includes("/f")) {
+        } else if (text.match(/^\/f/)) {
             setCommand(null);
             setChat("fraction");
-        } else if (text.includes("/m")) {
+        } else if (text.match(/^\/me/)) {
+            setCommand("me");
+            setChat("default");
+        } else if (text.match(/^\/m/)) {
             setCommand(null);
             setChat("megaphone");
-        } else if (text.includes("/dep")) {
+        } else if (text.match(/^\/dep/)) {
             setCommand(null);
             setChat("department");
-        } else if (text.includes("/gov")) {
+        } else if (text.match(/^\/gov/)) {
             setCommand(null);
             setChat("state");
         } else {
-            setChat("default");
             setCommand(null);
+            setChat('default');
         }
     }, []);
 
@@ -178,10 +188,9 @@ const ChatInput = ({store, isCursorActive}) => {
                             )}
                             style={el.visible ? {display: "block"} : {display: "none"}}
                             onClick={() => {
+                                setByInput(false);
                                 setChat(el.type);
                                 setCommand(null);
-                                input.current.value = el.command;
-                                input.current.focus();
                             }}
                         >
                             {el.name}
@@ -226,10 +235,9 @@ const ChatInput = ({store, isCursorActive}) => {
                                         : null
                                 )}
                                 onClick={() => {
+                                    setByInput(false);
                                     setCommand(el);
                                     setChat("default");
-                                    input.current.value = `/${el}`;
-                                    input.current.focus();
                                 }}
                             >
                                 /{el}

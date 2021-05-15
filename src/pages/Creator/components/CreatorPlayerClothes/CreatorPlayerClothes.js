@@ -50,7 +50,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.head.drawable);
 
-                                if (drawableId - 1 === 0) store.data.clothes.head.drawable = array[array.length - 1].drawable;
+                                if (drawableId - 1 <= 0) store.data.clothes.head.drawable = array[array.length - 1].drawable;
                                 else store.data.clothes.head.drawable = array[drawableId - 1].drawable;
                             }}/>
                             <span>{clothesArray(sex, 0).findIndex(el => el.drawable === store.data.clothes.head.drawable)}</span>
@@ -59,7 +59,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.head.drawable);
 
-                                if (drawableId + 1 === array.length) store.data.clothes.head.drawable = array[0].drawable;
+                                if (drawableId + 1 >= array.length) store.data.clothes.head.drawable = array[0].drawable;
                                 else store.data.clothes.head.drawable = array[drawableId + 1].drawable;
                             }}/>
                         </div>
@@ -95,7 +95,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.body.drawable);
 
-                                if (drawableId - 1 === 0) store.data.clothes.body.drawable = array[array.length - 1].drawable;
+                                if (drawableId - 1 <= 0) store.data.clothes.body.drawable = array[array.length - 1].drawable;
                                 else store.data.clothes.body.drawable = array[drawableId - 1].drawable;
                             }}/>
                             <span>{clothesArray(sex, 11).findIndex(el => el.drawable === store.data.clothes.body.drawable)}</span>
@@ -104,7 +104,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.body.drawable);
 
-                                if (drawableId + 1 === array.length) store.data.clothes.body.drawable = array[0].drawable;
+                                if (drawableId + 1 >= array.length) store.data.clothes.body.drawable = array[0].drawable;
                                 else store.data.clothes.body.drawable = array[drawableId + 1].drawable;
                             }}/>
                         </div>
@@ -140,7 +140,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.pants.drawable);
 
-                                if (drawableId - 1 === 0) store.data.clothes.pants.drawable = array[array.length - 1].drawable;
+                                if (drawableId - 1 <= 0) store.data.clothes.pants.drawable = array[array.length - 1].drawable;
                                 else store.data.clothes.pants.drawable = array[drawableId - 1].drawable;
                             }}/>
                             <span>{clothesArray(sex, 4).findIndex(el => el.drawable === store.data.clothes.pants.drawable)}</span>
@@ -149,7 +149,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.pants.drawable);
 
-                                if (drawableId + 1 === array.length) store.data.clothes.pants.drawable = array[0].drawable;
+                                if (drawableId + 1 >= array.length) store.data.clothes.pants.drawable = array[0].drawable;
                                 else store.data.clothes.pants.drawable = array[drawableId + 1].drawable;
                             }}/>
                         </div>
@@ -185,7 +185,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.shoes.drawable);
 
-                                if (drawableId - 1 === 0) store.data.clothes.shoes.drawable = array[array.length - 1].drawable;
+                                if (drawableId - 1 <= 0) store.data.clothes.shoes.drawable = array[array.length - 1].drawable;
                                 else store.data.clothes.shoes.drawable = array[drawableId - 1].drawable;
                             }}/>
                             <span>{clothesArray(sex, 6).findIndex(el => el.drawable === store.data.clothes.shoes.drawable)}</span>
@@ -194,7 +194,7 @@ const CreatorPlayerClothes = ({store}) => {
 
                                 const drawableId = array.findIndex(el => el.drawable === store.data.clothes.shoes.drawable);
 
-                                if (drawableId + 1 === array.length) store.data.clothes.shoes.drawable = array[0].drawable;
+                                if (drawableId + 1 >= array.length) store.data.clothes.shoes.drawable = array[0].drawable;
                                 else store.data.clothes.shoes.drawable = array[drawableId + 1].drawable;
                             }}/>
                         </div>

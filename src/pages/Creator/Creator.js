@@ -34,9 +34,11 @@ const Creator = ({store}) => {
     }, []);
 
     const handleCreate = React.useCallback(() => {
-        showNotify(1, "Персонаж успешно создан");
+        if (store.data.name.firstname && store.data.name.lastname) {
+            showNotify(1, "Персонаж успешно создан");
 
-        window.alt.emit("client::characterCreator:create", store.data);
+            window.alt.emit("client::characterCreator:create", store.data);
+        } else showNotify(0, "Укажите имя и фамилию персонажа");
     }, [store.data]);
 
     return (

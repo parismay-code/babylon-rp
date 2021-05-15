@@ -41,11 +41,11 @@ const CreatorPlayerName = ({store}) => {
 
             return setNicknameValid(true);
         }
-    }, [store.data.name])
+    }, [store.data.name]);
 
     React.useEffect(() => {
         checkNickname();
-    }, [store.data.name.firstname, store.data.name.lastname, checkNickname])
+    }, [store.data.name.firstname, store.data.name.lastname, checkNickname]);
 
     return (
         <div className='player-name'>
