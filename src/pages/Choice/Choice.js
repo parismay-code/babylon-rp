@@ -18,7 +18,7 @@ const Choice = ({characters}) => {
     }, []);
 
     React.useEffect(() => {
-        window.alt.on('cef::choice:deleteChar', setDeleteCharId(null));
+        window.alt.on('cef::choice:deleteChar', () => setDeleteCharId(null));
     }, []);
 
     return (
