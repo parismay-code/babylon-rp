@@ -29,7 +29,7 @@ const Bus = ({store}) => {
 					</div>
 					<div
 						className="job-bus-content-main-header-button"
-						onClick={() => window.alt.emit('client::jobs:setBusJob')}
+						onClick={() => window.alt.emit('client::jobs:setBusJob', !store.busData.isEmployed)}
 					>{store.busData.isEmployed ? 'уволиться' : 'устроиться'}</div>
 				</div>
 				<div className="job-bus-content-main-information">

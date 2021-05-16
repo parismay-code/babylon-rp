@@ -225,6 +225,9 @@ const App = () => {
 	}, [shopsStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::jobs:setData', obj => jobsStore.fetchJobData(obj));
+		window.alt.on('cef::jobs:setTruckDriverOrders', array => jobsStore.fetchTruckDriverOrders(array));
+		window.alt.on('cef::jobs:addTruckDriverOrder', obj => jobsStore.addTruckDriverOrder(obj));
+		window.alt.on('cef::jobs:removeTruckDriverOrder', id => jobsStore.removeTruckDriverOrder(id));
 	}, [jobsStore]);
 	
 	return <div className="app">

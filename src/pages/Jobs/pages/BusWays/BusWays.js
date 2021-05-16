@@ -27,7 +27,7 @@ const BusWays = ({store}) => {
 				</div>
 				<div
 					className="job-bus-ways-content-header__button"
-					onClick={() => window.alt.emit('client::job:startBus')}
+					onClick={() => window.alt.emit('client::job:startBus', store.busData.ways[currentWay].id)}
 				>начать работу
 				</div>
 			</div>
