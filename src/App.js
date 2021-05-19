@@ -171,8 +171,7 @@ const App = () => {
 		
 		window.alt.on('cef::gasStation:start', obj => {
 			setGasStation(obj);
-			setComponent(null);
-			setTimeout(() => setComponent('gasStation'), 100);
+			setComponent('gasStation');
 		});
 		
 		window.alt.on('cef::job:start', (job, params) => {

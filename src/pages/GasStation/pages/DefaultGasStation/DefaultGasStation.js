@@ -31,7 +31,9 @@ const DefaultGasStation = ({data, store, player}) => {
     React.useEffect(() => setLiters(store.carState.maxFuel - store.carState.fuel), [store.carState.fuel, store.carState.maxFuel]);
 
     React.useEffect(() => {
-        screen.current.classList.add('default-gas-station_active');
+        const showTimeout = setTimeout(() => screen.current.classList.add('default-gas-station_active'), 100);
+        
+        return () => clearTimeout(showTimeout);
     }, []);
 
     React.useEffect(() => {
