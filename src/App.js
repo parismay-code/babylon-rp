@@ -170,8 +170,9 @@ const App = () => {
 		window.alt.on('cef::clothesShop:start', () => setComponent('clothesShop'));
 		
 		window.alt.on('cef::gasStation:start', obj => {
-			setComponent('gasStation');
 			setGasStation(obj);
+			setComponent(null);
+			setTimeout(() => setComponent('gasStation'), 100);
 		});
 		
 		window.alt.on('cef::job:start', (job, params) => {
