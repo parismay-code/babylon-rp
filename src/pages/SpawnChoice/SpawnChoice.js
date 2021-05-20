@@ -15,7 +15,8 @@ const SpawnChoice = ({spawnData}) => {
     const slider = React.useRef(null),
         elNextTitle = React.useRef(null),
         elCurrentTitle = React.useRef(null),
-        exitPointElement = React.useRef(null);
+        exitPointElement = React.useRef(null),
+        screen = React.useRef(null);
 
     const handleMoveSlider = React.useCallback((e) => {
         slider.current.style.width = `${e.target.offsetWidth + 20}px`;
@@ -46,9 +47,14 @@ const SpawnChoice = ({spawnData}) => {
             slider.current.style.left = `${exitPointElement.current.offsetLeft - 10}px`;
         }
     }, [slider, exitPointElement]);
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('spawn-choice_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
 
     return (
-        <div className='spawn-choice'>
+        <div ref={screen} className='spawn-choice'>
             <div className='spawn-choice-location-frame'>
                 <img src={man} alt='man'/>
             </div>

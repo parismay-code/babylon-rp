@@ -9,8 +9,16 @@ import './AdminRedactor.scss';
 const AdminRedactor = ({data}) => {
     const [currentPage, setPage] = React.useState(null),
         [currentOption, setOption] = React.useState(null);
+    
+    const screen = React.useRef(null);
+    
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('admin-redactor_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
 
-    return <div className='admin-redactor'>
+    return <div ref={screen} className='admin-redactor'>
         {currentPage === null ? <>
             <div className='admin-redactor-header'>
                 <span className='admin-redactor-header__title'>Redactor</span>

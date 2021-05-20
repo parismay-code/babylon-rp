@@ -9,7 +9,15 @@ import TruckDriverOrders from './pages/TruckDriverOrders';
 import './Jobs.scss';
 
 const Jobs = ({store, currentJob, jobParams}) => {
-	return <div className="jobs">
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.classList.add('jobs_active'), 100);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
+	return <div ref={screen} className="jobs">
 		{currentJob === 'bus' && !jobParams && <Bus store={store}/>}
 		{currentJob === 'truckDriver' && !jobParams && <TruckDriver store={store}/>}
 		{currentJob === 'taxi' && !jobParams && <div>taxi</div>}

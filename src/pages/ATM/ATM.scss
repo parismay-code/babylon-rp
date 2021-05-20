@@ -13,6 +13,14 @@
 
   border: 1px solid #787272;
   background: linear-gradient(45deg, #404040e0, #555555e0);
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+    opacity: 1;
+  }
 
   @media (max-width: 1280px) {
     width: 1000px;

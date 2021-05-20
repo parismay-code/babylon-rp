@@ -12,6 +12,8 @@ const Choice = ({characters}) => {
 	const [currentCard, setCurrentCard] = React.useState(),
 		[deleteCharId, setDeleteCharId] = React.useState(null);
 	
+	const screen = React.useRef(null);
+	
 	const currentScreen = React.useMemo(() => {
 		if (Math.round(Math.random()) === 0) return deleteScreen1;
 		else return deleteScreen2;
@@ -22,10 +24,14 @@ const Choice = ({characters}) => {
 			setDeleteCharId(null);
 			window.alt.emit('client::choice:deleteCharScreenActive', false);
 		});
+		
+		const timeout = setTimeout(() => screen.current.classList.add('choice_active'), 100);
+		
+		return () => clearTimeout(timeout);
 	}, []);
 	
 	return (
-		<div className="choice">
+		<div ref={screen} className="choice">
 			<div className="choice-content">
 				<span className="choice-content__title">выбОР пЕРСОНАжА</span>
 				<div className="choice-content-characters">

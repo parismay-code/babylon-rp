@@ -23,7 +23,8 @@ const ATM = ({store, player, pinCode}) => {
         [isNotifyVisible, setNotifyVisible] = React.useState(false),
         [notifyText, setNotifyText] = React.useState(null);
 
-    const pinCodeInput = React.useRef(null);
+    const pinCodeInput = React.useRef(null),
+        screen = React.useRef(null);
 
     const balance = React.useMemo(() =>
         `$ ${String(player.playerState.bank.type ? player.playerState.money.card : player.playerState.money.cash).replace(regExp.money, '$1 ')}`, [player.playerState.bank.type, player.playerState.money.card, player.playerState.money.cash]);
@@ -44,8 +45,13 @@ const ATM = ({store, player, pinCode}) => {
     React.useEffect(() => {
         window.alt.on('cef::atm:sendNotify', (text, timeout) => sendNotify(text, timeout));
     }, [sendNotify]);
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('atm_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
 
-    return <div className='atm'>
+    return <div ref={screen} className='atm'>
         <div className='atm__header'>Банкомат</div>
         <div className='atm-inner'>
             <div className='atm-inner-navigation'>

@@ -6,6 +6,14 @@
   width: 450px;
 
   background: linear-gradient(to left, #8C8992ae, #ffffffae);
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+    opacity: 1;
+  }
 
   &-header {
     display: flex;

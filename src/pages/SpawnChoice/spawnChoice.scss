@@ -8,6 +8,14 @@
   background: linear-gradient(122deg, #AAB6EF2B, $color-white);
 
   font-family: 'Baron Neue', sans-serif;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+    opacity: 1;
+  }
 
   @media (min-width: 3000px) {
     padding: 30px 0 0 1200px;

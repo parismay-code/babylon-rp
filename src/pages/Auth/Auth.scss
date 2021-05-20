@@ -4,7 +4,14 @@
   height: 100vh;
   width: 100vw;
   background: $color-white linear-gradient(122deg, #EEE4C1 0%, #AAB6EF2B 1%, #84818A 88%, #7D7A82 100%);
-  transition: background .5s
+  
+  opacity: 0;
+  
+  transition: background .5s, opacity .2s;
+  
+  &_active {
+    opacity: 1;
+  }
 }
 
 .project__title {

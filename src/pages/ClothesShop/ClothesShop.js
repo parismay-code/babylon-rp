@@ -61,6 +61,14 @@ const ClothesShop = ({player, hudStore, store}) => {
         }
     }), [emitPreview, currentElement, currentTexture, currentType, store.clothesShopData]);
 
+    const screen = React.useRef(null);
+    
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('clothes-shop_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
+    
     React.useEffect(() => {
         const array = store.clothesShopData.filter(el => el.component === currentType);
         const element = array.filter(el => el.drawable === currentElement)[0];
@@ -70,7 +78,7 @@ const ClothesShop = ({player, hudStore, store}) => {
         emitPreview(element.component, element.drawable, element.textures[0]);
     }, [emitPreview, currentType, currentElement, store.clothesShopData]);
 
-    return <div className='clothes-shop'>
+    return <div ref={screen} className='clothes-shop'>
         <div className='clothes-shop-content'>
             <ClothesList store={store} currentType={currentType} currentElement={currentElement} setElement={setElement}/>
             <div className='clothes-shop-content-bottom'>

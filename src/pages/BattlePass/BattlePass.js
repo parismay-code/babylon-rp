@@ -9,7 +9,15 @@ import coin from 'assets/images/battlePass/coin.svg';
 import './BattlePass.scss';
 
 const BattlePass = ({ store }) => {
-    return <div className='battle-pass'>
+    const screen = React.useRef(null);
+    
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('battle-pass_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
+    
+    return <div ref={screen} className='battle-pass'>
         <div className='battle-pass-content'>
             <Buy />
             <div className='battle-pass-content-season'>

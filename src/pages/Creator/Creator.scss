@@ -5,6 +5,14 @@
   height: 100vh;
   font-family: "Baron Neue", serif;
   color: $color-black;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+    opacity: 1;
+  }
 
   &__notify {
     height: 45px;

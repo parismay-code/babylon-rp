@@ -23,11 +23,17 @@ const Creator = ({store}) => {
     const navName = React.useRef(null),
         navAppearance = React.useRef(null),
         navFace = React.useRef(null),
-        navClothes = React.useRef(null);
+        navClothes = React.useRef(null),
+        screen = React.useRef(null);
 
     React.useEffect(() => {
         window.alt.emit("client::characterCreator:navigation", optionsPage);
     }, [optionsPage]);
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('creator_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
 
     const handleSwitch = React.useCallback((page) => {
         setOptionsPage(page);
@@ -42,7 +48,7 @@ const Creator = ({store}) => {
     }, [store.data]);
 
     return (
-        <div className="creator">
+        <div ref={screen} className="creator">
             <div className="creator__content">
                 <div className="creator__title">
                     <span>СОздАНиЕ пЕРСОНАжА</span>

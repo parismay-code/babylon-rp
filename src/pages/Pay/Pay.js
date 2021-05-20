@@ -35,6 +35,14 @@ const Pay = ({player, payPrice}) => {
 		else return '.5rem';
 	}, []);
 	
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.classList.add('pay_active'), 100);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	React.useEffect(() => {
 		if (type) {
 			setTimeout(() => {
@@ -50,7 +58,7 @@ const Pay = ({player, payPrice}) => {
 		}
 	}, [type, player.playerState.money, payPrice]);
 	
-	return <div className="pay">
+	return <div ref={screen} className="pay">
 		<div className="pay-content">
 			<div className="pay-content__title">Выберите способ оплаты</div>
 			<div className="pay-content-choose">

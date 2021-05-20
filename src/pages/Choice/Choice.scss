@@ -8,6 +8,13 @@
   background: linear-gradient(122deg, #EEE4C1 0%, #AAB6EF2B 1%, #84818A 88%, #7D7A82 100%);
 
   font-family: "Baron Neue", serif;
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+    opacity: 1;
+  }
 
   @media (max-width: 1280px) {
     padding: 0 60px;

@@ -27,6 +27,8 @@ const Bank = ({store, player}) => {
         [isMainNotifyVisible, setMainNotifyVisible] = React.useState(false),
         [notifyText, setNotifyText] = React.useState(null);
 
+    const screen = React.useRef(null);
+    
     const cardShadow = React.useMemo(() => {
         switch (cardType) {
             case 'standard':
@@ -57,9 +59,14 @@ const Bank = ({store, player}) => {
     React.useEffect(() => {
         window.alt.on('cef::bank:sendNotify', (text, timeout) => sendNotify(text, timeout));
     }, [sendNotify]);
+    React.useEffect(() => {
+        const timeout = setTimeout(() => screen.current.classList.add('bank_active'), 100);
+        
+        return () => clearTimeout(timeout);
+    }, []);
 
     return <>
-        <div className='bank'>
+        <div ref={screen} className='bank'>
             <BankHeader player={player} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
             <div className='bank__inner'>
                 <BankNav player={player} setPage={setPage} currentPage={currentPage} sendNotify={sendNotify}/>
