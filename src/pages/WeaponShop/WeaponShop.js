@@ -43,8 +43,10 @@ const WeaponShop = ({player, store}) => {
 		else sendNotify('Для покупки необходимо добавить оружие в корзину');
 	}, [sendNotify, store.weaponBuyList, value]);
 	
-	const buyAmmo = React.useCallback((ammoValue, ammoPrice) => 
-		window.alt.emit('client::gunShop:buyAmmo', ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * ammoPrice), [currentCategory, store.weaponShopData.categories]);
+	const buyAmmo = React.useCallback((ammoValue, ammoPrice) => {
+		window.alt.emit('client::gunShop:buyAmmo', ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * ammoPrice);
+		console.log(ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * ammoPrice);
+	}, [currentCategory, store.weaponShopData.categories]);
 	
 	return <div ref={screen} className="weapon-shop">
 		<div className="weapon-shop-category">
