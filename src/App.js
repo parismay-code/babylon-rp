@@ -259,6 +259,8 @@ const App = () => {
 		
 		window.alt.on('cef::clothesShop:start', () => setComponent('clothesShop'));
 		
+		window.alt.on('cef::gunShop:start', () => setComponent('weaponShop'));
+		
 		window.alt.on('cef::gasStation:start', obj => {
 			setGasStation(obj);
 			setComponent('gasStation');
