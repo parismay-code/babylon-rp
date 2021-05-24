@@ -852,6 +852,7 @@ export default class ShopsStore {
 			fetchWeaponShopData: action.bound,
 			addWeaponBuyListElement: action.bound,
 			removeWeaponBuyListElement: action.bound,
+			clearWeaponBuyList: action.bound,
 		});
 	}
 	
@@ -898,6 +899,10 @@ export default class ShopsStore {
 	
 	removeWeaponBuyListElement(id) {
 		return this.weaponBuyList.splice(id, 1);
+	}
+	
+	clearWeaponBuyList() {
+		return this.weaponBuyList = [];
 	}
 	
 	destroy() {

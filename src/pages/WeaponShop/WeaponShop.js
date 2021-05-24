@@ -14,7 +14,14 @@ const WeaponShop = ({player, store}) => {
 		[currentWeapon, setWeapon] = React.useState(0),
 		[value, setValue] = React.useState(0);
 	
-	const notify = React.useRef(null);
+	const notify = React.useRef(null),
+		screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.classList.add('weapon-shop_active'), 100);
+		
+		return () => clearTimeout(timeout);
+	}, []);
 	
 	React.useEffect(() => {
 		setWeapon(0);
@@ -31,7 +38,15 @@ const WeaponShop = ({player, store}) => {
 		window.alt.on('cef::gunShop:sendNotify', (text, timeout) => sendNotify(text, timeout));
 	}, [sendNotify]);
 	
-	return <div className="weapon-shop">
+	const buyWeapons = React.useCallback(() => {
+		if (value > 0) window.alt.emit('client::gunShop:buy', store.weaponBuyList, value);
+		else sendNotify('Для покупки необходимо добавить оружие в корзину');
+	}, [sendNotify, store.weaponBuyList, value]);
+	
+	const buyAmmo = React.useCallback((ammoValue, ammoPrice) => 
+		window.alt.emit('client::gunShop:buyAmmo', ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * ammoPrice), [currentCategory, store.weaponShopData.categories]);
+	
+	return <div ref={screen} className="weapon-shop">
 		<div className="weapon-shop-category">
 			{store.weaponShopData.categories.map((el, key) => {
 				return <div
@@ -67,15 +82,14 @@ const WeaponShop = ({player, store}) => {
 		</div>
 		<GunDescription
 			el={store.weaponShopData.categories[currentCategory].guns[currentWeapon]}
-			store={store}
-			currentCategory={currentCategory}
+			buyAmmo={buyAmmo}
 		/>
 		<BuyList
 			store={store}
 			notify={notify}
 			value={value}
 			setValue={setValue}
-			sendNotify={sendNotify}
+			buyWeapons={buyWeapons}
 		/>
 		<div className="weapon-shop-exit">
 			<span className="weapon-shop-exit__text">выход -</span>

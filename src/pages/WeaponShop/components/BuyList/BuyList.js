@@ -7,7 +7,7 @@ import {regExp} from 'utils/regExp';
 
 import './BuyList.scss';
 
-const BuyList = ({store, notify, value, setValue, sendNotify}) => {
+const BuyList = ({store, notify, value, setValue, buyWeapons}) => {
 	const price = React.useMemo(() =>
 		`${String(value).replace(regExp.money, '$1 ')}$`, [value]);
 	
@@ -31,10 +31,7 @@ const BuyList = ({store, notify, value, setValue, sendNotify}) => {
 		</div>
 		<div
 			className='gun-buy-list__submit'
-			onClick={() => {
-				if (value > 0) window.alt.emit('client::gunShop:buy', store.weaponBuyList, value);
-				else sendNotify('Для покупки необходимо добавить оружие в корзину');
-			}}
+			onClick={() => buyWeapons()}
 		>Купить оружие</div>
 	</div>;
 };

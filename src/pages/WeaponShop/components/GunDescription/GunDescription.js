@@ -8,7 +8,7 @@ import {regExp} from 'utils/regExp';
 
 import './GunDescription.scss';
 
-const GunDescription = ({el, store, currentCategory}) => {
+const GunDescription = ({el, buyAmmo}) => {
 	const ammo = React.useRef(null);
 	
 	const [ammoValue, setAmmoValue] = React.useState(0);
@@ -86,7 +86,7 @@ const GunDescription = ({el, store, currentCategory}) => {
 					</div>
 					<div
 						className='gun-description-bottom-buy-input__submit'
-						onClick={() => window.alt.emit('client::gunShop:buyAmmo', ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * el.ammoPrice)}
+						onClick={() => buyAmmo(ammoValue, el.ammoPrice)}
 					>Купить патроны</div>
 				</div>
 			</div>}

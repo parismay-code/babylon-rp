@@ -321,6 +321,7 @@ const App = () => {
 		window.alt.on('cef::clothesShop:setData', array => shopsStore.fetchClothesShopData(array));
 		
 		window.alt.on('cef::gunShop:fetchData', obj => shopsStore.fetchWeaponShopData(obj));
+		window.alt.on('cef::gunShop:clearBuyList', () => shopsStore.clearWeaponBuyList());
 	}, [shopsStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::jobs:setData', obj => jobsStore.fetchJobData(obj));
