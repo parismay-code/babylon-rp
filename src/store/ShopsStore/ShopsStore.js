@@ -883,12 +883,14 @@ export default class ShopsStore {
 				_obj = {
 					name: obj.name,
 					icon: obj.icon,
+					hash: obj.hash,
 					count: 1,
 					price: obj.price + price,
 				};
 			} else _obj = {
 				name: obj.name,
 				icon: obj.icon,
+				hash: obj.hash,
 				count: 1,
 				price: obj.price,
 			}
