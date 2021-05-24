@@ -9,7 +9,7 @@ const Money = ({ player }) => {
 	const card = React.useMemo(() =>
 		`$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]),
 		cash = React.useMemo(() =>
-		`$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
+		`$ ${String(player.playerState.money.cash).replace(regExp.money, '$1 ')}`, [player.playerState.money.cash]);
 	
 	return <div className='gun-shop-money'>
 		<div className='gun-shop-money-bank'>
