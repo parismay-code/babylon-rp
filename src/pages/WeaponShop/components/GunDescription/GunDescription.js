@@ -86,10 +86,7 @@ const GunDescription = ({el, buyAmmo}) => {
 					</div>
 					<div
 						className='gun-description-bottom-buy-input__submit'
-						onClick={() => {
-							buyAmmo(ammoValue, el.ammoPrice);
-							setAmmoValue(0);
-						}}
+						onClick={() => buyAmmo(ammoValue, el.ammoPrice)}
 					>Купить патроны</div>
 				</div>
 			</div>}
