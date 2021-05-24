@@ -12,8 +12,10 @@ import BattlePass    from 'pages/BattlePass';
 import ATM           from 'pages/ATM';
 import Pay           from 'pages/Pay';
 import ClothesShop   from 'pages/ClothesShop';
+import WeaponShop    from 'pages/WeaponShop';
 import GasStation    from 'pages/GasStation';
 import Jobs          from 'pages/Jobs';
+import Parking       from 'pages/Parking';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -120,7 +122,95 @@ const App = () => {
 			},
 		}),
 		[currentJob, setCurrentJob] = React.useState(null),
-		[jobParams, setJobParams] = React.useState(null);
+		[jobParams, setJobParams] = React.useState(null),
+		[parkingData, setParkingData] = React.useState({
+			id: 11,
+			owner: 'Paris May',
+			price: 100,
+			maxSlots: 80,
+			slots: [
+				true,
+				true,
+				false,
+				true,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				true,
+				false,
+				true,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				false,
+				true,
+				true,
+				false,
+				true,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				true,
+				false,
+				true,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				false,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				false,
+				false,
+				true,
+				false,
+			],
+		});
 	
 	React.useEffect(() => {
 		window.window.alt.emit('client::cef:ready');
@@ -180,6 +270,11 @@ const App = () => {
 			setJobParams(params);
 		});
 		
+		window.alt.on('cef::parking:start', obj => {
+			setComponent('parking');
+			setParkingData(obj);
+		});
+		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
 	}, []);
 	React.useEffect(() => {
@@ -222,6 +317,8 @@ const App = () => {
 	React.useEffect(() => {
 		window.alt.on('cef::shop:setOwner', name => shopsStore.setOwner(name));
 		window.alt.on('cef::clothesShop:setData', array => shopsStore.fetchClothesShopData(array));
+		
+		window.alt.on('cef::gunShop:fetchData', obj => shopsStore.fetchWeaponShopData(obj));
 	}, [shopsStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::jobs:setData', obj => jobsStore.fetchJobData(obj));
@@ -248,8 +345,10 @@ const App = () => {
 		{component === 'atm' && <ATM store={bankStore} player={playerStore} pinCode={pinCode}/>}
 		{component === 'pay' && <Pay player={playerStore} payPrice={payPrice}/>}
 		{component === 'clothesShop' && <ClothesShop player={playerStore} hudStore={hudStore} store={shopsStore}/>}
+		{component === 'weaponShop' && <WeaponShop player={playerStore} store={shopsStore}/>}
 		{component === 'gasStation' && <GasStation data={gasStation} store={hudStore} player={playerStore}/>}
 		{component === 'jobs' && <Jobs store={jobsStore} currentJob={currentJob} jobParams={jobParams}/>}
+		{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}
 		<Chat store={chatStore} isCursorActive={isCursorActive}
 		      isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
 	</div>;

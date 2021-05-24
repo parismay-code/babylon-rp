@@ -1,0 +1,150 @@
+@import '../../../../styles/vars';
+
+.gun-buy-list {
+  padding: 190px 80px 0 80px;
+  
+  @media (max-width: 1280px) {
+	padding: calc(190px * .8) calc(80px * .8) 0 calc(80px * .8);
+  }
+  
+  @media (max-height: 800px) {
+	padding: calc(190px * .5) calc(80px * .5) 0 calc(80px * .5);
+  }
+  
+  &-content {
+	height: 50%;
+	overflow: auto;
+	
+	&::-webkit-scrollbar {
+	  display: none;
+	}
+  }
+  
+  &-notify {
+	width: 330px;
+	height: 120px;
+	margin-bottom: 70px;
+	padding: 20px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+ 
+	font-family: "TT Norms Bold", sans-serif;
+	text-align: center;
+ 
+	background: linear-gradient(to bottom, $color-blank, #FFB2B257);
+	
+	opacity: 0;
+	
+	transition: opacity .2s;
+	
+	@media (max-width: 1280px) {
+	  width: calc(330px * .8);
+	  height: calc(120px * .6);
+	  margin-bottom: 0;
+	  padding: calc(20px * .8);
+	}
+	
+	@media (max-height: 800px) {
+	  width: calc(330px * .7);
+	  height: calc(120px * .7);
+	  margin-bottom: 10px;
+	  padding: calc(20px * .7);
+	}
+ 
+	@media (max-width: 1000px) {
+	  width: calc(330px * .5);
+	  height: calc(120px * .5);
+	  margin-bottom: 0;
+	  padding: calc(20px * .5);
+	}
+  }
+  
+  &-price {
+	width: 100%;
+	height: 50px;
+	margin-bottom: 25px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+	border-bottom: 2px solid #ffffff57;
+	
+	@media (max-width: 1280px) {
+	  height: calc(50px * .8);
+	  margin-bottom: calc(25px * .8);
+	}
+ 
+	@media (max-height: 800px) {
+	  height: calc(50px * .5);
+	  margin-bottom: calc(25px * .5);
+	}
+	
+	&__title {
+	  font-size: 1.2rem;
+	  font-family: "TT Norms Light", sans-serif;
+	}
+	
+	&__value {
+	  font-family: "TT Norms Extra Bold", sans-serif;
+	  font-size: 2rem;
+	  color: $color-green;
+	}
+  }
+  
+  &__submit {
+	position: relative;
+	height: 80px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	overflow: hidden;
+	
+	text-transform: uppercase;
+	font-family: "TT Norms Extra Bold", sans-serif;
+	font-size: 1.5rem;
+	letter-spacing: 1px;
+	
+	background: linear-gradient(to left, #8C8992aa, #ffffffaa);
+	
+	cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+	
+	@media (max-width: 1280px) {
+	  height: calc(80px * .8);
+	}
+ 
+	@media (max-height: 800px) {
+	  height: calc(80px * .5);
+	}
+ 
+	@media (max-width: 1000px) {
+	  font-size: 1rem;
+	}
+	
+	&:hover::before {
+	  left: 150%;
+	}
+	
+	&::before {
+	  content: '';
+	  
+	  position: absolute;
+	  top: 50%;
+	  left: -50%;
+	  transform: translate(-50%, -50%) rotate(-25deg);
+	  
+	  width: 60%;
+	  height: 500%;
+	  
+	  pointer-events: none;
+	  
+	  background: linear-gradient(to right, #C374F247, #DADDD8, #C374F247);
+	  
+	  transition: left .5s ease;
+	}
+  }
+}

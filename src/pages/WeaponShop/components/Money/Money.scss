@@ -1,0 +1,37 @@
+@import '../../../../styles/vars';
+
+.gun-shop-money {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  margin-bottom: 60px;
+  
+  @media (max-width: 1280px) {
+	margin-bottom: calc(60px * .8);
+  }
+  
+  @media (max-height: 800px) {
+	margin-bottom: calc(60px * .5);
+  }
+  
+  &-bank,
+  &-cash {
+	width: 50%;
+	
+	&__value {
+	  font-family: "TT Norms Bold", sans-serif;
+	  font-size: 1.5rem;
+	  
+	  margin-bottom: 10px;
+	  
+	  @media (max-width: 1280px) {
+		margin-bottom: calc(10px * .8);
+	  }
+	  
+	  @media (max-height: 800px) {
+		margin-bottom: calc(10px * .5);
+	  }
+	}
+  }
+}

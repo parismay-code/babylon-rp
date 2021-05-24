@@ -1,0 +1,192 @@
+@import '../../../../../../styles/vars';
+
+.gun-buy-list-card {
+  position: relative;
+  width: 330px;
+  height: 70px;
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  
+  display: flex;
+  align-items: flex-end;
+  
+  background: linear-gradient(to left, #8C899270, #ffffff70);
+  
+  @media (max-width: 1280px) {
+	width: calc(330px * .8);
+	height: calc(70px * .8);
+	padding: calc(5px * .8) calc(15px * .8);
+	margin-bottom: calc(20px * .8);
+  }
+  
+  @media (max-height: 800px) {
+	width: calc(330px * .7);
+	height: calc(70px * .7);
+	padding: calc(5px * .7) calc(15px * .7);
+	margin-bottom: calc(20px * .7);
+  }
+  
+  @media (max-width: 1000px) {
+	width: calc(330px * .5);
+	height: calc(70px * .5);
+	padding: calc(5px * .5) calc(15px * .5);
+	margin-bottom: calc(20px * .5);
+  }
+  
+  &__image {
+	width: 80px;
+	
+	position: absolute;
+	left: 0;
+	top: 40%;
+	transform: translateY(-50%);
+	
+	filter: brightness(.3);
+	
+	@media (max-width: 1280px) {
+	  width: calc(80px * .8);
+	}
+ 
+	@media (max-height: 800px) {
+	  width: calc(80px * .7);
+	}
+ 
+	@media (max-width: 1000px) {
+	  width: calc(80px * .5);
+	}
+  }
+  
+  &-input {
+	position: absolute;
+	top: 10px;
+	left: 80px;
+ 
+	height: 30px;
+	display: flex;
+	align-items: center;
+	
+	color: #00000057;
+	font-family: "TT Norms Bold", sans-serif;
+	font-size: 2rem;
+	
+	@media (max-width: 1280px) {
+	  top: calc(10px * .8);
+	  left: calc(80px * .8);
+	  height: calc(30px * .8);
+	}
+ 
+	@media (max-height: 800px) {
+	  top: calc(10px * .7);
+	  left: calc(80px * .7);
+	  height: calc(30px * .7);
+	}
+ 
+	@media (max-width: 1000px) {
+	  top: calc(10px * .5);
+	  left: calc(80px * .5);
+	  height: calc(30px * .5);
+	}
+	
+	&__field {
+	  height: 100%;
+	  width: 60px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  background-color: #00000037;
+	  
+	  color: $color-white;
+	  font-size: 1.2rem;
+	  font-family: "TT Norms Regular", sans-serif;
+	  
+	  @media (max-width: 1280px) {
+		width: calc(60px * .8);
+	  }
+	  
+	  @media (max-height: 800px) {
+		width: calc(60px * .7);
+	  }
+	  
+	  @media (max-width: 1000px) {
+		width: calc(60px * .5);
+	  }
+	}
+	
+	&__prev,
+	&__next {
+	  cursor: url("../../../../../../assets/images/cursorPointer.svg"), pointer;
+	  width: 20px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  padding-bottom: 3px;
+	  
+	  @media (max-width: 1280px) {
+		width: calc(20px * .8);
+	  }
+	  
+	  @media (max-height: 800px) {
+		width: calc(20px * .7);
+	  }
+	  
+	  @media (max-width: 1000px) {
+		width: calc(20px * .5);
+		font-size: 1.5rem;
+	  }
+	}
+  }
+  
+  &-info {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	
+	&__name {
+	  width: 55%;
+	  text-shadow: 0 2px 2px $color-black;
+	  text-transform: uppercase;
+	  
+	  @media (max-width: 1000px) {
+		font-size: .8rem;
+	  }
+	}
+	
+	&__price {
+	  color: $color-green;
+	  font-family: "TT Norms Bold", sans-serif;
+	  font-size: 1.5rem;
+	  
+	  @media (max-width: 1000px) {
+		font-size: 1rem;
+	  }
+	}
+  }
+  
+  &__remove {
+	position: absolute;
+	right: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+ 
+	width: 25px;
+	
+	cursor: url("../../../../../../assets/images/cursorPointer.svg"), pointer;
+	
+	@media (max-width: 1280px) {
+	  width: calc(25px * .8);
+	  right: calc(25px * .8);
+	}
+ 
+	@media (max-height: 800px) {
+	  width: calc(25px * .7);
+	  right: calc(25px * .7);
+	}
+ 
+	@media (max-width: 1000px) {
+	  width: calc(25px * .5);
+	  right: calc(25px * .5);
+	}
+  }
+}

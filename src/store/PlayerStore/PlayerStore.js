@@ -74,6 +74,33 @@ export default class PlayerStore {
             //     daysExtended: 7
             // }
         ],
+        cars: [
+            {
+                id: 150,
+                type: 'car',
+                name: 'Laborgini',
+            },
+            {
+                id: 13,
+                type: 'car',
+                name: 'Toyota',
+            },
+            {
+                id: 1509,
+                type: 'car',
+                name: 'Infinity',
+            },
+            {
+                id: 490,
+                type: 'car',
+                name: 'Nissan',
+            },
+            {
+                id: 322,
+                type: 'car',
+                name: 'Lada',
+            },
+        ],
         isInGreenZone: false,
         isInCar: false,
         isRadioSet: false,

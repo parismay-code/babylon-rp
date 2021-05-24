@@ -1,0 +1,393 @@
+@import '../../../../styles/vars';
+
+.gun-description {
+  position: relative;
+  width: 825px;
+  height: 100%;
+  padding: 190px 100px 0 0;
+  
+  @media (max-width: 1280px) {
+    width: calc(825px * .7);
+    padding: calc(190px * .5) calc(100px * .5) 0 0;
+  }
+  
+  @media (max-height: 800px) {
+    width: calc(825px * .6);
+    padding: calc(190px * .6) calc(100px * .6) 0 0;
+  }
+  
+  @media (max-width: 1000px) {
+    width: calc(825px * .5);
+    padding: calc(190px * .5) calc(100px * .5) 0 0;
+  }
+  
+  &-content {
+    position: relative;
+    padding: 0 0 30px 100px;
+    width: 100%;
+  
+    border-bottom: 2px solid #00000057;
+    
+    @media (max-width: 1280px) {
+      padding: 0 0 calc(30px * .5) calc(100px * .5);
+    }
+  
+    @media (max-height: 800px) {
+      border-bottom: 1px solid #00000057;
+    }
+    
+    &__name {
+      width: 85%;
+      
+      font-family: "TT Norms Bold", sans-serif;
+      text-transform: uppercase;
+      font-size: 2rem;
+      
+      margin-bottom: 10px;
+      
+      @media (max-width: 1280px) {
+        margin-bottom: calc(10px * .8);
+      }
+  
+      @media (max-height: 800px) {
+        margin-bottom: calc(10px * .5);
+      }
+  
+      @media (max-width: 1000px) {
+        font-size: 1.5rem;
+      }
+    }
+    
+    &__price {
+      font-family: "TT Norms Extra Bold", sans-serif;
+      font-size: 1.5rem;
+  
+      @media (max-width: 1000px) {
+        font-size: 1rem;
+      }
+    }
+    
+    &__image {
+      width: 85%;
+      margin-bottom: 50px;
+      
+      @media (max-width: 1280px) {
+        margin-bottom: calc(50px * .8);
+      }
+  
+      @media (max-height: 800px) {
+        margin-bottom: calc(50px * .5);
+      }
+    }
+    
+    &-params {
+      width: 85%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      &-element {
+        text-align: center;
+        
+        &__title {
+          font-family: "TT Norms Light", sans-serif;
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+          
+          @media (max-width: 1280px) {
+            margin-bottom: calc(10px * .8);
+          }
+  
+          @media (max-height: 800px) {
+            margin-bottom: calc(10px * .5);
+          }
+  
+          @media (max-width: 1000px) {
+            font-size: .8rem;
+          }
+        }
+        
+        &__value {
+          font-family: "TT Norms Bold", sans-serif;
+          font-size: 2rem;
+          opacity: .5;
+  
+          @media (max-width: 1000px) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    
+    &-modifies {
+      position: absolute;
+      top: 0;
+      right: 0;
+      
+      &-add,
+      &-element {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 25px;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        border: 2px solid $color-white;
+        
+        @media (max-width: 1280px) {
+          width: calc(40px * .8);
+          height: calc(40px * .8);
+          margin-bottom: calc(25px * .8);
+        }
+  
+        @media (max-height: 800px) {
+          width: calc(40px * .5);
+          height: calc(40px * .5);
+          margin-bottom: calc(25px * .5);
+          
+          border: 1px solid $color-white;
+        }
+      }
+      
+      &-add {
+        margin-bottom: 50px;
+        border-style: dashed;
+        
+        cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+        
+        @media (max-width: 1280px) {
+          margin-bottom: calc(50px * .8);
+        }
+  
+        @media (max-height: 800px) {
+          margin-bottom: calc(50px * .5);
+        }
+        
+        &:hover &__icon {
+          transform: rotate(90deg);
+        }
+        
+        &:hover &__title {
+          left: 0;
+          opacity: 1;
+        }
+        
+        &__title {
+          position: absolute;
+          top: -130%;
+          left: -100%;
+          opacity: 0;
+  
+          font-family: "TT Norms Light", sans-serif;
+          font-size: 1.2rem;
+          
+          pointer-events: none;
+          
+          transition: left .2s, opacity .2s;
+        }
+        
+        &__icon {
+          width: 60%;
+          
+          transition: transform .2s;
+        }
+      }
+    }
+  }
+  
+  &-bottom {
+    padding: 30px 0 0 100px;
+    height: 100%;
+    
+    @media (max-width: 1280px) {
+      padding: calc(30px * .8) 0 0 calc(100px * .8);
+    }
+  
+    @media (max-height: 800px) {
+      padding: calc(30px * .5) 0 0 calc(100px * .5);
+    }
+    
+    &__text {
+      height: 20%;
+      font-family: "TT Norms Light", sans-serif;
+      font-size: 1.2rem;
+      
+      @media (max-width: 1000px) {
+        font-size: 1rem;
+      }
+    }
+    
+    &-buy {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      
+      &-count {
+        width: 45%;
+        height: 50px;
+        margin-bottom: 25px;
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+  
+        border-bottom: 2px solid #ffffff57;
+        
+        @media (max-width: 1280px) {
+          height: calc(50px * .8);
+          margin-bottom: calc(25px * .8);
+        }
+  
+        @media (max-height: 800px) {
+          height: calc(50px * .5);
+          margin-bottom: calc(25px * .5);
+        }
+        
+        &__title {
+          font-size: 1.2rem;
+          font-family: "TT Norms Light", sans-serif;
+          
+          @media (max-width: 1000px) {
+            font-size: 1rem;
+          }
+        }
+        
+        &__value {
+          font-family: "TT Norms Extra Bold", sans-serif;
+          font-size: 2rem;
+  
+          @media (max-width: 1000px) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+      
+      &-input {
+        height: 80px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+        @media (max-width: 1280px) {
+          height: calc(80px * .8);
+        }
+  
+        @media (max-height: 800px) {
+          height: calc(80px * .5);
+        }
+        
+        &__field {
+          height: 100%;
+          width: 40%;
+          margin-right: 2px;
+          padding: 25px;
+          
+          background-color: #00000057;
+          border: none;
+          outline: none;
+  
+          font-family: "TT Norms Medium", sans-serif;
+          font-size: 1.3rem;
+          color: $color-white;
+          
+          @media (max-width: 1280px) {
+            padding: calc(25px * .8);
+            font-size: 1rem;
+          }
+  
+          @media (max-height: 800px) {
+            padding: calc(25px * .5);
+          }
+          
+          @media (max-width: 1000px) {
+            font-size: .8rem;
+          }
+          
+          &::placeholder {
+            color: $color-white-medium-opacity;
+          }
+        }
+        
+        &-price {
+          width: 15%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+  
+          background-color: #00000057;
+  
+          @media (max-width: 1000px) {
+            font-size: .8rem;
+          }
+          
+          &__icon {
+            width: 40%;
+          }
+          
+          &__title {
+            margin-top: 5px;
+            font-family: "TT Norms Light", sans-serif;
+            letter-spacing: 1px;
+            opacity: .5;
+          }
+        }
+  
+        &__submit {
+          position: relative;
+          height: 100%;
+          width: 45%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+    
+          overflow: hidden;
+    
+          text-transform: uppercase;
+          font-family: "TT Norms Extra Bold", sans-serif;
+          font-size: 1.5rem;
+          letter-spacing: 1px;
+    
+          background: linear-gradient(to left, #8C8992aa, #ffffffaa);
+  
+          cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+          
+          @media (max-width: 1280px) {
+            font-size: 1rem;
+          }
+  
+          @media (max-width: 1000px) {
+            font-size: .8rem;
+          }
+    
+          &:hover::before {
+            left: 150%;
+          }
+    
+          &::before {
+            content: '';
+      
+            position: absolute;
+            top: 50%;
+            left: -50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+      
+            width: 60%;
+            height: 500%;
+      
+            pointer-events: none;
+      
+            background: linear-gradient(to right, #C374F247, #DADDD8, #C374F247);
+      
+            transition: left .5s ease;
+          }
+        }
+      }
+    }
+  }
+}
