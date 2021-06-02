@@ -1,0 +1,91 @@
+@import '../../../../../../styles/vars';
+
+.inventory-main {
+  padding-top: 60px;
+  
+  &__title {
+    width: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    font-family: "Baron Neue", sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 2px 2px $color-black;
+    margin: -9px 0 35px 0;
+    
+    & span {
+      transform: translateY(20%);
+      
+      font-family: "TT Norms Medium", sans-serif;
+      font-size: 1.8rem;
+      text-transform: lowercase;
+    }
+  }
+  
+  &-render {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    
+    transition: opacity .2s;
+    
+    &__image {
+      width: 80px;
+      margin-right: 25px;
+    }
+    
+    &-info {
+      width: 280px;
+      
+      &__name,
+      &__quality {
+        font-family: "TT Norms Extra Bold", sans-serif;
+        font-size: 1.3rem;
+      }
+      
+      &__name {
+        text-shadow: 0 2px 2px $color-black;
+      }
+      
+      &__quality {
+        margin-bottom: 10px;
+      }
+      
+      &__description {
+        text-shadow: 0 2px 2px $color-black;
+      }
+    }
+  }
+  
+  &-notify {
+    width: 430px;
+    height: 140px;
+    padding: 40px 20px 20px 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    text-align: center;
+  
+    opacity: 0;
+  
+    background: linear-gradient(to top, #FFB2B257, $color-blank);
+    
+    transition: opacity .2s;
+    
+    &__title {
+      margin-bottom: 5px;
+      font-size: 1.3rem;
+    }
+    
+    &__subtitle {
+      font-size: 1.2rem;
+      font-family: "TT Norms Light", sans-serif;
+    }
+  }
+}

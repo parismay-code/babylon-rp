@@ -1,0 +1,42 @@
+@import '../../../../../../styles/vars';
+
+.inventory-clothes {
+  padding-top: 60px;
+  margin-right: 80px;
+  
+  &-cell {
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+	
+	&__quality {
+	  width: 80px;
+	  height: 20px;
+	}
+	
+	&-content {
+	  width: 50px;
+	  height: 50px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  background-color: #00000057;
+	  
+	  border: 2px solid #00000000;
+	  
+	  cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+	  
+	  &_active {
+		border: 2px solid #ffffff;
+	  }
+	  
+	  &__icon {
+		height: 80%;
+		width: 80%;
+		
+		pointer-events: none;
+	  }
+	}
+  }
+}

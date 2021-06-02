@@ -1,6 +1,5 @@
 import * as React from 'react';
 import cn from 'classnames';
-import {observer} from "mobx-react-lite";
 
 import Nose from "./components/Nose";
 import Eyebrows from "./components/Eyebrows";
@@ -69,4 +68,4 @@ const CreatorPlayerFace = ({store}) => {
     )
 }
 
-export default observer(CreatorPlayerFace);
+export default React.memo(CreatorPlayerFace);

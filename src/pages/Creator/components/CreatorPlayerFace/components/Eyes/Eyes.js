@@ -55,7 +55,7 @@ const Eyes = ({store}) => {
                                              store.data.color.eyes = key;
                                          }}/>
                                 );
-                                else return <></>
+                                else return null
                             })
                         }
                     </div>

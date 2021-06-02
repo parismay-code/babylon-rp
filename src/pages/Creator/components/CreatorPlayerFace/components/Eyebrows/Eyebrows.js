@@ -97,7 +97,7 @@ const Eyebrows = ({store}) => {
                                              store.data.color.eyebrows = key;
                                          }}/>
                                 );
-                                else return <></>
+                                else return null
                             })
                         }
                     </div>

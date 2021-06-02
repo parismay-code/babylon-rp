@@ -1,0 +1,181 @@
+@import '../../../../../../../../styles/vars';
+
+.inventory-backpack {
+  width: 540px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  padding-right: 110px;
+  
+  &-header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	
+	text-shadow: 0 2px 2px $color-black;
+	
+	&-info {
+	  display: flex;
+	  align-items: center;
+	  padding: 5px 10px;
+	  width: 40%;
+	  margin-right: auto;
+	  
+	  box-shadow: -15px 5px 10px #00000057;
+	  
+	  background: linear-gradient(to right, #ffffff57, #8C899257);
+	  
+	  &__line {
+		width: 25%;
+		height: 2px;
+		background-color: #fff;
+		margin-right: auto;
+	  }
+	  
+	  &__title {
+		margin-right: 10px;
+	  }
+	  
+	  &__arrow {
+		width: 10px;
+	  }
+	}
+	
+	&__weight {
+	  font-size: 1.5rem;
+	}
+  }
+  
+  &-content {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 15px 0 0 15px;
+	
+	background: linear-gradient(to top, #ffffff57, #8C899257);
+	
+	&-cell {
+	  position: relative;
+	  width: 50px;
+	  height: 50px;
+	  margin-bottom: 15px;
+	  margin-right: 15px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  background-color: #00000057;
+	  
+	  text-shadow: 0 2px 2px $color-black;
+	  
+	  cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
+	  
+	  border: 2px solid #00000000;
+	  
+	  &_active {
+		border: 2px solid #ffffff !important;
+	  }
+	  
+	  &__image {
+		position: absolute;
+		width: 60%;
+		height: 60%;
+		
+		pointer-events: none;
+	  }
+	  
+	  &__quality {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		transform: translateX(-50%);
+		
+		width: 20%;
+		height: 100%;
+		
+		pointer-events: none;
+	  }
+	  
+	  &__count {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+		pointer-events: none;
+	  }
+	  
+	  &-locked {
+		position: relative;
+		width: 50px;
+		height: 50px;
+		margin-bottom: 15px;
+		margin-right: 15px;
+	  
+		overflow: hidden;
+	 
+		background-color: #00000037;
+		
+		&-lines {
+		  position: absolute;
+		  top: 0;
+		  left: 50%;
+		  transform: rotate(-45deg) translate(-50%, -50%);
+		  
+		  width: 100%;
+		  height: 100%;
+		  
+		  &__line {
+			width: 400%;
+			height: 3px;
+			margin-bottom: 7px;
+			background-color: #ffffff;
+			opacity: .1;
+		  }
+		}
+	  }
+	}
+	
+	&-options {
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	  transform: translateX(100%);
+	  
+	  &__element {
+		position: relative;
+		width: 110px;
+		height: 45px;
+		margin-bottom: 15px;
+		
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	 
+		text-shadow: 0 2px 2px $color-black;
+		
+		background: linear-gradient(to right, #ffffff57, #8C899257);
+	 
+		cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+		
+		overflow: hidden;
+		
+		&::before {
+		  content: '';
+		  position: absolute;
+		  left: 0;
+		  top: 0;
+		  
+		  width: 10%;
+		  height: 150%;
+		  
+		  background: linear-gradient(to right, $color-black, $color-black, $color-blank);
+		  filter: blur(4px);
+		  
+		  pointer-events: none;
+		}
+	  }
+	}
+  }
+}

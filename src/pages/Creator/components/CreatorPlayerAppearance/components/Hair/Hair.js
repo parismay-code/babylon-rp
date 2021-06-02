@@ -67,7 +67,7 @@ const Hair = ({store}) => {
                                              store.data.color.head = key;
                                          }}/>
                                 );
-                                else return <></>
+                                else return null
                             })
                         }
                     </div>
@@ -101,7 +101,7 @@ const Hair = ({store}) => {
                                                  store.data.color.chest = key;
                                              }}/>
                                     );
-                                    else return <></>
+                                    else return null
                                 })
                             }
                         </div>

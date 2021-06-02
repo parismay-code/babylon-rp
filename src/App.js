@@ -29,20 +29,22 @@ import BattlePassStore from 'store/BattlePassStore';
 import PlayerStore     from 'store/PlayerStore';
 import ShopsStore      from 'store/ShopsStore';
 import JobsStore       from 'store/JobsStore';
+import InventoryStore  from 'store/InventoryStore';
 
 import spawnsData from 'configs/spawnData';
 
 const App = () => {
-	const authStore = useLocalStore(() => new AuthStore());
-	const bankStore = useLocalStore(() => new BankStore());
-	const chatStore = useLocalStore(() => new ChatStore());
-	const creatorStore = useLocalStore(() => new CreatorStore());
-	const hudStore = useLocalStore(() => new HUDStore());
-	const crimeHudStore = useLocalStore(() => new CrimeHUDStore());
-	const battlePassStore = useLocalStore(() => new BattlePassStore());
-	const playerStore = useLocalStore(() => new PlayerStore());
-	const shopsStore = useLocalStore(() => new ShopsStore());
-	const jobsStore = useLocalStore(() => new JobsStore());
+	const authStore = useLocalStore(() => new AuthStore()),
+		bankStore = useLocalStore(() => new BankStore()),
+		chatStore = useLocalStore(() => new ChatStore()),
+		creatorStore = useLocalStore(() => new CreatorStore()),
+		hudStore = useLocalStore(() => new HUDStore()),
+		crimeHudStore = useLocalStore(() => new CrimeHUDStore()),
+		battlePassStore = useLocalStore(() => new BattlePassStore()),
+		playerStore = useLocalStore(() => new PlayerStore()),
+		shopsStore = useLocalStore(() => new ShopsStore()),
+		jobsStore = useLocalStore(() => new JobsStore()),
+		inventoryStore = useLocalStore(() => new InventoryStore());
 	
 	const [component, setComponent] = React.useState(null),
 		[isRegistered, setRegistered] = React.useState(false),
@@ -213,9 +215,9 @@ const App = () => {
 		});
 	
 	React.useEffect(() => {
-		window.window.alt.emit('client::cef:ready');
+		window.alt.emit('client::cef:ready');
 		
-		window.window.alt.on('cef::auth:start', bool => {
+		window.alt.on('cef::auth:start', bool => {
 			setRegistered(bool);
 			setComponent('auth');
 		});
@@ -252,7 +254,7 @@ const App = () => {
 			setComponent('atm');
 		});
 		
-		window.alt.on('cef::pay:start', (price) => {
+		window.alt.on('cef::pay:start', price => {
 			setPayPrice(price);
 			setComponent('pay');
 		});
@@ -329,6 +331,13 @@ const App = () => {
 		window.alt.on('cef::jobs:addTruckDriverOrder', obj => jobsStore.addTruckDriverOrder(obj));
 		window.alt.on('cef::jobs:removeTruckDriverOrder', id => jobsStore.removeTruckDriverOrder(id));
 	}, [jobsStore]);
+	React.useEffect(() => {
+		window.alt.on('cef::inventory:setClothes', array => inventoryStore.fetchClothesData(array));
+		window.alt.on('cef::inventory:setInventory', array => inventoryStore.fetchInventoryData(array));
+		window.alt.on('cef::inventory:setTrunk', array => inventoryStore.fetchTrunkData(array));
+		
+		inventoryStore.calcInventoryWeight();
+	}, [inventoryStore]);
 	
 	return <div className="app">
 		{component === 'auth' && <Auth isRegistered={isRegistered} store={authStore}/>}
@@ -340,6 +349,7 @@ const App = () => {
 			defaultStore={hudStore}
 			crimeStore={crimeHudStore}
 			player={playerStore}
+			inventoryStore={inventoryStore}
 			currentHUD={currentHUD}
 			targetPlayerData={targetPlayerData}
 		/>}

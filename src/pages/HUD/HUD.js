@@ -5,7 +5,7 @@ import CrimeHUD from "./pages/CrimeHUD";
 
 import './HUD.scss';
 
-const HUD = ({defaultStore, crimeStore, currentHUD, player, targetPlayerData}) => {
+const HUD = ({defaultStore, crimeStore, currentHUD, player, targetPlayerData, inventoryStore}) => {
     const screen = React.useRef(null);
     
     React.useEffect(() => {
@@ -16,7 +16,7 @@ const HUD = ({defaultStore, crimeStore, currentHUD, player, targetPlayerData}) =
     
     return <div ref={screen} className='hud'>
         {
-            currentHUD === 0 ? <HUDMain store={defaultStore} player={player} targetPlayerData={targetPlayerData}/>
+            currentHUD === 0 ? <HUDMain store={defaultStore} player={player} targetPlayerData={targetPlayerData} inventoryStore={inventoryStore}/>
                 : <CrimeHUD defaultStore={defaultStore} crimeStore={crimeStore}/>
         }
     </div>

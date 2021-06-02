@@ -1,6 +1,5 @@
 import * as React from 'react';
 import cn from 'classnames';
-import {observer} from "mobx-react-lite";
 
 import Similarity from "./components/Similarity";
 import Hair from "./components/Hair";
@@ -34,4 +33,4 @@ const CreatorPlayerAppearance = ({store}) => {
     )
 }
 
-export default observer(CreatorPlayerAppearance);
+export default React.memo(CreatorPlayerAppearance);
