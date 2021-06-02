@@ -18,7 +18,8 @@ const Main = ({
 	notifyText,
 	notify,
 	handlePutOn,
-	handlePutOff
+	handlePutOff,
+	handleDrop
 }) => {
 	const renderQuality = React.useMemo(() => {
 		switch (render.quality) {
@@ -73,6 +74,7 @@ const Main = ({
 			handleMouseDown={handleMouseDown}
 			handlePutOn={handlePutOn}
 			handlePutOff={handlePutOff}
+			handleDrop={handleDrop}
 		/>
 		<FastSlots
 			store={store}

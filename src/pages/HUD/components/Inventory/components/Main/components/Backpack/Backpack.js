@@ -15,7 +15,8 @@ const Backpack = ({
 	setTargetCell,
 	handleMouseDown,
 	handlePutOn,
-	handlePutOff
+	handlePutOff,
+	handleDrop
 }) => {
 	const backpackQuality = React.useMemo(() => {
 		switch (store.clothes[4].quality) {
@@ -184,7 +185,7 @@ const Backpack = ({
 					{currentItem.component === 'clothes' ? 'Снять' : 'Надеть'}
 				</div>}
 				{currentItem.options?.indexOf('drop') >= 0 &&
-				<div className="inventory-backpack-content-options__element">Выбросить</div>}
+				<div className="inventory-backpack-content-options__element" onClick={() => handleDrop()}>Выбросить</div>}
 				{currentItem.options?.indexOf('trade') >= 0 &&
 				<div className="inventory-backpack-content-options__element">Передать</div>}
 				{currentItem.options?.indexOf('split') >= 0 &&

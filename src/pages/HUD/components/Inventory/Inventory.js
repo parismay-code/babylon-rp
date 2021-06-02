@@ -375,7 +375,13 @@ const Inventory = ({store}) => {
 					options: item.options,
 				});
 				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
-			}, [currentItem.id, showNotify, store]);
+			}, [currentItem.id, showNotify, store]),
+			handleDrop = React.useCallback(() => {
+				const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+				
+				window.alt.emit('client::inventory:dropItem', item.hash);
+				console.log(item.hash);
+			}, [currentItem.component, currentItem.id, store.clothes, store.inventory]);
 		
 		React.useEffect(() => {
 			if (currentItem.component) {
@@ -437,6 +443,7 @@ const Inventory = ({store}) => {
 					notifyText={notifyText}
 					handlePutOn={handlePutOn}
 					handlePutOff={handlePutOff}
+					handleDrop={handleDrop}
 				/>
 			</div>
 			<div className="inventory-exit">

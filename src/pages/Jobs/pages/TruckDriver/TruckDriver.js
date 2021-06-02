@@ -34,7 +34,7 @@ const TruckDriver = ({store}) => {
 					</div>
 					<div
 						className="job-truck-driver-content-main-header-button"
-						onClick={() => window.alt.emit('client::jobs:setTruckDriverJob')}
+						onClick={() => window.alt.emit('client::jobs:setTruckDriverJob', !store.truckDriverData.isEmployed)}
 					>{store.truckDriverData.isEmployed ? 'уволиться' : 'устроиться'}</div>
 				</div>
 				<div className="job-truck-driver-content-main-information">
