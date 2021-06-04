@@ -170,7 +170,6 @@ const Inventory = ({store}) => {
 					setMiddleComponent('dropZone');
 					
 					window.alt.emit('client::inventory:dropItem', item.hash, item.quality, item.count);
-					console.log('drop: ' + item.hash, item.quality, item.count);
 				}
 			}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
 			handleTrade = React.useCallback((id) => {
@@ -179,8 +178,7 @@ const Inventory = ({store}) => {
 				if (id) {
 					setMiddleComponent('dropZone');
 					
-					window.alt.emit('client::inventory:tradeItem', item.hash, item.quality, item.count);
-					console.log('trade: ' + item.hash, item.quality, item.count);
+					window.alt.emit('client::inventory:tradeItem', id, item.hash, item.quality, item.count);
 				} else {
 					setMiddleComponent('tradeList');
 				}
@@ -473,6 +471,10 @@ const Inventory = ({store}) => {
 				}
 			}
 		}, [store.clothes, store.inventory.fastSlots, store.clothes[4].isPlaced]);
+		
+		React.useEffect(() => {
+			window.alt.on('cef::inventory:showNotify', (title, subtitle, timeout) => showNotify(title, subtitle, timeout));
+		}, [showNotify]);
 		
 		return <div
 			className="inventory"

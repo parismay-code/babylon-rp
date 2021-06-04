@@ -333,7 +333,7 @@ const App = () => {
 	}, [jobsStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::inventory:setClothes', array => inventoryStore.fetchClothesData(array));
-		window.alt.on('cef::inventory:setInventory', array => inventoryStore.fetchInventoryData(array));
+		window.alt.on('cef::inventory:setInventory', obj => inventoryStore.fetchInventoryData(obj));
 		window.alt.on('cef::inventory:setTrunk', array => inventoryStore.fetchTrunkData(array));
 		window.alt.on('cef::inventory:setPlayersAround', array => inventoryStore.fetchPlayersAround(array));
 		
