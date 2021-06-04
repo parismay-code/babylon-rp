@@ -335,6 +335,7 @@ const App = () => {
 		window.alt.on('cef::inventory:setClothes', array => inventoryStore.fetchClothesData(array));
 		window.alt.on('cef::inventory:setInventory', array => inventoryStore.fetchInventoryData(array));
 		window.alt.on('cef::inventory:setTrunk', array => inventoryStore.fetchTrunkData(array));
+		window.alt.on('cef::inventory:setPlayersAround', array => inventoryStore.fetchPlayersAround(array));
 		
 		inventoryStore.calcInventoryWeight();
 	}, [inventoryStore]);

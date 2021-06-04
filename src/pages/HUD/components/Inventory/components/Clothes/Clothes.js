@@ -43,7 +43,7 @@ const Clothes = ({
 					onMouseDown={(e) => {
 						const timeout = setTimeout(() => {
 							if (el.isPlaced && e.button === 0) {
-								handleMouseDown();
+								handleMouseDown({component: 'clothes', id: key});
 								setTargetCell({component: 'clothes', id: key});
 								setDropCell({component: 'clothes', id: key});
 							}

@@ -75,7 +75,7 @@ const Backpack = ({
 					onMouseDown={(e) => {
 						const timeout = setTimeout(() => {
 							if (el.type && e.button === 0) {
-								handleMouseDown();
+								handleMouseDown({component: 'backpack', id: key});
 								setTargetCell({component: 'backpack', id: key});
 								setDropCell({component: 'backpack', id: key});
 							}
@@ -107,7 +107,7 @@ const Backpack = ({
 					onMouseDown={(e) => {
 						const timeout = setTimeout(() => {
 							if (el.type && e.button === 0) {
-								handleMouseDown();
+								handleMouseDown({component: 'backpack', id: key});
 								setTargetCell({component: 'backpack', id: key});
 								setDropCell({component: 'backpack', id: key});
 							}
@@ -139,7 +139,7 @@ const Backpack = ({
 						onMouseDown={(e) => {
 							const timeout = setTimeout(() => {
 								if (el.type && e.button === 0) {
-									handleMouseDown();
+									handleMouseDown({component: 'backpack', id: key});
 									setTargetCell({component: 'backpack', id: key});
 									setDropCell({component: 'backpack', id: key});
 								}

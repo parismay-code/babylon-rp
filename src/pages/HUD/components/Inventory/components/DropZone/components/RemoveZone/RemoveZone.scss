@@ -1,0 +1,26 @@
+@import '../../../../../../../../styles/vars';
+
+.inventory-remove-zone {
+  width: 100%;
+  height: 15%;
+  padding-top: 5%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: #00000040;
+  
+  border: 2px dashed $color-white;
+  
+  text-transform: uppercase;
+  text-shadow: 0 2px 2px $color-black;
+  font-family: "TT Norms Bold", sans-serif;
+  letter-spacing: 1px;
+  
+  &__icon {
+	margin-top: 10px;
+	filter: drop-shadow(0 2px 2px $color-black);
+  }
+}

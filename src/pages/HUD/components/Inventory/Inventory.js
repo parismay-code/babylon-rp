@@ -3,6 +3,9 @@ import * as React from 'react';
 import Clothes      from './components/Clothes';
 import Main         from './components/Main';
 import CellExemplar from './components/CellExemplar';
+import DropZone     from './components/DropZone';
+import RemoveAccept from './components/RemoveAccept';
+import TradeList    from './components/TradeList';
 
 import './Inventory.scss';
 
@@ -12,7 +15,8 @@ const Inventory = ({store}) => {
 			[targetCell, setTargetCell] = React.useState({component: null, id: null}),
 			[dropCell, setDropCell] = React.useState({component: null, id: null}),
 			[isCellDragged, setCellDragged] = React.useState(false),
-			[notifyText, setNotifyText] = React.useState({title: null, subtitle: null});
+			[notifyText, setNotifyText] = React.useState({title: null, subtitle: null}),
+			[middleComponent, setMiddleComponent] = React.useState('dropZone');
 		
 		const cellExemplar = React.useRef(null),
 			notify = React.useRef(null);
@@ -23,9 +27,171 @@ const Inventory = ({store}) => {
 				
 				setTimeout(() => notify.current.style.opacity = 0, timeout ? timeout : 3000);
 			}, []),
-			handleMouseDown = React.useCallback(() => {
+			handlePutOn = React.useCallback((item) => {
+				const target = item ? item : store.inventory[currentItem.component][currentItem.id];
+				
+				const id = store.clothes.findIndex(el => el.type === target.type);
+				const drop = store.clothes[id];
+				
+				const freeIndex = store.inventory[currentItem.component].findIndex(el => !el.type);
+				
+				if (target.type === drop.type && target.hash === drop.hash && target.quality === drop.quality) return showNotify('Ошибка', 'Этот предмет уже надет на Вас');
+				
+				if (target.count === 1) {
+					if (drop.isPlaced) store.changeInventoryData(currentItem,
+						{
+							type: drop.type,
+							hash: drop.hash,
+							quality: drop.quality,
+							image: drop.image,
+							render: drop.render,
+							name: drop.name,
+							description: drop.description,
+							count: drop.count,
+							weight: drop.weight,
+							maxStack: drop.maxStack,
+							options: drop.options,
+						});
+					else store.changeInventoryData(currentItem, {type: null});
+					
+					store.changeInventoryData({component: 'clothes', id}, {...target, isPlaced: true});
+				} else {
+					if (freeIndex < 0) return showNotify('Ошибка', 'Недостаточно места в инвентаре');
+					
+					if (drop.isPlaced) {
+						store.changeInventoryData({component: currentItem.component, id: freeIndex},
+							{
+								type: drop.type,
+								hash: drop.hash,
+								quality: drop.quality,
+								image: drop.image,
+								render: drop.render,
+								name: drop.name,
+								description: drop.description,
+								count: drop.count,
+								weight: drop.weight,
+								maxStack: drop.maxStack,
+								options: drop.options,
+							});
+					}
+					
+					store.inventory[currentItem.component][currentItem.id].count -= 1;
+					store.changeInventoryData({component: 'clothes', id},
+						{
+							type: target.type,
+							hash: target.hash,
+							quality: target.quality,
+							image: target.image,
+							render: target.render,
+							name: target.name,
+							description: target.description,
+							count: 1,
+							weight: target.weight,
+							maxStack: target.maxStack,
+							options: target.options,
+							isPlaced: true,
+						});
+				}
+				
+				setItem({
+					component: 'clothes',
+					id,
+					options: store.clothes[id].options,
+				});
+				
+				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+			}, [currentItem, showNotify, store]),
+			handlePutOff = React.useCallback(() => {
+				const item = store.clothes[currentItem.id];
+				
+				const pocketsFreeIndex = store.inventory.pockets.findIndex(el => !el.type);
+				const backpackFreeIndex = store.inventory.backpack.findIndex(el => !el.type);
+				
+				let component;
+				let id;
+				
+				if (item.weight + Number(store.inventoryWeight) <= store.inventoryMaxWeight) {
+					if (pocketsFreeIndex >= 0) {
+						store.changeInventoryData({component: 'pockets', id: pocketsFreeIndex},
+							{
+								type: item.type,
+								hash: item.hash,
+								quality: item.quality,
+								image: item.image,
+								render: item.render,
+								name: item.name,
+								description: item.description,
+								count: item.count,
+								weight: item.weight,
+								maxStack: item.maxStack,
+								options: item.options,
+							});
+						
+						id = pocketsFreeIndex;
+						component = 'pockets';
+					} else if (backpackFreeIndex >= 0 && store.clothes[4].isPlaced) {
+						if (item.type === 'backpack') return showNotify('Ошибка', 'Недостаточно места в инвентаре');
+						
+						store.changeInventoryData({component: 'backpack', id: backpackFreeIndex},
+							{
+								type: item.type,
+								hash: item.hash,
+								quality: item.quality,
+								image: item.image,
+								render: item.render,
+								name: item.name,
+								description: item.description,
+								count: item.count,
+								weight: item.weight,
+								maxStack: item.maxStack,
+								options: item.options,
+							});
+						
+						id = backpackFreeIndex;
+						component = 'backpack';
+					} else return showNotify('Ошибка', 'Недостаточно места в инвентаре');
+				} else return showNotify('Ошибка', 'Недостаточно места в инвентаре');
+				
+				store.clothes[currentItem.id].isPlaced = false;
+				store.clothes[currentItem.id].quality = null;
+				setItem({
+					component,
+					id,
+					options: item.options,
+				});
+				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+			}, [currentItem.id, showNotify, store]),
+			handleDrop = React.useCallback((isAccepted) => {
+				const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+				
+				if (item.quality >= 3 && !isAccepted) {
+					setMiddleComponent('removeAccept');
+				} else {
+					setMiddleComponent('dropZone');
+					
+					window.alt.emit('client::inventory:dropItem', item.hash, item.quality, item.count);
+					console.log('drop: ' + item.hash, item.quality, item.count);
+				}
+			}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
+			handleTrade = React.useCallback((id) => {
+				const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+				
+				if (id) {
+					setMiddleComponent('dropZone');
+					
+					window.alt.emit('client::inventory:tradeItem', item.hash, item.quality, item.count);
+					console.log('trade: ' + item.hash, item.quality, item.count);
+				} else {
+					setMiddleComponent('tradeList');
+				}
+			}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
+			handleMouseDown = React.useCallback((_targetCell) => {
+				setItem({
+					..._targetCell,
+					options: _targetCell.component === 'clothes' ? store.clothes[_targetCell.id].options : store.inventory[_targetCell.component][_targetCell.id].options,
+				});
 				setCellDragged(true);
-			}, []),
+			}, [store.clothes, store.inventory]),
 			handleMouseUp = React.useCallback(() => {
 				const error = (title, subtitle, timeout) => {
 					setItem({
@@ -52,6 +218,38 @@ const Inventory = ({store}) => {
 				};
 				
 				const target = targetCell.component === 'clothes' ? store.clothes[targetCell.id] : store.inventory[targetCell.component][targetCell.id];
+				
+				if (dropCell.component === 'trade') {
+					if (targetCell.component === 'fastSlots') return error('Ошибка', 'Нельзя передать предмет из быстрого доступа');
+					
+					setTargetCell({component: null, id: null});
+					setDropCell({component: null, id: null});
+					setCellDragged(false);
+					return handleTrade();
+				}
+				
+				if (dropCell.component === 'remove') {
+					if (targetCell.component === 'fastSlots') return error('Ошибка', 'Нельзя выбросить предмет из быстрого доступа');
+					
+					setTargetCell({component: null, id: null});
+					setDropCell({component: null, id: null});
+					setCellDragged(false);
+					return handleDrop();
+				}
+				
+				if (dropCell.component === 'putOn') {
+					const clothes = ['hat', 'glasses', 'tShirt', 'top', 'backpack', 'ring', 'armour', 'watch', 'gloves', 'pants', 'shoes'];
+					
+					if (target.isPlaced) return error('Ошибка', 'Этот предмет уже надет на Вас');
+					
+					if (clothes.includes(target.type)) {
+						setTargetCell({component: null, id: null});
+						setDropCell({component: null, id: null});
+						setCellDragged(false);
+						return handlePutOn(target);
+					} else return error('Ошибка', 'Предмет нельзя одеть на себя');
+				}
+				
 				const drop = dropCell.component === 'clothes' ? store.clothes[dropCell.id] : store.inventory[dropCell.component][dropCell.id];
 				
 				if (targetCell.component === 'fastSlots') {
@@ -241,147 +439,7 @@ const Inventory = ({store}) => {
 				if (isDropInFast >= 0) store.inventory.fastSlots[isDropInFast] = targetCell;
 				
 				return success();
-			}, [dropCell, showNotify, store, targetCell]),
-			handlePutOn = React.useCallback(() => {
-				const target = store.inventory[currentItem.component][currentItem.id];
-				
-				const id = store.clothes.findIndex(el => el.type === target.type);
-				const drop = store.clothes[id];
-				
-				const freeIndex = store.inventory[currentItem.component].findIndex(el => !el.type);
-				
-				if (target.type === drop.type && target.hash === drop.hash && target.quality === drop.quality) return showNotify('Ошибка', 'Этот предмет уже надет на Вас');
-				
-				if (target.count === 1) {
-					if (drop.isPlaced) store.changeInventoryData(currentItem,
-						{
-							type: drop.type,
-							hash: drop.hash,
-							quality: drop.quality,
-							image: drop.image,
-							render: drop.render,
-							name: drop.name,
-							description: drop.description,
-							count: drop.count,
-							weight: drop.weight,
-							maxStack: drop.maxStack,
-							options: drop.options,
-						});
-					else store.changeInventoryData(currentItem, {type: null});
-					
-					store.changeInventoryData({component: 'clothes', id}, {...target, isPlaced: true});
-				} else {
-					if (freeIndex < 0) return showNotify('Ошибка', 'Недостаточно места в инвентаре');
-					
-					if (drop.isPlaced) {
-						store.changeInventoryData({component: currentItem.component, id: freeIndex},
-							{
-								type: drop.type,
-								hash: drop.hash,
-								quality: drop.quality,
-								image: drop.image,
-								render: drop.render,
-								name: drop.name,
-								description: drop.description,
-								count: drop.count,
-								weight: drop.weight,
-								maxStack: drop.maxStack,
-								options: drop.options,
-							});
-					}
-					
-					store.inventory[currentItem.component][currentItem.id].count -= 1;
-					store.changeInventoryData({component: 'clothes', id},
-						{
-							type: target.type,
-							hash: target.hash,
-							quality: target.quality,
-							image: target.image,
-							render: target.render,
-							name: target.name,
-							description: target.description,
-							count: 1,
-							weight: target.weight,
-							maxStack: target.maxStack,
-							options: target.options,
-							isPlaced: true,
-						});
-				}
-				
-				setItem({
-					component: 'clothes',
-					id,
-					options: store.clothes[id].options,
-				});
-				
-				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
-			}, [currentItem, showNotify, store]),
-			handlePutOff = React.useCallback(() => {
-				const item = store.clothes[currentItem.id];
-				
-				const pocketsFreeIndex = store.inventory.pockets.findIndex(el => !el.type);
-				const backpackFreeIndex = store.inventory.backpack.findIndex(el => !el.type);
-				
-				let component;
-				let id;
-				
-				if (item.weight + Number(store.inventoryWeight) <= store.inventoryMaxWeight) {
-					if (pocketsFreeIndex >= 0) {
-						store.changeInventoryData({component: 'pockets', id: pocketsFreeIndex},
-							{
-								type: item.type,
-								hash: item.hash,
-								quality: item.quality,
-								image: item.image,
-								render: item.render,
-								name: item.name,
-								description: item.description,
-								count: item.count,
-								weight: item.weight,
-								maxStack: item.maxStack,
-								options: item.options,
-							});
-						
-						id = pocketsFreeIndex;
-						component = 'pockets';
-					} else if (backpackFreeIndex >= 0 && store.clothes[4].isPlaced) {
-						if (item.type === 'backpack') return showNotify('Ошибка', 'Недостаточно места в инвентаре');
-						
-						store.changeInventoryData({component: 'backpack', id: backpackFreeIndex},
-							{
-								type: item.type,
-								hash: item.hash,
-								quality: item.quality,
-								image: item.image,
-								render: item.render,
-								name: item.name,
-								description: item.description,
-								count: item.count,
-								weight: item.weight,
-								maxStack: item.maxStack,
-								options: item.options,
-							});
-						
-						id = backpackFreeIndex;
-						component = 'backpack';
-					} else return showNotify('Ошибка', 'Недостаточно места в инвентаре');
-				} else return showNotify('Ошибка', 'Недостаточно места в инвентаре');
-				
-				store.clothes[currentItem.id].isPlaced = false;
-				store.clothes[currentItem.id].quality = null;
-				setItem({
-					component,
-					id,
-					options: item.options,
-				});
-				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
-			}, [currentItem.id, showNotify, store]),
-			handleDrop = React.useCallback(() => {
-				const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
-				
-				window.alt.emit('client::inventory:dropItem', item.hash);
-				console.log(item.hash);
-			}, [currentItem.component, currentItem.id, store.clothes, store.inventory]);
+			}, [dropCell, handleDrop, handlePutOn, handleTrade, showNotify, store, targetCell]);
 		
 		React.useEffect(() => {
 			if (currentItem.component) {
@@ -400,17 +458,21 @@ const Inventory = ({store}) => {
 				name: null,
 				description: null,
 			});
+			
+			setMiddleComponent('dropZone');
 		}, [currentItem, store.clothes, store.inventory]);
 		
 		React.useEffect(() => {
-			const arr = store.inventory.fastSlots.filter(el => el.component === 'backpack');
-			
-			for (let i = 0; i < arr.length; i++) {
-				const id = store.inventory.fastSlots.findIndex(el => el.component === 'backpack');
+			if (!store.clothes[4].isPlaced) {
+				const arr = store.inventory.fastSlots.filter(el => el.component === 'backpack');
 				
-				store.inventory.fastSlots[id] = {component: null, id: null};
+				for (let i = 0; i < arr.length; i++) {
+					const id = store.inventory.fastSlots.findIndex(el => el.component === 'backpack');
+					
+					store.inventory.fastSlots[id] = {component: null, id: null};
+				}
 			}
-		}, [store.inventory.fastSlots, store.clothes[4].isPlaced]);
+		}, [store.clothes, store.inventory.fastSlots, store.clothes[4].isPlaced]);
 		
 		return <div
 			className="inventory"
@@ -445,6 +507,20 @@ const Inventory = ({store}) => {
 					handlePutOff={handlePutOff}
 					handleDrop={handleDrop}
 				/>
+				{middleComponent === 'dropZone' && <DropZone
+					setDropCell={setDropCell}
+					isCellDragged={isCellDragged}
+				/>}
+				{middleComponent === 'removeAccept' && <RemoveAccept
+					setMiddleComponent={setMiddleComponent}
+					handleDrop={handleDrop}
+					render={render}
+				/>}
+				{middleComponent === 'tradeList' && <TradeList
+					store={store}
+					
+					handleTrade={handleTrade}
+				/>}
 			</div>
 			<div className="inventory-exit">
 				<div className="inventory-exit__button">Esc</div>

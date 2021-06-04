@@ -399,12 +399,94 @@ export default class InventoryStore {
 		],
 	};
 	trunk = [];
+	playersAround = [
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+		{
+			id: 1,
+			name: 'Paris May'
+		},
+	];
 	
 	constructor() {
 		makeObservable(this, {
 			clothes: observable,
 			inventory: observable,
 			trunk: observable,
+			playersAround: observable,
 			inventoryWeight: observable,
 			inventoryMaxWeight: observable,
 			
@@ -413,6 +495,7 @@ export default class InventoryStore {
 			fetchInventoryData: action.bound,
 			changeInventoryData: action.bound,
 			fetchTrunkData: action.bound,
+			fetchPlayersAround: action.bound,
 		});
 	}
 	
@@ -450,6 +533,10 @@ export default class InventoryStore {
 	
 	fetchTrunkData(array) {
 		return this.trunk = array;
+	}
+	
+	fetchPlayersAround(array) {
+		return this.playersAround = array;
 	}
 	
 	destroy() {

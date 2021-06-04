@@ -52,7 +52,7 @@ const Pockets = ({
 					onMouseDown={(e) => {
 						const timeout = setTimeout(() => {
 							if (el.type && e.button === 0) {
-								handleMouseDown();
+								handleMouseDown({component: 'pockets', id: key});
 								setTargetCell({component: 'pockets', id: key});
 								setDropCell({component: 'pockets', id: key});
 							}
