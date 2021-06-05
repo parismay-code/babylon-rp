@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {observer} from 'mobx-react-lite';
 
 import Pockets   from './components/Pockets';
 import Backpack  from './components/Backpack';
@@ -92,4 +93,4 @@ const Main = ({
 	</div>;
 };
 
-export default React.memo(Main);
+export default observer(Main);

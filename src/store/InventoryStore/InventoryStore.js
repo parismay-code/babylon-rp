@@ -207,12 +207,10 @@ export default class InventoryStore {
 	
 	fetchTrunkData(array) {
 		this.trunk = array;
-		return this.calcInventoryWeight();
 	}
 	
 	fetchPlayersAround(array) {
 		this.playersAround = array;
-		return this.calcInventoryWeight();
 	}
 	
 	destroy() {
