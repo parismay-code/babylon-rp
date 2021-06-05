@@ -407,8 +407,12 @@ const Inventory = ({store}) => {
 								});
 						}
 						
-						store.clothes[targetCell.id].quality = null;
-						store.clothes[targetCell.id].isPlaced = false;
+						store.changeInventoryData(targetCell, {
+							type: target.type,
+							isPlaced: false,
+							quality: -1,
+							image: target.image,
+						});
 						
 						return success();
 					}

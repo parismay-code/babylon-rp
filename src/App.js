@@ -48,81 +48,14 @@ const App = () => {
 	
 	const [component, setComponent] = React.useState(null),
 		[isRegistered, setRegistered] = React.useState(false),
-		[characters, setCharacters] = React.useState([
-			// {
-			//     type: 2,
-			//     gender: 1,
-			//     level: 15,
-			//     nickname: {
-			//         firstname: 'Paris',
-			//         lastname: 'May'
-			//     },
-			//     fraction: {
-			//         type: 1,
-			//         name: 'lspd'
-			//     },
-			//     condition: {
-			//         hp: '100'
-			//     },
-			//     property: {
-			//         money: '500000',
-			//         bank: '5000000'
-			//     },
-			//     punishment: {
-			//         reason: '',
-			//         date: '',
-			//         admin: {
-			//             firstname: '',
-			//             lastname: ''
-			//         }
-			//     }
-			// },
-			// {
-			//     type: 2,
-			//     gender: 0,
-			//     level: 4,
-			//     nickname: {
-			//         firstname: 'Paris',
-			//         lastname: 'May'
-			//     },
-			//     fraction: {
-			//         type: 1,
-			//         name: 'lspd'
-			//     },
-			//     condition: {
-			//         hp: '100'
-			//     },
-			//     property: {
-			//         money: '15800',
-			//         bank: '5000000'
-			//     },
-			//     punishment: {
-			//         reason: '',
-			//         date: '',
-			//         admin: {
-			//             firstname: '',
-			//             lastname: ''
-			//         }
-			//     }
-			// },
-			// {type: 1}
-		]),
+		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
 		[currentHUD, setHUD] = React.useState(0),
 		[isCursorActive, setCursorActive] = React.useState(false),
 		[payPrice, setPayPrice] = React.useState(0),
 		[pinCode, setPinCode] = React.useState(null),
 		[targetPlayerData, setTargetPlayerData] = React.useState({}),
-		[gasStation, setGasStation] = React.useState({
-			id: 12,
-			type: 'default',
-			owner: 'Paris May',
-			cost: {
-				low: 10,
-				medium: 20,
-				premium: 30,
-			},
-		}),
+		[gasStation, setGasStation] = React.useState({}),
 		[currentJob, setCurrentJob] = React.useState(null),
 		[jobParams, setJobParams] = React.useState(null),
 		[parkingData, setParkingData] = React.useState({
