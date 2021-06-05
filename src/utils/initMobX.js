@@ -1,7 +1,7 @@
 import {configure} from "mobx";
 
 configure({
-    useProxies: 'ifavailable',
+    useProxies: 'ifavailable1',
     computedRequiresReaction: true,
     reactionRequiresObservable: true,
     observableRequiresReaction: false,

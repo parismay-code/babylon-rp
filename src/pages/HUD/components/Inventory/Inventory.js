@@ -54,7 +54,20 @@ const Inventory = ({store}) => {
 					});
 				else store.changeInventoryData(currentItem, {type: null});
 				
-				store.changeInventoryData({component: 'clothes', id}, {...target, isPlaced: true});
+				store.changeInventoryData({component: 'clothes', id}, {
+					type: target.type,
+					hash: target.hash,
+					quality: target.quality,
+					image: target.image,
+					render: target.render,
+					name: target.name,
+					description: target.description,
+					count: target.count,
+					weight: target.weight,
+					maxStack: target.maxStack,
+					options: target.options,
+					isPlaced: true,
+				});
 			} else {
 				if (freeIndex < 0) return showNotify('Ошибка', 'Недостаточно места в инвентаре');
 				
@@ -302,7 +315,21 @@ const Inventory = ({store}) => {
 							});
 						else store.changeInventoryData(targetCell, {type: null});
 						
-						store.changeInventoryData(dropCell, {...target, isPlaced: true});
+						store.changeInventoryData(dropCell, {
+							type: target.type,
+							hash: target.hash,
+							quality: target.quality,
+							image: target.image,
+							render: target.render,
+							name: target.name,
+							description: target.description,
+							count: target.count,
+							weight: target.weight,
+							maxStack: target.maxStack,
+							options: target.options,
+							isPlaced: true,
+						})
+						;
 					} else {
 						if (drop.isPlaced) {
 							const freeIndex = store.inventory[targetCell.component].findIndex(el => !el.type);

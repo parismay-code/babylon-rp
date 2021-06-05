@@ -78,7 +78,19 @@ export default class InventoryStore {
 	];
 	inventory = {
 		pockets: [
-			{type: null},
+			{
+				type: 'backpack',
+				hash: '123456789',
+				quality: 2,
+				image: 'backpack.svg',
+				render: 'backpack.svg',
+				name: 'Рюкзак',
+				description: 'Такая только у тебя и Майкла Джексона. Не стиранная, не глаженная.',
+				count: 1,
+				weight: 20,
+				maxStack: 1,
+				options: ['putOn', 'drop', 'trade', 'split'],
+			},
 			{type: null},
 			{type: null},
 			{type: null},
