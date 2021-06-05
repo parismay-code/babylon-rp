@@ -208,6 +208,7 @@ const ChatInput = ({store, isCursorActive}) => {
                     onChange={(e) => checkCommand(e.target.value)}
                     maxLength="200"
                     style={isCursorActive ? {pointerEvents: 'auto'} : {pointerEvents: 'none'}}
+                    tabIndex='-1'
                 />
                 <img className="chat-input-box__image" src={chatInputArrow} alt="#"/>
             </div>
