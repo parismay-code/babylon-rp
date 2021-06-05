@@ -197,6 +197,8 @@ export default class InventoryStore {
 		else if (backpackArr.length === 1) backpackWeight = backpackArr[0].weight * backpackArr[0].count;
 		else backpackWeight = 0;
 		
+		window.alt.emit('client::inventory:sendWeight', (pocketsWeight + backpackWeight).toFixed(1));
+		
 		return this.inventoryWeight = (pocketsWeight + backpackWeight).toFixed(1);
 	}
 	
