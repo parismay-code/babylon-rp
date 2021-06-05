@@ -52,7 +52,7 @@ const FastSlots = ({
 					}}
 					onMouseDown={(e) => {
 						const timeout = setTimeout(() => {
-							if (el.id >= 0 && e.button === 0) {
+							if (el.id !== null && e.button === 0) {
 								handleMouseDown({component: 'fastSlots', id: key});
 								setTargetCell({component: 'fastSlots', id: key});
 								setDropCell({component: 'fastSlots', id: key});
