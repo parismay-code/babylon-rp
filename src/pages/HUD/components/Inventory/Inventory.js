@@ -37,13 +37,14 @@ const Inventory = ({store}) => {
 			
 			const freeIndex = store.inventory[currentItem.component].findIndex(el => !el.type);
 			
-			if (target.type === drop.type && target.hash === drop.hash && target.quality === drop.quality) return showNotify('Ошибка', 'Этот предмет уже надет на Вас');
+			if (target.type === drop.type && target.key === drop.key && target.quality === drop.quality) return showNotify('Ошибка', 'Этот предмет уже надет на Вас');
 			
 			if (target.count === 1) {
 				if (drop.isPlaced) store.changeInventoryData(currentItem,
 					{
 						type: drop.type,
 						hash: drop.hash,
+						key: drop.key,
 						quality: drop.quality,
 						image: drop.image,
 						render: drop.render,
@@ -59,6 +60,7 @@ const Inventory = ({store}) => {
 				store.changeInventoryData({component: 'clothes', id}, {
 					type: target.type,
 					hash: target.hash,
+					key: target.key,
 					quality: target.quality,
 					image: target.image,
 					render: target.render,
@@ -78,6 +80,7 @@ const Inventory = ({store}) => {
 						{
 							type: drop.type,
 							hash: drop.hash,
+							key: drop.key,
 							quality: drop.quality,
 							image: drop.image,
 							render: drop.render,
@@ -95,6 +98,7 @@ const Inventory = ({store}) => {
 					{
 						type: target.type,
 						hash: target.hash,
+						key: target.key,
 						quality: target.quality,
 						image: target.image,
 						render: target.render,
@@ -131,6 +135,7 @@ const Inventory = ({store}) => {
 						{
 							type: item.type,
 							hash: item.hash,
+							key: item.key,
 							quality: item.quality,
 							image: item.image,
 							render: item.render,
@@ -151,6 +156,7 @@ const Inventory = ({store}) => {
 						{
 							type: item.type,
 							hash: item.hash,
+							key: item.key,
 							quality: item.quality,
 							image: item.image,
 							render: item.render,
@@ -222,6 +228,7 @@ const Inventory = ({store}) => {
 					{
 						type: item.type,
 						hash: item.hash,
+						key: item.key,
 						quality: item.quality,
 						image: item.image,
 						render: item.render,
@@ -344,12 +351,13 @@ const Inventory = ({store}) => {
 			
 			if (dropCell.component === 'clothes') {
 				if (targetCell.component !== 'clothes' && target.type === drop.type) {
-					if (target.hash === drop.hash && target.quality === drop.quality) return error('Ошибка', 'Этот предмет уже надет на Вас');
+					if (target.key === drop.key && target.quality === drop.quality) return error('Ошибка', 'Этот предмет уже надет на Вас');
 					if (target.count === 1) {
 						if (drop.isPlaced) store.changeInventoryData(targetCell,
 							{
 								type: drop.type,
 								hash: drop.hash,
+								key: drop.key,
 								quality: drop.quality,
 								image: drop.image,
 								render: drop.render,
@@ -365,6 +373,7 @@ const Inventory = ({store}) => {
 						store.changeInventoryData(dropCell, {
 							type: target.type,
 							hash: target.hash,
+							key: target.key,
 							quality: target.quality,
 							image: target.image,
 							render: target.render,
@@ -387,6 +396,7 @@ const Inventory = ({store}) => {
 								{
 									type: drop.type,
 									hash: drop.hash,
+									key: drop.key,
 									quality: drop.quality,
 									image: drop.image,
 									render: drop.render,
@@ -404,6 +414,7 @@ const Inventory = ({store}) => {
 							{
 								type: target.type,
 								hash: target.hash,
+								key: target.key,
 								quality: target.quality,
 								image: target.image,
 								render: target.render,
@@ -428,12 +439,13 @@ const Inventory = ({store}) => {
 					if (target.weight * target.count + Number(store.inventoryWeight) > store.inventoryMaxWeight) return error('Ошибка', 'В инвентаре недостаточно места');
 					
 					if (drop.type !== null) {
-						if (drop.type !== target.type || drop.hash !== target.hash || drop.quality !== target.quality) return error('Ошибка', 'Предмет нельзя поместить в это место');
+						if (drop.type !== target.type || drop.key !== target.key || drop.quality !== target.quality) return error('Ошибка', 'Предмет нельзя поместить в это место');
 						else if (drop.count + target.count <= drop.maxStack) {
 							store.changeInventoryData(dropCell,
 								{
 									type: target.type,
 									hash: target.hash,
+									key: target.key,
 									quality: target.quality,
 									image: target.image,
 									render: target.render,
@@ -453,6 +465,7 @@ const Inventory = ({store}) => {
 								{
 									type: target.type,
 									hash: target.hash,
+									key: target.key,
 									quality: target.quality,
 									image: target.image,
 									render: target.render,
@@ -469,6 +482,7 @@ const Inventory = ({store}) => {
 							{
 								type: target.type,
 								hash: target.hash,
+								key: target.key,
 								quality: target.quality,
 								image: target.image,
 								render: target.render,
@@ -494,7 +508,7 @@ const Inventory = ({store}) => {
 			
 			const isTargetInFast = store.inventory.fastSlots.findIndex(el => el.component === targetCell.component && el.id === targetCell.id);
 			const isDropInFast = store.inventory.fastSlots.findIndex(el => el.component === dropCell.component && el.id === dropCell.id);
-			const isTargetEqualsDrop = target.hash === drop.hash && target.quality === drop.quality && (dropCell.component !== targetCell.component || dropCell.id !== targetCell.id);
+			const isTargetEqualsDrop = target.key === drop.key && target.quality === drop.quality && (dropCell.component !== targetCell.component || dropCell.id !== targetCell.id);
 			
 			if (isTargetEqualsDrop) {
 				const remains = drop.maxStack - drop.count;
