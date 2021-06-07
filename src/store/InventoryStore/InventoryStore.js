@@ -16,10 +16,28 @@ export default class InventoryStore {
 			image: 'hat.svg',
 		},
 		{
+			type: 'mask',
+			isPlaced: false,
+			quality: -1,
+			image: 'mask.svg',
+		},
+		{
 			type: 'glasses',
 			isPlaced: false,
 			quality: -1,
 			image: 'glasses.svg',
+		},
+		{
+			type: 'earRings',
+			isPlaced: false,
+			quality: -1,
+			image: 'earRings.svg',
+		},
+		{
+			type: 'chain',
+			isPlaced: false,
+			quality: -1,
+			image: 'chain.svg',
 		},
 		{
 			type: 'tShirt',

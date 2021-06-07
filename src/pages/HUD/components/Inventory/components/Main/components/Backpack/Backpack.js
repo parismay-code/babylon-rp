@@ -16,10 +16,12 @@ const Backpack = ({
 	handleMouseDown,
 	handlePutOn,
 	handlePutOff,
-	handleDrop
+	handleDrop,
+	handleTrade,
+	setMiddleComponent
 }) => {
 	const backpackQuality = React.useMemo(() => {
-		switch (store.clothes[4].quality) {
+		switch (store.clothes[7].quality) {
 			case 0:
 				return '#B7C2F8';
 			case 1:
@@ -33,7 +35,7 @@ const Backpack = ({
 			default:
 				return '#FFFFFF';
 		}
-	}, [store.clothes[4].quality]);
+	}, [store.clothes[7].quality]);
 	
 	return <div className="inventory-backpack">
 		<div className="inventory-backpack-header">
@@ -63,11 +65,16 @@ const Backpack = ({
 					}
 				};
 				
-				const backpackLvl = store.clothes[4].quality;
+				const backpackLvl = store.clothes[7].quality;
 				
 				return backpackLvl === 0 && key <= 11 ? <div
 					key={key}
-					className={cn('inventory-backpack-content-cell', currentItem.component === 'backpack' && currentItem.id === key ? 'inventory-backpack-content-cell_active' : null)}
+					className={cn(
+						'inventory-backpack-content-cell',
+						currentItem.component === 'backpack' && currentItem.id === key ? 'inventory-backpack-content-cell_active' : null,
+						el.type === 'food' ? 'inventory-backpack-content-cell_food' : null,
+						el.type === 'drink' ? 'inventory-backpack-content-cell_drink' : null,
+					)}
 					style={store.inventory.fastSlots.filter(el => el.component === 'backpack' && el.id === key).length > 0 ? {border: '2px dashed #B8B8B8'} : null}
 					onClick={() => {
 						if (el.type && backpackLvl >= 0) setItem({component: 'backpack', id: key, options: el.options});
@@ -99,7 +106,12 @@ const Backpack = ({
 					</>}
 				</div> : backpackLvl === 1 && key <= 23 ? <div
 					key={key}
-					className={cn('inventory-backpack-content-cell', currentItem.component === 'backpack' && currentItem.id === key ? 'inventory-backpack-content-cell_active' : null)}
+					className={cn(
+						'inventory-backpack-content-cell',
+						currentItem.component === 'backpack' && currentItem.id === key ? 'inventory-backpack-content-cell_active' : null,
+						el.type === 'food' ? 'inventory-backpack-content-cell_food' : null,
+						el.type === 'drink' ? 'inventory-backpack-content-cell_drink' : null,
+					)}
 					style={store.inventory.fastSlots.filter(el => el.component === 'backpack' && el.id === key).length > 0 ? {border: '2px dashed #B8B8B8'} : null}
 					onClick={() => {
 						if (el.type && backpackLvl >= 0) setItem({component: 'backpack', id: key, options: el.options});
@@ -131,7 +143,12 @@ const Backpack = ({
 					</>}
 				</div> : backpackLvl >= 2 && key <= 35 ? <div
 						key={key}
-						className={cn('inventory-backpack-content-cell', currentItem.component === 'backpack' && currentItem.id === key ? 'inventory-backpack-content-cell_active' : null)}
+						className={cn(
+							'inventory-backpack-content-cell',
+							currentItem.component === 'backpack' && currentItem.id === key ? 'inventory-backpack-content-cell_active' : null,
+							el.type === 'food' ? 'inventory-backpack-content-cell_food' : null,
+							el.type === 'drink' ? 'inventory-backpack-content-cell_drink' : null,
+						)}
 						style={store.inventory.fastSlots.filter(el => el.component === 'backpack' && el.id === key).length > 0 ? {border: '2px dashed #B8B8B8'} : null}
 						onClick={() => {
 							if (el.type && backpackLvl >= 0) setItem({component: 'backpack', id: key, options: el.options});
@@ -174,9 +191,26 @@ const Backpack = ({
 						</div>
 					</div>;
 			})}
+			{store.clothes[7].quality < 1 && <div className="inventory-backpack-content-second-lock">
+				<div className="inventory-backpack-content-second-lock__title">Приобретите рюкзак 2-го уровня</div>
+				<div className="inventory-backpack-content-second-lock__subtitle">чтобы открыть дополнительные слоты
+				</div>
+			</div>}
+			{store.clothes[7].quality < 2 && <div className="inventory-backpack-content-third-lock">
+				<div className="inventory-backpack-content-third-lock__title">Приобретите рюкзак 3-го уровня</div>
+				<div className="inventory-backpack-content-third-lock__subtitle">чтобы открыть все слоты</div>
+			</div>}
 			<div className="inventory-backpack-content-options">
 				{currentItem.options?.indexOf('use') >= 0 &&
-				<div className="inventory-backpack-content-options__element">Использовать</div>}
+				<div
+					className="inventory-backpack-content-options__element"
+					onClick={() => {
+						const item = currentItem.component === 'fastSlots' ? store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
+							currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+						
+						window.alt.emit('client::inventory:useItem', item);
+					}}
+				>Использовать</div>}
 				{currentItem.options?.indexOf('putOn') >= 0 &&
 				<div
 					className="inventory-backpack-content-options__element"
@@ -185,11 +219,25 @@ const Backpack = ({
 					{currentItem.component === 'clothes' ? 'Снять' : 'Надеть'}
 				</div>}
 				{currentItem.options?.indexOf('drop') >= 0 &&
-				<div className="inventory-backpack-content-options__element" onClick={() => handleDrop()}>Выбросить</div>}
+				<div
+					className="inventory-backpack-content-options__element"
+					onClick={() => handleDrop()}
+				>Выбросить</div>}
 				{currentItem.options?.indexOf('trade') >= 0 &&
-				<div className="inventory-backpack-content-options__element">Передать</div>}
+				<div
+					className="inventory-backpack-content-options__element"
+					onClick={() => handleTrade()}
+				>Передать</div>}
 				{currentItem.options?.indexOf('split') >= 0 &&
-				<div className="inventory-backpack-content-options__element">Разделить</div>}
+				<div
+					className="inventory-backpack-content-options__element"
+					onClick={() => {
+						const item = currentItem.component === 'fastSlots' ? store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
+							currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+						
+						if (item.count > 1) setMiddleComponent('split');
+					}}
+				>Разделить</div>}
 			</div>
 		</div>
 	</div>;

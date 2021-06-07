@@ -77,6 +77,28 @@
 		border: 2px solid #ffffff !important;
 	  }
 	  
+	  &_food::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		
+		width: 100%;
+		height: 4px;
+	  
+		background-color: #FF9770;
+	  }
+	  
+	  &_drink::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+	 
+		width: 100%;
+		height: 4px;
+		
+		background-color: #91C1F1;
+	  }
+	  
 	  &__image {
 		position: absolute;
 		width: 60%;
@@ -137,6 +159,57 @@
 	  }
 	}
 	
+	&-second-lock,
+	&-third-lock {
+	  position: absolute;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  
+	  width: 100%;
+	  height: 41%;
+	  
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  text-shadow: 0 2px 2px $color-black;
+	  font-size: 1.1rem;
+	  text-align: center;
+	  
+	  &__title {
+		text-transform: uppercase;
+		font-family: "TT Norms Bold", sans-serif;
+	  }
+	}
+	
+	&-second-lock {
+	  top: 53%;
+	}
+	
+	&-third-lock {
+	  top: 85%;
+	  
+	  overflow: hidden;
+	  
+	  &::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		
+		position: absolute;
+		top: 200%;
+		transform: translateY(-100%);
+	 
+		background: linear-gradient(to bottom, $color-blank, #C373F399, $color-blank);
+		
+		animation-name: thirdLevelAnimation;
+		animation-duration: 5s;
+		animation-timing-function: ease;
+		animation-iteration-count: infinite;
+	  }
+	}
+	
 	&-options {
 	  position: absolute;
 	  right: 0;
@@ -177,5 +250,19 @@
 		}
 	  }
 	}
+  }
+}
+
+@keyframes thirdLevelAnimation {
+  0% {
+	top: 200%;
+  }
+  
+  50% {
+	top: 0;
+  }
+  
+  100% {
+	top: 0;
   }
 }

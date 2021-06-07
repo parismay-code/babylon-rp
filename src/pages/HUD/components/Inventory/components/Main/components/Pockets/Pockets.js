@@ -44,7 +44,12 @@ const Pockets = ({
 				
 				return <div
 					key={key}
-					className={cn('inventory-pockets-content-cell', currentItem.component === 'pockets' && currentItem.id === key ? 'inventory-pockets-content-cell_active' : null)}
+					className={cn(
+						'inventory-pockets-content-cell',
+						currentItem.component === 'pockets' && currentItem.id === key ? 'inventory-pockets-content-cell_active' : null,
+						el.type === 'food' ? 'inventory-pockets-content-cell_food' : null,
+						el.type === 'drink' ? 'inventory-pockets-content-cell_drink' : null,
+					)}
 					style={store.inventory.fastSlots.filter(el => el.component === 'pockets' && el.id === key).length > 0 ? {border: '2px dashed #B8B8B8'} : null}
 					onClick={() => {
 						if (el.type) setItem({component: 'pockets', id: key, options: el.options});

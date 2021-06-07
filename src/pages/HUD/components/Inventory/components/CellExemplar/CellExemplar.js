@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {observer} from 'mobx-react-lite';
+import cn from 'classnames';
 
 import './CellExemplar.scss';
 
@@ -27,7 +28,11 @@ const CellExemplar = ({cellExemplar, store, targetCell}) => {
 	}, [item]);
 	
 	return <div
-		className="inventory-cell-exemplar"
+		className={cn(
+			'inventory-cell-exemplar',
+			item?.type === 'food' ? 'inventory-cell-exemplar_food' : null,
+			item?.type === 'drink' ? 'inventory-cell-exemplar_drink' : null
+		)}
 		ref={cellExemplar}
 		style={targetCell.component ? {display: 'flex'} : {display: 'none'}}
 	>

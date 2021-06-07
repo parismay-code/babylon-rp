@@ -8,15 +8,15 @@ import lockIcon     from 'assets/images/choice/lockIcon.svg';
 import maleGov      from 'assets/images/choice/maleGov.svg';
 import maleFree     from 'assets/images/choice/maleFree.svg';
 import maleLspd1    from 'assets/images/choice/maleLspd1.svg';
-import maleLspd2    from 'assets/images/choice/maleLspd2.svg';
+// import maleLspd2    from 'assets/images/choice/maleLspd2.svg';
 import maleCrime1   from 'assets/images/choice/maleCrime1.svg';
-import maleCrime2   from 'assets/images/choice/maleCrime2.svg';
+// import maleCrime2   from 'assets/images/choice/maleCrime2.svg';
 import femaleGov    from 'assets/images/choice/femaleGov.svg';
 import femaleFree   from 'assets/images/choice/femaleFree.svg';
 import femaleLspd1  from 'assets/images/choice/femaleLspd1.svg';
-import femaleLspd2  from 'assets/images/choice/femaleLspd2.svg';
+// import femaleLspd2  from 'assets/images/choice/femaleLspd2.svg';
 import femaleCrime1 from 'assets/images/choice/femaleCrime1.svg';
-import femaleCrime2 from 'assets/images/choice/femaleCrime2.svg';
+// import femaleCrime2 from 'assets/images/choice/femaleCrime2.svg';
 
 import './ChoiceCard.scss';
 

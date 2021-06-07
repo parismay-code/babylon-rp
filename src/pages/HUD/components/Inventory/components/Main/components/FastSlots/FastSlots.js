@@ -42,7 +42,12 @@ const FastSlots = ({
 				
 				return <div
 					key={key}
-					className={cn('inventory-fast-slots-content-cell', currentItem.component === 'fastSlots' && currentItem.id === key ? 'inventory-fast-slots-content-cell_active' : null)}
+					className={cn(
+						'inventory-fast-slots-content-cell',
+						currentItem.component === 'fastSlots' && currentItem.id === key ? 'inventory-fast-slots-content-cell_active' : null,
+						el.type === 'food' ? 'inventory-fast-slots-content-cell_food' : null,
+						el.type === 'drink' ? 'inventory-fast-slots-content-cell_drink' : null,
+					)}
 					onClick={() => {
 						if (el.id >= 0 && el.component) setItem({
 							component: 'fastSlots',

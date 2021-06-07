@@ -20,6 +20,28 @@
   
   pointer-events: none;
   
+  &_food::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	
+	width: 100%;
+	height: 4px;
+	
+	background-color: #FF9770;
+  }
+  
+  &_drink::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	
+	width: 100%;
+	height: 4px;
+	
+	background-color: #91C1F1;
+  }
+  
   &__image {
 	position: absolute;
 	width: 60%;

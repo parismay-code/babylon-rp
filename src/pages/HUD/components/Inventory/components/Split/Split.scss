@@ -1,0 +1,120 @@
+@import '../../../../../../styles/vars';
+
+.inventory-split {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 290px;
+  height: 300px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: #00000080;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &-content {
+    width: 100%;
+    padding: 20px 30px;
+    margin-bottom: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &__image {
+      width: 80px;
+      max-height: 80px;
+      margin-bottom: 10px;
+    }
+    
+    &__name {
+      font-size: 1.5rem;
+    }
+    
+    &__quality {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+    
+    &__field {
+      width: 35%;
+      padding: 10px;
+      margin-bottom: 10px;
+  
+      font-family: "TT Norms Medium", sans-serif;
+      color: #ffffff;
+      font-size: 1rem;
+      text-align: center;
+  
+      background-color: #00000080;
+      
+      outline: none;
+      border: none;
+    }
+  
+    &-input {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    
+      &__range {
+        width: 100%;
+        height: 5px;
+        margin: 0 10px;
+      
+        background-color: $color-white;
+      
+        border-radius: 3px;
+      
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+      
+        cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
+      
+        &::-webkit-slider-thumb {
+          width: 2px;
+          height: 25px;
+        
+          background: $color-white;
+        
+          outline: none;
+          appearance: none;
+          -webkit-appearance: none;
+        }
+      }
+    
+      &__left-arrow,
+      &__right-arrow {
+        height: 25px;
+      }
+    
+      &__right-arrow {
+        transform: scaleX(-1);
+      }
+    }
+  }
+  
+  &__submit {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    background: linear-gradient(to right, #FFFFFF80, #8C899280);
+    
+    text-transform: uppercase;
+    text-shadow: 0 2px 2px $color-black;
+    
+    cursor: url("../../../../../../assets/images/cursorPointer.svg"), pointer;
+  }
+}

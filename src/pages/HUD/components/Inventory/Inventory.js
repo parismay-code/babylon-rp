@@ -6,6 +6,7 @@ import CellExemplar from './components/CellExemplar';
 import DropZone     from './components/DropZone';
 import RemoveAccept from './components/RemoveAccept';
 import TradeList    from './components/TradeList';
+import Split        from './components/Split';
 
 import './Inventory.scss';
 
@@ -19,7 +20,8 @@ const Inventory = ({store}) => {
 		[middleComponent, setMiddleComponent] = React.useState('dropZone');
 	
 	const cellExemplar = React.useRef(null),
-		notify = React.useRef(null);
+		notify = React.useRef(null),
+		screen = React.useRef(null);
 	
 	const showNotify = React.useCallback((title, subtitle, timeout) => {
 			setNotifyText({title, subtitle});
@@ -27,7 +29,7 @@ const Inventory = ({store}) => {
 			
 			setTimeout(() => notify.current.style.opacity = 0, timeout ? timeout : 3000);
 		}, []),
-		handlePutOn = React.useCallback((item) => {
+		handlePutOn = React.useCallback(item => {
 			const target = item ? item : store.inventory[currentItem.component][currentItem.id];
 			
 			const id = store.clothes.findIndex(el => el.type === target.type);
@@ -142,7 +144,7 @@ const Inventory = ({store}) => {
 					
 					id = pocketsFreeIndex;
 					component = 'pockets';
-				} else if (backpackFreeIndex >= 0 && store.clothes[4].isPlaced) {
+				} else if (backpackFreeIndex >= 0 && store.clothes[7].isPlaced) {
 					if (item.type === 'backpack') return showNotify('Ошибка', 'Недостаточно места в инвентаре');
 					
 					store.changeInventoryData({component: 'backpack', id: backpackFreeIndex},
@@ -174,28 +176,73 @@ const Inventory = ({store}) => {
 			});
 			window.alt.emit('client::inventory:update', store.clothes, store.inventory);
 		}, [currentItem.id, showNotify, store]),
-		handleDrop = React.useCallback((isAccepted) => {
+		handleDrop = React.useCallback(isAccepted => {
 			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
 			
 			if (item.quality >= 3 && !isAccepted) {
 				setMiddleComponent('removeAccept');
 			} else {
 				setMiddleComponent('dropZone');
+				setItem({component: null, id: null, options: null});
 				
 				window.alt.emit('client::inventory:dropItem', item.hash, item.quality, item.count);
 			}
 		}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
-		handleTrade = React.useCallback((id) => {
+		handleTrade = React.useCallback(id => {
 			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
 			
 			if (id) {
 				setMiddleComponent('dropZone');
+				setItem({component: null, id: null, options: null});
 				
 				window.alt.emit('client::inventory:tradeItem', id, item.hash, item.quality, item.count);
 			} else {
 				setMiddleComponent('tradeList');
 			}
 		}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
+		handleSplit = React.useCallback((item, value) => {
+			if (value > 0) {
+				let component;
+				let pocketsFreeIndex = store.inventory.pockets.findIndex(el => !el.type);
+				let backpackFreeIndex = store.inventory.backpack.findIndex(el => !el.type);
+				
+				if (pocketsFreeIndex >= 0) component = 'pockets';
+				else if (backpackFreeIndex >= 0) component = 'backpack';
+				else return showNotify('Ошибка', 'В инвентаре недостаточно места');
+				
+				currentItem.component === 'fastSlots' ?
+					store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id].count -= value :
+					store.inventory[currentItem.component][currentItem.id].count -= value;
+				
+				store.changeInventoryData(
+					{
+						component,
+						id: component === 'pockets' ? pocketsFreeIndex : backpackFreeIndex
+					},
+					{
+						type: item.type,
+						hash: item.hash,
+						quality: item.quality,
+						image: item.image,
+						render: item.render,
+						name: item.name,
+						description: item.description,
+						count: value,
+						weight: item.weight,
+						maxStack: item.maxStack,
+						options: item.options,
+					}
+				);
+				
+				setItem({
+					component,
+					id: component === 'pockets' ? pocketsFreeIndex : backpackFreeIndex,
+					options: item.options,
+				});
+				
+				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+			} else setMiddleComponent('dropZone');
+		}, [currentItem.component, currentItem.id, showNotify, store]),
 		handleMouseDown = React.useCallback((_targetCell) => {
 			setItem({
 				..._targetCell,
@@ -492,7 +539,7 @@ const Inventory = ({store}) => {
 	}, [currentItem, store.clothes, store.inventory]);
 	
 	React.useEffect(() => {
-		if (!store.clothes[4].isPlaced) {
+		if (!store.clothes[7].isPlaced) {
 			const arr = store.inventory.fastSlots.filter(el => el.component === 'backpack');
 			
 			for (let i = 0; i < arr.length; i++) {
@@ -501,13 +548,20 @@ const Inventory = ({store}) => {
 				store.inventory.fastSlots[id] = {component: null, id: null};
 			}
 		}
-	}, [store.clothes, store.inventory.fastSlots, store.clothes[4].isPlaced]);
+	}, [store.clothes, store.inventory.fastSlots, store.clothes[7].isPlaced]);
 	
 	React.useEffect(() => {
 		window.alt.on('cef::inventory:showNotify', (title, subtitle, timeout) => showNotify(title, subtitle, timeout));
 	}, [showNotify]);
 	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.classList.add('inventory_active'), 200);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	return <div
+		ref={screen}
 		className="inventory"
 		onMouseUp={(e) => e.button === 0 && dropCell.component && handleMouseUp()}
 		onMouseMove={(e) => {
@@ -516,30 +570,34 @@ const Inventory = ({store}) => {
 		}}
 	>
 		<div className="inventory-content">
-			<Clothes
-				store={store}
-				currentItem={currentItem}
-				setItem={setItem}
-				setTargetCell={setTargetCell}
-				setDropCell={setDropCell}
-				isCellDragged={isCellDragged}
-				handleMouseDown={handleMouseDown}
-			/>
-			<Main
-				store={store}
-				render={render}
-				currentItem={currentItem}
-				setItem={setItem}
-				setTargetCell={setTargetCell}
-				setDropCell={setDropCell}
-				isCellDragged={isCellDragged}
-				handleMouseDown={handleMouseDown}
-				notify={notify}
-				notifyText={notifyText}
-				handlePutOn={handlePutOn}
-				handlePutOff={handlePutOff}
-				handleDrop={handleDrop}
-			/>
+			<div className="inventory-content-left">
+				<Clothes
+					store={store}
+					currentItem={currentItem}
+					setItem={setItem}
+					setTargetCell={setTargetCell}
+					setDropCell={setDropCell}
+					isCellDragged={isCellDragged}
+					handleMouseDown={handleMouseDown}
+				/>
+				<Main
+					store={store}
+					render={render}
+					currentItem={currentItem}
+					setItem={setItem}
+					setTargetCell={setTargetCell}
+					setDropCell={setDropCell}
+					isCellDragged={isCellDragged}
+					handleMouseDown={handleMouseDown}
+					notify={notify}
+					notifyText={notifyText}
+					handlePutOn={handlePutOn}
+					handlePutOff={handlePutOff}
+					handleDrop={handleDrop}
+					handleTrade={handleTrade}
+					setMiddleComponent={setMiddleComponent}
+				/>
+			</div>
 			{middleComponent === 'dropZone' && <DropZone
 				setDropCell={setDropCell}
 				isCellDragged={isCellDragged}
@@ -551,8 +609,12 @@ const Inventory = ({store}) => {
 			/>}
 			{middleComponent === 'tradeList' && <TradeList
 				store={store}
-				
 				handleTrade={handleTrade}
+			/>}
+			{middleComponent === 'split' && <Split
+				store={store}
+				currentItem={currentItem}
+				handleSplit={handleSplit}
 			/>}
 		</div>
 		<div className="inventory-exit">
