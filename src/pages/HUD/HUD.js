@@ -17,7 +17,7 @@ const HUD = ({defaultStore, crimeStore, currentHUD, player, targetPlayerData, in
     return <div ref={screen} className='hud'>
         {
             currentHUD === 0 ? <HUDMain store={defaultStore} player={player} targetPlayerData={targetPlayerData} inventoryStore={inventoryStore}/>
-                : <CrimeHUD defaultStore={defaultStore} crimeStore={crimeStore}/>
+                : <CrimeHUD defaultStore={defaultStore} player={player} crimeStore={crimeStore}/>
         }
     </div>
 }

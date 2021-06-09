@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {observer} from "mobx-react-lite";
+import cn from 'classnames';
 
 import players from 'assets/images/hud/players.svg';
 import time from 'assets/images/hud/time.svg';
@@ -7,7 +8,7 @@ import time from 'assets/images/hud/time.svg';
 import './HUDMapInfo.scss';
 
 const HUDMapInfo = ({store, player, noGeo}) => {
-    return <div className='hud-map-info'>
+    return <div className={cn('hud-map-info', noGeo ? 'hud-map-info_no-geo' : null)}>
         {noGeo ? null :<div className='hud-map-info-header'>
             <div className='hud-map-info-header-location'>
                 <div className='hud-map-info-header-location__area'>{store.mapState.area}</div>

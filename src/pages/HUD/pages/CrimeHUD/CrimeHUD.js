@@ -8,7 +8,7 @@ import PlayerState from './components/PlayerState';
 
 import './CrimeHUD.scss';
 
-const CrimeHUD = ({defaultStore, crimeStore}) => {
+const CrimeHUD = ({defaultStore, crimeStore, player}) => {
     const [kills, addKill] = React.useState(0);
 
     React.useEffect(() => {
@@ -17,9 +17,9 @@ const CrimeHUD = ({defaultStore, crimeStore}) => {
     }, [kills]);
 
     return <div className='crime-hud'>
-        <HUDMic store={defaultStore}/>
-        <HUDMapInfo store={defaultStore} noGeo={true}/>
-        <PlayerState store={defaultStore}/>
+        <HUDMic store={defaultStore} player={player}/>
+        <HUDMapInfo store={defaultStore} player={player} noGeo={true}/>
+        <PlayerState player={player}/>
     </div>
 }
 

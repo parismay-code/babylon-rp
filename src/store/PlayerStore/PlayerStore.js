@@ -19,7 +19,7 @@ export default class PlayerStore {
             balance: 0
         },
         hp: 100,
-        armour: 0,
+        armour: 51,
         hunger: 100,
         thirst: 100,
         stars: 5,
@@ -105,8 +105,8 @@ export default class PlayerStore {
         isInCar: false,
         isRadioSet: false,
         ammo: {
-            charged: 0,
-            clip: 0
+            charged: 124,
+            clip: 333
         },
         dead: {
             isDead: false,

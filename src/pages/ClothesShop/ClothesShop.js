@@ -30,10 +30,9 @@ const ClothesShop = ({player, hudStore, store}) => {
             component: currentType,
             drawable: currentElement,
             texture: store.clothesShopData.filter(el => el.component === currentType)[0].textures[currentTexture],
-            price: price
         };
 
-        window.alt.emit('client::clothesShop:preview', obj);
+        window.alt.emit('client::clothesShop:buy', obj, price);
     }, [currentElement, currentTexture, currentType, price, store.clothesShopData]);
     const handleChangeTexture = React.useCallback(((bool) => {
         const array = store.clothesShopData.filter(el => el.component === currentType);

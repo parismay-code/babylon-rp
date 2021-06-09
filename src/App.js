@@ -272,6 +272,9 @@ const App = () => {
 		
 		inventoryStore.calcInventoryWeight();
 	}, [inventoryStore]);
+	React.useEffect(() => {
+	
+	}, [crimeHudStore]);
 	
 	return <div className="app">
 		{component === 'auth' && <Auth isRegistered={isRegistered} store={authStore}/>}
