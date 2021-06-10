@@ -1,0 +1,26 @@
+@import '../../../../../../styles/vars';
+
+.crime-hud-kill-notify {
+  position: absolute;
+  left: 0;
+  bottom: 22%;
+  
+  padding: 5px 0 5px 50px;
+  
+  background: linear-gradient(to right, #00000066, $color-blank);
+  
+  font-family: "TT Norms Bold", sans-serif;
+  font-size: 1.1rem;
+  
+  &-victim {
+	display: flex;
+	align-items: center;
+	
+	transform: translateX(-10%);
+	
+	&__icon {
+	  font-size: 1.5rem;
+	  margin-right: 5px;
+	}
+  }
+}

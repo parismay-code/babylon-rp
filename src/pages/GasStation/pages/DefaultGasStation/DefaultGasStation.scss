@@ -31,7 +31,7 @@
       height: 1px;
       background: #ffffff37;
 
-      z-index: 999;
+      z-index: 500;
     }
 
     &__column {
@@ -144,11 +144,11 @@
           width: 100%;
           height: 6px;
 
-          z-index: 999;
+          z-index: 500;
         }
 
         & span {
-          z-index: 999;
+          z-index: 500;
           letter-spacing: 1px;
         }
 
@@ -275,7 +275,7 @@
 
           padding: 5px 10px;
 
-          z-index: 999;
+          z-index: 500;
 
           &__title {
             margin-bottom: 15px;
@@ -344,7 +344,7 @@
           background-color: #00000037;
           font-size: 1.8rem;
 
-          z-index: 999;
+          z-index: 500;
 
           &::after {
             content: '/л.';
@@ -362,7 +362,7 @@
           font-size: 1.8rem;
           text-align: center;
 
-          z-index: 999;
+          z-index: 500;
         }
       }
 
@@ -391,7 +391,7 @@
           text-transform: uppercase;
           color: #ECCE43;
           font-size: 1.5rem;
-          z-index: 999;
+          z-index: 500;
         }
 
         &-info {

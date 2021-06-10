@@ -1,0 +1,182 @@
+@import '../../../../../../styles/vars';
+
+.crime-hud-teams {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  
+  &_visible &-attack,
+  &_visible &-defence {
+    &-list {
+      transform: translateX(0);
+    }
+  }
+  
+  &-attack,
+  &-defence {
+    &-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+  
+      margin-bottom: 40px;
+   
+      text-transform: uppercase;
+      font-family: "TT Norms Bold", sans-serif;
+      
+      &-content {
+        width: 310px;
+        height: 30px;
+  
+        clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+        
+        &-info {
+          position: relative;
+          width: calc(100% - 10px);
+          height: calc(100% - 4px);
+          padding: 0 10% 0 5%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+  
+          background-color: #000000;
+          
+          clip-path: polygon(0 0, 100% 0%, 91% 100%, 0% 100%);
+  
+          text-align: right;
+        }
+      }
+  
+      &__icon {
+        position: absolute;
+        left: 15px;
+        bottom: 5px;
+    
+        height: 4rem;
+      }
+      
+      &__alt {
+        width: 80px;
+        height: 30px;
+        padding-bottom: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        transform: translateX(-25%);
+        
+        background-color: #00000066;
+  
+        clip-path: polygon(40% 0%, 100% 0%, 60% 100%, 0% 100%);
+      }
+      
+      &__list {
+        padding-bottom: 3px;
+        font-family: "TT Norms Regular", sans-serif;
+        text-shadow: 0 2px 2px $color-black;
+        
+        transform: translateX(-100%);
+      }
+    }
+    
+    &-list {
+      width: 310px;
+      transform: translateX(-100%);
+      
+      transition: transform .5s ease;
+      
+      &-element {
+        width: 100%;
+        padding: 5px 10px;
+        
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+  
+        font-family: "TT Norms Bold", sans-serif;
+        font-size: 1.1rem;
+  
+        background: linear-gradient(to right, #00000066, $color-blank);
+        
+        &_dead {
+          background: linear-gradient(to right, #FF363666, $color-blank);
+        }
+        
+        &-kills {
+          display: flex;
+          align-items: flex-end;
+          margin-right: 5px;
+          
+          transition: opacity .2s;
+          
+          &__icon {
+            height: 1.5rem;
+            filter: drop-shadow(0 0 10px #FF3636);
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+  }
+  
+  &-defence {
+    &-header {
+      &-content {
+        position: relative;
+        
+        width: 310px;
+        height: 30px;
+  
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 10% 100%);
+      
+        &-info {
+          position: absolute;
+          right: 0;
+          top: 0;
+          
+          justify-content: flex-start;
+          padding: 0 5% 0 10%;
+  
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 9% 100%);
+        
+          text-align: left;
+        }
+      }
+    
+      &__icon {
+        left: 255px;
+      }
+    }
+  
+    &-list {
+      transform: translateX(100%);
+      
+      &-element {
+        
+        flex-direction: row-reverse;
+      
+        background: linear-gradient(to left, #00000066, $color-blank);
+      
+        &_dead {
+          background: linear-gradient(to left, #FF363666, $color-blank);
+        }
+      
+        &-kills {
+          flex-direction: row-reverse;
+          margin: 0 0 0 5px;
+        
+          &__icon {
+            height: 1.5rem;
+            filter: drop-shadow(0 0 10px #FF3636);
+            margin: 0 0 0 2px;
+          }
+        }
+      }
+    }
+  }
+}

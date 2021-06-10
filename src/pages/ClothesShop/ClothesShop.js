@@ -20,7 +20,7 @@ const ClothesShop = ({player, hudStore, store}) => {
         const array = store.clothesShopData.filter(el => el.component === currentType);
         return array.filter(el => el.drawable === currentElement)[0].price;
     }, [currentElement, currentType, store.clothesShopData]);
-
+ 
     const setFirstElement = React.useCallback((component) => {
         setElement(store.clothesShopData.filter(el => el.component === component && el.isInStock)[0].drawable);
     }, [store.clothesShopData]);

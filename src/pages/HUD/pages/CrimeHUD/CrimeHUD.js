@@ -1,26 +1,73 @@
 import * as React from 'react';
-import {observer} from "mobx-react-lite";
 
-import HUDMic from "../../components/HUDMic";
-import HUDMapInfo from "../../components/HUDMapInfo";
+import HUDMic     from '../../components/HUDMic';
+import HUDMapInfo from '../../components/HUDMapInfo';
+import HUDAzimuth from '../../components/HUDAzimuth';
 
-import PlayerState from './components/PlayerState';
+import DamageNotify from './components/DamageNotify';
+import PlayerState  from './components/PlayerState';
+import Score        from './components/Score';
+import Teams        from './components/Teams';
+import KillNotify   from './components/KillNotify';
+
+import scull from 'assets/images/hud/scull.svg';
 
 import './CrimeHUD.scss';
 
 const CrimeHUD = ({defaultStore, crimeStore, player}) => {
-    const [kills, addKill] = React.useState(0);
+	const [kills, addKill] = React.useState(2),
+		[damageData, setDamageData] = React.useState({
+			damage: 0,
+			target: {
+				nickname: null,
+				id: null,
+			},
+		}),
+		[isDamageNotifyVisible, setDamageNotifyVisible] = React.useState(false),
+		[isTeamsVisible, setTeamsVisible] = React.useState(false),
+		[isKillNotifyVisible, setKillNotifyVisible] = React.useState(true),
+		[killData, setKillData] = React.useState({
+			killer: {
+				nickname: 'Paris May',
+				id: 1,
+			},
+			victim: {
+				nickname: 'Oleg Trifonov',
+				id: 5555,
+			},
+		});
+	
+	React.useEffect(() => {
+		window.alt.on('cef::crimeHud:addKill', () => addKill(kills => kills + 1));
+		window.alt.on('cef::crimeHud:clearKills', () => addKill(0));
+		window.alt.on('cef::crimeHud:showDamage', obj => {
+			setDamageData(obj);
+			setDamageNotifyVisible(false);
+			setDamageNotifyVisible(true);
+		});
+		window.alt.on('cef::crimeHud:showTeams', bool => setTeamsVisible(bool));
+		window.alt.on('cef::crimeHud:showKill', obj => {
+			setKillData(obj);
+			setKillNotifyVisible(false);
+			setKillNotifyVisible(true);
+		});
+	}, []);
+	
+	return <div className="crime-hud">
+		<HUDMic store={defaultStore} player={player}/>
+		<HUDMapInfo store={defaultStore} player={player} noGeo={true}/>
+		<PlayerState player={player}/>
+		{isDamageNotifyVisible &&
+		<DamageNotify player={player} damageData={damageData} setVisible={setDamageNotifyVisible}/>}
+		<div className="crime-hud-kills" style={kills > 0 ? {opacity: 1} : {opacity: 0}}>
+			<img className="crime-hud-kills__icon" src={scull} alt="#"/>
+			<div className="crime-hud-kills__value">{kills}</div>
+		</div>
+		<HUDAzimuth player={player}/>
+		<Score store={crimeStore}/>
+		<Teams store={crimeStore} isVisible={isTeamsVisible}/>
+		{isKillNotifyVisible && <KillNotify killData={killData} setVisible={setKillNotifyVisible}/>}
+	</div>;
+};
 
-    React.useEffect(() => {
-        window.alt.on('cef::crimeHud:addKill', () => addKill(kills + 1));
-        window.alt.on('cef::crimeHud:clearKills', () => addKill(0));
-    }, [kills]);
-
-    return <div className='crime-hud'>
-        <HUDMic store={defaultStore} player={player}/>
-        <HUDMapInfo store={defaultStore} player={player} noGeo={true}/>
-        <PlayerState player={player}/>
-    </div>
-}
-
-export default observer(CrimeHUD);
+export default React.memo(CrimeHUD);

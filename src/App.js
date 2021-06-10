@@ -216,6 +216,7 @@ const App = () => {
 	}, []);
 	React.useEffect(() => {
 		window.alt.on('cef::player:setData', obj => playerStore.fetchPlayerState(obj));
+		window.alt.on('cef::player:setLookDirection', value => playerStore.fetchLookDirection(value));
 	}, [playerStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::auth:getResetCode', (code) => {
@@ -273,7 +274,9 @@ const App = () => {
 		inventoryStore.calcInventoryWeight();
 	}, [inventoryStore]);
 	React.useEffect(() => {
-	
+		window.alt.on('cef::crimeHud:setTeams', obj => crimeHudStore.fetchTeams(obj));
+		window.alt.on('cef::crimeHud:changeTeamPlayer', (team, id, obj) => crimeHudStore.changeTeamPlayerData(team, id, obj));
+		window.alt.on('cef::crimeHud:setTimer', value => crimeHudStore.setBattleTimer(value));
 	}, [crimeHudStore]);
 	
 	return <div className="app">

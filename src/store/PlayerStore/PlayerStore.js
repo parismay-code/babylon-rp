@@ -5,6 +5,16 @@ import {
 } from "mobx";
 
 export default class PlayerStore {
+    constructor() {
+        makeObservable(this, {
+            playerState: observable,
+            lookDirection: observable,
+
+            fetchPlayerState: action.bound,
+            fetchLookDirection: action.bound,
+        })
+    }
+    
     playerState = {
         id: 0,
         level: 0,
@@ -121,14 +131,8 @@ export default class PlayerStore {
             selfHealing: false,
         },
     };
-
-    constructor() {
-        makeObservable(this, {
-            playerState: observable,
-
-            fetchPlayerState: action.bound,
-        })
-    }
+    
+    lookDirection = 0;
 
     fetchPlayerState(obj) {
         switch (obj.type) {
@@ -156,6 +160,10 @@ export default class PlayerStore {
             case 'fraction': return this.playerState.fraction = obj.data;
             default: return this.playerState = obj.data;
         }
+    }
+    
+    fetchLookDirection(value) {
+        return this.lookDirection = value;
     }
 
     destroy() {}

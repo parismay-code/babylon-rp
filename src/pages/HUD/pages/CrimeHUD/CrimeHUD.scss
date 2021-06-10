@@ -3,4 +3,31 @@
 .crime-hud {
   font-family: "TT Norms Medium", sans-serif;
   color: $color-white;
+  
+  &-kills {
+    position: absolute;
+    bottom: 15px;
+    left: 40%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    align-items: flex-end;
+  
+    font-family: "Buyan Bold", sans-serif;
+    text-shadow: 0 2px 2px $color-black;
+    font-size: 1.5rem;
+    
+    transition: opacity .2s;
+    
+    &__icon {
+      height: 2rem;
+      margin-right: 10px;
+      
+      filter: drop-shadow(0 0 10px #FF3636);
+    }
+    
+    &__value {
+      margin-bottom: -5px;
+    }
+  }
 }

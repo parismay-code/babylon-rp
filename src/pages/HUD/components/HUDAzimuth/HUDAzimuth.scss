@@ -1,0 +1,69 @@
+@import '../../../../styles/vars';
+
+.hud-azimuth {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  
+  overflow: hidden;
+  
+  &__arrow {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -6px) rotate(-90deg);
+ 
+	height: 20px;
+	
+	filter: drop-shadow(0 0 2px $color-black);
+  }
+  
+  &-content {
+	display: flex;
+	align-items: center;
+	
+	text-transform: uppercase;
+	text-shadow: 0 2px 2px $color-black;
+	
+	transition: transform .2s;
+	
+	&__element {
+	  font-family: "TT Norms Extra Bold", sans-serif;
+	  font-size: 1.5rem;
+	  
+	  width: 45px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  padding-top: 5px;
+	  
+	  &_number {
+		position: relative;
+		padding-top: 15px;
+		
+		font-family: "TT Norms Medium", sans-serif;
+		font-size: 1rem;
+		
+		&::before {
+		  content: '';
+		  
+		  position: absolute;
+		  top: 0;
+		  left: 50%;
+		  transform: translateX(-50%);
+		  
+		  height: 10px;
+		  width: 3px;
+		  
+		  background-color: #ffffff;
+		}
+	  }
+	}
+  }
+}

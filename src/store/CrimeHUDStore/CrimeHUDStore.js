@@ -7,6 +7,12 @@ import {
 export default class CrimeHUDStore {
     constructor() {
         makeObservable(this, {
+            teams: observable,
+            battleTimer: observable,
+            
+            fetchTeams: action.bound,
+            changeTeamPlayerData: action.bound,
+            setBattleTimer: action.bound,
         })
     }
 
@@ -28,7 +34,7 @@ export default class CrimeHUDStore {
                     isDead: false,
                 },
                 {
-                    id: 3,
+                    id: 5555,
                     nickname: 'Olefstrewntew  Olefstrewntew',
                     kills: 0,
                     isDead: true,
@@ -203,6 +209,20 @@ export default class CrimeHUDStore {
                 },
             ]
         }
+    }
+    
+    battleTimer = 300;
+    
+    fetchTeams(obj) {
+        return this.teams = obj;
+    }
+    
+    changeTeamPlayerData(team, id, obj) {
+        return this.teams[team].filter(el => el.id === id)[0] = obj;
+    }
+    
+    setBattleTimer(value) {
+        return this.battleTimer = value;
     }
     
     destroy() {}

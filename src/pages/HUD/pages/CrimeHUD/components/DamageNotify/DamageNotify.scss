@@ -1,0 +1,54 @@
+@import '../../../../../../styles/vars';
+
+.crime-hud-damage-notify {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  display: flex;
+  align-items: center;
+  
+  font-size: 1.5rem;
+  font-family: "TT Norms Bold", sans-serif;
+  text-shadow: 0 2px 2px $color-black;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &__block {
+    width: 90px;
+    height: 40px;
+  
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  
+    background: linear-gradient(to right, $color-blank, #00000066);
+  }
+  
+  &__damage {
+    margin: 0 25px;
+  
+    font-family: "Buyan Bold", sans-serif;
+    font-size: 2rem;
+  }
+  
+  &-info {
+    width: 300px;
+    
+    &__attacker {
+      margin-bottom: 5px;
+    }
+    
+    &-target {
+      display: flex;
+      align-items: center;
+      
+      transform: translateX(-5%);
+      
+      &__icon {
+        margin-right: 5px;
+      }
+    }
+  }
+}

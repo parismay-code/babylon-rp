@@ -1,0 +1,81 @@
+@import '../../../../../../styles/vars';
+
+.crime-hud-score {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  display: flex;
+  align-items: center;
+  
+  &::before {
+	content: '';
+ 
+	width: 530px;
+	height: 2px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+ 
+	background: linear-gradient(to right, $color-blank, #C373F3 20% 80%, $color-blank);
+  }
+  
+  &-attack,
+  &-defence {
+	display: flex;
+	align-items: center;
+ 
+	font-family: "TT Norms Bold", sans-serif;
+	font-size: 2rem;
+	
+	z-index: 500;
+	
+	&-players {
+	  display: flex;
+	  align-items: center;
+	  
+	  width: 330px;
+	  
+	  &__count {
+		margin: 0 10px;
+	  }
+	  
+	  &__element {
+		width: 20px;
+		height: 13px;
+	 
+		clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
+	  }
+	}
+  }
+  
+  &-defence {
+	&-players {
+	  flex-direction: row-reverse;
+	  
+	  &__element {
+		clip-path: polygon(70% 0, 0 0, 30% 100%, 100% 100%);
+	  }
+	}
+  }
+  
+  &-timer {
+	transform: translateY(-6px);
+	
+	text-align: center;
+	
+	&__value {
+	  margin-bottom: 5px;
+	  
+	  font-family: "TT Norms Bold", sans-serif;
+	  font-size: 1.5rem;
+	}
+	
+	&__title {
+	  font-family: "Baron Neue", sans-serif;
+	}
+  }
+}
