@@ -36,7 +36,7 @@ export default class CrimeHUDStore {
     }
     
     changeTeamPlayerData(team, id, obj) {
-        return this.teams[team].filter(el => el.id === id)[0] = obj;
+        return this.teams[team].players.filter(el => el.id === id)[0] = obj;
     }
     
     setBattleTimer(value) {
