@@ -25,7 +25,7 @@ const CrimeHUD = ({defaultStore, crimeStore, player}) => {
 		}),
 		[isDamageNotifyVisible, setDamageNotifyVisible] = React.useState(false),
 		[isTeamsVisible, setTeamsVisible] = React.useState(false),
-		[isKillNotifyVisible, setKillNotifyVisible] = React.useState(true),
+		[isKillNotifyVisible, setKillNotifyVisible] = React.useState(false),
 		[killData, setKillData] = React.useState({
 			killer: {
 				nickname: null,
