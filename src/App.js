@@ -151,8 +151,6 @@ const App = () => {
 		});
 	
 	React.useEffect(() => {
-		window.alt.emit('client::cef:ready');
-		
 		window.alt.on('cef::auth:start', bool => {
 			setRegistered(bool);
 			setComponent('auth');
@@ -218,6 +216,8 @@ const App = () => {
 		window.alt.on('cef::crimeMenu:start', () => setComponent('crimeMenu'));
 		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
+		
+		window.alt.emit('client::cef:ready');
 	}, []);
 	React.useEffect(() => {
 		window.alt.on('cef::player:setData', obj => playerStore.fetchPlayerState(obj));
