@@ -28,14 +28,22 @@ const CrimeHUD = ({defaultStore, crimeStore, player}) => {
 		[isKillNotifyVisible, setKillNotifyVisible] = React.useState(true),
 		[killData, setKillData] = React.useState({
 			killer: {
-				nickname: 'Paris May',
-				id: 1,
+				nickname: null,
+				id: null,
 			},
 			victim: {
-				nickname: 'Oleg Trifonov',
-				id: 5555,
+				nickname: null,
+				id: null,
 			},
 		});
+	
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.style.opacity = 1, 100);
+		
+		return () => clearTimeout(timeout);
+	}, []);
 	
 	React.useEffect(() => {
 		window.alt.on('cef::crimeHud:addKill', () => addKill(kills => kills + 1));
@@ -53,7 +61,7 @@ const CrimeHUD = ({defaultStore, crimeStore, player}) => {
 		});
 	}, []);
 	
-	return <div className="crime-hud">
+	return <div ref={screen} className="crime-hud">
 		<HUDMic store={defaultStore} player={player}/>
 		<HUDMapInfo store={defaultStore} player={player} noGeo={true}/>
 		<PlayerState player={player}/>

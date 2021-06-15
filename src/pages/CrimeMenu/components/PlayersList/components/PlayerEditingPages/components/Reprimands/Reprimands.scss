@@ -1,0 +1,178 @@
+@import '../../../../../../../../styles/vars';
+
+.crime-menu-player-reprimands {
+  &__title {
+	margin-bottom: 25px;
+	font-size: 1.5rem;
+  }
+  
+  &-form {
+	display: flex;
+	align-items: center;
+	padding-right: 20px;
+	margin-bottom: 15px;
+	
+	&-radio {
+	  margin-right: auto;
+	  
+	  &-element {
+		display: flex;
+		align-items: center;
+		margin-bottom: 5px;
+		
+		&-box {
+		  width: 20px;
+		  height: 20px;
+		  margin-right: 5px;
+		  
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  
+		  background-color: #00000033;
+		  
+		  cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+		  
+		  &__fill {
+			width: 10px;
+			height: 10px;
+		  }
+		  
+		  &_active &__fill {
+			background-color: $color-white;
+		  }
+		}
+		
+		&__title {
+		  opacity: .5;
+		}
+	  }
+	}
+	
+	&-input {
+	  width: 65%;
+	  display: flex;
+	  align-items: center;
+	  font-size: 1.5rem;
+	  padding-right: 10px;
+	  
+	  background-color: #00000033;
+	  
+	  &__field {
+		width: 100%;
+		height: 45px;
+		padding: 20px;
+		
+		color: $color-white;
+		font-size: 1rem;
+		font-family: "TT Norms Medium", sans-serif;
+		
+		border: none;
+		background: none;
+		outline: none;
+		
+		&::placeholder {
+		  color: $color-white;
+		  opacity: .5;
+		}
+	  }
+	}
+	
+	&-submit {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  width: 45px;
+	  height: 45px;
+	  
+	  background: linear-gradient(135deg, #FFE385, #FFDDAA);
+	  
+	  &__icon {
+		height: 65%;
+		
+		cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+	  }
+	}
+  }
+  
+  &-list {
+	width: calc(100% - 10px);
+	
+	&__title {
+	  font-size: 1.5rem;
+	  margin-bottom: 5px;
+	}
+	
+	&-header {
+	  display: flex;
+	  align-items: center;
+	  margin-bottom: 10px;
+	  padding-right: 10px;
+	  
+	  opacity: .5;
+	  
+	  &__element {
+		&_from {
+		  width: 150px;
+		}
+		
+		&_reason {
+		  width: 230px;
+		  margin-right: auto;
+		}
+		
+		&_action {
+		  width: 80px;
+		}
+	  }
+	}
+	
+	&-content {
+	  width: 100%;
+	  height: 160px;
+	  
+	  padding-right: 10px;
+	  
+	  overflow: auto;
+	  
+	  &::-webkit-scrollbar {
+		width: 2px;
+		
+		background-color: #0000004D;
+	  }
+	  
+	  &::-webkit-scrollbar-thumb {
+		background-color: #FFFFFFB3;
+	  }
+	  
+	  &-element {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		margin-bottom: 3px;
+		
+		&:last-of-type {
+		  margin-bottom: 0;
+		}
+	 
+		&-from {
+		  width: 150px;
+		  
+		  &__date {
+			opacity: .5;
+		  }
+		}
+	 
+		&__reason {
+		  width: 230px;
+		  margin-right: auto;
+		}
+	 
+		&__action {
+		  width: 80px;
+		}
+	  }
+	}
+  }
+}

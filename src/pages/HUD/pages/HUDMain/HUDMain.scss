@@ -3,7 +3,11 @@
 .hud-main {
   font-family: "TT Norms Medium", sans-serif;
   color: $color-white;
-
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
   &__heal {
     position: absolute;
     top: 50%;

@@ -22,6 +22,14 @@ import './HUDMain.scss';
 const HUDMain = ({store, player, targetPlayerData, inventoryStore}) => {
 	const [isInventoryOpened, setInventoryOpened] = React.useState(false);
 	
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.style.opacity = 1, 100);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	React.useEffect(() => {
 		window.alt.emit('client::hud:ready');
 		
@@ -42,7 +50,7 @@ const HUDMain = ({store, player, targetPlayerData, inventoryStore}) => {
 		document.getElementsByClassName('hud-main')[0].addEventListener('keydown', e => handleTabKey(e));
 	}, []);
 	
-	return <div className="hud-main">
+	return <div ref={screen} className="hud-main">
 		{!player.playerState.dead.isDead && <>
 			<HUDHeader player={player}/>
 			<HUDPlayerState player={player} store={store}/>

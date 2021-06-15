@@ -16,6 +16,7 @@ import WeaponShop    from 'pages/WeaponShop';
 import GasStation    from 'pages/GasStation';
 import Jobs          from 'pages/Jobs';
 import Parking       from 'pages/Parking';
+import CrimeMenu     from 'pages/CrimeMenu';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -30,6 +31,7 @@ import PlayerStore     from 'store/PlayerStore';
 import ShopsStore      from 'store/ShopsStore';
 import JobsStore       from 'store/JobsStore';
 import InventoryStore  from 'store/InventoryStore';
+import CrimeMenuStore  from 'store/CrimeMenuStore';
 
 import spawnsData from 'configs/spawnData';
 
@@ -44,7 +46,8 @@ const App = () => {
 		playerStore = useLocalStore(() => new PlayerStore()),
 		shopsStore = useLocalStore(() => new ShopsStore()),
 		jobsStore = useLocalStore(() => new JobsStore()),
-		inventoryStore = useLocalStore(() => new InventoryStore());
+		inventoryStore = useLocalStore(() => new InventoryStore()),
+		crimeMenuStore = useLocalStore(() => new CrimeMenuStore());
 	
 	const [component, setComponent] = React.useState(null),
 		[isRegistered, setRegistered] = React.useState(false),
@@ -278,6 +281,26 @@ const App = () => {
 		window.alt.on('cef::crimeHud:changeTeamPlayer', (team, id, obj) => crimeHudStore.changeTeamPlayerData(team, id, obj));
 		window.alt.on('cef::crimeHud:setTimer', value => crimeHudStore.setBattleTimer(value));
 	}, [crimeHudStore]);
+	React.useEffect(() => {
+		window.alt.on('client::crimeMenu:setFractionName', text => crimeMenuStore.fetchFractionName(text));
+		window.alt.on('client::crimeMenu:setFractionTerritories', value => crimeMenuStore.fetchFractionTerritories(value));
+		window.alt.on('client::crimeMenu:setBalance', value => crimeMenuStore.fetchBalance(value));
+		window.alt.on('client::crimeMenu:setPlayers', array => crimeMenuStore.fetchPlayers(array));
+		window.alt.on('client::crimeMenu:setStoreLocked', bool => crimeMenuStore.setStoreLocked(bool));
+		window.alt.on('client::crimeMenu:changePlayerData', (id, obj) => crimeMenuStore.changePlayerData(id, obj));
+		window.alt.on('client::crimeMenu:setNews', array => crimeMenuStore.fetchNews(array));
+		window.alt.on('client::crimeMenu:changeNews', (type, ...args) => crimeMenuStore.changeNews(type, ...args));
+		window.alt.on('client::crimeMenu:setEvents', array => crimeMenuStore.fetchEvents(array));
+		window.alt.on('client::crimeMenu:changeEvents', (type, ...args) => crimeMenuStore.changeEvents(type, ...args));
+		window.alt.on('client::crimeMenu:setRanks', array => crimeMenuStore.fetchRanksData(array));
+		window.alt.on('client::crimeMenu:changeRankData', (rank, obj) => crimeMenuStore.changeRankData(rank, obj));
+		window.alt.on('client::crimeMenu:setAwardLogs', array => crimeMenuStore.fetchAwardLogs(array));
+		window.alt.on('client::crimeMenu:addAward', obj => crimeMenuStore.addAward(obj));
+		window.alt.on('client::crimeMenu:setReprimandLogs', array => crimeMenuStore.fetchReprimandLogs(array));
+		window.alt.on('client::crimeMenu:addReprimand', obj => crimeMenuStore.addReprimandLogs(obj));
+		window.alt.on('client::crimeMenu:setStoreLogs', array => crimeMenuStore.fetchStoreLogs(array));
+		window.alt.on('client::crimeMenu:addStoreLog', obj => crimeMenuStore.addStoreLogs(obj));
+	}, [crimeMenuStore]);
 	
 	return <div className="app">
 		{component === 'auth' && <Auth isRegistered={isRegistered} store={authStore}/>}
@@ -285,6 +308,8 @@ const App = () => {
 		{component === 'choice' && <Choice characters={characters}/>}
 		{component === 'spawnChoice' && <SpawnChoice spawnData={spawnsData}/>}
 		{component === 'bank' && <Bank store={bankStore} player={playerStore}/>}
+		<Chat store={chatStore} isCursorActive={isCursorActive}
+		      isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
 		{component === 'hud' && <HUD
 			defaultStore={hudStore}
 			crimeStore={crimeHudStore}
@@ -302,8 +327,7 @@ const App = () => {
 		{component === 'gasStation' && <GasStation data={gasStation} store={hudStore} player={playerStore}/>}
 		{component === 'jobs' && <Jobs store={jobsStore} currentJob={currentJob} jobParams={jobParams}/>}
 		{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}
-		<Chat store={chatStore} isCursorActive={isCursorActive}
-		      isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>
+		{component === 'crimeMenu' && <CrimeMenu store={crimeMenuStore}/>}
 	</div>;
 };
 

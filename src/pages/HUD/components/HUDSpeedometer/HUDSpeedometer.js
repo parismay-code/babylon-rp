@@ -63,8 +63,8 @@ const HUDSpeedometer = ({player, store}) => {
     const [currentColors, setColors] = React.useState(colors.blue);
 
     React.useEffect(() => {
-        if (store.carState.speed / store.carState.maxSpeed * 100 < 30) setColors(colors.blue);
-        else if (store.carState.speed / store.carState.maxSpeed * 100 < 80) setColors(colors.yellow);
+        if (store.carState.speed < 60) setColors(colors.blue);
+        else if (store.carState.speed < 120) setColors(colors.yellow);
         else setColors(colors.red);
     }, [store.carState.speed, store.carState.maxSpeed, colors])
 

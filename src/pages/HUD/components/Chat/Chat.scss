@@ -1,4 +1,8 @@
 .chat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
   width: 600px;
 
   @media (min-width: 3000px) {
