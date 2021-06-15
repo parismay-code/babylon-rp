@@ -43,7 +43,7 @@ export default class CrimeHUDStore {
     }
     
     killPlayer(team, id) {
-        this.teams[team].players.filter(el => el.id === id)[0].isDead = true;
+        return this.teams[team].players.filter(el => el.id === id)[0].isDead = true;
     }
     
     setPlayerKills(team, id, kills) {
