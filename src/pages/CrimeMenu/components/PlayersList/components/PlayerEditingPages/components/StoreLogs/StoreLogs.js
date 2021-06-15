@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {observer} from 'mobx-react-lite';
 
-import {regExp}   from 'utils/regExp';
-
 import './StoreLogs.scss';
 
 const StoreLogs = ({store, editData}) => {
@@ -29,8 +27,6 @@ const StoreLogs = ({store, editData}) => {
 			</div>
 			<div className='crime-menu-player-store-logs-list-content'>
 				{store.storeLogs.filter(el => el.playerId === editData.data?.id).map((el, key) => {
-					const count = `${String(el.count).replace(regExp.money, '$1 ')} $`;
-					
 					return <div key={key} className='crime-menu-player-store-logs-list-content-element'>
 						<div className='crime-menu-player-store-logs-list-content-element__date'>{el.date}</div>
 						<div

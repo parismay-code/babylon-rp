@@ -13,7 +13,6 @@ const Awards = ({store, editData}) => {
 	const handleSubmit = React.useCallback(() => {
 		if (field.current.value) {
 			window.alt.emit('client::crimeMenu:sendAward', editData.data?.id, field.current.value);
-			console.log(editData.data?.id, field.current.value);
 		}
 	}, [editData.data?.id]);
 	

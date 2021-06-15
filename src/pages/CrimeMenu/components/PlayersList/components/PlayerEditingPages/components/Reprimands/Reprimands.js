@@ -16,7 +16,6 @@ const Reprimands = ({store, editData}) => {
 	const handleSubmit = React.useCallback(() => {
 		if (field.current.value) {
 			window.alt.emit('client::crimeMenu:sendReprimand', editData.data?.id, reprimandType, field.current.value);
-			console.log(editData.data?.id, reprimandType, field.current.value);
 		}
 	}, [editData.data?.id, reprimandType]);
 	
@@ -91,8 +90,6 @@ const Reprimands = ({store, editData}) => {
 			</div>
 			<div className="crime-menu-player-reprimands-list-content">
 				{store.reprimandLogs.filter(el => el.to === editData.data?.id).map((el, key) => {
-					const count = `${String(el.count).replace(regExp.money, '$1 ')} $`;
-					
 					return <div key={key} className="crime-menu-player-reprimands-list-content-element">
 						<div className="crime-menu-player-reprimands-list-content-element-from">
 							{el.from.id}: {el.from.nickname}
