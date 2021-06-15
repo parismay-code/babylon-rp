@@ -280,7 +280,8 @@ const App = () => {
 	}, [inventoryStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::crimeHud:setTeams', obj => crimeHudStore.fetchTeams(obj));
-		window.alt.on('cef::crimeHud:changeTeamPlayer', data => crimeHudStore.changeTeamPlayerData(data));
+		window.alt.on('cef::crimeHud:killPlayer', (team, id) => crimeHudStore.killPlayer(team, id));
+		window.alt.on('cef::crimeHud:setPlayerKills', (team, id, kills) => crimeHudStore.setPlayerKills(team, id, kills));
 		window.alt.on('cef::crimeHud:setTimer', value => crimeHudStore.setBattleTimer(value));
 	}, [crimeHudStore]);
 	React.useEffect(() => {

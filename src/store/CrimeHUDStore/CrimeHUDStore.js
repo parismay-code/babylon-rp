@@ -11,7 +11,8 @@ export default class CrimeHUDStore {
             battleTimer: observable,
             
             fetchTeams: action.bound,
-            changeTeamPlayerData: action.bound,
+            killPlayer: action.bound,
+            setPlayerKills: action.bound,
             setBattleTimer: action.bound,
         })
     }
@@ -20,6 +21,12 @@ export default class CrimeHUDStore {
         attack: {
             name: 'Vagos',
             players: [
+                {
+                    id: 1,
+                    nickname: 'Paris May',
+                    kills: 2,
+                    isDead: false
+                }
             ]
         },
         defence: {
@@ -35,9 +42,12 @@ export default class CrimeHUDStore {
         return this.teams = obj;
     }
     
-    changeTeamPlayerData(data) {
-        console.log(data.team, data.id, data.obj);
-        this.teams[data.team].players.filter(el => el.id === data.id)[0] = data.obj;
+    killPlayer(team, id) {
+        this.teams[team].players.filter(el => el.id === id)[0].isDead = true;
+    }
+    
+    setPlayerKills(team, id, kills) {
+        return this.teams[team].players.filter(el => el.id === id)[0].kills = kills;
     }
     
     setBattleTimer(value) {
