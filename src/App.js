@@ -215,6 +215,8 @@ const App = () => {
 			setParkingData(obj);
 		});
 		
+		window.alt.on('cef::crimeMenu:start', () => setComponent('crimeMenu'));
+		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
 	}, []);
 	React.useEffect(() => {
