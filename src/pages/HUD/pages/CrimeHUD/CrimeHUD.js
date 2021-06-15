@@ -15,7 +15,7 @@ import scull from 'assets/images/hud/scull.svg';
 import './CrimeHUD.scss';
 
 const CrimeHUD = ({defaultStore, crimeStore, player}) => {
-	const [kills, addKill] = React.useState(2),
+	const [kills, addKill] = React.useState(0),
 		[damageData, setDamageData] = React.useState({
 			damage: 0,
 			target: {
