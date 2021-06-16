@@ -5,6 +5,9 @@ import cn         from 'classnames';
 import rotateIcon    from 'assets/images/shops/carDealer/rotateIcon.svg';
 import testDriveIcon from 'assets/images/shops/carDealer/testDriveIcon.svg';
 import arrow         from 'assets/images/shops/carDealer/arrow.svg';
+import statsBg       from 'assets/images/shops/carDealer/statsBg.svg';
+import buyBg         from 'assets/images/shops/carDealer/buyBg.svg';
+import buyBgDisabled from 'assets/images/shops/carDealer/buyBgDisabled.svg';
 
 import {regExp} from 'utils/regExp';
 
@@ -36,6 +39,14 @@ const CarDealer = ({store}) => {
 	React.useEffect(() => {
 		setCar(0);
 	}, [currentCategory]);
+	
+	React.useEffect(() => {
+		window.alt.emit('client::carDealer:preview', data?.cars[currentCar].id);
+	}, [currentCar, data?.cars]);
+	
+	React.useEffect(() => {
+		window.alt.emit('client::carDealer:setColor', colorsList[currentColor]);
+	}, [colorsList, currentColor]);
 	
 	const screen = React.useRef(null);
 	
@@ -170,6 +181,7 @@ const CarDealer = ({store}) => {
 			</div>
 		</div>
 		<div className="car-dealer-stats">
+			<img className="car-dealer-stats__bg" src={statsBg} alt="#"/>
 			<div className="car-dealer-stats-element car-dealer-stats-element_controllability">
 				<div className="car-dealer-stats-element-value">
 					<span
@@ -207,10 +219,14 @@ const CarDealer = ({store}) => {
 			</div>
 		</div>
 		<div
-			className={cn('car-dealer__buy',
-				data?.cars[currentCar].isInStock ? 'car-dealer__buy_disabled' : null)}
+			className="car-dealer-buy"
+			onClick={() => {
+				if (data?.cars[currentCar].isInStock)
+					window.alt.emit('client::carDealer:buy', data?.cars[currentCar].id, data?.cars[currentCar].price);
+			}}
 		>
-			{data?.cars[currentCar].isInStock ? 'Купить' : 'Нет в наличии'}
+			<img className="car-dealer-buy__bg" src={data?.cars[currentCar].isInStock ? buyBg : buyBgDisabled} alt="#"/>
+			<div className="car-dealer-buy__title">{data?.cars[currentCar].isInStock ? 'Купить' : 'Нет в наличии'}</div>
 		</div>
 		<div className="car-dealer-exit">
 			<div className="car-dealer-exit__button">Esc</div>

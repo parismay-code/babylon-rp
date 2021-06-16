@@ -242,16 +242,95 @@
     left: 50%;
     transform: translateX(-50%);
     
-    width: 120%;
-    height: 100px;
+    width: 105%;
+    padding: 0 30%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &__bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      z-index: -1;
+      
+      width: 110%;
+    }
+    
+    &-element {
+      text-align: center;
+      font-family: "TT Norms Bold", sans-serif;
+  
+      opacity: .5;
+      
+      transform: translateY(50%);
+      
+      &-value {
+        &__title {
+          font-size: 2rem;
+          margin-right: 5px;
+        }
+        
+        &__unit {
+          font-family: "TT Norms Regular", sans-serif;
+        }
+      }
+      
+      &_gasMileage,
+      &_overclocking {
+        transform: translateY(75%);
+      }
+      
+      &_maxSpeed {
+        transform: translateY(85%);
+      }
+    }
+  }
+  
+  &-buy {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    width: 50%;
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    border-bottom-left-radius: 100%;
-    border-bottom-right-radius: 100%;
   
-    background: red;
+    opacity: .8;
+    
+    transition: opacity .2s;
+    
+    cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+    
+    &:hover {
+      opacity: 1;
+    }
+    
+    &__bg {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      z-index: -1;
+    }
+    
+    &__title {
+      transform: translateY(35%);
+      
+      text-transform: uppercase;
+      color: $color-white;
+      font-family: "TT Norms Extra Bold", sans-serif;
+      text-shadow: 0 2px 2px $color-black;
+      font-size: 2rem;
+    }
   }
   
   &-exit {

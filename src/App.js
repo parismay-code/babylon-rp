@@ -216,6 +216,8 @@ const App = () => {
 		
 		window.alt.on('cef::crimeMenu:start', () => setComponent('crimeMenu'));
 		
+		window.alt.on('cef::carDealer:start', () => setComponent('carDealer'));
+		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
 		
 		window.alt.emit('client::cef:ready');

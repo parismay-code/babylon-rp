@@ -42,7 +42,7 @@ export default class CrimeMenuStore {
 		});
 	}
 	
-	fractionName = null;
+	fractionName = 'Ballas';
 	territories = 0;
 	isStoreLocked = false;
 	balance = 0;
