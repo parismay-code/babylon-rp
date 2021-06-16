@@ -8,10 +8,6 @@
 
   font-family: "TT Norms Regular", sans-serif;
   
-  opacity: 0;
-  
-  transition: opacity .2s;
-  
   &_active {
     opacity: 1;
   }
