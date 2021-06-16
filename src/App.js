@@ -17,6 +17,7 @@ import GasStation    from 'pages/GasStation';
 import Jobs          from 'pages/Jobs';
 import Parking       from 'pages/Parking';
 import CrimeMenu     from 'pages/CrimeMenu';
+import CarDealer     from 'pages/CarDealer';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -259,10 +260,13 @@ const App = () => {
 	}, [battlePassStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::shop:setOwner', name => shopsStore.setOwner(name));
+		
 		window.alt.on('cef::clothesShop:setData', array => shopsStore.fetchClothesShopData(array));
 		
 		window.alt.on('cef::gunShop:fetchData', obj => shopsStore.fetchWeaponShopData(obj));
 		window.alt.on('cef::gunShop:clearBuyList', () => shopsStore.clearWeaponBuyList());
+		
+		window.alt.on('cef::carDealer:setData', array => shopsStore.fetchCarDealerData(array));
 	}, [shopsStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::jobs:setData', obj => jobsStore.fetchJobData(obj));
@@ -331,6 +335,7 @@ const App = () => {
 		{component === 'jobs' && <Jobs store={jobsStore} currentJob={currentJob} jobParams={jobParams}/>}
 		{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}
 		{component === 'crimeMenu' && <CrimeMenu store={crimeMenuStore}/>}
+		{component === 'carDealer' && <CarDealer store={shopsStore}/>}
 	</div>;
 };
 

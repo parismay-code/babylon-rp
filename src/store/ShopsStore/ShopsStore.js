@@ -794,7 +794,7 @@ export default class ShopsStore {
 							range: 50,
 						},
 						price: 1000,
-						description: 'Weapon description'
+						description: 'Weapon description',
 					},
 				],
 			},
@@ -839,6 +839,125 @@ export default class ShopsStore {
 		],
 	};
 	weaponBuyList = [];
+	carDealerData = [
+		{
+			categoryId: 0,
+			name: 'Легковое авто',
+			cars: [
+				{
+					id: 1,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+				{
+					id: 2,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+				{
+					id: 3,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+			],
+		},
+		{
+			categoryId: 1,
+			name: 'Внедорожник',
+			cars: [
+				{
+					id: 4,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: false,
+				},
+				{
+					id: 5,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+				{
+					id: 6,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+			],
+		},
+		{
+			categoryId: 2,
+			name: 'Спорткар',
+			cars: [
+				{
+					id: 7,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+				{
+					id: 8,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+				{
+					id: 9,
+					name: 'Lamborghini Huracan',
+					price: 350000,
+					controllability: 10,
+					gasMileage: 12,
+					maxSpeed: 380,
+					overclocking: 3.8,
+					trunk: 12,
+					isInStock: true,
+				},
+			],
+		},
+	];
 	
 	constructor() {
 		makeObservable(this, {
@@ -846,6 +965,7 @@ export default class ShopsStore {
 			clothesShopData: observable,
 			weaponShopData: observable,
 			weaponBuyList: observable,
+			carDealerData: observable,
 			
 			fetchClothesShopData: action.bound,
 			setOwner: action.bound,
@@ -853,6 +973,7 @@ export default class ShopsStore {
 			addWeaponBuyListElement: action.bound,
 			removeWeaponBuyListElement: action.bound,
 			clearWeaponBuyList: action.bound,
+			fetchCarDealerData: action.bound,
 		});
 	}
 	
@@ -893,7 +1014,7 @@ export default class ShopsStore {
 				hash: obj.hash,
 				count: 1,
 				price: obj.price,
-			}
+			};
 			
 			return this.weaponBuyList.push(_obj);
 		}
@@ -905,6 +1026,10 @@ export default class ShopsStore {
 	
 	clearWeaponBuyList() {
 		return this.weaponBuyList = [];
+	}
+	
+	fetchCarDealerData(array) {
+		return this.carDealerData = array;
 	}
 	
 	destroy() {

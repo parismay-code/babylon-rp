@@ -1,0 +1,353 @@
+@import '../../styles/vars';
+
+.car-dealer {
+  width: 100vw;
+  height: 100vh;
+  
+  background: linear-gradient(to right, #7D7A82, #AAB6EF66, #AAB6EF00, #AAB6EF66, #7D7A82);
+  
+  font-family: "TT Norms Regular", sans-serif;
+  color: #000000;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &-navigation {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    align-items: flex-start;
+  
+    &-element {
+      width: 60px;
+      height: 100px;
+    
+      background: linear-gradient(-45deg, #8C899266, #FFFFFF66);
+    
+      cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+    
+      transition: filter .2s, height .2s ease;
+    
+      @media (max-width: 1280px) {
+        width: calc(60px * .8);
+        height: calc(100px * .8);
+      }
+    
+      @media (max-width: 1000px) {
+        width: calc(60px * .5);
+        height: calc(100px * .5);
+      }
+    
+      @media (max-height: 800px) {
+        width: calc(60px * .5);
+        height: calc(100px * .5);
+      }
+    
+      &_active {
+        height: 115px;
+      
+        @media (max-width: 1280px) {
+          height: calc(115px * .8);
+        }
+      
+        @media (max-width: 1000px) {
+          height: calc(115px * .5);
+        }
+      
+        @media (max-height: 800px) {
+          height: calc(115px * .5);
+        }
+      }
+    
+      &__icon {
+        width: 100%;
+        height: 100%;
+      
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      
+        transition: backdrop-filter .2s;
+      
+        & svg {
+          max-height: 40%;
+          max-width: 80%;
+        
+          fill: #000000;
+          opacity: .25;
+        
+          transition: fill .2s, opacity.2s;
+        }
+      }
+    
+      &:hover &__icon,
+      &_active &__icon {
+        backdrop-filter: brightness(.6);
+      
+        & svg {
+          fill: #ffffff;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  
+  &-info {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &-number {
+      font-size: 1.5rem;
+      width: 20%;
+  
+      opacity: .5;
+      
+      &-value {
+        font-family: "TT Norms Bold", sans-serif;
+        
+        &__current {
+          font-size: 2rem;
+        }
+      }
+    }
+    
+    &-car {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      transform: translateY(40%);
+      
+      &__name {
+        margin-bottom: 30px;
+        
+        font-size: 2.5rem;
+        font-family: "TT Norms Bold", sans-serif;
+  
+        opacity: .5;
+      }
+      
+      &__price {
+        margin-bottom: 20px;
+        
+        color: $color-white;
+        text-shadow: 0 2px 2px $color-black;
+        font-size: 1.5rem;
+        font-family: "TT Norms Extra Bold", sans-serif;
+      }
+      
+      &-colors {
+        display: flex;
+        align-items: flex-start;
+  
+        height: 60px;
+        
+        &__element {
+          width: 15px;
+          height: 15px;
+          margin-right: 10px;
+          
+          opacity: .5;
+          
+          transition: opacity .2s, height .2s ease;
+          
+          &_active {
+            height: 100%;
+            opacity: 1;
+          }
+        }
+      }
+    }
+    
+    &-test {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+  
+      cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+      
+      &:hover &__icon {
+        transform: rotate(360deg);
+      }
+      
+      &__icon {
+        height: 2rem;
+        margin-bottom: 5px;
+        
+        transition: transform .5s ease;
+      }
+      
+      &__title {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        opacity: .5;
+      }
+    }
+  }
+  
+  &-choose {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &__prev,
+    &__next {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+      
+      &:hover img {
+        opacity: 1;
+      }
+      
+      & img {
+        height: 2rem;
+  
+        opacity: .5;
+  
+        transition: opacity .2s;
+      }
+    }
+    
+    &__next {
+      transform: rotate(180deg);
+    }
+  }
+  
+  &-stats {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 120%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+  
+    background: red;
+  }
+  
+  &-exit {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+    
+    display: flex;
+    align-items: center;
+    
+    font-family: "TT Norms Medium", sans-serif;
+    color: $color-white;
+    
+    filter: drop-shadow(0 2px 2px $color-black);
+    
+    @media (max-width: 1000px) {
+      bottom: 25px;
+      left: 35px;
+    }
+    
+    @media (max-height: 800px) {
+      bottom: 25px;
+      left: 35px;
+    }
+    
+    &__button {
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      font-size: 1.2rem;
+      
+      border: 1px solid $color-white;
+      
+      @media (max-width: 1280px) {
+        font-size: 1rem;
+      }
+      
+      @media (max-width: 1000px) {
+        width: 20px;
+        height: 20px;
+        margin-right: 2.5px;
+        font-size: .8rem;
+      }
+      
+      @media (max-height: 800px) {
+        width: 20px;
+        height: 20px;
+        margin-right: 2.5px;
+        font-size: .8rem;
+      }
+      
+      @media (min-width: 3000px) {
+        font-size: .8rem;
+      }
+    }
+    
+    &__text {
+      font-size: 1.2rem;
+      
+      @media (max-width: 1280px) {
+        font-size: 1rem;
+      }
+      
+      @media (max-width: 1000px) {
+        font-size: .8rem;
+      }
+      
+      @media (max-height: 800px) {
+        font-size: .8rem;
+      }
+      
+      @media (min-width: 3000px) {
+        font-size: .8rem;
+      }
+    }
+  }
+  
+  &-rotate {
+    position: absolute;
+    right: 40px;
+    bottom: 50px;
+  
+    display: flex;
+    align-items: center;
+  
+    font-family: "TT Norms Medium", sans-serif;
+    
+    opacity: .5;
+    
+    &__title {
+      margin-right: 15px;
+    }
+  }
+}
