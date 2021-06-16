@@ -121,7 +121,7 @@ const PlayersList = ({store, color}) => {
 					</div>
 					<div className="crime-menu-players-list-content-edit-player-reputation-reprimands">
 						<span className="crime-menu-players-list-content-edit-player-reputation-reprimands__count">
-							{store.reprimandLogs.filter(el => el.to === editData.data?.id).length}
+							{store.reprimandLogs.filter(el => el.to === editData.data?.id && el.type === 0).length}
 						</span>
 						выговоров
 					</div>
