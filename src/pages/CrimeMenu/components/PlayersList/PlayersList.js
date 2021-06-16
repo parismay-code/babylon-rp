@@ -18,6 +18,11 @@ const PlayersList = ({store, color}) => {
 		data: null,
 	});
 	
+	const reprimandCount = React.useMemo(() => {
+		return store.reprimandLogs.filter(el => el.to === editData.data?.id && el.type === 0).length -
+			store.reprimandLogs.filter(el => el.to === editData.data?.id && el.type === 1).length;
+	}, [editData.data?.id, store.reprimandLogs]);
+	
 	return <div className="crime-menu-players-list">
 		<PlayersListHeader store={store}/>
 		<div className="crime-menu-players-list-content">
@@ -121,7 +126,7 @@ const PlayersList = ({store, color}) => {
 					</div>
 					<div className="crime-menu-players-list-content-edit-player-reputation-reprimands">
 						<span className="crime-menu-players-list-content-edit-player-reputation-reprimands__count">
-							{store.reprimandLogs.filter(el => el.to === editData.data?.id && el.type === 0).length}
+							{reprimandCount}
 						</span>
 						выговоров
 					</div>
