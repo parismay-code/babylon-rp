@@ -14,12 +14,12 @@ const CreatorPlayerClothes = ({store}) => {
 	}, [store.data.clothes.body.component, store.data.clothes.body.drawable, store.data.clothes.body.texture]);
 	React.useEffect(() => {
 		window.alt.emit('client::characterCreator:preview', 'clothes',
-			store.data.clothes.pants.component, store.data.clothes.pants.id, store.data.clothes.pants.texture);
-	}, [store.data.clothes.pants.component, store.data.clothes.pants.id, store.data.clothes.pants.texture]);
+			store.data.clothes.pants.component, store.data.clothes.pants.drawable, store.data.clothes.pants.texture);
+	}, [store.data.clothes.pants.component, store.data.clothes.pants.drawable, store.data.clothes.pants.texture]);
 	React.useEffect(() => {
 		window.alt.emit('client::characterCreator:preview', 'clothes',
-			store.data.clothes.shoes.component, store.data.clothes.shoes.id, store.data.clothes.shoes.texture);
-	}, [store.data.clothes.shoes.component, store.data.clothes.shoes.id, store.data.clothes.shoes.texture]);
+			store.data.clothes.shoes.component, store.data.clothes.shoes.drawable, store.data.clothes.shoes.texture);
+	}, [store.data.clothes.shoes.component, store.data.clothes.shoes.drawable, store.data.clothes.shoes.texture]);
 	
 	const getElementByDrawable = React.useCallback((array, drawable) => {
 		const id = array.findIndex(el => el.drawable === drawable);
