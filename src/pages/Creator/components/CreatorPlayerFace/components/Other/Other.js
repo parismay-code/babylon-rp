@@ -24,7 +24,7 @@ const Other = ({store}) => {
                 <span>выберите остальные параметры</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_lips' className='player-option-list__element range-element'>
+                <div key='k_lips' className='player-options-list__element range-element'>
                     <span>толщина губ</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -45,7 +45,7 @@ const Other = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_chinWidth' className='player-option-list__element range-element'>
+                <div key='k_chinWidth' className='player-options-list__element range-element'>
                     <span>ширина челюсти</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -66,7 +66,7 @@ const Other = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_chinHeight' className='player-option-list__element range-element'>
+                <div key='k_chinHeight' className='player-options-list__element range-element'>
                     <span>размер челюсти</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -87,7 +87,7 @@ const Other = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_neckWidth' className='player-option-list__element range-element'>
+                <div key='k_neckWidth' className='player-options-list__element range-element'>
                     <span>обхват шеи</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {

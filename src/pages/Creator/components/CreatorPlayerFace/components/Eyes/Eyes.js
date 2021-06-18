@@ -21,7 +21,7 @@ const Eyes = ({store}) => {
                 <span>выберите параметры глаз</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_eyesWidth' className='player-option-list__element range-element'>
+                <div key='k_eyesWidth' className='player-options-list__element range-element'>
                     <span>ширина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -42,7 +42,7 @@ const Eyes = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_eyesColor' className='player-option-list__element color-element'>
+                <div key='k_eyesColor' className='player-options-list__element color-element'>
                     <span>цвет глаз</span>
                     <div className='color-element__input'>
                         {

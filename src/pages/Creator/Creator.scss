@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: flex-start;
     font-family: "TT Norms Thin", serif;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 1px;
     color: $color-blank;
@@ -37,13 +38,11 @@
     @media (max-width: 1000px) {
       height: 20px;
       padding-left: 15px;
-      font-size: .8rem;
     }
 
     @media (max-height: 800px) {
       height: 20px;
       padding-left: 15px;
-      font-size: .8rem;
     }
 
     &.creator-error {
@@ -86,7 +85,7 @@
   &__content {
     width: 70%;
     height: 100%;
-    background: linear-gradient(to right, #EEF0FB, #B8BACD, #7D7A8200);
+    background: linear-gradient(to right, #EEF0FB, #B8BACD, #7D7A8200 90%);
     padding: 0 65px;
 
     @media (max-width: 1280px) {
@@ -123,14 +122,6 @@
     & span {
       font-size: 2.5rem;
       opacity: .5;
-
-      @media (max-width: 1000px) {
-        font-size: 1.5rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: 1.5rem;
-      }
     }
 
     &_random {
@@ -155,12 +146,10 @@
 
         @media (max-width: 1000px) {
           margin-left: -15px;
-          font-size: .8rem;
         }
 
         @media (max-height: 800px) {
           margin-left: -15px;
-          font-size: .8rem;
         }
       }
 
@@ -273,20 +262,17 @@
     }
 
     &-element {
-      padding: 20px;
+      padding: 15px 20px;
       margin-right: 10px;
-      opacity: .3;
+      opacity: .5;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.2rem;
 
       cursor: url('../../assets/images/cursorPointer.svg'), pointer;
 
       transition: opacity .2s linear;
-
-      @media (min-width: 3000px) {
-        font-size: .8rem;
-      }
 
       @media (max-width: 1280px) {
         padding: 15px;
@@ -296,18 +282,16 @@
       @media (max-width: 1000px) {
         padding: 10px;
         margin-right: 3px;
-        font-size: .8rem;
       }
 
       @media (max-height: 800px) {
         padding: 10px;
         margin-right: 3px;
-        font-size: .8rem;
       }
 
       &.active,
       &:hover {
-        opacity: .5;
+        opacity: .9;
       }
     }
 
@@ -338,12 +322,10 @@
 
       @media (max-width: 1000px) {
         width: 125px;
-        font-size: 1rem;
       }
 
       @media (max-height: 800px) {
         width: 125px;
-        font-size: 1rem;
       }
 
       &:hover {
@@ -396,68 +378,32 @@
 
       @media (max-width: 1000px) {
         height: 20px;
-        font-size: 2rem;
       }
 
       @media (max-height: 800px) {
         height: 20px;
-        font-size: 2rem;
       }
     }
   }
-
-  &-controls {
-    display: flex;
-    align-items: flex-end;
-
+  
+  &-rotate {
     position: absolute;
-    bottom: 25px;
-    right: 25px;
-
-    &-camera {
-      margin-right: 30px;
-
-      @media (max-width: 1000px) {
-        margin-right: 15px;
-      }
-
-      @media (max-height: 800px) {
-        margin-right: 15px;
-      }
+    bottom: 50px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+  
+    font-family: "TT Norms Medium", sans-serif;
+    color: $color-white;
+    text-shadow: 0 2px 2px $color-black;
+  
+    &__title {
+      font-size: 1.3rem;
+      margin-right: 10px;
     }
-
-    &-camera,
-    &-rotate {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-transform: lowercase;
-
-      &__icon {
-        height: 60px;
-
-        @media (max-width: 1000px) {
-          height: 30px;
-        }
-
-        @media (max-height: 800px) {
-          height: 30px;
-        }
-      }
-
-      &__title {
-        margin-top: 15px;
-
-        @media (max-width: 1000px) {
-          margin-top: 7px;
-          font-size: .8rem;
-        }
-
-        @media (max-height: 800px) {
-          margin-top: 7px;
-          font-size: .8rem;
-        }
-      }
+    
+    &__icon {
+      height: 2.5rem;
     }
   }
 }
@@ -496,18 +442,17 @@
       cursor: url('../../assets/images/cursorPointer.svg'), pointer;
 
       text-align: right;
-      opacity: .5;
+      opacity: .6;
       transition: opacity .2s linear, margin-left .2s ease;
       margin-bottom: 10px;
+      font-size: 1.2rem;
 
       @media (max-width: 1000px) {
         margin-bottom: 5px;
-        font-size: .8rem;
       }
 
       @media (max-height: 800px) {
         margin-bottom: 5px;
-        font-size: .8rem;
       }
 
 
@@ -560,18 +505,18 @@
     flex-direction: column;
 
     &__title {
-      opacity: .5;
-      font-size: 1.2rem;
+      opacity: .9;
+      font-size: 1.5rem;
       letter-spacing: 1px;
       margin-bottom: 20px;
+  
+      font-weight: 700;
 
       @media (max-width: 1000px) {
-        font-size: 1rem;
         margin-bottom: 10px;
       }
 
       @media (max-height: 800px) {
-        font-size: 1rem;
         margin-bottom: 10px;
       }
     }
@@ -579,38 +524,66 @@
     &-list {
       display: flex;
       flex-direction: column;
-
-      @media (max-width: 1000px) {
-        font-size: .8rem;
+      
+      &__element {
+        width: 350px;
+        margin-bottom: 20px;
+  
+        @media (max-width: 1154px) {
+          width: 300px;
+        }
+  
+        @media (max-width: 1000px) {
+          width: 175px;
+          margin-bottom: 10px;
+        }
+  
+        @media (max-height: 800px) {
+          width: 175px;
+          margin-bottom: 10px;
+        }
+        
+        &_cloth {
+          padding-bottom: 20px;
+        }
       }
+    }
+  }
+}
 
-      @media (max-height: 800px) {
-        font-size: .8rem;
+.parents-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  
+  &-list {
+    width: 125px;
+    height: 125px;
+    
+    overflow: auto;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    &-element {
+      width: 100%;
+      height: 100%;
+  
+      opacity: .5;
+      
+      &__image {
+        height: 100%;
       }
     }
   }
 }
 
 .color-element {
-  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 20px;
-
-  @media (max-width: 1154px) {
-    width: 300px;
-  }
-
-  @media (max-width: 1000px) {
-    width: 175px;
-    margin-bottom: 10px;
-  }
-
-  @media (max-height: 800px) {
-    width: 175px;
-    margin-bottom: 10px;
-  }
 
   &__input {
     display: flex;
@@ -662,61 +635,55 @@
   }
 
   & span {
-    opacity: .4;
+    opacity: .9;
+    font-size: 1.2rem;
     margin-bottom: 10px;
+  }
+}
+
+.select-element {
+  & span:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 1.2rem;
   }
 }
 
 .select-element,
 .range-element {
-  width: 350px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  @media (max-width: 1154px) {
-    width: 300px;
-  }
-
-  @media (max-width: 1000px) {
-    width: 175px;
-    margin-bottom: 10px;
-  }
-
-  @media (max-height: 800px) {
-    width: 175px;
-    margin-bottom: 10px;
-  }
-
   & span {
-    opacity: .4;
+    opacity: .9;
+    width: 100%;
+    
+    font-size: 1.2rem;
   }
 
   &__input {
-    width: 50%;
+    width: 100%;
+    margin-top: 10px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 
     & span {
       font-size: .8rem;
     }
 
     & input[type="range"] {
-      width: 80%;
-      opacity: .3;
-      height: 3px;
-      background-color: $color-black;
+      width: 100%;
+      margin: 0 10px;
+      height: 4px;
+      background-color: #8B8C99;
       border-radius: 3px;
       outline: none;
       appearance: none;
       -webkit-appearance: none;
-      border:none;
+      border: none;
 
       cursor: url('../../assets/images/cursorPointer.svg'), pointer;
+  
+      opacity: .7;
 
       @media (max-width: 1000px) {
         height: 2px;
@@ -725,25 +692,29 @@
       @media (max-height: 800px) {
         height: 2px;
       }
-    }
-
-    & input[type="range"]::-webkit-slider-thumb {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 2px;
-      height: 20px;
-      background: $color-black;
-
-      outline:none;
-
-      @media (max-width: 1000px) {
-        height: 10px;
-        width: 1px;
-      }
-
-      @media (max-height: 800px) {
-        height: 10px;
-        width: 1px;
+      
+      &::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background-color: #6A6B72;
+  
+        filter: drop-shadow(0 0 3px $color-black);
+  
+        border-radius: 20px;
+  
+        outline: none;
+  
+        @media (max-width: 1000px) {
+          height: 10px;
+          width: 1px;
+        }
+  
+        @media (max-height: 800px) {
+          height: 10px;
+          width: 1px;
+        }
       }
     }
   }

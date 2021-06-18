@@ -90,8 +90,8 @@ const CreatorPlayerName = ({store}) => {
                         key='k_firstname'
                         type='text'
                         defaultValue={store.data.name.firstname}
-                        placeholder='имя'
-                        onChange={(e) => store.data.name.firstname = e.target.value}
+                        placeholder='Имя'
+                        onChange={(e) => store.data.name.firstname = e.target.value.toLowerCase()}
                     />
                 </div>
                 <div className='player-name__input'>
@@ -99,8 +99,8 @@ const CreatorPlayerName = ({store}) => {
                         key='k_lastname'
                         type='text'
                         defaultValue={store.data.name.lastname}
-                        placeholder='фамилия'
-                        onChange={(e) => store.data.name.lastname = e.target.value}
+                        placeholder='Фамилия'
+                        onChange={(e) => store.data.name.lastname = e.target.value.toLowerCase()}
                     />
                 </div>
             </div>

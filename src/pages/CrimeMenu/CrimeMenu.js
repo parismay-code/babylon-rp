@@ -47,7 +47,20 @@ const CrimeMenu = ({store}) => {
 			}
 		}, [store.fractionName]);
 	
+	const notify = React.useRef(null);
+	
+	const showNotify = React.useCallback((text, timeout) => {
+		notify.current.style.opacity = 1;
+		notify.current.innerText = text;
+		
+		setTimeout(() => notify.current.style.opacity = 0, timeout ? timeout : 3000);
+	}, []);
+	
 	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		window.alt.on('cef::crimeMenu:sendNotify', (text, timeout) => showNotify(text, timeout));
+	}, [showNotify]);
 	
 	React.useEffect(() => {
 		const timeout = setTimeout(() => screen.current.classList.add('crime-menu_active'), 200);
@@ -129,6 +142,7 @@ const CrimeMenu = ({store}) => {
 							transform="translate(0)" fill={store.isStoreLocked ? '#eaeaea' : '#000000'}
 							opacity={store.isStoreLocked ? 1 : .5}/>
 					</svg>
+					<div ref={notify} className='crime-menu-content-right-navigation__notify'/>
 				</div>
 				{currentComponent === 'players' && <PlayersList store={store} color={fractionColor}/>}
 				{currentComponent === 'cars' && <Cars store={store}/>}

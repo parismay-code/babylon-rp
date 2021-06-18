@@ -127,10 +127,11 @@ input[type='number'],
 input[type='password'],
 input[type='email'] {
   cursor: url("../assets/images/cursorInput.svg"), text;
+  font-family: "TT Norms Medium", sans-serif !important;
 }
 
 body {
-  //background-image: url(../assets/images/hud/bg.png);
+  background-image: url(../assets/images/hud/bg.png);
   width: 100vw;
   height: 100vh;
 }

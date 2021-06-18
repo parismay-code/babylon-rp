@@ -50,8 +50,7 @@ const App = () => {
 		inventoryStore = useLocalStore(() => new InventoryStore()),
 		crimeMenuStore = useLocalStore(() => new CrimeMenuStore());
 	
-	const [component, setComponent] = React.useState(null),
-		[isRegistered, setRegistered] = React.useState(false),
+	const [component, setComponent] = React.useState('creator'),
 		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
 		[currentHUD, setHUD] = React.useState(0),
@@ -152,8 +151,7 @@ const App = () => {
 		});
 	
 	React.useEffect(() => {
-		window.alt.on('cef::auth:start', bool => {
-			setRegistered(bool);
+		window.alt.on('cef::auth:start', () => {
 			setComponent('auth');
 		});
 		
@@ -227,9 +225,10 @@ const App = () => {
 		window.alt.on('cef::player:setLookDirection', value => playerStore.fetchLookDirection(value));
 	}, [playerStore]);
 	React.useEffect(() => {
-		window.alt.on('cef::auth:getResetCode', (code) => {
-			authStore.fetchResetCode(code);
-		});
+		window.alt.on('cef::auth:getResetCode', code => authStore.fetchResetCode(code));
+		
+		window.alt.on('cef::auth:setRegistered', bool => authStore.setIsRegistered(bool));
+		window.alt.on('cef::auth:sendNotify', (type, text) => authStore.addNotify(type, text));
 	}, [authStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::bank:setFines', array => bankStore.fetchFines(array));
@@ -312,7 +311,7 @@ const App = () => {
 	}, [crimeMenuStore]);
 	
 	return <div className="app">
-		{component === 'auth' && <Auth isRegistered={isRegistered} store={authStore}/>}
+		{component === 'auth' && <Auth store={authStore}/>}
 		{component === 'creator' && <Creator store={creatorStore}/>}
 		{component === 'choice' && <Choice characters={characters}/>}
 		{component === 'spawnChoice' && <SpawnChoice spawnData={spawnsData}/>}

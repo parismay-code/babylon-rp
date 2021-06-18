@@ -39,7 +39,7 @@ const Hair = ({store}) => {
                 <span>настройте параметры растительности</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_headHairType' className='player-option-list__element select-element'>
+                <div key='k_headHairType' className='player-options-list__element select-element'>
                     <span>тип прически</span>
                     <div className='select-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -54,7 +54,7 @@ const Hair = ({store}) => {
                     </div>
                 </div>
                 <div style={{height: '5vw'}} key='k_headHairColor'
-                     className='player-option-list__element color-element'>
+                     className='player-options-list__element color-element'>
                     <span>цвет прически</span>
                     <div className='color-element__input'>
                         {
@@ -73,7 +73,7 @@ const Hair = ({store}) => {
                     </div>
                 </div>
                 {store.data.sex === 0 && <>
-                    <div key='k_chestHairType' className='player-option-list__element select-element'>
+                    <div key='k_chestHairType' className='player-options-list__element select-element'>
                         <span>волосы на груди</span>
                         <div className='select-element__input'>
                             <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -88,7 +88,7 @@ const Hair = ({store}) => {
                         </div>
                     </div>
                     <div style={{height: '5vw'}} key='k_chestHairColor'
-                         className='player-option-list__element color-element'>
+                         className='player-options-list__element color-element'>
                         <span>цвет волос на груди</span>
                         <div className='color-element__input'>
                             {
@@ -106,7 +106,7 @@ const Hair = ({store}) => {
                             }
                         </div>
                     </div>
-                    <div key='k_beardHairType' className='player-option-list__element select-element'>
+                    <div key='k_beardHairType' className='player-options-list__element select-element'>
                         <span>Борода и усы</span>
                         <div className='select-element__input'>
                             <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -120,7 +120,7 @@ const Hair = ({store}) => {
                             }}/>
                         </div>
                     </div>
-                    <div key='k_beardHairColor' className='player-option-list__element color-element'>
+                    <div key='k_beardHairColor' className='player-options-list__element color-element'>
                         <span>цвет бороды</span>
                         <div className='color-element__input'>
                             {

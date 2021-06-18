@@ -5,7 +5,7 @@ import AuthForm        from './components/AuthForm';
 
 import './Auth.scss';
 
-const Auth = ({isRegistered, store}) => {
+const Auth = ({store}) => {
 	const screen = React.useRef(null);
 	
 	React.useEffect(() => {
@@ -19,7 +19,7 @@ const Auth = ({isRegistered, store}) => {
 	return (
 		<div ref={screen} className="auth">
 			<BackgroundTower/>
-			<AuthForm isRegistered={isRegistered} store={store}/>
+			<AuthForm store={store}/>
 		</div>
 	);
 };

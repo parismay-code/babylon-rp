@@ -183,6 +183,7 @@
 	}
 	
 	&-right {
+	  position: relative;
 	  width: calc(100% - 920px);
 	  height: 100%;
 	  
@@ -206,6 +207,28 @@
 		
 		&__ranks {
 		  margin-right: 80px;
+		}
+		
+		&__notify {
+		  position: absolute;
+		  top: 0;
+		  right: 80px;
+		  
+		  width: 315px;
+		  height: 105px;
+		  padding: 20px 80px;
+		  
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  
+		  opacity: 0;
+		  
+		  transition: opacity .2s;
+		  
+		  background: linear-gradient(to bottom, $color-blank, #FFD4A24D);
+		  
+		  text-shadow: 0 2px 2px $color-blank;
 		}
 	  }
 	}

@@ -21,7 +21,7 @@ const CreatorPlayerAppearance = ({store}) => {
             <div className='player-navigation'>
                 <div className={cn('player-navigation__element', optionsPage === 'similarity' ? 'active' : undefined)}
                      onClick={() => setOptionsPage('similarity')}
-                >тип лица
+                >родители
                 </div>
                 <div className={cn('player-navigation__element', optionsPage === 'hair' ? 'active' : undefined)}
                      onClick={() => setOptionsPage('hair')}

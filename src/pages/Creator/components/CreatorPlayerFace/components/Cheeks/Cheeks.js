@@ -15,7 +15,7 @@ const Cheeks = ({store}) => {
                 <span>выберите параметры щёк</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_cheeksDeep' className='player-option-list__element range-element'>
+                <div key='k_cheeksDeep' className='player-options-list__element range-element'>
                     <span>глубина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {

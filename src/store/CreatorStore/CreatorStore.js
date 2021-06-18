@@ -11,8 +11,9 @@ export default class CreatorStore {
             firstname: '',
             lastname: ''
         },
-        race: 0,
         parents: {
+            father: 0,
+            mother: 21,
             leatherMix: 0,
             similarity: 0
         },
@@ -77,170 +78,8 @@ export default class CreatorStore {
 
     // 0 - head, 11 - body, 4 - pants, 6 - shoes
     clothes = {
-        male: [
-            {
-                component: 0,
-                drawable: 1,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 3,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 7,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 4,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 4,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 4,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            }
-        ],
-        female: [
-            {
-                component: 0,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 0,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 11,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 4,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 4,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 4,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 15,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 17,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 5,
-                textures: [1, 2, 5, 6, 7]
-            },
-            {
-                component: 6,
-                drawable: 9,
-                textures: [1, 2, 5, 6, 7]
-            }
-        ]
+        male: [],
+        female: []
     };
 
     constructor() {

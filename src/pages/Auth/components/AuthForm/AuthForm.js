@@ -2,7 +2,6 @@ import * as React from 'react';
 import cn         from 'classnames';
 import {observer} from 'mobx-react-lite';
 
-import {showNotify} from './utils/notify';
 import {regExp}     from 'utils/regExp';
 
 import resetClose   from 'assets/images/auth/resetClose.svg';
@@ -10,9 +9,7 @@ import rememberIcon from 'assets/images/auth/rememberIcon.svg';
 
 import './AuthForm.scss';
 
-const AuthForm = ({isRegistered, store}) => {
-	const [authForm, setAuthForm] = React.useState(isRegistered ? 'log' : 'reg');
-	
+const AuthForm = ({store}) => {
 	const registrationForm = React.useRef(null);
 	const loginForm = React.useRef(null);
 	const resetForm = React.useRef(null);
@@ -30,76 +27,92 @@ const AuthForm = ({isRegistered, store}) => {
 	const LogFormLogin = React.useRef(null);
 	const LogFormPassword = React.useRef(null);
 	
-	const handleSetForm = React.useCallback((form) => setAuthForm(form), []);
+	const handleSetForm = React.useCallback(screen => store.setCurrentScreen(screen), [store]);
 	
 	const checkRegData = React.useCallback(() => {
-		const login = RegFormLogin.current.value;
-		const email = RegFormMail.current.value;
-		const password = RegFormPassword.current.value;
-		const rePassword = RegFormRePassword.current.value;
-		const referral = RegFormReferral.current.value;
-		
-		if (login === '' || email === '' || password === '' || rePassword === '') showNotify(0, 'Заполните все поля', 0);
-		else if (login.length < 5) showNotify(0, 'Логин должен быть длиннее 5 символов', 0);
-		else if (login.length > 16) showNotify(0, 'Логин должен быть короче 16 символов', 0);
-		else if (!regExp.mail.test(email)) showNotify(0, 'Заполните поле "E-Mail" по форме: example@mail.ru', 0);
-		else if (password.length < 5) showNotify(0, 'Пароль должен быть длиннее 5 символов', 0);
-		else if (password.length > 16) showNotify(0, 'Пароль должен быть короче 16 символов', 0);
-		else if (password !== rePassword) showNotify(0, 'Пароли не совпадают', 0);
-		else {
-			window.alt.emit('client::auth:register', {
-				login,
-				email,
-				password,
-				referral,
-			});
+			const login = RegFormLogin.current.value;
+			const email = RegFormMail.current.value;
+			const password = RegFormPassword.current.value;
+			const rePassword = RegFormRePassword.current.value;
+			const referral = RegFormReferral.current.value;
 			
-			window.alt.on('cef::auth:tryRegister', (bool, text) => {
-				if (bool) showNotify(1, 'Вы успешно зарегистрированы', 0);
-				else showNotify(0, text, 0);
-			});
-		}
-	}, []);
-	const checkLogData = React.useCallback(() => {
-		const login = LogFormLogin.current.value;
-		const password = LogFormPassword.current.value;
-		
-		if (login === '' || password === '') showNotify(0, 'Заполните все поля', 2);
-		else {
-			window.alt.emit('client::auth:login', {
+			if (login === '' || email === '' || password === '' || rePassword === '') store.addNotify(0, 'Заполните все поля');
+			else if (login.length < 5) store.addNotify(0, 'Логин должен быть длиннее 5 символов');
+			else if (login.length > 16) store.addNotify(0, 'Логин должен быть короче 16 символов');
+			else if (!regExp.mail.test(email)) store.addNotify(0, 'Заполните поле "E-Mail" по форме: example@mail.ru');
+			else if (password.length < 5) store.addNotify(0, 'Пароль должен быть длиннее 5 символов');
+			else if (password.length > 16) store.addNotify(0, 'Пароль должен быть короче 16 символов');
+			else if (password !== rePassword) store.addNotify(0, 'Пароли не совпадают');
+			else window.alt.emit('client::auth:register', {
+					login,
+					email,
+					password,
+					referral,
+				});
+		}, [store]),
+		checkLogData = React.useCallback(() => {
+			const login = LogFormLogin.current.value;
+			const password = LogFormPassword.current.value;
+			
+			if (login === '' || password === '') store.addNotify(0, 'Заполните все поля');
+			else window.alt.emit('client::auth:login', {
 				login,
 				password,
 			});
+		}, [store]),
+		checkResetData = React.useCallback(() => {
+			const email = ResetFormMail.current.value;
+			const code = ResetFormCode.current;
 			
-			window.alt.on('cef::auth:tryLogin', (bool, text) => {
-				if (!bool) showNotify(0, text, 2);
-				else showNotify(1, 'Вы успешно авторизованы', 2);
-			});
-		}
-	}, []);
-	const checkResetData = React.useCallback(() => {
-		const email = ResetFormMail.current.value;
-		const code = ResetFormCode.current;
-		
-		if (!regExp.mail.test(email)) showNotify(0, 'Заполните поле "E-Mail" по форме: example@mail.ru', 1);
-		else if (code.disabled) {
-			window.alt.emit('client::auth:sendResetPassword', email);
-			
-			code.classList.remove('disabled');
-			code.disabled = false;
-			showNotify(1, 'Письмо отправлено на почту', 1);
-		} else {
-			if (code.value.toLowerCase() === store.resetCode) {
-				window.alt.emit('client::auth:recovery', true);
+			if (!regExp.mail.test(email)) store.addNotify(0, 'Заполните поле "E-Mail" по форме: example@mail.ru');
+			else if (code.disabled) {
+				window.alt.emit('client::auth:sendResetPassword', email);
 				
-				showNotify(1, 'Письмо с новым паролем отправлено на Вашу почту', 1);
+				code.classList.remove('disabled');
+				code.disabled = false;
+				store.addNotify(1, 'Письмо отправлено на почту');
 			} else {
-				window.alt.emit('client::auth:recovery', false);
-				
-				showNotify(0, 'Неверный код', 1);
+				if (code.value.toLowerCase() === store.resetCode) {
+					window.alt.emit('client::auth:recovery', true);
+					
+					store.addNotify(1, 'Письмо с новым паролем отправлено на Вашу почту');
+				} else {
+					window.alt.emit('client::auth:recovery', false);
+					
+					store.addNotify(0, 'Неверный код');
+				}
 			}
+		}, [store, store.resetCode]),
+		showNotify = React.useCallback(() => {
+			const notify = document.getElementById(`id_authNotify_${store.currentScreen}`);
+			
+			if (store.notifyQueue.length > 0) {
+				store.isNotifyShowed = true;
+				
+				notify.innerText = store.notifyQueue[0].text;
+				if (store.notifyQueue[0].type === 0) {
+					document.querySelector('.auth').style.background = '#707070 linear-gradient(122deg, #AAB6EF2B 1%, #84818A 88%, #7D7A82 100%)';
+					notify.classList.add('auth-error');
+				} else notify.classList.add('auth-success');
+				notify.style.opacity = '1';
+				
+				setTimeout(() => {
+					document.querySelector('.auth').style.background = '#FFFFFF linear-gradient(122deg, #AAB6EF2B 1%, #84818A 88%, #7D7A82 100%)';
+					notify.style.opacity = '0';
+					notify.classList.remove('auth-success', 'auth-error');
+					store.notifyQueue.shift();
+					setTimeout(() => {
+						store.isNotifyShowed = false;
+					}, 500);
+				}, 3000);
+			}
+		}, [store.notifyQueue, store.isNotifyShowed]);
+	
+	React.useEffect(() => {
+		if (!store.isNotifyShowed) {
+			showNotify();
 		}
-	}, [store.resetCode]);
+	}, [showNotify, store.notifyQueue.length, store.isNotifyShowed]);
 	
 	React.useEffect(() => {
 		window.alt.on('cef::auth:setLogin', text => LogFormLogin.current.value = text);
@@ -107,7 +120,7 @@ const AuthForm = ({isRegistered, store}) => {
 	
 	return (
 		<div className="auth-form">
-			<div className={cn('auth-form-registration', authForm === 'reg' ? 'form-active' : undefined)}
+			<div className={cn('auth-form-registration', store.currentScreen === 'reg' ? 'form-active' : undefined)}
 			     ref={registrationForm}>
 				<div className="auth-form-registration__blur"/>
 				<span>babylOn</span>
@@ -133,37 +146,38 @@ const AuthForm = ({isRegistered, store}) => {
 							type="text"
 							name="n_authFormRegLogin"
 							ref={RegFormLogin}
-							placeholder="* логин"
+							placeholder="* Логин"
 						/>
 						<input
-							type="email"
+							type="text"
 							name="n_authFormRegEmail"
 							ref={RegFormMail}
-							placeholder="* почта"
+							placeholder="* Почта"
 						/>
 						<input
 							type="password"
 							name="n_authFormRegLogin"
 							ref={RegFormPassword}
-							placeholder="* пароль"
+							placeholder="* Пароль"
 						/>
 						<input
 							type="password"
 							name="n_authFormRegLogin"
 							ref={RegFormRePassword}
-							placeholder="* повторить пароль"
+							placeholder="* Повторить пароль"
 						/>
 						<input
 							type="number"
 							name="n_authFormRegReferral"
 							ref={RegFormReferral}
-							placeholder="id пригласившего"
+							placeholder="ID пригласившего"
 						/>
 					</div>
 				</form>
-				<div className="auth-form-notify" id="id_authNotify0"/>
+				<div className="auth-form-notify" id="id_authNotify_reg"/>
 			</div>
-			<div className={cn('auth-form-login', authForm === 'log' ? 'form-active' : undefined)} ref={loginForm}>
+			<div className={cn('auth-form-login', store.currentScreen === 'log' ? 'form-active' : undefined)}
+			     ref={loginForm}>
 				<div className="auth-form-login__blur"/>
 				<span>babylOn</span>
 				<form
@@ -188,32 +202,30 @@ const AuthForm = ({isRegistered, store}) => {
 							type="text"
 							name="n_authFormLogLogin"
 							ref={LogFormLogin}
-							placeholder="логин"
+							placeholder="Логин"
 						/>
 						<input
 							type="password"
 							name="n_authFormLogLogin"
 							ref={LogFormPassword}
-							placeholder="пароль"
+							placeholder="Пароль"
 						/>
 					</div>
 					<div
 						className="auth-form-login-content-remember"
-						onClick={() => {
-							window.alt.emit('client::auth:remember');
-						}}
+						onClick={() => window.alt.emit('client::auth:remember')}
 					>
 						<span>Запомнить</span>
 						<img src={rememberIcon} alt="remember"/>
 					</div>
 				</form>
-				<div className="auth-form-notify" id="id_authNotify2"/>
+				<div className="auth-form-notify" id="id_authNotify_log"/>
 			</div>
 			<div
 				className="auth-form-navigation-reset"
-				onClick={() => handleSetForm(authForm === 'reset' ? 'log' : 'reset')}
+				onClick={() => handleSetForm(store.currentScreen === 'reset' ? 'log' : 'reset')}
 			>
-				<div className={authForm === 'reset' ? 'reset-active' : undefined} ref={ResetCloseButton}>
+				<div className={store.currentScreen === 'reset' ? 'reset-active' : undefined} ref={ResetCloseButton}>
 					закрыть
 					<img src={resetClose} alt="close"/>
 				</div>
@@ -229,14 +241,15 @@ const AuthForm = ({isRegistered, store}) => {
 						<path
 							d="M1.125,14.625h4.5v-4.5A1.128,1.128,0,0,1,6.75,9H9a1.128,1.128,0,0,1,1.125,1.125v4.5h4.5A1.128,1.128,0,0,1,15.75,15.75V18a1.128,1.128,0,0,1-1.125,1.125h-4.5v4.5A1.128,1.128,0,0,1,9,24.75H6.75a1.128,1.128,0,0,1-1.125-1.125v-4.5h-4.5A1.128,1.128,0,0,1,0,18V15.75A1.128,1.128,0,0,1,1.125,14.625ZM29.25,18a9,9,0,1,1,9-9A9,9,0,0,1,29.25,18Zm-6.3,2.25h1.174a12.24,12.24,0,0,0,10.252,0H35.55A9.452,9.452,0,0,1,45,29.7v2.925A3.376,3.376,0,0,1,41.625,36H16.875A3.376,3.376,0,0,1,13.5,32.625V29.7A9.452,9.452,0,0,1,22.95,20.25Z"
 							transform="translate(1 1)"
-							fill={authForm === 'reg' ? '#343434' : 'none'}
+							fill={store.currentScreen === 'reg' ? '#343434' : 'none'}
 							stroke="#343434"
 							strokeWidth="2"
-							opacity={authForm === 'reg' ? '1' : '0.3'}/>
+							opacity={store.currentScreen === 'reg' ? '1' : '0.3'}/>
 					</svg>
 				</div>
-				<div className={cn('auth-form-reset-password', authForm === 'reset' ? 'form-active' : undefined)}
-				     ref={resetForm}>
+				<div
+					className={cn('auth-form-reset-password', store.currentScreen === 'reset' ? 'form-active' : undefined)}
+					ref={resetForm}>
 					<div className="auth-form-reset-password__blur"/>
 					<form
 						className="auth-form-reset-password-content"
@@ -256,22 +269,22 @@ const AuthForm = ({isRegistered, store}) => {
 						</div>
 						<div className="auth-form-reset-password-content-form">
 							<input
-								type="email"
+								type="text"
 								name="n_authFormResetEmail"
 								ref={ResetFormMail}
-								placeholder="введите e-mail"
+								placeholder="Введите e-mail"
 							/>
 							<input
 								type="text"
 								name="n_authFormResetCode"
 								ref={ResetFormCode}
-								placeholder="введите код"
+								placeholder="Введите код"
 								className="disabled"
 								disabled
 							/>
 						</div>
 					</form>
-					<div className="auth-form-notify" id="id_authNotify1"/>
+					<div className="auth-form-notify" id="id_authNotify_reset"/>
 				</div>
 				<div
 					className="auth-form-navigation__login"
@@ -282,10 +295,10 @@ const AuthForm = ({isRegistered, store}) => {
 						<path
 							d="M15.75,18a9,9,0,1,0-9-9A9,9,0,0,0,15.75,18Zm6.3,2.25H20.876a12.24,12.24,0,0,1-10.252,0H9.45A9.452,9.452,0,0,0,0,29.7v2.925A3.376,3.376,0,0,0,3.375,36h24.75A3.376,3.376,0,0,0,31.5,32.625V29.7A9.452,9.452,0,0,0,22.05,20.25Zm22.711-9.028L42.806,9.246a.834.834,0,0,0-1.181-.007l-7.369,7.313-3.2-3.22a.834.834,0,0,0-1.181-.007L27.9,15.286a.834.834,0,0,0-.007,1.181l5.745,5.787a.834.834,0,0,0,1.181.007L44.754,12.4a.84.84,0,0,0,.007-1.181Z"
 							transform="translate(1 1)"
-							fill={authForm === 'log' ? '#343434' : 'none'}
+							fill={store.currentScreen === 'log' ? '#343434' : 'none'}
 							stroke="#343434"
 							strokeWidth="2"
-							opacity={authForm === 'log' ? '1' : '0.3'}/>
+							opacity={store.currentScreen === 'log' ? '1' : '0.3'}/>
 					</svg>
 				</div>
 			</div>

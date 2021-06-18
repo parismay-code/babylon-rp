@@ -28,7 +28,7 @@ const Eyebrows = ({store}) => {
                 <span>выберите параметры бровей</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_eyebrowsType' className='player-option-list__element select-element'>
+                <div key='k_eyebrowsType' className='player-options-list__element select-element'>
                     <span>тип</span>
                     <div className='select-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -42,7 +42,7 @@ const Eyebrows = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_eyebrowsHeight' className='player-option-list__element range-element'>
+                <div key='k_eyebrowsHeight' className='player-options-list__element range-element'>
                     <span>высота</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -63,7 +63,7 @@ const Eyebrows = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_eyebrowsDeep' className='player-option-list__element range-element'>
+                <div key='k_eyebrowsDeep' className='player-options-list__element range-element'>
                     <span>глубина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -84,7 +84,7 @@ const Eyebrows = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_eyebrowsColor' className='player-option-list__element color-element'>
+                <div key='k_eyebrowsColor' className='player-options-list__element color-element'>
                     <span>цвет бровей</span>
                     <div className='color-element__input'>
                         {

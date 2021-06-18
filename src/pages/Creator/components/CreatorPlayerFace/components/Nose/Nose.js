@@ -30,7 +30,7 @@ const Nose = ({store}) => {
                 <span>выберите параметры носа</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_noseWidth' className='player-option-list__element range-element'>
+                <div key='k_noseWidth' className='player-options-list__element range-element'>
                     <span>ширина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -51,7 +51,7 @@ const Nose = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_noseLength' className='player-option-list__element range-element'>
+                <div key='k_noseLength' className='player-options-list__element range-element'>
                     <span>высота</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -72,7 +72,7 @@ const Nose = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_noseHeight' className='player-option-list__element range-element'>
+                <div key='k_noseHeight' className='player-options-list__element range-element'>
                     <span>длина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -93,7 +93,7 @@ const Nose = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_noseTip' className='player-option-list__element range-element'>
+                <div key='k_noseTip' className='player-options-list__element range-element'>
                     <span>глубина моста</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -114,7 +114,7 @@ const Nose = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_noseBridge' className='player-option-list__element range-element'>
+                <div key='k_noseBridge' className='player-options-list__element range-element'>
                     <span>длина кончика</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -135,7 +135,7 @@ const Nose = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_noseBridgeShaft' className='player-option-list__element range-element'>
+                <div key='k_noseBridgeShaft' className='player-options-list__element range-element'>
                     <span>поломанность носа</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {

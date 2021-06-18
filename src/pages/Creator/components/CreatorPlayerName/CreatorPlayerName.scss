@@ -10,17 +10,10 @@
     position: relative;
 
     & span {
-      opacity: .5;
+      opacity: .9;
       letter-spacing: 1px;
-      font-size: 1.2rem;
-
-      @media (max-width: 1000px) {
-        font-size: 1rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: 1rem;
-      }
+      font-size: 1.5rem;
+      font-weight: 700;
     }
 
     & img {
@@ -162,25 +155,23 @@
 
     & input {
       width: 200px;
-      padding: 15px 35px 15px 15px;
+      padding: 10px 35px 10px 10px;
       margin-bottom: 10px;
       font-family: "Baron Neue", serif;
-      font-size: .9rem;
+      font-size: 1.2rem;
       border: none;
       outline: none;
       background-color: #b5b6c4;
-      text-transform: lowercase;
+      text-transform: capitalize;
 
       @media (max-width: 1000px) {
         width: 100px;
         padding: 7px 15px 7px 7px;
-        font-size: .6rem;
       }
 
       @media (max-height: 800px) {
         width: 100px;
         padding: 7px 15px 7px 7px;
-        font-size: .6rem;
       }
     }
 

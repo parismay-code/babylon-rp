@@ -23,7 +23,7 @@ const Chin = ({store}) => {
                 <span>выберите параметры подбородка</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_chinHeight' className='player-option-list__element range-element'>
+                <div key='k_chinHeight' className='player-options-list__element range-element'>
                     <span>высота</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -44,7 +44,7 @@ const Chin = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_chinDeep' className='player-option-list__element range-element'>
+                <div key='k_chinDeep' className='player-options-list__element range-element'>
                     <span>глубина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -65,7 +65,7 @@ const Chin = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_chinWidth' className='player-option-list__element range-element'>
+                <div key='k_chinWidth' className='player-options-list__element range-element'>
                     <span>ширина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -86,7 +86,7 @@ const Chin = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_chinIndent' className='player-option-list__element range-element'>
+                <div key='k_chinIndent' className='player-options-list__element range-element'>
                     <span>отступ</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {

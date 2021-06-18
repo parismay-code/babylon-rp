@@ -18,7 +18,7 @@ const Cheekbones = ({store}) => {
                 <span>выберите параметры скул</span>
             </div>
             <div className='player-options-list'>
-                <div key='k_cheekbonesHeight' className='player-option-list__element range-element'>
+                <div key='k_cheekbonesHeight' className='player-options-list__element range-element'>
                     <span>высота</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
@@ -39,7 +39,7 @@ const Cheekbones = ({store}) => {
                         }}/>
                     </div>
                 </div>
-                <div key='k_cheekbonesWidth' className='player-option-list__element range-element'>
+                <div key='k_cheekbonesWidth' className='player-options-list__element range-element'>
                     <span>ширина</span>
                     <div className='range-element__input'>
                         <img className='left-arrow' src={arrow} alt='#' onClick={() => {
