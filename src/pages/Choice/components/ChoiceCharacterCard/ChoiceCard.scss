@@ -9,30 +9,11 @@
 
   height: 700px;
   width: 300px;
-  margin-right: 15px;
+  margin-right: 25px;
 
   background: linear-gradient(270deg, #8C899230 0%, #FFFFFF50 100%);
 
   transition: background-color .2s;
-
-  @media (max-width: 1280px) {
-    height: 600px;
-    width: 200px;
-  }
-
-  @media (max-width: 1000px) {
-    height: 350px;
-    width: 150px;
-
-    margin-right: 5px;
-  }
-
-  @media (max-height: 800px) {
-    height: 350px;
-    width: 150px;
-
-    margin-right: 5px;
-  }
 
   &::before {
     content: '';
@@ -46,14 +27,6 @@
     border-radius: 2px;
 
     background: $color-black-high-opacity linear-gradient(180deg, $color-blank, $color-blank 30%, $color-white 50%, $color-blank 70%);
-
-    @media (max-width: 1000px) {
-      width: 1px;
-    }
-
-    @media (max-height: 800px) {
-      width: 1px;
-    }
   }
 
   &:hover,
@@ -80,37 +53,42 @@
 
     font-family: 'TT Norms Medium', sans-serif;
 
-    @media (max-width: 1280px) {
-      padding: 15px 0 35px 15px;
+    &-level {
+      margin-bottom: 20px;
+
+      color: #000000;
+      opacity: .5;
+
+      font-size: 1.2rem;
+
+      &__value {
+        font-size: 2.4rem;
+        margin-right: 5px;
+      }
     }
 
-    @media (max-width: 1000px) {
-      padding: 10px 0 20px 10px;
+    &-cash {
+      margin-bottom: 5px;
+      color: #C9EBC4;
     }
 
-    @media (max-height: 800px) {
-      padding: 10px 0 20px 10px;
-    }
+    &-cash,
+    &-card {
+      display: flex;
+      align-items: center;
 
-    &__money {
-      font-size: 2rem;
-      font-weight: 700;
-      color: rgba(0, 0, 0, .35);
+      filter: drop-shadow(0 2px 2px $color-black);
 
-      @media (max-width: 1280px) {
+      &__icon {
+        height: 1.5rem;
+        margin-right: 10px;
+      }
+
+      &__value {
         font-size: 1.5rem;
       }
-
-      @media (max-width: 1000px) {
-        font-size: 1rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: 1rem;
-      }
     }
 
-    &__hp,
     &__fraction {
       display: flex;
       flex-direction: row;
@@ -121,36 +99,6 @@
 
       margin-top: 10px;
 
-      @media (max-width: 1000px) {
-        margin-top: 5px;
-      }
-
-      @media (max-height: 800px) {
-        margin-top: 5px;
-      }
-
-      &::after {
-        content: '';
-
-        display: block;
-
-        width: 100%;
-        height: 1px;
-        margin-left: 10px;
-
-        background-color: rgba(0, 0, 0, .3);
-
-        @media (max-width: 1000px) {
-          margin-left: 5px;
-        }
-
-        @media (max-height: 800px) {
-          margin-left: 5px;
-        }
-      }
-    }
-
-    &__fraction {
       text-transform: uppercase;
 
       &-icon {
@@ -168,21 +116,6 @@
 
         transition: background-color .2s;
 
-        @media (max-width: 1280px) {
-          width: 20px;
-          height: 40px;
-        }
-
-        @media (max-width: 1000px) {
-          width: 15px;
-          height: 25px;
-        }
-
-        @media (max-height: 800px) {
-          width: 15px;
-          height: 25px;
-        }
-
         & svg {
           width: 60%;
           height: 60%;
@@ -191,6 +124,18 @@
             transition: fill .2s;
           }
         }
+      }
+
+      &::after {
+        content: '';
+
+        display: block;
+
+        width: 100%;
+        height: 1px;
+        margin-left: 10px;
+
+        background-color: rgba(0, 0, 0, .3);
       }
     }
   }
@@ -202,29 +147,36 @@
     transform: translateX(-50%);
 
     height: 65%;
+  }
 
-    @media (max-width: 1280px) {
-      height: 50%;
-      bottom: 45px;
+  &-bottom {
+    width: calc(100% - 40px);
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-family: "TT Norms Medium", sans-serif;
+    font-size: 1.2rem;
+
+    &-last-place {
+      margin-bottom: 10px;
+
+      text-shadow: 0 2px 2px $color-black;
+
+      &__area {
+        text-transform: uppercase;
+        font-family: "TT Norms Bold", sans-serif;
+      }
     }
 
-    @media (max-width: 1154px) {
-      height: 45%;
-    }
+    &-last-online {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-    @media (max-width: 1000px) {
-      height: 55%;
-      bottom: 35px;
-    }
-
-    @media (max-height: 800px) {
-      height: 55%;
-      bottom: 35px;
-    }
-
-
-    @media (min-width: 3000px) {
-      bottom: 85px;
+      color: #000000;
+      opacity: .5;
     }
   }
 
@@ -240,18 +192,6 @@
 
     cursor: url('../../../../assets/images/cursorPointer.svg'), pointer;
 
-    @media (max-width: 1280px) {
-      padding: 7px 15px;
-    }
-
-    @media (max-width: 1000px) {
-      padding: 5px 10px;
-    }
-
-    @media (max-height: 800px) {
-      padding: 5px 10px;
-    }
-
     &__nickname {
       display: flex;
       flex-direction: column;
@@ -259,10 +199,6 @@
       font-size: 1.5rem;
       font-family: "TT Norms Medium", sans-serif;
       text-transform: capitalize;
-
-      @media (max-width: 1280px) {
-        font-size: 1rem;
-      }
     }
 
     & img {
@@ -273,15 +209,16 @@
 
   &-delete-char {
     position: absolute;
-    bottom: 0;
+    top: 720px;
     left: 50%;
-    transform: translate(-50%, 640px);
+    transform: translateX(-50%);
 
     width: 100%;
     height: 50px;
+    padding-left: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
 
@@ -290,50 +227,54 @@
 
     opacity: .5;
 
-    @media (max-width: 1280px) {
-      transform: translate(-50%, 540px);
+    &:hover &__icon {
+      transform: rotate(90deg);
     }
 
-    @media (max-height: 800px) {
-      transform: translate(-50%, 320px);
-      font-size: 1rem;
-      height: 25px;
+    &__icon {
+      z-index: 500;
+      height: 1.5rem;
+      margin-right: 10px;
+
+      transition: transform .2s ease;
     }
 
-    @media (max-width: 1000px) {
-      transform: translate(-50%, 320px);
-      font-size: .8rem;
-      height: 25px;
-    }
-
-    &:hover &__title {
+    &:hover &-title {
       color: $color-white;
-      text-decoration-color: $color-white;
+      transform: translateX(20%);
+
+      &__hidden {
+        opacity: 1;
+      }
     }
 
-    &__title {
+    &-title {
       position: relative;
       z-index: 500;
 
-      text-decoration: underline;
+      transition: color .2s, transform .2s ease;
 
-      transition: color .2s, text-decoration-color .2s;
+      &__hidden {
+        opacity: 0;
+
+        transition: opacity .2s;
+      }
     }
 
     &:hover &__bg {
-      height: 100%;
+      width: 100%;
     }
 
     &__bg {
       position: absolute;
-      bottom: 0;
+      left: 0;
 
-      width: 100%;
-      height: 0;
+      width: 0;
+      height: 100%;
 
-      background: linear-gradient(to top, #FF7878, $color-blank);
+      background: linear-gradient(to right, #FF7878, $color-blank);
 
-      transition: height .2s ease;
+      transition: width .2s ease;
     }
   }
 
@@ -354,14 +295,6 @@
     & span:nth-of-type(1) {
       font-size: 10rem;
       opacity: .5;
-
-      @media (max-width: 1000px) {
-        font-size: 8rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: 8rem;
-      }
     }
 
     & span:nth-of-type(2) {
@@ -427,14 +360,6 @@
       font-family: "TT Norms Medium", sans-serif;
       text-transform: uppercase;
       text-align: center;
-
-      @media (max-width: 1000px) {
-        font-size: .7rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: .7rem;
-      }
     }
   }
 }
@@ -472,40 +397,12 @@
     overflow: hidden;
     transition: height .5s ease, bottom .5s ease;
 
-    @media (max-width: 1280px) {
-      padding: 15px 15px 55px 15px;
-    }
-
-    @media (max-width: 1000px) {
-      padding: 10px 10px 40px 10px;
-    }
-
-    @media (max-height: 800px) {
-      padding: 10px 10px 40px 10px;
-    }
-
-    @media (min-width: 3000px) {
-      padding: 20px 20px 90px 20px;
-    }
-
     &__title {
       position: absolute;
       top: 25%;
 
       font-size: 1.3rem;
       text-transform: uppercase;
-
-      @media (max-width: 1280px) {
-        font-size: 1rem;
-      }
-
-      @media (max-width: 1000px) {
-        font-size: .8rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: .8rem;
-      }
     }
 
     &__container {
@@ -515,18 +412,6 @@
 
       width: 100%;
       height: 45%;
-
-      @media (max-width: 1280px) {
-        font-size: .8rem;
-      }
-
-      @media (max-width: 1000px) {
-        font-size: .6rem;
-      }
-
-      @media (max-height: 800px) {
-        font-size: .6rem;
-      }
 
       &-row {
         display: flex;
