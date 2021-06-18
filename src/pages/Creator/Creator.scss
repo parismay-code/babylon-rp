@@ -406,6 +406,21 @@
       height: 2.5rem;
     }
   }
+
+  &-description {
+    position: absolute;
+    left: 120px;
+    top: 60%;
+
+    font-size: 1.2rem;
+    font-family: "TT Norms Medium", sans-serif;
+
+    opacity: .9;
+
+    &__title {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .player-appearance,
@@ -572,6 +587,8 @@
       height: 100%;
   
       opacity: .5;
+
+      cursor: url("../../assets/images/cursorPointer.svg"), pointer;
       
       &__image {
         height: 100%;

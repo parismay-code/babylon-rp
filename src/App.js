@@ -50,7 +50,7 @@ const App = () => {
 		inventoryStore = useLocalStore(() => new InventoryStore()),
 		crimeMenuStore = useLocalStore(() => new CrimeMenuStore());
 	
-	const [component, setComponent] = React.useState('creator'),
+	const [component, setComponent] = React.useState(null),
 		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
 		[currentHUD, setHUD] = React.useState(0),

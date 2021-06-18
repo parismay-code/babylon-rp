@@ -82,13 +82,21 @@ export default class CreatorStore {
         female: []
     };
 
+    notifyQueue = [];
+    isNotifyShowed = false;
+    isQueuePaused = false;
+
     constructor() {
         makeObservable(this, {
             data: observable,
             clothes: observable,
+            notifyQueue: observable,
+            isNotifyShowed: observable,
+            isQueuePaused: observable,
 
             fetchData: action.bound,
             fetchClothes: action.bound,
+            addNotify: action.bound,
         })
     }
 
@@ -98,6 +106,31 @@ export default class CreatorStore {
 
     fetchClothes(data) {
         return this.clothes = data;
+    }
+
+    addNotify(type, text, isNicknameError) {
+        if (!this.isQueuePaused) {
+            if (type === this.notifyQueue[0]?.type && text === this.notifyQueue[0]?.text) return;
+
+            if (isNicknameError) {
+                this.isQueuePaused = true;
+                this.notifyQueue.push({type, text});
+
+                setTimeout(() => this.isQueuePaused = false, 3000)
+                return;
+            }
+
+            if (this.notifyQueue.length + 1 === 5) {
+                this.isQueuePaused = true;
+                this.notifyQueue.length = 0;
+                this.notifyQueue.push({type: 0, text: 'Слишком часто'});
+
+                setTimeout(() => this.isQueuePaused = false, 3000);
+                return;
+            }
+
+            this.notifyQueue.push({type, text});
+        }
     }
 
     destroy() {}

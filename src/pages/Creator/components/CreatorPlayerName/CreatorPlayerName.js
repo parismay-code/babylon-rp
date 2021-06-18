@@ -9,8 +9,6 @@ import {badWords} from "./utils/badWords";
 import {badNames} from "./utils/badNames";
 import {regExp} from "utils/regExp";
 
-import {showNotify} from "../../utils/notify";
-
 import './CreatorPlayerName.scss';
 
 const CreatorPlayerName = ({store}) => {
@@ -24,15 +22,15 @@ const CreatorPlayerName = ({store}) => {
 
         for (let i = 0; i < badNames.length; i++) {
             if (firstname.includes(badNames[i][0]) && lastname.includes(badNames[i][1]))
-                return showNotify(0, 'Вы не можете использовать данный никнейм');
+                return store.addNotify(0, 'Вы не можете использовать данный никнейм', true);
         }
 
         if (regExp.nickname.test(firstname))
-            return showNotify(0, 'Имя может содержать только латинские буквы');
+            return store.addNotify(0, 'Имя может содержать только латинские буквы', true);
         else if (regExp.nickname.test(lastname))
-            return showNotify(0, 'Фамилия может содержать только латинские буквы');
+            return store.addNotify(0, 'Фамилия может содержать только латинские буквы', true);
         else if (badWords.indexOf(firstname) >= 0 || badWords.indexOf(lastname) >= 0)
-            return showNotify(0, 'Никнейм содержит запрещенные слова');
+            return store.addNotify(0, 'Никнейм содержит запрещенные слова', true);
         else if (firstname.length < 3 || lastname.length < 3) return;
         else if (firstname.length > 13) return;
         else if (lastname.length > 13) return;
@@ -58,7 +56,7 @@ const CreatorPlayerName = ({store}) => {
                     <div className={cn('player-name__gender-female', store.data.sex === 1 ? 'active' : undefined)}
                          onClick={() => {
                              store.data.sex = 1;
-                             showNotify(1, 'Пол изменен на женский');
+                             store.addNotify(1, 'Пол изменен на женский');
 
                              window.alt.emit('client::characterCreator:preview', 'sex', 1);
                          }}>
@@ -73,7 +71,7 @@ const CreatorPlayerName = ({store}) => {
                     <div className={cn('player-name__gender-male', store.data.sex === 0 ? 'active' : undefined)}
                          onClick={() => {
                              store.data.sex = 0;
-                             showNotify(1, 'Пол изменен на мужской');
+                             store.addNotify(1, 'Пол изменен на мужской');
 
                              window.alt.emit('client::characterCreator:preview', 'sex', 0);
                          }}>

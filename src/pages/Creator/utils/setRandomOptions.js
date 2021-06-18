@@ -10,8 +10,6 @@ export const setRandomOptions = (store) => {
         else return 11;
     }
 
-    store.data.race = getRandom(0, 2);
-
     store.data.hair.head = getRandom(0, 22);
     store.data.hair.eyebrows = getRandom(0, 33);
 
