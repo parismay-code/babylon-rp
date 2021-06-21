@@ -12,10 +12,6 @@
   opacity: 0;
   
   transition: opacity .2s;
-  
-  &_active {
-    opacity: 1;
-  }
 
   @media (min-width: 3000px) {
     padding: 30px 0 0 1200px;
@@ -32,18 +28,24 @@
   @media (max-height: 800px) {
     padding: 25px 0 0 350px;
   }
+  
+  &_active {
+    opacity: 1;
+  }
+  
   &-location-frame {
     position: absolute;
     top: 0;
     left: 540px;
-    transform: translateX(-50%);
-
-    background: url("../../assets/images/spawnChoice/location.png") no-repeat;
-    background-size: contain;
+    transform: translate(-50%, -100%);
 
     width: 330px;
     height: 860px;
 
+    z-index: 500;
+    
+    transition: transform .5s ease;
+    
     @media (min-width: 2600px) {
       left: 1040px;
     }
@@ -64,30 +66,57 @@
       height: 430px;
     }
 
-    & img {
+    &__bg {
+      height: 100%;
+      width: 100%;
+      
+      pointer-events: none;
+      
+      transition: filter .5s;
+    }
+    
+    &__char {
       position: absolute;
       bottom: 0;
-      left: -90px;
+      left: 0;
+      
+      transform: translateX(-90px);
 
-      height: 550px;
+      height: 500px;
+      
+      transition: transform .5s ease;
+      
+      pointer-events: none;
+      
+      &_right {
+        transform: translateX(40px);
+      }
 
       @media (max-width: 1000px) {
         left: -45px;
-        height: 275px;
+        height: 250px;
       }
 
       @media (max-height: 800px) {
         left: -45px;
-        height: 275px;
+        height: 250px;
       }
     }
+  }
+  
+  &_active &-location-frame {
+    transform: translate(-50%, 0);
   }
 
   &__title {
     margin-left: 25px;
     font-size: 1.5rem;
-    opacity: .25;
-    color: $color-black;
+    opacity: 0;
+    color: #000000;
+    
+    transform: translateY(-300%);
+    
+    transition: opacity .3s .5s, transform .3s ease .5s;
 
     @media (max-width: 1000px) {
       margin-left: 15px;
@@ -99,6 +128,11 @@
       font-size: 1.2rem;
     }
   }
+  
+  &_active &__title {
+    opacity: .25;
+    transform: translateY(0);
+  }
 
   &-navigation {
     position: relative;
@@ -107,6 +141,12 @@
     width: 600px;
     padding: 15px 0;
     margin-top: 15px;
+    
+    transform: translateY(-150%);
+  
+    opacity: 0;
+    
+    transition: opacity .3s .8s, transform .3s .8s;
 
     box-shadow: -10px 10px 15px $color-black-medium-opacity;
 
@@ -137,7 +177,7 @@
 
         cursor: url('../../assets/images/cursorPointer.svg'), pointer;
 
-        color: $color-black;
+        color: #000000;
 
         transition: opacity .2s;
       }
@@ -164,8 +204,18 @@
       }
     }
   }
+  
+  &_active &-navigation {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   &-info {
+    transform: translateY(-100%);
+    opacity: 0;
+    
+    transition: opacity .3s 1.1s, transform .3s 1.1s;
+    
     margin: 50px 0 0 45px;
 
     @media (max-width: 1000px) {
@@ -178,8 +228,13 @@
 
     &__title {
       opacity: .5;
-      color: $color-black;
+      color: #000000;
     }
+  }
+  
+  &_active &-info {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &-play {
@@ -189,13 +244,15 @@
     transform: translateX(-50%);
 
     font-size: 1.2rem;
-    color: $color-black;
+    color: #000000;
     font-weight: 700;
     letter-spacing: 1px;
 
     cursor: url('../../assets/images/cursorPointer.svg'), pointer;
+  
+    opacity: 0;
 
-    transition: color .35s ease, text-shadow .35s ease;
+    transition: color .35s ease, text-shadow .35s ease, opacity .2s 1.4s;
 
     @media (max-width: 1000px) {
       bottom: 35px;
@@ -206,47 +263,47 @@
       bottom: 35px;
       font-size: 1rem;
     }
+    
+    &__title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      padding: 100px 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     &__slider {
       z-index: -1;
 
       position: absolute;
-      top: 0;
-      left: -1900px;
-      transform: translateY(-65%);
+      top: 50%;
+      left: 0;
+      transform: translate(-200%, -75%);
       clip-path: polygon(70% 50%, 0 50%, 20% 100%, 90% 100%);
 
       height: 100px;
-      width: 1000px;
+      width: 60vw;
 
       background: linear-gradient(to right, #AAB4EE70, #C373F395, #AAB4EE70);
-      transition: left 1s ease;
+      transition: transform 1s ease;
 
       pointer-events: none;
 
       @media (max-width: 1000px) {
-        left: -950px;
         height: 50px;
-        width: 500px;
       }
 
       @media (max-height: 800px) {
-        left: -950px;
         height: 50px;
-        width: 500px;
       }
     }
 
     &:hover &__slider {
-      left: 1000px;
-
-      @media (max-width: 1000px) {
-        left: 500px;
-      }
-
-      @media (max-height: 800px) {
-        left: 500px;
-      }
+      transform: translate(100%, -75%);
     }
 
     &:hover {
@@ -293,5 +350,9 @@
     &::after {
       left: 0;
     }
+  }
+  
+  &_active &-play {
+    opacity: 1;
   }
 }

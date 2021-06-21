@@ -32,7 +32,7 @@ const SpawnChoiceBlock = ({currComponent, nextTitle, currentOption, setCurrentOp
                                         setCurrentOption(key);
                                     }}
                                 >
-                                    {currComponent.id === 1 ? names[key] : `дом №${el.id}`}
+                                    {currComponent.id === 4 ? names[key] : `дом №${el.id}`}
                                 </li>
                             )
                         })}

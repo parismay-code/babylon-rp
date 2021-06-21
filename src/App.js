@@ -34,8 +34,6 @@ import JobsStore       from 'store/JobsStore';
 import InventoryStore  from 'store/InventoryStore';
 import CrimeMenuStore  from 'store/CrimeMenuStore';
 
-import spawnsData from 'configs/spawnData';
-
 const App = () => {
 	const authStore = useLocalStore(() => new AuthStore()),
 		bankStore = useLocalStore(() => new BankStore()),
@@ -162,12 +160,7 @@ const App = () => {
 			setComponent('choice');
 		});
 		
-		window.alt.on('cef::spawnChoice:start', data => {
-			spawnsData[2].data = data.homes;
-			spawnsData[3].data = data.array.frak;
-			spawnsData[4].data = data.array.fam;
-			setComponent('spawnChoice');
-		});
+		window.alt.on('cef::spawnChoice:start', () => setComponent('spawnChoice'));
 		
 		window.alt.on('cef::bank:start', () => setComponent('bank'));
 		
@@ -238,6 +231,8 @@ const App = () => {
 		window.alt.on('cef::bank:addWithdraw', data => bankStore.addWithdraw(data));
 		window.alt.on('cef::bank:setTopUpHistory', array => bankStore.fetchTopUpHistory(array));
 		window.alt.on('cef::bank:addTopUp', data => bankStore.addTopUp(data));
+		window.alt.on('cef::bank:setTransferHistory', array => bankStore.fetchTransferHistory(array));
+		window.alt.on('cef::bank:addTransfer', data => bankStore.addTransfer(data));
 	}, [bankStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::hud:setMapState', obj => hudStore.fetchMapState(obj));
@@ -314,7 +309,7 @@ const App = () => {
 		{component === 'auth' && <Auth store={authStore}/>}
 		{component === 'creator' && <Creator store={creatorStore}/>}
 		{component === 'choice' && <Choice characters={characters}/>}
-		{component === 'spawnChoice' && <SpawnChoice spawnData={spawnsData}/>}
+		{component === 'spawnChoice' && <SpawnChoice player={playerStore}/>}
 		{component === 'bank' && <Bank store={bankStore} player={playerStore}/>}
 		<Chat store={chatStore} isCursorActive={isCursorActive}
 		      isVisible={(component === 'hud' || component === 'clothesShop') && currentHUD === 0 && !playerStore.playerState.dead.isDead}/>

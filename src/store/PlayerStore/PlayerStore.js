@@ -77,16 +77,16 @@ export default class PlayerStore {
             // },
         ],
         houses: [
-            // {
-            //     id: 435,
-            //     extendPrice: 150,
-            //     daysExtended: 3
-            // },
-            // {
-            //     id: 790,
-            //     extendPrice: 500,
-            //     daysExtended: 7
-            // }
+            {
+                id: 435,
+                extendPrice: 150,
+                daysExtended: 3
+            },
+            {
+                id: 790,
+                extendPrice: 500,
+                daysExtended: 7
+            }
         ],
         cars: [
             {
