@@ -190,7 +190,7 @@ const Creator = ({store}) => {
 					/>s
 				</div>
 
-				<div className="creator-description" style={optionsPage === 'clothes' ? {top: '80%'} : null}>
+				<div className="creator-description">
 					<div className="creator-description__title">
 						{optionsPage === 'name' && 'Используя переключатели, выберите гендер, а также имя персонажу.'}
 						{optionsPage === 'appearance' && 'Наведясь на иконку родителя, скрольте вверх или вниз для выбора.'}
