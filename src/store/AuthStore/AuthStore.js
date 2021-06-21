@@ -9,8 +9,7 @@ export default class AuthStore {
     notifyQueue = [];
     isNotifyShowed = false;
     isQueuePaused = false;
-    isRegistered = false;
-    currentScreen = this.isRegistered ? 'log' : 'reg';
+    currentScreen = 'reg';
 
     constructor() {
         makeObservable(this, {
@@ -18,7 +17,6 @@ export default class AuthStore {
             notifyQueue: observable,
             isNotifyShowed: observable,
             isQueuePaused: observable,
-            isRegistered: observable,
             currentScreen: observable,
 
             fetchResetCode: action.bound,
@@ -29,7 +27,8 @@ export default class AuthStore {
     }
     
     setIsRegistered(bool) {
-        this.isRegistered = bool;
+        if (bool) this.currentScreen = 'log';
+        else this.currentScreen = 'reg';
     }
     
     setCurrentScreen(screen) {
