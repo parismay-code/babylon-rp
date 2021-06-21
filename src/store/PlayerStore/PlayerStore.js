@@ -23,6 +23,10 @@ export default class PlayerStore {
             type: 1,
             name: 'lspd'
         },
+        family: {
+            name: 'Крутые',
+            icon: null
+        },
         nickname: 'Paris May',
         phone: {
             number: null,
@@ -158,6 +162,7 @@ export default class PlayerStore {
             case 'level': return this.playerState.level = obj.data;
             case 'gender': return this.playerState.gender = obj.data;
             case 'fraction': return this.playerState.fraction = obj.data;
+            case 'family': return this.playerState.family = obj.data;
             default: return this.playerState = obj.data;
         }
     }

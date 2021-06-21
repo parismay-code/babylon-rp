@@ -339,17 +339,22 @@
           &__hotkey {
             position: absolute;
             bottom: -5px;
-            left: -30%;
+            left: -50%;
             filter: drop-shadow(0 1px 1px $color-black);
+  
+            width: 20px;
+            text-align: center;
 
             @media (max-width: 1000px) {
               bottom: -2px;
               font-size: .8rem;
+              width: 10px;
             }
 
             @media (max-height: 800px) {
               bottom: -2px;
               font-size: .8rem;
+              width: 10px;
             }
           }
 

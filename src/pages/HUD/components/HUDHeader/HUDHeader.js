@@ -12,7 +12,7 @@ import phone from 'assets/images/hud/phone.svg';
 import inventory from 'assets/images/hud/inventory.svg';
 import tilda from 'assets/images/hud/tilda.svg';
 import tablet from 'assets/images/hud/tablet.svg';
-import topArrow from 'assets/images/hud/topArrow.svg';
+// import topArrow from 'assets/images/hud/topArrow.svg';
 import star from 'assets/images/hud/star.svg';
 import ammo from 'assets/images/hud/ammo.svg';
 
@@ -77,7 +77,7 @@ const HUDHeader = ({player}) => {
                 </div>
                 <div className={cn('hud-header-bottom-menu-list', !altOpened && 'hud-header-bottom-menu-list_closed')}>
                     <div className='hud-header-bottom-menu-list-element'>
-                        <div className='hud-header-bottom-menu-list-element__hotkey'>K</div>
+                        <div className='hud-header-bottom-menu-list-element__hotkey'>M</div>
                         <img className='hud-header-bottom-menu-list-element__image' src={mainMenu} alt='#'/>
                     </div>
                     <div className='hud-header-bottom-menu-list-element'>
@@ -85,16 +85,17 @@ const HUDHeader = ({player}) => {
                         <img className='hud-header-bottom-menu-list-element__image' src={interaction} alt='#'/>
                     </div>
                     <div className='hud-header-bottom-menu-list-element'>
-                        <img
-                            className='hud-header-bottom-menu-list-element__hotkey'
-                            src={topArrow}
-                            alt='#'
-                            style={{height: '.8em'}}
-                        />
+                        {/*<img*/}
+                        {/*    className='hud-header-bottom-menu-list-element__hotkey'*/}
+                        {/*    src={topArrow}*/}
+                        {/*    alt='#'*/}
+                        {/*    style={{height: '.8em'}}*/}
+                        {/*/>*/}
+                        <div className='hud-header-bottom-menu-list-element__hotkey'>K</div>
                         <img className='hud-header-bottom-menu-list-element__image' src={phone} alt='#'/>
                     </div>
                     <div className='hud-header-bottom-menu-list-element'>
-                        <div className='hud-header-bottom-menu-list-element__hotkey'>I</div>
+                        <div className='hud-header-bottom-menu-list-element__hotkey'>Tab</div>
                         <img className='hud-header-bottom-menu-list-element__image' src={inventory} alt='#'/>
                     </div>
                     <div className='hud-header-bottom-menu-list-element'>
