@@ -18,6 +18,7 @@ import Jobs          from 'pages/Jobs';
 import Parking       from 'pages/Parking';
 import CrimeMenu     from 'pages/CrimeMenu';
 import CarDealer     from 'pages/CarDealer';
+import StartScreen   from 'pages/StartScreen';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -146,12 +147,17 @@ const App = () => {
 				true,
 				false,
 			],
-		});
+		}),
+		[news, setNews] = React.useState(''),
+		[updates, setUpdates] = React.useState({
+			url: '',
+			text: '',
+			date: '',
+		}),
+		[weeklyBonus, setWeeklyBonus] = React.useState(100000);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::auth:start', () => {
-			setComponent('auth');
-		});
+		window.alt.on('cef::auth:start', () => setComponent('auth'));
 		
 		window.alt.on('cef::characterCustom:start', () => setComponent('creator'));
 		
@@ -209,6 +215,11 @@ const App = () => {
 		
 		window.alt.on('cef::carDealer:start', () => setComponent('carDealer'));
 		
+		window.alt.on('cef::startScreen:start', () => setComponent('startScreen'));
+		window.alt.on('cef::startScreen:setNews', text => setNews(text));
+		window.alt.on('cef::startScreen:setUpdates', obj => setUpdates(obj));
+		window.alt.on('cef::startScreen:setWeeklyBonus', value => setWeeklyBonus(value));
+		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
 		
 		window.alt.emit('client::cef:ready');
@@ -216,6 +227,9 @@ const App = () => {
 	React.useEffect(() => {
 		window.alt.on('cef::player:setData', obj => playerStore.fetchPlayerState(obj));
 		window.alt.on('cef::player:setLookDirection', value => playerStore.fetchLookDirection(value));
+		window.alt.on('cef::player:setQuests', array => playerStore.fetchQuests(array));
+		window.alt.on('cef::player:addQuest', obj => playerStore.addQuest(obj));
+		window.alt.on('cef::player:removeQuest', id => playerStore.removeQuest(id));
 	}, [playerStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::auth:getResetCode', code => authStore.fetchResetCode(code));
@@ -332,6 +346,12 @@ const App = () => {
 		{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}
 		{component === 'crimeMenu' && <CrimeMenu store={crimeMenuStore}/>}
 		{component === 'carDealer' && <CarDealer store={shopsStore}/>}
+		{component === 'startScreen' && <StartScreen
+			player={playerStore}
+			news={news}
+			updates={updates}
+			weeklyBonus={weeklyBonus}
+		/>}
 	</div>;
 };
 

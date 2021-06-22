@@ -68,7 +68,7 @@ export default class BankStore {
 
     changeFines(obj) {
         switch (obj.type) {
-            case 'add': return this.fines.unshift(obj.data);
+            case 'add': return this.fines.push(obj.data);
             case 'remove':
                 const index = this.fines.findIndex(el => el.id === obj.data);
                 return this.fines.splice(index, 1);
@@ -85,7 +85,7 @@ export default class BankStore {
     }
 
     addWithdraw(data) {
-        return this.withdrawHistory.unshift(data);
+        return this.withdrawHistory.push(data);
     }
 
     fetchTopUpHistory(array) {
@@ -93,7 +93,7 @@ export default class BankStore {
     }
 
     addTopUp(data) {
-        return this.topUpHistory.unshift(data);
+        return this.topUpHistory.push(data);
     }
 
     fetchTransferHistory(array) {
@@ -101,7 +101,7 @@ export default class BankStore {
     }
 
     addTransfer(data) {
-        return this.transferHistory.unshift(data);
+        return this.transferHistory.push(data);
     }
 
     destroy() {}

@@ -14,7 +14,7 @@ const BankTopUpHistory = ({store}) => {
             <div className='bank-top-up-history-header__count'>Сумма</div>
         </div>
         <div className='bank-top-up-history-content'>
-            {store.topUpHistory.map((el, key) => {
+            {store.topUpHistory.slice().reverse().map((el, key) => {
                 const count = `$ ${String(el.count).replace(regExp.money, '$1 ')}`;
 
                 return <div key={key} className='bank-top-up-history-content-element'>

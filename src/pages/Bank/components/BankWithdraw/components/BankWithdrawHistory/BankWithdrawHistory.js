@@ -14,7 +14,7 @@ const BankWithdrawHistory = ({store}) => {
             <div className='bank-withdraw-history-header__count'>Сумма</div>
         </div>
         <div className='bank-withdraw-history-content'>
-            {store.withdrawHistory.map((el, key) => {
+            {store.withdrawHistory.slice().reverse().map((el, key) => {
                 const count = `$ ${String(el.count).replace(regExp.money, '$1 ')}`;
 
                 return <div key={key} className='bank-withdraw-history-content-element'>

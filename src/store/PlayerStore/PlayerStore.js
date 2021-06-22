@@ -9,9 +9,13 @@ export default class PlayerStore {
         makeObservable(this, {
             playerState: observable,
             lookDirection: observable,
+            quests: observable,
 
             fetchPlayerState: action.bound,
             fetchLookDirection: action.bound,
+            fetchQuests: action.bound,
+            addQuest: action.bound,
+            removeQuest: action.bound,
         })
     }
     
@@ -27,16 +31,16 @@ export default class PlayerStore {
             // name: 'Крутые',
             // icon: null
         },
-        nickname: 'Paris May',
+        nickname: '',
         phone: {
             number: null,
             balance: 0
         },
         hp: 100,
-        armour: 51,
+        armour: 0,
         hunger: 100,
         thirst: 100,
-        stars: 5,
+        stars: 0,
         sick: {
             flu: false,
             amnesia: false,
@@ -47,6 +51,7 @@ export default class PlayerStore {
             cash: 4000,
             card: 0
         },
+        donate: 0,
         bank: {
             account: '5473 1287 8754 2111',
             type: 'premium',
@@ -77,50 +82,50 @@ export default class PlayerStore {
             // },
         ],
         houses: [
-            {
-                id: 435,
-                extendPrice: 150,
-                daysExtended: 3
-            },
-            {
-                id: 790,
-                extendPrice: 500,
-                daysExtended: 7
-            }
+            // {
+            //     id: 435,
+            //     extendPrice: 150,
+            //     daysExtended: 3
+            // },
+            // {
+            //     id: 790,
+            //     extendPrice: 500,
+            //     daysExtended: 7
+            // }
         ],
         cars: [
-            {
-                id: 150,
-                type: 'car',
-                name: 'Laborgini',
-            },
-            {
-                id: 13,
-                type: 'car',
-                name: 'Toyota',
-            },
-            {
-                id: 1509,
-                type: 'car',
-                name: 'Infinity',
-            },
-            {
-                id: 490,
-                type: 'car',
-                name: 'Nissan',
-            },
-            {
-                id: 322,
-                type: 'car',
-                name: 'Lada',
-            },
+            // {
+            //     id: 150,
+            //     type: 'car',
+            //     name: 'Laborgini',
+            // },
+            // {
+            //     id: 13,
+            //     type: 'car',
+            //     name: 'Toyota',
+            // },
+            // {
+            //     id: 1509,
+            //     type: 'car',
+            //     name: 'Infinity',
+            // },
+            // {
+            //     id: 490,
+            //     type: 'car',
+            //     name: 'Nissan',
+            // },
+            // {
+            //     id: 322,
+            //     type: 'car',
+            //     name: 'Lada',
+            // },
         ],
         isInGreenZone: false,
         isInCar: false,
         isRadioSet: false,
         ammo: {
-            charged: 124,
-            clip: 333
+            charged: 0,
+            clip: 0
         },
         dead: {
             isDead: false,
@@ -134,7 +139,55 @@ export default class PlayerStore {
             isHealing: false,
             selfHealing: false,
         },
+        prime: {
+            status: false,
+            days: 0
+        },
+        timePlayed: 0,
+        bonuses: [
+            {
+                value: 100,
+                status: false,
+            },
+            {
+                value: 200,
+                status: false,
+            },
+            {
+                value: 300,
+                status: false,
+            },
+            {
+                value: 400,
+                status: false,
+            },
+            {
+                value: 500,
+                status: false,
+            },
+            {
+                value: 600,
+                status: false,
+            },
+            {
+                value: 700,
+                status: false,
+            },
+        ]
     };
+    
+    quests = [
+        {
+            id: 0,
+            name: 'Начало начал',
+            description: 'Описание квеста'
+        },
+        {
+            id: 0,
+            name: 'Начало начал',
+            description: 'Описание квеста'
+        },
+    ];
     
     lookDirection = 0;
 
@@ -163,12 +216,28 @@ export default class PlayerStore {
             case 'gender': return this.playerState.gender = obj.data;
             case 'fraction': return this.playerState.fraction = obj.data;
             case 'family': return this.playerState.family = obj.data;
+            case 'prime': return this.playerState.prime = obj.data;
+            case 'donate': return this.playerState.donate = obj.data;
+            case 'timePlayed': return this.playerState.timePlayed = obj.data;
+            case 'bonuses': return this.playerState.bonuses = obj.data;
             default: return this.playerState = obj.data;
         }
     }
     
     fetchLookDirection(value) {
         return this.lookDirection = value;
+    }
+    
+    fetchQuests(array) {
+        return this.quests = array;
+    }
+    
+    addQuest(obj) {
+        return this.quests.push(obj);
+    }
+    
+    removeQuest(id) {
+        return this.quests.splice(this.quests.findIndex(el => el.id === id), 1);
     }
 
     destroy() {}

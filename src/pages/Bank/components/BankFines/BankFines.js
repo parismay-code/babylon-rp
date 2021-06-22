@@ -13,7 +13,7 @@ const BankFines = ({ customEvent, store }) => {
             <div className='bank-fines-header__price'>Сумма</div>
         </div>
         <div className='bank-fines-inner'>
-            {store.fines.map((el, key) => {
+            {store.fines.slice().reverse().map((el, key) => {
                 return <BankFinesInfo
                     key={key}
                     el={el}

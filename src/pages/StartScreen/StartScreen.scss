@@ -1,0 +1,654 @@
+@import '../../styles/vars';
+
+.start-screen {
+  width: 100vw;
+  height: 100vh;
+  
+  padding: 0 0 70px 140px;
+  
+  display: flex;
+  align-items: flex-end;
+  
+  font-family: "TT Norms Medium", sans-serif;
+  
+  background: linear-gradient(145deg, #AAB6EF33, #84818A 80%, #7D7A82);
+  
+  &_prime {
+	background: linear-gradient(145deg, #C373F333, #84818A 80%, #7D7A82);
+  }
+  
+  &-bonuses {
+	width: 430px;
+	margin-right: 20px;
+	
+	&__title {
+	  width: 100%;
+	  margin-bottom: 30px;
+	  
+	  font-family: "Baron Neue", sans-serif;
+	  font-size: 3rem;
+	  letter-spacing: 15px;
+	  line-height: 3.7rem;
+	  word-spacing: 0;
+	}
+	
+	&-weekly {
+	  width: 100%;
+	  padding: 30px 20px;
+	  margin-bottom: 20px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  text-align: center;
+	  font-size: 1.3rem;
+	  
+	  background: linear-gradient(to right, #AAB6EF, #C373F333, #C373F300),
+		linear-gradient(to right, #FFFFFF66, #8C899266);
+	  
+	  text-shadow: 0 2px 2px $color-black;
+	  
+	  &__value {
+		margin-bottom: 15px;
+		
+		font-family: "TT Norms Extra Bold", sans-serif;
+		font-size: 3rem;
+		word-spacing: 5px;
+	  }
+	  
+	  &__title {
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+	  }
+	}
+	
+	&-daily {
+	  width: 100%;
+	  height: 210px;
+	  
+	  background-color: #21222980;
+	  
+	  &-list {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	 
+		height: 100%;
+		width: 100%;
+		
+		&-element {
+		  position: relative;
+		  height: 80%;
+		  width: calc(14% - 5px);
+		  
+		  text-shadow: 0 2px 2px $color-black;
+		  text-align: center;
+		  
+		  background: linear-gradient(to top, #C373F300, #AAB6EF33);
+		  
+		  &_current {
+			background: linear-gradient(to top, #C373F300, #E1B8F980, #FFFFFF);
+			
+			animation: 1s infinite ease currentDailyBonusEffect;
+		  }
+		  
+		  &_current &__dollar {
+			color: #000000;
+		  }
+		  
+		  &_active {
+			background: linear-gradient(to top, #C373F300, #C373F366, #AAB6EF);
+		  }
+		  
+		  &_active &__value {
+			opacity: .9;
+		  }
+		  
+		  &_active &__dollar {
+			text-shadow: 0 0 10px $color-white;
+			opacity: 1;
+		  }
+		  
+		  &::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			height: 100%;
+			width: 1px;
+		 
+			background: linear-gradient(to bottom, $color-blank, #ffffff80, $color-blank);
+		  }
+		  
+		  &__dollar {
+			position: absolute;
+			top: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+		 
+			font-family: "TT Norms Extra Bold", sans-serif;
+			font-size: 2rem;
+			text-shadow: none;
+		 
+			opacity: .5;
+		  }
+		  
+		  &__value {
+			position: absolute;
+			top: 95px;
+			left: 50%;
+			transform: translateX(-50%) rotate(-90deg);
+		 
+			font-size: 1.5rem;
+			font-family: "TT Norms Light", sans-serif;
+			letter-spacing: 5px;
+		 
+			opacity: .5;
+		  }
+		  
+		  &__day {
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+			
+			font-size: .8rem;
+		  }
+		}
+	  }
+	  
+	  &__withdraw {
+		width: calc(100% - calc(14% - 5px));
+		height: 20%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		transform: translateY(-100%);
+		
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		font-size: 1.5rem;
+		text-shadow: 0 2px 2px $color-black;
+	 
+		background: linear-gradient(to right, #AAB6EF, #C373F320);
+		
+		cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+	  }
+	}
+  }
+  
+  &-stats {
+	height: 100%;
+	width: 210px;
+	margin-right: 20px;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	&-prime {
+	  position: relative;
+	  width: 100%;
+	  height: 280px;
+	  margin-bottom: auto;
+	  
+	  background: linear-gradient(to bottom, #FFFFFF, #C6C4C980, #8C899210);
+	  
+	  overflow: hidden;
+	  
+	  &_active {
+		background: linear-gradient(to bottom, #00000080, #47464B33, #8C899210);
+	  }
+	  
+	  &_active &-status {
+		background: linear-gradient(to bottom, #C373F300 0%, #C179F3 70%, #AAB6EF);
+		color: $color-white;
+		text-shadow: 0 0 10px #C373F3;
+	  }
+	  
+	  &::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		transform: translateY(100%);
+		
+		width: 100%;
+		height: 50%;
+	 
+		background: linear-gradient(to bottom, #C373F300, #C179F3, #AAB6EF);
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 60%, 0 100%);
+		
+		animation: 5s infinite primeEffect;
+	  }
+	  
+	  &-status {
+		width: 100%;
+		height: 70%;
+		padding-bottom: 50px;
+		
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		
+		text-align: center;
+		color: #00000080;
+		text-transform: uppercase;
+		font-family: "Baron Neue", sans-serif;
+		
+		background: linear-gradient(to top, #FFFFFF, #C6C4C980, #8C899210);
+		
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 70%, 0 100%);
+		
+		backdrop-filter: blur(5px);
+		
+		&__left-stick,
+		&__right-stick {
+		  content: '';
+		  position: absolute;
+		  height: 100%;
+		  width: 2px;
+		  
+		  background: linear-gradient(to bottom, $color-blank, #FFFFFFBF, $color-blank);
+		}
+		
+		&__left-stick {
+		  left: 0;
+		}
+		
+		&__right-stick {
+		  right: 0;
+		}
+		
+		&__title {
+		  font-size: 3rem;
+		  margin-bottom: 5px;
+		}
+		
+		&__subtitle {
+		  font-size: 1.5rem;
+		}
+	  }
+	  
+	  &__buy {
+		height: 30%;
+		width: 100%;
+		padding-bottom: 20px;
+	 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: "Baron Neue", sans-serif;
+		font-size: 1.5rem;
+		text-shadow: 0 0 10px $color-white;
+		
+		cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+	  }
+	  
+	  &-info {
+		height: 30%;
+		width: 100%;
+		padding-bottom: 40px;
+	 
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	  
+		text-align: center;
+		
+		font-family: "Baron Neue", sans-serif;
+		font-size: 1.5rem;
+		text-shadow: 0 0 10px $color-white;
+		
+		&__value {
+		  font-size: 3rem;
+		  font-family: "TT Norms Bold", sans-serif;
+		}
+	  }
+	}
+	
+	&-element {
+	  position: relative;
+	  width: 100%;
+	  height: 210px;
+	  margin-bottom: 20px;
+	  
+	  text-shadow: 0 2px 2px $color-black;
+	  
+	  background: linear-gradient(to right, #FFFFFF66, #8C899266);
+	  
+	  &:last-of-type {
+		margin-bottom: 0;
+	  }
+	  
+	  &__right-stick {
+		position: absolute;
+		height: 100%;
+		width: 1px;
+		right: 0;
+	 
+		background: linear-gradient(to bottom, $color-blank, #FFFFFFBF, $color-blank);
+	  }
+	  
+	  &::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 80%;
+		width: 20%;
+	 
+		background: linear-gradient(to top, #AAB6EF, #C373F333, #C373F300)
+	  }
+	  
+	  &__value {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	 
+		font-family: "TT Norms Extra Bold", sans-serif;
+		font-size: 3rem;
+	  }
+	  
+	  &__title {
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		bottom: 10%;
+	 
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		font-size: 1.5rem;
+	  }
+	}
+  }
+  
+  &-media {
+	width: 530px;
+	height: calc(100% - 70px);
+	margin-right: 10px;
+	padding: 30px 50px;
+ 
+	background: linear-gradient(to right, #FFFFFF66, #8C899266);
+	
+	text-shadow: 0 2px 2px $color-black;
+	
+	&-news,
+	&-update {
+	  height: calc(50% - 10px);
+	  width: 100%;
+	  
+	  &__title,
+	  &-header-title {
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		
+		font-size: 2.5rem;
+	  }
+	  
+	  &__img {
+		width: 100%;
+		height: 100px;
+		margin-bottom: 30px;
+	  
+		background-color: #00000080;
+	  }
+	  
+	  &__text {
+		width: 100%;
+		height: 50%;
+		font-size: 1.2rem;
+	 
+		overflow: auto;
+		
+		&::-webkit-scrollbar {
+		  width: 4px;
+		  background-color: #ffffff33;
+		}
+		
+		&::-webkit-scrollbar-thumb {
+		  background-color: #ffffff80;
+		}
+	  }
+	}
+	
+	&-news {
+	  margin-bottom: 20px;
+	  
+	  &__title {
+		margin-bottom: 30px;
+	  }
+	}
+	
+	&-update {
+	  &-header {
+		margin-bottom: 30px;
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		
+		&-title {
+		  transform: translateY(-10px);
+		  
+		  &__text {
+			margin-bottom: 10px;
+		  }
+		  
+		  &__date {
+			font-size: 1.5rem;
+			font-family: "TT Norms Medium", sans-serif;
+		  }
+		}
+		
+		&-link {
+		  display: flex;
+		  align-items: center;
+		  
+		  color: $color-white;
+		  
+		  text-shadow: 0 2px 2px $color-black;
+		  
+		  cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+		  
+		  opacity: .5;
+		  
+		  transition: opacity .2s;
+		  
+		  &:hover {
+			opacity: 1;
+		  }
+		  
+		  &__icon {
+			height: 1.5rem;
+			margin-right: 10px;
+			filter: drop-shadow(0 2px 2px $color-black);
+		  }
+		}
+	  }
+	}
+  }
+  
+  &-quests {
+	width: 400px;
+	height: calc(100% - 70px);
+ 
+	display: flex;
+	flex-direction: column;
+ 
+	text-shadow: 0 2px 2px $color-black;
+	
+	&-main {
+	  position: relative;
+	  background: linear-gradient(to right, #FFFFFF66, #8C899266);
+	  height: 75%;
+	  padding: 30px 15px 0 15px;
+	  
+	  margin-bottom: auto;
+	  
+	  &::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 2px;
+	 
+		background: linear-gradient(to bottom, $color-blank, #ffffff80, $color-blank);
+	  }
+	  
+	  &__title {
+		padding-left: 20px;
+		margin-bottom: 40px;
+		
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		font-size: 2.5rem;
+	  }
+	  
+	  &-element {
+		margin-bottom: 20px;
+		
+		&__title {
+		  position: relative;
+		  padding-left: 40px;
+		  margin-bottom: 10px;
+		  
+		  text-transform: uppercase;
+		  font-size: 1.5rem;
+		  
+		  &::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			
+			width: 20px;
+			height: 20px;
+			
+			background-color: #ffffff80;
+		  }
+		}
+		
+		&__text {
+		  font-size: 1.2rem;
+		}
+		
+		&:last-of-type {
+		  margin-bottom: 0;
+		}
+	  }
+	}
+	
+	&-bottom {
+	  text-transform: uppercase;
+	  
+	  &-description {
+		margin-bottom: 20px;
+		opacity: .5;
+		font-size: 1.2rem;
+		
+		&__link {
+		  color: $color-white;
+		  text-decoration: underline;
+		  
+		  cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+		}
+	  }
+	  
+	  &__play {
+		position: relative;
+		width: 100%;
+		padding: 20px;
+		
+		overflow: hidden;
+		
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		font-size: 2.5rem;
+	 
+		background: linear-gradient(to right, #FFFFFF66, #8C899266);
+		
+		cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+		
+		&::before {
+		  content: '';
+		  position: absolute;
+		  top: 50%;
+		  left: 0;
+		  transform: translate(-120%, -50%) rotate(-25deg);
+		  
+		  width: 60%;
+		  height: 500%;
+		  
+		  background: linear-gradient(to right, #C374F215, #AEBAF8CC, #C374F215);
+		  
+		  pointer-events: none;
+		  
+		  animation: 2s infinite ease playEffect;
+		}
+	  }
+	}
+  }
+}
+
+@keyframes currentDailyBonusEffect {
+  0% {
+	opacity: 1;
+  }
+  
+  50% {
+	opacity: .5;
+  }
+  
+  100% {
+	opacity: 1;
+  }
+}
+
+@keyframes primeEffect {
+  0% {
+	bottom: 0;
+	opacity: 1;
+  }
+  
+  5% {
+	opacity: 1;
+  }
+  
+  35% {
+	opacity: 0;
+  }
+  
+  50% {
+	opacity: 0;
+	bottom: 200%;
+  }
+  
+  100% {
+	opacity: 0;
+	bottom: 200%;
+  }
+}
+
+@keyframes playEffect {
+  0% {
+	transform: translate(-120%, -50%) rotate(-25deg);
+  }
+  
+  50% {
+	transform: translate(200%, -50%) rotate(-25deg);
+  }
+  
+  100% {
+	transform: translate(200%, -50%) rotate(-25deg);
+  }
+}
