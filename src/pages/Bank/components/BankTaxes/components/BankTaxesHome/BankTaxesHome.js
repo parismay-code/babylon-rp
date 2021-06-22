@@ -5,7 +5,7 @@ import BankTaxesHomeElement from "./components/BankTaxesHomeElement";
 
 import './BankTaxesHome.scss';
 
-const BankTaxesHome = ({player}) => {
+const BankTaxesHome = ({customEvent, player}) => {
     return <div className='bank-taxes-home'>
         {player.playerState.houses.map((el, key) => {
             return <BankTaxesHomeElement
@@ -13,6 +13,7 @@ const BankTaxesHome = ({player}) => {
                 id={el.id}
                 price={el.extendPrice}
                 payed={el.daysExtended}
+                customEvent={customEvent}
             />
         })}
     </div>

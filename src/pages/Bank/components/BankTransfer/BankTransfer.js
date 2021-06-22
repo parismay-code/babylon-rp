@@ -7,12 +7,16 @@ import {regExp} from "utils/regExp";
 
 import './BankTransfer.scss';
 
-const BankTransfer = ({store, player}) => {
+const BankTransfer = ({customEvent, store, player}) => {
     const balance = React.useMemo(() =>
         `$ ${String(player.playerState.bank.type ? player.playerState.money.card : player.playerState.money.cash).replace(regExp.money, '$1 ')}`, [player.playerState.bank.type, player.playerState.money.card,  player.playerState.money.cash]);
 
     const account = React.useRef(null);
     const value = React.useRef(null);
+    
+    const handleTransfer = React.useCallback(() => {
+        window.alt.emit('client::bank:transfer', account.current.value, value.current.value);
+    }, []);
 
     return <div className='bank-transfer'>
         <div className='bank-transfer-header'>
@@ -40,7 +44,14 @@ const BankTransfer = ({store, player}) => {
                 </div>
                 <div className='bank-transfer-header-form-input'>
                     <input className='bank-transfer-header-form-input__count' type='number' name='n_withdrawCount' placeholder='Сумма' ref={value}/>
-                    <input className='bank-transfer-header-form-input__submit' type='submit' name='n_withdrawSubmit' value='Перевести' onClick={() => window.alt.emit('client::bank:transfer', account.current.value, value.current.value)}/>
+                    <input
+                        className='bank-transfer-header-form-input__submit'
+                        type='submit' name='n_withdrawSubmit'
+                        value='Перевести'
+                        onClick={() => {
+                            if (account.current.value && value.current.value) customEvent(handleTransfer);
+                        }}
+                    />
                 </div>
             </div>
         </div>

@@ -20,12 +20,12 @@ export default class PlayerStore {
         level: 0,
         gender: 0,
         fraction: {
-            type: 1,
-            name: 'lspd'
+            // type: 1,
+            // name: 'lspd'
         },
         family: {
-            name: 'Крутые',
-            icon: null
+            // name: 'Крутые',
+            // icon: null
         },
         nickname: 'Paris May',
         phone: {

@@ -5,7 +5,7 @@ import BankFinesInfo from "./components/BankFinesInfo";
 
 import './BankFines.scss';
 
-const BankFines = ({ store }) => {
+const BankFines = ({ customEvent, store }) => {
     return <div className='bank-fines'>
         <div className='bank-fines-header'>
             <div className='bank-fines-header__fines'>Штраф</div>
@@ -17,6 +17,7 @@ const BankFines = ({ store }) => {
                 return <BankFinesInfo
                     key={key}
                     el={el}
+                    customEvent={customEvent}
                 />
             })}
         </div>

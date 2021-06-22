@@ -7,10 +7,14 @@ import {regExp} from "utils/regExp";
 
 import './BankTopUp.scss';
 
-const BankTopUp = ({store, player}) => {
+const BankTopUp = ({customEvent, store, player}) => {
     const input = React.useRef(null);
 
     const balance = React.useMemo(() => `$ ${String(player.playerState.money.card).replace(regExp.money, '$1 ')}`, [player.playerState.money.card]);
+    
+    const handleTopUp = React.useCallback(() => {
+        window.alt.emit('client::bank:topUp', input.current.value);
+    }, []);
 
     return <div className='bank-top-up'>
         <div className='bank-top-up-header'>
@@ -30,7 +34,15 @@ const BankTopUp = ({store, player}) => {
                 </div>
                 <div className='bank-top-up-header-form-input'>
                     <input className='bank-top-up-header-form-input__count' type='number' name='n_topUpCount' placeholder='Сумма' ref={input}/>
-                    <input className='bank-top-up-header-form-input__submit' type='submit' name='n_topUpSubmit' value='Пополнить' onClick={() => window.alt.emit('client::bank:topUp', input.current.value)}/>
+                    <input
+                        className='bank-top-up-header-form-input__submit'
+                        type='submit'
+                        name='n_topUpSubmit'
+                        value='Пополнить'
+                        onClick={() => {
+                            if (input.current.value) customEvent(handleTopUp);
+                        }}
+                    />
                 </div>
             </div>
         </div>

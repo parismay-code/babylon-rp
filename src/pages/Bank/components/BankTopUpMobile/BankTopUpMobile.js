@@ -4,12 +4,16 @@ import {observer} from "mobx-react-lite";
 import './BankTopUpMobile.scss';
 import {regExp} from "utils/regExp";
 
-const BankTopUpMobile = ({ player }) => {
+const BankTopUpMobile = ({ customEvent, player }) => {
     const balance = React.useMemo(() =>
         `$${String(player.playerState.phone.balance).replace(regExp.money, '$1 ')}`, [player.playerState.phone.balance]);
 
     const input = React.useRef(null);
 
+    const handleTopUpMobile = React.useCallback(() => {
+        window.alt.emit('client::bank:topUpMobile', input.current.value);
+    }, []);
+    
     return <div className='bank-top-up-mobile'>
         <div className='bank-top-up-mobile-header'>
             <div className='bank-top-up-mobile-header-title'>
@@ -31,7 +35,15 @@ const BankTopUpMobile = ({ player }) => {
         <div className='bank-top-up-mobile__phone'>{player.playerState.phone.number}</div>
         <div className='bank-top-up-mobile-form'>
             <input className='bank-top-up-mobile-form__count' type='number' name='n_topUpMobileCount' placeholder='Сумма' ref={input}/>
-            <input className='bank-top-up-mobile-form__submit' type='submit' name='n_topUpMobileSubmit' value='пополнить' onClick={() => window.alt.emit('client::bank:topUpMobile', input.current.value)}/>
+            <input
+                className='bank-top-up-mobile-form__submit'
+                type='submit'
+                name='n_topUpMobileSubmit'
+                value='пополнить'
+                onClick={() => {
+                    if (input.current.value) customEvent(handleTopUpMobile);
+                }}
+            />
         </div>
     </div>
 }

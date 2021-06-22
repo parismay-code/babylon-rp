@@ -6,7 +6,7 @@ import BankTaxesBusiness from "./components/BankTaxesBusiness";
 
 import './BankTaxes.scss';
 
-const BankTaxes = ({player, noNav}) => {
+const BankTaxes = ({customEvent, player, noNav}) => {
     const [currentPage, setPage] = React.useState(player.playerState.houses.length > 0 ? 'home' : 'business');
 
     return <div className='bank-taxes'>
@@ -21,7 +21,8 @@ const BankTaxes = ({player, noNav}) => {
             >Бизнес</div>
         </div> : null}
         <div className='home-taxes-content'>
-            {currentPage === 'home' ? <BankTaxesHome player={player}/> : <BankTaxesBusiness player={player}/>}
+            {currentPage === 'home' ? <BankTaxesHome player={player} customEvent={customEvent}/> :
+                <BankTaxesBusiness player={player} customEvent={customEvent}/>}
         </div>
     </div>
 }

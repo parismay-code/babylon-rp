@@ -5,7 +5,7 @@ import BankTaxesBusinessElement from "./components/BankTaxesBusinessElement";
 
 import './BankTaxesBusiness.scss';
 
-const BankTaxesBusiness = ({player}) => {
+const BankTaxesBusiness = ({customEvent, player}) => {
     return <div className='bank-taxes-business'>
         {player.playerState.business.map((el, key) => {
             return <BankTaxesBusinessElement
@@ -14,6 +14,7 @@ const BankTaxesBusiness = ({player}) => {
                 price={el.extendPrice}
                 payed={el.daysExtended}
                 name={el.name}
+                customEvent={customEvent}
             />
         })}
     </div>

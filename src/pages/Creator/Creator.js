@@ -187,7 +187,7 @@ const Creator = ({store}) => {
 						className="creator-rotate__icon"
 						src={mouse}
 						alt="#"
-					/>s
+					/>
 				</div>
 
 				<div className="creator-description">

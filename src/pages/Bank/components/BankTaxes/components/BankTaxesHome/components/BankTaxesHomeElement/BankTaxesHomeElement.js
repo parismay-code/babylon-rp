@@ -5,7 +5,7 @@ import arrow from 'assets/images/bank/arrow.svg';
 
 import {regExp} from "utils/regExp";
 
-const BankTaxesHomeElement = ({id, price, payed}) => {
+const BankTaxesHomeElement = ({customEvent, id, price, payed}) => {
     const vip = React.useMemo(() => true, []);
     const maxDays = React.useMemo(() => vip ? 14 : 7, [vip])
 
@@ -18,6 +18,10 @@ const BankTaxesHomeElement = ({id, price, payed}) => {
 
     const money = React.useMemo(() =>
         `$${String(price).replace(regExp.money, '$1 ')}`, [price]);
+    
+    const handlePay = React.useCallback(() => {
+        window.alt.emit('client::bank:payHomeTax', id, days, days * price);
+    }, [days, id, price]);
 
     return <div className='bank-taxes-home-element'>
         <div className='bank-taxes-home-element-header'>
@@ -76,7 +80,7 @@ const BankTaxesHomeElement = ({id, price, payed}) => {
                 name='n_bankTaxesBuy'
                 value='оплатить'
                 onClick={() => {
-                    window.alt.emit('client::bank:payHomeTax', id, days, days * price);
+                    customEvent(handlePay);
                 }}
             />
         </div>
