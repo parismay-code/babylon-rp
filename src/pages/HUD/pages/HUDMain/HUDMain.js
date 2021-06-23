@@ -19,7 +19,13 @@ import greenZone from 'assets/images/hud/greenZone.svg';
 
 import './HUDMain.scss';
 
-const HUDMain = ({store, player, targetPlayerData, inventoryStore}) => {
+const HUDMain = ({
+	store,
+	player,
+	targetPlayerData,
+	inventoryStore,
+	currentJob,
+}) => {
 	const [isInventoryOpened, setInventoryOpened] = React.useState(false);
 	
 	const screen = React.useRef(null);
@@ -64,7 +70,7 @@ const HUDMain = ({store, player, targetPlayerData, inventoryStore}) => {
 			<HUDDead player={player}/>}
 			<HUDNotify/>
 			<HUDFriendship/>
-			<HUDAlerts/>
+			<HUDAlerts store={store} currentJob={currentJob}/>
 		</>
 		{!player.playerState.dead.isDead && <>
 			<HUDInteraction targetPlayerData={targetPlayerData}/>

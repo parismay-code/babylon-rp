@@ -29,6 +29,10 @@ export default class HUDStore {
     date = '01.01.2021';
 
     speakers = [];
+    
+    notifyQueue = [];
+    notifyList = [];
+    notifyId = 0;
 
     constructor() {
         makeObservable(this, {
@@ -37,6 +41,9 @@ export default class HUDStore {
             time: observable,
             date: observable,
             speakers: observable,
+            notifyQueue: observable,
+            notifyList: observable,
+            notifyId: observable,
 
             fetchMapState: action.bound,
             fetchDate: action.bound,
@@ -44,6 +51,8 @@ export default class HUDStore {
             fetchCarState: action.bound,
             fetchSpeaker: action.bound,
             removeSpeaker: action.bound,
+            pushNotify: action.bound,
+            shiftNotify: action.bound,
         })
     }
 
@@ -99,6 +108,14 @@ export default class HUDStore {
                 console.log(`deleted ${i} speaker`)
             }
         }
+    }
+    
+    pushNotify(target, obj) {
+        target.push({...obj, id: this.notifyId++});
+    }
+    
+    shiftNotify(target) {
+        target.shift();
     }
 
     destroy() {}

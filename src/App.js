@@ -154,7 +154,7 @@ const App = () => {
 			text: '',
 			date: '',
 		}),
-		[weeklyBonus, setWeeklyBonus] = React.useState(100000);
+		[weeklyBonus, setWeeklyBonus] = React.useState(0);
 	
 	React.useEffect(() => {
 		window.alt.on('cef::auth:start', () => setComponent('auth'));
@@ -200,11 +200,12 @@ const App = () => {
 			setComponent('gasStation');
 		});
 		
-		window.alt.on('cef::job:start', (job, params) => {
+		window.alt.on('cef::job:start', params => {
 			setComponent('jobs');
-			setCurrentJob(job);
 			setJobParams(params);
 		});
+		
+		window.alt.on('cef::job:setJob', job => setCurrentJob(job));
 		
 		window.alt.on('cef::parking:start', obj => {
 			setComponent('parking');
@@ -253,6 +254,7 @@ const App = () => {
 		window.alt.on('cef::hud:setDate', date => hudStore.fetchDate(date));
 		window.alt.on('cef::hud:setTime', time => hudStore.fetchTime(time));
 		window.alt.on('cef::hud:loadCarState', obj => hudStore.fetchCarState(obj));
+		window.alt.on('cef::hud:sendAlert', obj => hudStore.pushNotify(hudStore.notifyQueue, obj));
 	}, [hudStore]);
 	React.useEffect(() => {
 		window.alt.on('cef::chat:setAccess', obj => chatStore.fetchAccess(obj));
@@ -334,6 +336,7 @@ const App = () => {
 			inventoryStore={inventoryStore}
 			currentHUD={currentHUD}
 			targetPlayerData={targetPlayerData}
+			currentJob={currentJob}
 		/>}
 		{component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}
 		{component === 'battlePass' && <BattlePass store={battlePassStore}/>}
