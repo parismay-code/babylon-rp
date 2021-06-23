@@ -1,0 +1,139 @@
+@import '../../../../../../styles/vars';
+
+.hud-alerts-truck-driver {
+  height: 50px;
+  width: 320px;
+  display: flex;
+  align-items: center;
+  
+  text-shadow: 0 2px 2px $color-black;
+  
+  @media (max-width: 1280px) {
+	width: 280px;
+	height: 40px;
+  }
+  
+  @media (max-width: 1154px) {
+	width: 240px;
+	height: 35px;
+  }
+  
+  @media (max-width: 1000px) {
+	width: 160px;
+	height: 25px;
+  }
+  
+  @media (max-height: 800px) {
+	width: 160px;
+	height: 25px;
+  }
+  
+  &_active &-before {
+	transform: translateX(0);
+  }
+  
+  &_active &-content {
+	width: 90%;
+	opacity: 1;
+	
+	&-info,
+	&__money {
+	  opacity: 1;
+	}
+  }
+  
+  &-before {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 100%;
+ 
+	background-color: #FFEF8490;
+	
+	transform: translateX(-101%);
+	
+	@media (max-width: 1000px) {
+	  width: 15px;
+	}
+	
+	@media (max-height: 800px) {
+	  width: 15px;
+	}
+	
+	& img {
+	  position: absolute;
+	  top: 50%;
+	  left: 0;
+	  
+	  transform: translate(-30%, -50%);
+	}
+  }
+  
+  &-content {
+	height: 100%;
+	padding: 10px 0 10px 15px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	
+	width: 0;
+	overflow: hidden;
+	opacity: 0;
+ 
+	background: linear-gradient(to right, #FFEF8490, $color-blank);
+	
+	text-transform: uppercase;
+	
+	@media (max-width: 1280px) {
+	  padding: 5px 0 5px 10px;
+	}
+	
+	@media (max-width: 1000px) {
+	  &__money {
+		font-size: .8rem;
+	  }
+	}
+	
+	@media (max-height: 800px) {
+	  &__money {
+		font-size: .8rem;
+	  }
+	}
+	
+	&-info,
+	&__money {
+	  font-weight: 700;
+	  opacity: 0;
+	  
+	  @media (max-width: 1000px) {
+		&__title {
+		  font-size: .7rem;
+		}
+	  }
+	  
+	  @media (max-height: 800px) {
+		&__title {
+		  font-size: .7rem;
+		}
+	  }
+	  
+	  &__subtitle {
+		margin-top: 2px;
+		color: #000000A6;
+		text-shadow: none;
+		font-family: "TT Norms Bold", sans-serif;
+		text-transform: lowercase;
+		
+		@media (max-width: 1000px) {
+		  margin-top: 1px;
+		}
+		
+		@media (max-height: 800px) {
+		  margin-top: 1px;
+		}
+	  }
+	}
+  }
+}

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {observer} from 'mobx-react-lite';
 
-import HUDAlertsTaxi from './components/HUDAlertsTaxi';
-import HUDAlertsTitled from './components/HUDAlertsTitled';
-import HUDAlertsDefault from './components/HUDAlertsDefault';
+import HUDAlertsTaxi        from './components/HUDAlertsTaxi';
+import HUDAlertsTruckDriver from './components/HUDAlertsTruckDriver';
+import HUDAlertsTitled      from './components/HUDAlertsTitled';
+import HUDAlertsDefault     from './components/HUDAlertsDefault';
 
 import './HUDAlerts.scss';
 
@@ -48,6 +49,7 @@ const HUDAlerts = ({store, currentJob}) => {
 		</div>
 		<div className="hud-alerts-job">
 			{currentJob === 'taxi' && <HUDAlertsTaxi isVisible={isJobVisible} jobNotifyData={jobNotifyData}/>}
+			{currentJob === 'truckDriver' && <HUDAlertsTruckDriver isVisible={isJobVisible} jobNotifyData={jobNotifyData}/>}
 		</div>
 	</div>;
 };

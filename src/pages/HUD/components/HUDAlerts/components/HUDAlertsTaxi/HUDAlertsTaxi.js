@@ -1,8 +1,9 @@
 import * as React from 'react';
 import cn         from 'classnames';
 
-import './HUDAlertsTaxi.scss';
 import {regExp}   from 'utils/regExp';
+
+import './HUDAlertsTaxi.scss';
 
 const HUDAlertsTaxi = ({isVisible, jobNotifyData}) => {
     const value = React.useMemo(() =>
