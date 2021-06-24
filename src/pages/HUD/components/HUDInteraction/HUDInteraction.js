@@ -18,7 +18,7 @@ import './HUDInteraction.scss';
 
 const HUDInteraction = ({targetPlayerData, player}) => {
     const [currentPage, setCurrentPage] = React.useState('main'),
-        [isVisible, setVisible] = React.useState(false),
+        [isVisible, setVisible] = React.useState(true),
         [noVisualOption, setNoVisualOption] = React.useState(null),
         [currentOption, setCurrentOption] = React.useState(null),
         [prevOption, setPrevOption] = React.useState(null),

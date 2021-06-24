@@ -49,7 +49,7 @@ const App = () => {
 		inventoryStore = useLocalStore(() => new InventoryStore()),
 		crimeMenuStore = useLocalStore(() => new CrimeMenuStore());
 	
-	const [component, setComponent] = React.useState(null),
+	const [component, setComponent] = React.useState('hud'),
 		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
 		[currentHUD, setHUD] = React.useState(0),
@@ -220,8 +220,12 @@ const App = () => {
 		window.alt.on('cef::carDealer:start', () => setComponent('carDealer'));
 		
 		window.alt.on('cef::startScreen:start', () => setComponent('startScreen'));
-		window.alt.on('cef::startScreen:setNews', text => setNews(text));
-		window.alt.on('cef::startScreen:setUpdates', obj => setUpdates(obj));
+		window.alt.on('cef::startScreen:setNews', json => setNews(JSON.parse(json)));
+		window.alt.on('cef::startScreen:setUpdates', obj => setUpdates({
+			url: obj.url,
+			text: JSON.parse(obj.text),
+			date: obj.date,
+		}));
 		window.alt.on('cef::startScreen:setWeeklyBonus', value => setWeeklyBonus(value));
 		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));
