@@ -73,7 +73,7 @@ const HUDMain = ({
 			<HUDAlerts store={store} currentJob={currentJob}/>
 		</>
 		{!player.playerState.dead.isDead && <>
-			<HUDInteraction targetPlayerData={targetPlayerData}/>
+			<HUDInteraction targetPlayerData={targetPlayerData} player={player}/>
 			{player.playerState.effects.isHealing && <div className="hud-main__heal"/>}
 			<div
 				className={cn('hud-main-green-zone', player.playerState.isInGreenZone ? 'hud-main-green-zone_active' : null)}>

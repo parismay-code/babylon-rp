@@ -24,8 +24,8 @@ export default class PlayerStore {
         level: 0,
         gender: 0,
         fraction: {
-            // type: 1,
-            // name: 'lspd'
+            type: 1,
+            name: 'lspd'
         },
         family: {
             // name: 'Крутые',
@@ -48,7 +48,7 @@ export default class PlayerStore {
             poisoning: false
         },
         money: {
-            cash: 4000,
+            cash: 0,
             card: 0
         },
         donate: 0,

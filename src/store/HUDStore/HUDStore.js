@@ -111,7 +111,15 @@ export default class HUDStore {
     }
     
     pushNotify(target, obj) {
-        target.push({...obj, id: this.notifyId++});
+        target.push({
+            type: obj.type,
+            data: {
+                title: obj.data.title,
+                text: obj.data.text,
+                icon: obj.data.icon
+            },
+            id: this.notifyId++
+        });
     }
     
     shiftNotify(target) {

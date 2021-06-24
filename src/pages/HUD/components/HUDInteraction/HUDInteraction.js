@@ -16,7 +16,7 @@ import GiveKey from "./components/Actions/components/GiveKey";
 
 import './HUDInteraction.scss';
 
-const HUDInteraction = ({targetPlayerData}) => {
+const HUDInteraction = ({targetPlayerData, player}) => {
     const [currentPage, setCurrentPage] = React.useState('main'),
         [isVisible, setVisible] = React.useState(false),
         [noVisualOption, setNoVisualOption] = React.useState(null),
@@ -216,6 +216,7 @@ const HUDInteraction = ({targetPlayerData}) => {
                     setCurrentOption={setCurrentOption}
                     nextOption={nextOption}
                     setNextOption={setNextOption}
+                    player={player}
                 />}
                 {currentPage === 'documents' && <Documents
                     setCurrentPage={setCurrentPage}
