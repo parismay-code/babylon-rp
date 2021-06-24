@@ -4,7 +4,7 @@ import {regExp} from "utils/regExp";
 
 import './SellCar.scss';
 
-const SellCar = ({currentOption, prevOption, player, transport}) => {
+const SellCar = ({currentOption, prevOption, targetPlayerData, transport}) => {
     const input = React.useRef(null);
 
     const [currentCar, setCurrentCar] = React.useState(0);
@@ -45,10 +45,8 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
         <div className='hud-interactions-property-sell-car-header'>
             <div className='hud-interactions-property-sell-car-header-nickname'>
                 <span
-                    className='hud-interactions-property-sell-car-header-nickname__firstname'>{player?.nickname?.firstname}</span>
-                <span
-                    className='hud-interactions-property-sell-car-header-nickname__lastname'>{player?.nickname?.lastname}</span>
-                <div className='hud-interactions-property-sell-car-header-nickname__id'>ID: {player?.id}</div>
+                    className='hud-interactions-property-sell-car-header-nickname__name'>{targetPlayerData.nickname}</span>
+                <div className='hud-interactions-property-sell-car-header-nickname__id'>ID: {targetPlayerData.id}</div>
             </div>
         </div>
         <div className='hud-interactions-property-sell-car-content'>
@@ -61,7 +59,8 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
                         return <svg
                             className='hud-interactions-property-sell-car-content-choose-transport-list__element'
                             key={key} xmlns="http://www.w3.org/2000/svg" width="36.366" height="21.816"
-                            viewBox="0 0 36.366 21.816" fill={currentCar === findIndex(el.name) ? '#AAB6EF' : null}
+                            viewBox="0 0 36.366 21.816" fill={currentCar === findIndex(el.name) ? '#eaeaea' : null}
+                            style={currentCar === findIndex(el.name) ? {filter: 'drop-shadow(0 1px 1px #00000080)'} : null}
                             opacity={currentCar === findIndex(el.name) ? '1' : '.5'}
                             onClick={() => setCurrentCar(findIndex(el.name))}>
                             <path
@@ -77,7 +76,8 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
                         return <svg
                             className='hud-interactions-property-sell-car-content-choose-transport-list__element'
                             key={key} xmlns="http://www.w3.org/2000/svg" width="29.394" height="22.964"
-                            viewBox="0 0 29.394 22.964" fill={currentCar === findIndex(el.name) ? '#AAB6EF' : null}
+                            viewBox="0 0 29.394 22.964" fill={currentCar === findIndex(el.name) ? '#eaeaea' : null}
+                            style={currentCar === findIndex(el.name) ? {filter: 'drop-shadow(0 1px 1px #00000080)'} : null}
                             opacity={currentCar === findIndex(el.name) ? '1' : '.5'}
                             onClick={() => setCurrentCar(findIndex(el.name))}>
                             <path
@@ -93,7 +93,8 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
                         return <svg
                             className='hud-interactions-property-sell-car-content-choose-transport-list__element'
                             key={key} xmlns="http://www.w3.org/2000/svg" width="24.401" height="24.279"
-                            viewBox="0 0 24.401 24.279" fill={currentCar === findIndex(el.name) ? '#AAB6EF' : null}
+                            viewBox="0 0 24.401 24.279" fill={currentCar === findIndex(el.name) ? '#eaeaea' : null}
+                            style={currentCar === findIndex(el.name) ? {filter: 'drop-shadow(0 1px 1px #00000080)'} : null}
                             opacity={currentCar === findIndex(el.name) ? '1' : '.5'}
                             onClick={() => setCurrentCar(findIndex(el.name))}>
                             <path
@@ -109,7 +110,8 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
                         return <svg
                             className='hud-interactions-property-sell-car-content-choose-transport-list__element'
                             key={key} xmlns="http://www.w3.org/2000/svg" width="28.125" height="29.25"
-                            viewBox="0 0 28.125 29.25" fill={currentCar === findIndex(el.name) ? '#AAB6EF' : null}
+                            viewBox="0 0 28.125 29.25" fill={currentCar === findIndex(el.name) ? '#eaeaea' : null}
+                            style={currentCar === findIndex(el.name) ? {filter: 'drop-shadow(0 1px 1px #00000080)'} : null}
                             opacity={currentCar === findIndex(el.name) ? '1' : '.5'}
                             onClick={() => setCurrentCar(findIndex(el.name))}>
                             <g>
@@ -144,7 +146,7 @@ const SellCar = ({currentOption, prevOption, player, transport}) => {
                         name='n_sellTransportSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interaction:sellCar', transport[currentCar].name, input.current.value);
+                            window.alt.emit('client::interaction:sellCar', transport[currentCar].name, input.current.value, targetPlayerData.id);
                         }}
                     />
                 </div>

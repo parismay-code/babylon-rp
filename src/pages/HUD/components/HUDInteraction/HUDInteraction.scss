@@ -15,7 +15,7 @@
   justify-content: center;
 
   border: 2px solid #AAB6EF;
-  background: linear-gradient(135deg, #ffffffa0, #212121a0);
+  background: linear-gradient(to bottom, #ffffff00, #ffffff33 30%, #AAB6EF33 50%, #AAB6EF);
 
   transition: opacity .2s;
 
@@ -38,7 +38,7 @@
     height: 70%;
     border-radius: 100%;
 
-    background: linear-gradient(135deg, #ffffffa0, #212121a0);
+    background-color: #0000003F;
   }
 
   &-wave-1,
@@ -47,17 +47,17 @@
   &-wave-4 {
     position: absolute;
 
-    width: 107%;
-    height: 107%;
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     border-radius: 100%;
-    border: 3px solid #AAB6EF;
+    border: 3px solid #AAB4EE;
 
-    opacity: .8;
+    opacity: .7;
 
     @media (max-width: 1280px) {
       border: 2px solid #AAB6EF;
@@ -75,9 +75,11 @@
     opacity: 0;
     visibility: hidden;
 
-    background: linear-gradient(to right, $color-blank, #212121a0);
+    background: linear-gradient(to right, $color-blank, #ffffff33 30%, #AAB6EF);
 
     transition: padding-left .5s ease, opacity .3s ease, visibility 0s .5s;
+    
+    text-shadow: 0 2px 2px $color-black;
 
     @media (max-width: 1280px) {
       min-height: 125px;

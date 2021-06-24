@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './Money.scss';
 
-const Money = ({currentOption, prevOption, player}) => {
+const Money = ({currentOption, prevOption, targetPlayerData}) => {
     const input = React.useRef(null);
 
     const toggleStyles = React.useMemo(() => {
@@ -31,10 +31,8 @@ const Money = ({currentOption, prevOption, player}) => {
         <div className='hud-interactions-main-money-header'>
             <div className='hud-interactions-main-money-header-nickname'>
                 <span
-                    className='hud-interactions-main-money-header-nickname__firstname'>{player?.nickname?.firstname}</span>
-                <span
-                    className='hud-interactions-main-money-header-nickname__lastname'>{player?.nickname?.lastname}</span>
-                <div className='hud-interactions-main-money-header-nickname__id'>ID: {player?.id}</div>
+                    className='hud-interactions-main-money-header-nickname__name'>{targetPlayerData.nickname}</span>
+                <div className='hud-interactions-main-money-header-nickname__id'>ID: {targetPlayerData.id}</div>
             </div>
             <svg className='hud-interactions-main-money-header__icon'
                  width="36.681" height="25.677" viewBox="0 0 36.681 25.677" opacity='.5'>
@@ -55,7 +53,7 @@ const Money = ({currentOption, prevOption, player}) => {
                     name='n_giveMoneySubmit'
                     value='Передать'
                     onClick={() => {
-                        window.alt.emit('client::interaction:giveMoney', input.current.value);
+                        window.alt.emit('client::interaction:giveMoney', input.current.value, targetPlayerData.id);
                     }}
                 />
             </div>

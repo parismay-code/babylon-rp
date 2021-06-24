@@ -7,10 +7,10 @@ import {
 export default class HUDStore {
     carState = {
         engine: 100,
-        fuel: 10,
-        maxFuel: 200,
+        fuel: 0,
+        maxFuel: 0,
         speed: 0,
-        maxSpeed: 240,
+        maxSpeed: 0,
         seatBelt: false,
         locked: false,
         launched: false,
@@ -18,15 +18,15 @@ export default class HUDStore {
     }
 
     mapState = {
-        area: 'Little Seoul',
-        street: 'Паломино-Авеню',
+        area: '',
+        street: '',
         direction: 'NW',
         players: 0,
         id: 0
     }
 
-    time = '22:36';
-    date = '01.01.2021';
+    time = '';
+    date = '';
 
     speakers = [];
     

@@ -16,20 +16,13 @@ import GiveKey from "./components/Actions/components/GiveKey";
 
 import './HUDInteraction.scss';
 
-const HUDInteraction = () => {
+const HUDInteraction = ({targetPlayerData}) => {
     const [currentPage, setCurrentPage] = React.useState('main'),
         [isVisible, setVisible] = React.useState(false),
         [noVisualOption, setNoVisualOption] = React.useState(null),
         [currentOption, setCurrentOption] = React.useState(null),
         [prevOption, setPrevOption] = React.useState(null),
         [nextOption, setNextOption] = React.useState(null),
-        [player, setPlayerData] = React.useState({
-            nickname: {
-                firstname: 'Paris',
-                lastname: 'May'
-            },
-            id: '87551'
-        }),
         [houses, setHousesData] = React.useState([
             {
                 id: 120,
@@ -164,19 +157,20 @@ const HUDInteraction = () => {
 
     const toggleOptionScreen = React.useCallback(() => {
         const visible = 'hud-interaction-option-screen_visible';
-
-        if (!prevOption && currentOption) optionScreen.current.classList.add(visible);
-        else if (prevOption && currentOption) {
-            optionScreen.current.classList.remove(visible);
-            setTimeout(() => optionScreen.current.classList.add(visible), 550);
-        }
-        else optionScreen.current.classList.remove(visible);
-    }, [currentOption, prevOption]);
+        
+        if (isVisible) {
+            if (!prevOption && currentOption) optionScreen.current.classList.add(visible);
+            else if (prevOption && currentOption) {
+                optionScreen.current.classList.remove(visible);
+                setTimeout(() => optionScreen.current.classList.add(visible), 550);
+            }
+            else optionScreen.current.classList.remove(visible);
+        } else optionScreen.current.classList.remove(visible);
+    }, [isVisible, currentOption, prevOption]);
     
     React.useEffect(() => {
         window.alt.on('cef::hud:toggleInteraction', (bool) => setVisible(bool));
 
-        window.alt.on('cef::interaction:setTargetPlayerData', obj => setPlayerData(obj));
         window.alt.on('cef::interaction:setHousesData', array => setHousesData(array));
         window.alt.on('cef::interaction:setBusinessData', array => setBusinessData(array));
         window.alt.on('cef::interaction:setTransportData', array => setTransportData(array));
@@ -187,25 +181,25 @@ const HUDInteraction = () => {
     React.useEffect(() => {
         toggleOptionScreen();
         setPrevOption(currentOption);
-    }, [currentOption, toggleOptionScreen, isVisible]);
+    }, [currentOption, toggleOptionScreen]);
 
     return <>
         <div ref={optionScreen} className='hud-interaction-option-screen'>
-            <Money currentOption={currentOption} prevOption={prevOption} player={player}/>
-            <ArendHouse currentOption={currentOption} prevOption={prevOption} player={player}
+            <Money currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}/>
+            <ArendHouse currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
                         houses={houses}/>
-            <SellBusiness currentOption={currentOption} prevOption={prevOption} player={player}
+            <SellBusiness currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
                           business={business}/>
-            <SellHouse currentOption={currentOption} prevOption={prevOption} player={player}
+            <SellHouse currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
                         houses={houses}/>
-            <SellCar currentOption={currentOption} prevOption={prevOption} player={player}
+            <SellCar currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
                        transport={transport}/>
-            <ArendCar currentOption={currentOption} prevOption={prevOption} player={player}
+            <ArendCar currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
                        transport={transport}/>
-            <GiveKey currentOption={currentOption} prevOption={prevOption} player={player}
+            <GiveKey currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
                       transport={transport}/>
         </div>
-        <div className='hud-interaction' style={isVisible ? {opacity: 1} : {opacity: 0}}>
+        <div className='hud-interaction' style={isVisible ? {opacity: 1} : {opacity: 0, pointerEvents: 'none'}}>
             <div className='hud-interaction-wave-1'>
                 <div className='hud-interaction-wave-2'>
                     <div className='hud-interaction-wave-3'>
@@ -227,6 +221,8 @@ const HUDInteraction = () => {
                     setCurrentPage={setCurrentPage}
                     noVisualOption={noVisualOption}
                     setNoVisualOption={setNoVisualOption}
+                    targetPlayerData={targetPlayerData}
+                    
                 />}
                 {currentPage === 'property' && <Property
                     setCurrentPage={setCurrentPage}
@@ -243,6 +239,7 @@ const HUDInteraction = () => {
                     setCurrentOption={setCurrentOption}
                     nextOption={nextOption}
                     setNextOption={setNextOption}
+                    targetPlayerData={targetPlayerData}
                 />}
                 {currentPage === 'fraction' && <Fraction setCurrentPage={setCurrentPage}/>}
             </div>

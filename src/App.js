@@ -56,7 +56,10 @@ const App = () => {
 		[isCursorActive, setCursorActive] = React.useState(false),
 		[payPrice, setPayPrice] = React.useState(0),
 		[pinCode, setPinCode] = React.useState(null),
-		[targetPlayerData, setTargetPlayerData] = React.useState({}),
+		[targetPlayerData, setTargetPlayerData] = React.useState({
+			nickname: 'Paris May',
+			id: 112344
+		}),
 		[gasStation, setGasStation] = React.useState({}),
 		[currentJob, setCurrentJob] = React.useState(null),
 		[jobParams, setJobParams] = React.useState(null),

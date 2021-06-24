@@ -20,7 +20,7 @@
     justify-content: space-between;
 
     font-family: "TT Norms Bold", sans-serif;
-    color: $color-black;
+    color: $color-white;
 
     @media (max-width: 1280px) {
       transform: translate(-50%, 10px);
@@ -81,7 +81,8 @@
 
     font-family: "TT Norms Regular", sans-serif;
     transform: translate(-50%, 80px);
-    color: #AAB6EF;
+    color: $color-white;
+    text-shadow: 0 2px 2px $color-black;
     text-align: center;
 
     @media (max-width: 1280px) {

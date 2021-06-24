@@ -4,7 +4,7 @@ import {regExp} from "utils/regExp";
 
 import './SellBusiness.scss';
 
-const SellBusiness = ({currentOption, prevOption, player, business}) => {
+const SellBusiness = ({currentOption, prevOption, targetPlayerData, business}) => {
     const input = React.useRef(null);
 
     const [currentBusiness, setCurrentBusiness] = React.useState(0);
@@ -38,10 +38,8 @@ const SellBusiness = ({currentOption, prevOption, player, business}) => {
         <div className='hud-interactions-property-sell-business-header'>
             <div className='hud-interactions-property-sell-business-header-nickname'>
                 <span
-                    className='hud-interactions-property-sell-business-header-nickname__firstname'>{player?.nickname?.firstname}</span>
-                <span
-                    className='hud-interactions-property-sell-business-header-nickname__lastname'>{player?.nickname?.lastname}</span>
-                <div className='hud-interactions-property-sell-business-header-nickname__id'>ID: {player?.id}</div>
+                    className='hud-interactions-property-sell-business-header-nickname__name'>{targetPlayerData.nickname}</span>
+                <div className='hud-interactions-property-sell-business-header-nickname__id'>ID: {targetPlayerData.id}</div>
             </div>
         </div>
         <div className='hud-interactions-property-sell-business-content'>
@@ -54,7 +52,8 @@ const SellBusiness = ({currentOption, prevOption, player, business}) => {
                             key={key}
                             className='hud-interactions-property-sell-business-content-choose-business-list__element'
                             xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27"
-                            fill={currentBusiness === key ? '#AAB6EF' : null}
+                            fill={currentBusiness === key ? '#eaeaea' : null}
+                            style={currentBusiness === key ? {filter: 'drop-shadow(0 1px 1px #00000080)'} : null}
                             opacity={currentBusiness === key ? '1' : '.5'}
                             onClick={() => setCurrentBusiness(key)}>
                             <path
@@ -80,7 +79,7 @@ const SellBusiness = ({currentOption, prevOption, player, business}) => {
                         name='n_sellBusinessSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interaction:sellBusiness', business[currentBusiness].id, input.current.value);
+                            window.alt.emit('client::interaction:sellBusiness', business[currentBusiness].id, input.current.value, targetPlayerData.id);
                         }}
                     />
                 </div>

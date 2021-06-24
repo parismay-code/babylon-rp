@@ -213,9 +213,10 @@
         }
 
         &__submit {
-          background-color: #949494;
+          background-color: #FFFFFF66;
           padding: 10px 15px;
           height: 35px;
+          text-shadow: 0 2px 2px $color-black;
 
           text-transform: uppercase;
           font-family: "TT Norms Medium", sans-serif;

@@ -6,7 +6,7 @@ import {regExp} from "utils/regExp";
 
 import './ArendHouse.scss';
 
-const ArendHouse = ({currentOption, prevOption, player, houses}) => {
+const ArendHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
     const input = React.useRef(null),
         term = React.useRef(null);
 
@@ -42,10 +42,8 @@ const ArendHouse = ({currentOption, prevOption, player, houses}) => {
         <div className='hud-interactions-property-arend-house-header'>
             <div className='hud-interactions-property-arend-house-header-nickname'>
                 <span
-                    className='hud-interactions-property-arend-house-header-nickname__firstname'>{player?.nickname?.firstname}</span>
-                <span
-                    className='hud-interactions-property-arend-house-header-nickname__lastname'>{player?.nickname?.lastname}</span>
-                <div className='hud-interactions-property-arend-house-header-nickname__id'>ID: {player?.id}</div>
+                    className='hud-interactions-property-arend-house-header-nickname__name'>{targetPlayerData.nickname}</span>
+                <div className='hud-interactions-property-arend-house-header-nickname__id'>ID: {targetPlayerData.id}</div>
             </div>
         </div>
         <div className='hud-interactions-property-arend-house-content'>
@@ -61,7 +59,8 @@ const ArendHouse = ({currentOption, prevOption, player, houses}) => {
                     {houses.map((el, key) => {
                         return <svg className='hud-interactions-property-arend-house-content-choose-house-list__element'
                                     key={key} xmlns="http://www.w3.org/2000/svg" width="32.588" height="28.967"
-                                    viewBox="0 0 32.588 28.967" fill={currentHouse === key ? '#AAB6EF' : null}
+                                    viewBox="0 0 32.588 28.967" fill={currentHouse === key ? '#eaeaea' : null}
+                                    style={currentHouse === key ? {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}
                                     opacity={currentHouse === key ? '1' : '.5'}
                                     onClick={() => setCurrentHouse(key)}
                         >
@@ -88,7 +87,7 @@ const ArendHouse = ({currentOption, prevOption, player, houses}) => {
                         name='n_arendHouseSubmit'
                         value='Сдать'
                         onClick={() => {
-                            window.alt.emit('client::interaction:arendHouse', houses[currentHouse].id, arendTerm, input.current.value);
+                            window.alt.emit('client::interaction:arendHouse', houses[currentHouse].id, arendTerm, input.current.value, targetPlayerData.id);
                         }}
                     />
                 </div>

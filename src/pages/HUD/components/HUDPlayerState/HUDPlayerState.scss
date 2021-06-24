@@ -538,10 +538,10 @@
         @media (max-height: 800px) {
           margin-left: -25px;
         }
-
+        
         & div::after {
           width: 310px;
-
+          
           @media (max-width: 1000px) {
             width: 155px;
           }

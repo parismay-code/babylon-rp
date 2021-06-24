@@ -4,7 +4,7 @@ import {regExp} from "utils/regExp";
 
 import './SellHouse.scss';
 
-const SellHouse = ({currentOption, prevOption, player, houses}) => {
+const SellHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
     const input = React.useRef(null);
 
     const [currentHouse, setCurrentHouse] = React.useState(0);
@@ -38,10 +38,8 @@ const SellHouse = ({currentOption, prevOption, player, houses}) => {
         <div className='hud-interactions-property-sell-house-header'>
             <div className='hud-interactions-property-sell-house-header-nickname'>
                 <span
-                    className='hud-interactions-property-sell-house-header-nickname__firstname'>{player?.nickname?.firstname}</span>
-                <span
-                    className='hud-interactions-property-sell-house-header-nickname__lastname'>{player?.nickname?.lastname}</span>
-                <div className='hud-interactions-property-sell-house-header-nickname__id'>ID: {player?.id}</div>
+                    className='hud-interactions-property-sell-house-header-nickname__name'>{targetPlayerData.nickname}</span>
+                <div className='hud-interactions-property-sell-house-header-nickname__id'>ID: {targetPlayerData.id}</div>
             </div>
         </div>
         <div className='hud-interactions-property-sell-house-content'>
@@ -57,7 +55,8 @@ const SellHouse = ({currentOption, prevOption, player, houses}) => {
                     {houses.map((el, key) => {
                         return <svg className='hud-interactions-property-sell-house-content-choose-house-list__element'
                                     key={key} xmlns="http://www.w3.org/2000/svg" width="32.588" height="28.967"
-                                    viewBox="0 0 32.588 28.967" fill={currentHouse === key ? '#AAB6EF' : null}
+                                    viewBox="0 0 32.588 28.967" fill={currentHouse === key ? '#eaeaea' : null}
+                                    style={currentHouse === key ? {filter: 'drop-shadow(0 1px 1px #00000080)'} : null}
                                     opacity={currentHouse === key ? '1' : '.5'}
                                     onClick={() => setCurrentHouse(key)}
                         >
@@ -84,7 +83,7 @@ const SellHouse = ({currentOption, prevOption, player, houses}) => {
                         name='n_sellHouseSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interaction:sellHouse', houses[currentHouse].id, input.current.value);
+                            window.alt.emit('client::interaction:sellHouse', houses[currentHouse].id, input.current.value, targetPlayerData.id);
                         }}
                     />
                 </div>

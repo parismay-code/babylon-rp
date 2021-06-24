@@ -127,7 +127,7 @@
       }
 
       &__dollar {
-        color: $color-black;
+        color: #000000;
         font-family: "TT Norms Medium", sans-serif;
         font-size: 1.6rem;
         font-weight: 700;
@@ -144,10 +144,11 @@
       }
 
       &__submit {
-        background-color: #949494;
+        background-color: #FFFFFF66;
         padding: 10px;
         height: 35px;
-
+        text-shadow: 0 2px 2px $color-black;
+        
         text-transform: uppercase;
         font-family: "TT Norms Medium", sans-serif;
         letter-spacing: 1px;
