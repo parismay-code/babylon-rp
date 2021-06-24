@@ -220,12 +220,8 @@ const App = () => {
 		window.alt.on('cef::carDealer:start', () => setComponent('carDealer'));
 		
 		window.alt.on('cef::startScreen:start', () => setComponent('startScreen'));
-		window.alt.on('cef::startScreen:setNews', json => setNews(JSON.parse(json)));
-		window.alt.on('cef::startScreen:setUpdates', obj => setUpdates({
-			url: obj.url,
-			text: JSON.parse(obj.text),
-			date: obj.date,
-		}));
+		window.alt.on('cef::startScreen:setNews', json => setNews(json));
+		window.alt.on('cef::startScreen:setUpdates', obj => setUpdates(obj));
 		window.alt.on('cef::startScreen:setWeeklyBonus', value => setWeeklyBonus(value));
 		
 		window.alt.on('cef::cursor:change', bool => setCursorActive(bool));

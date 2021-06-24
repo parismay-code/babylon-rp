@@ -145,7 +145,7 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 			<div className="start-screen-media-news">
 				<div className="start-screen-media-news__title">Новости</div>
 				<div className="start-screen-media-news__img"/>
-				<div className="start-screen-media-news__text">{news}</div>
+				<div className="start-screen-media-news__text">{JSON.parse(news)}</div>
 			</div>
 			<div className="start-screen-media-update">
 				<div className="start-screen-media-update-header">
@@ -160,7 +160,7 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 					</a>
 				</div>
 				<div className="start-screen-media-update__img"/>
-				<div className="start-screen-media-update__text">{updates.text}</div>
+				<div className="start-screen-media-update__text">{JSON.parse(updates.text)}</div>
 			</div>
 		</div>
 		<div className="start-screen-quests">
