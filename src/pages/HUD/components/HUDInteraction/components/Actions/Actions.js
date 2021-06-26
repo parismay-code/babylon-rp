@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cn from 'classnames';
 
 import rightArrow from 'assets/images/hud/rightArrow.svg';
 
@@ -12,8 +13,17 @@ const Actions = ({
 	setNextOption,
 	currentOption,
 	setCurrentOption,
-	targetPlayerData
+	targetPlayerData,
+	transport,
 }) => {
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.style.opacity = 1, 200);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	const titles = React.useMemo(() => ({
 		'giveCarKey': 'Передать ключи',
 		'trade': 'Предложить обмен',
@@ -80,7 +90,7 @@ const Actions = ({
 			</svg>;
 		}, [noVisualOption]);
 	
-	return <div className="hud-interactions-actions">
+	return <div ref={screen} className="hud-interactions-actions">
 		<div className="hud-interactions-actions-navigation">
 			<div
 				className="hud-interactions-actions-navigation-back"
@@ -94,9 +104,10 @@ const Actions = ({
 			className="hud-interactions-actions__title">{titles[nextOption] ? titles[nextOption] : titles[noVisualOption] ? titles[noVisualOption] : null}</div>
 		<div className="hud-interactions-actions-options">
 			<div
-				className="hud-interactions-actions-options__element hud-interactions-actions-options__element_giveCarKey"
-				onMouseOver={() => setNextOption('giveCarKey')}
-				onClick={() => setCurrentOption('giveCarKey')}
+				className={cn('hud-interactions-actions-options__element hud-interactions-actions-options__element_giveCarKey',
+					transport.length === 0 ? 'hud-interactions-actions-options__element_disabled' : null)}
+				onMouseOver={() => transport.length > 0 && setNextOption('giveCarKey')}
+				onClick={() => transport.length > 0 && setCurrentOption('giveCarKey')}
 			>
 				{giveCarKeyIcon}
 			</div>

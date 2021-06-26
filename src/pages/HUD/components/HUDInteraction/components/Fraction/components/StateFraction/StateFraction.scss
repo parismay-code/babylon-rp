@@ -1,6 +1,6 @@
-@import '../../../../../../styles/vars';
+@import '../../../../../../../../styles/vars';
 
-.hud-interactions-actions {
+.hud-interactions-fraction-state {
   width: 100%;
   height: 100%;
   
@@ -8,9 +8,6 @@
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
-  opacity: 0;
-  transition: opacity .2s;
   
   &-navigation {
 	position: absolute;
@@ -33,7 +30,8 @@
 	  transform: translate(-50%, 10px);
 	}
 	
-	&-back {
+	&-back,
+	&-next {
 	  display: flex;
 	  align-items: center;
 	  
@@ -41,26 +39,24 @@
 	  
 	  transition: opacity .2s;
 	  
-	  cursor: url("../../../../../../assets/images/cursorPointer.svg"), pointer;
+	  cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
 	  
 	  &:hover {
 		opacity: 1;
 	  }
 	  
 	  &__arrow {
-		transform: scaleX(-1);
-		
 		height: 25px;
-		margin-right: 10px;
+		margin-left: 10px;
 		
 		@media (max-width: 1280px) {
 		  height: 12.5px;
-		  margin-right: 5px;
+		  margin-left: 5px;
 		}
 		
 		@media (max-height: 800px) {
 		  height: 12.5px;
-		  margin-right: 5px;
+		  margin-left: 5px;
 		}
 	  }
 	  
@@ -74,6 +70,19 @@
 		@media (max-height: 800px) {
 		  font-size: .8rem;
 		}
+	  }
+	}
+	
+	&-back__arrow {
+	  transform: scaleX(-1);
+	  margin-right: 10px;
+	  
+	  @media (max-width: 1280px) {
+		margin-right: 5px;
+	  }
+	  
+	  @media (max-height: 800px) {
+		margin-right: 5px;
 	  }
 	}
   }
@@ -109,12 +118,7 @@
 	  position: absolute;
 	  transform: translate(-50%, -50%);
 	  
-	  cursor: url('../../../../../../assets/images/cursorPointer.svg'), pointer;
-	  
-	  &_disabled {
-		opacity: .5;
-		cursor: url('../../../../../../assets/images/cursorDefault.svg'), default;
-	  }
+	  cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
 	  
 	  & svg {
 		max-height: 35px;
@@ -133,26 +137,32 @@
 		}
 	  }
 	  
-	  &_giveCarKey {
+	  &_search {
 		left: 10%;
 		top: 15%;
 	  }
 	  
-	  &_trade {
-		left: 30%;
-		top: 38%;
+	  &_control,
+	  &_get-docs {
+		left: 25%;
+		top: 34%;
 	  }
 	  
-	  &_shakeHands {
-		left: 70%;
-		top: 38%;
+	  &_pushCar {
+		left: 50%;
+		top: 43%;
 	  }
 	  
-	  &_heal {
+	  &_cuff,
+	  &_jail {
+		left: 75%;
+		top: 34%;
+	  }
+	  
+	  &_takeOffMask {
 		left: 90%;
 		top: 15%;
 	  }
-	  
 	}
   }
 }

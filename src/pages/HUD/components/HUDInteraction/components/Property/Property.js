@@ -1,10 +1,28 @@
 import * as React from 'react';
+import cn from 'classnames';
 
 import rightArrow from 'assets/images/hud/rightArrow.svg';
 
 import './Property.scss';
 
-const Property = ({setCurrentPage, currentOption, setCurrentOption, nextOption, setNextOption}) => {
+const Property = ({
+	setCurrentPage,
+	currentOption,
+	setCurrentOption,
+	nextOption,
+	setNextOption,
+	business,
+	houses,
+	transport,
+}) => {
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.style.opacity = 1, 200);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	const titles = React.useMemo(() => ({
 		'arendHouse': 'Сдать жилье в аренду',
 		'sellBusiness': 'Продажа бизнеса',
@@ -95,7 +113,7 @@ const Property = ({setCurrentPage, currentOption, setCurrentOption, nextOption, 
 			
 		}, [currentOption, nextOption]);
 	
-	return <div className="hud-interactions-property">
+	return <div ref={screen} className="hud-interactions-property">
 		<div className="hud-interactions-property-navigation">
 			<div
 				className="hud-interactions-property-navigation-back"
@@ -108,37 +126,42 @@ const Property = ({setCurrentPage, currentOption, setCurrentOption, nextOption, 
 		<div className="hud-interactions-property__title">{titles[nextOption]}</div>
 		<div className="hud-interactions-property-options">
 			<div
-				className="hud-interactions-property-options__element hud-interactions-property-options__element_arendHouse"
-				onMouseOver={() => setNextOption('arendHouse')}
-				onClick={() => setCurrentOption('arendHouse')}
+				className={cn('hud-interactions-property-options__element hud-interactions-property-options__element_arendHouse',
+					houses.length === 0 ? 'hud-interactions-property-options__element_disabled' : null)}
+				onMouseOver={() => houses.length > 0 && setNextOption('arendHouse')}
+				onClick={() => houses.length > 0 && setCurrentOption('arendHouse')}
 			>
 				{arendHouseIcon}
 			</div>
 			<div
-				className="hud-interactions-property-options__element hud-interactions-property-options__element_sellBusiness"
-				onMouseOver={() => setNextOption('sellBusiness')}
-				onClick={() => setCurrentOption('sellBusiness')}
+				className={cn('hud-interactions-property-options__element hud-interactions-property-options__element_sellBusiness',
+					business.length === 0 ? 'hud-interactions-property-options__element_disabled' : null)}
+				onMouseOver={() => business.length > 0 && setNextOption('sellBusiness')}
+				onClick={() => business.length > 0 && setCurrentOption('sellBusiness')}
 			>
 				{sellBusinessIcon}
 			</div>
 			<div
-				className="hud-interactions-property-options__element hud-interactions-property-options__element_sellHouse"
-				onMouseOver={() => setNextOption('sellHouse')}
-				onClick={() => setCurrentOption('sellHouse')}
+				className={cn('hud-interactions-property-options__element hud-interactions-property-options__element_sellHouse',
+					houses.length === 0 ? 'hud-interactions-property-options__element_disabled' : null)}
+				onMouseOver={() => houses.length > 0 && setNextOption('sellHouse')}
+				onClick={() => houses.length > 0 && setCurrentOption('sellHouse')}
 			>
 				{sellHouseIcon}
 			</div>
 			<div
-				className="hud-interactions-property-options__element hud-interactions-property-options__element_sellCar"
-				onMouseOver={() => setNextOption('sellCar')}
-				onClick={() => setCurrentOption('sellCar')}
+				className={cn('hud-interactions-property-options__element hud-interactions-property-options__element_sellCar',
+					transport.length === 0 ? 'hud-interactions-property-options__element_disabled' : null)}
+				onMouseOver={() => transport.length > 0 && setNextOption('sellCar')}
+				onClick={() => transport.length > 0 && setCurrentOption('sellCar')}
 			>
 				{sellCarIcon}
 			</div>
 			<div
-				className="hud-interactions-property-options__element hud-interactions-property-options__element_arendCar"
-				onMouseOver={() => setNextOption('arendCar')}
-				onClick={() => setCurrentOption('arendCar')}
+				className={cn('hud-interactions-property-options__element hud-interactions-property-options__element_arendCar',
+					transport.length === 0 ? 'hud-interactions-property-options__element_disabled' : null)}
+				onMouseOver={() => transport.length > 0 && setNextOption('arendCar')}
+				onClick={() => transport.length > 0 && setCurrentOption('arendCar')}
 			>
 				{arendCarIcon}
 			</div>

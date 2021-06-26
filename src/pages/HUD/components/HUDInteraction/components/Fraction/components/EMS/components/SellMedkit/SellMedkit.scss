@@ -1,6 +1,6 @@
-@import '../../../../../../../../styles/vars';
+@import '../../../../../../../../../../styles/vars';
 
-.hud-interactions-main-money {
+.hud-interactions-ems-sell-med {
   &-header {
 	margin-bottom: 20px;
 	
@@ -67,7 +67,7 @@
   &-content {
 	&__title {
 	  text-shadow: 0 0 10px #B9FE75;
-	  margin-bottom: 10px;
+	  margin-bottom: 20px;
 	  
 	  @media (max-width: 1280px) {
 		font-size: .8rem;
@@ -79,6 +79,45 @@
 		font-size: .8rem;
 		text-shadow: 0 0 5px #b9fe75;
 		margin-bottom: 5px;
+	  }
+	}
+	
+	&-count {
+	  margin-bottom: 10px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  
+	  text-transform: uppercase;
+	  
+	  &__title {
+		opacity: .5;
+	  }
+	  
+	  &-field {
+		display: flex;
+		align-items: center;
+		
+		&__value {
+		  margin: 0 20px;
+		  width: 50px;
+		  padding: 2px 20px;
+		  font-family: "TT Norms Bold", sans-serif;
+		  
+		  text-align: center;
+		  background: #00000066;
+		}
+		
+		&__arrow-left,
+		&__arrow-right {
+		  height: 1.2rem;
+		  
+		  cursor: url("../../../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+		}
+		
+		&__arrow-right {
+		  transform: scaleX(-1);
+		}
 	  }
 	}
 	
@@ -140,7 +179,7 @@
 		font-family: "TT Norms Medium", sans-serif;
 		letter-spacing: 1px;
 		
-		cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
+		cursor: url('../../../../../../../../../../assets/images/cursorPointer.svg'), pointer;
 		
 		@media (max-width: 1280px) {
 		  padding: 5px;

@@ -5,6 +5,14 @@ import rightArrow from 'assets/images/hud/rightArrow.svg';
 import './Documents.scss';
 
 const Documents = ({setCurrentPage, noVisualOption, setNoVisualOption, targetPlayerData}) => {
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.style.opacity = 1, 200);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	const titles = React.useMemo(() => ({
 		'passport': 'Показать паспорт',
 		'license': 'Показать лицензии',
@@ -65,7 +73,7 @@ const Documents = ({setCurrentPage, noVisualOption, setNoVisualOption, targetPla
 			</svg>;
 		}, [noVisualOption]);
 	
-	return <div className="hud-interactions-documents">
+	return <div ref={screen} className="hud-interactions-documents">
 		<div className="hud-interactions-documents-navigation">
 			<div
 				className="hud-interactions-documents-navigation-back"

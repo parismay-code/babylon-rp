@@ -24,8 +24,8 @@ export default class PlayerStore {
         level: 0,
         gender: 0,
         fraction: {
-            type: 1,
-            name: 'lspd'
+            type: 1, // 0 - gov, 1 - pd, 2 - gang, 3 - mafia
+            name: 'ems'
         },
         family: {
             // name: 'Крутые',

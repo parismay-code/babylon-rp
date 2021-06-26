@@ -58,7 +58,13 @@ const App = () => {
 		[pinCode, setPinCode] = React.useState(null),
 		[targetPlayerData, setTargetPlayerData] = React.useState({
 			nickname: 'Paris May',
-			id: 112344
+			id: 112344,
+			isHandcuffed: false,
+			isTied: false,
+			isControlled: false,
+			isBagPut: false,
+			isJailed: false,
+			isInCar: false,
 		}),
 		[gasStation, setGasStation] = React.useState({}),
 		[currentJob, setCurrentJob] = React.useState(null),
@@ -339,6 +345,7 @@ const App = () => {
 			inventoryStore={inventoryStore}
 			currentHUD={currentHUD}
 			targetPlayerData={targetPlayerData}
+			setTargetPlayerData={setTargetPlayerData}
 			currentJob={currentJob}
 		/>}
 		{component === 'adminRedactor' && <AdminRedactor data={adminRedactorData}/>}

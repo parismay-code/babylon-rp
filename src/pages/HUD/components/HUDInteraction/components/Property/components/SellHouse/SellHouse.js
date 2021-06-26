@@ -10,7 +10,7 @@ const SellHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
     const [currentHouse, setCurrentHouse] = React.useState(0);
 
     const cost = React.useMemo(() =>
-        `${String(houses[currentHouse].cost).replace(regExp.money, '$1 ')} $`, [currentHouse, houses]);
+        `${String(houses[currentHouse]?.cost).replace(regExp.money, '$1 ')} $`, [currentHouse, houses]);
 
     const toggleStyles = React.useMemo(() => {
         if (currentOption === 'sellHouse' && !prevOption)
@@ -49,7 +49,7 @@ const SellHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
                         дом
                     </div>
                     <div
-                        className='hud-interactions-property-sell-house-content-choose-house-header__id'>{houses[currentHouse].id}</div>
+                        className='hud-interactions-property-sell-house-content-choose-house-header__id'>{houses[currentHouse]?.id}</div>
                 </div>
                 <div className='hud-interactions-property-sell-house-content-choose-house-list'>
                     {houses.map((el, key) => {
@@ -83,7 +83,7 @@ const SellHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
                         name='n_sellHouseSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interaction:sellHouse', houses[currentHouse].id, input.current.value, targetPlayerData.id);
+                            window.alt.emit('client::interaction:sellHouse', houses[currentHouse]?.id, input.current.value, targetPlayerData.id);
                         }}
                     />
                 </div>
@@ -92,13 +92,13 @@ const SellHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
                 <div className='hud-interactions-property-sell-house-content-info-garden'>
                     <div className='hud-interactions-property-sell-house-content-info-garden__title'>Сад</div>
                     <div
-                        className='hud-interactions-property-sell-house-content-info-garden__value'>{houses[currentHouse].garden ? 'Есть' : 'Отсуствует'}</div>
+                        className='hud-interactions-property-sell-house-content-info-garden__value'>{houses[currentHouse]?.garden ? 'Есть' : 'Отсуствует'}</div>
                 </div>
                 <div className='hud-interactions-property-sell-house-content-info-garage'>
                     <div className='hud-interactions-property-sell-house-content-info-garage__title'>Мест в гараже
                     </div>
                     <div
-                        className='hud-interactions-property-sell-house-content-info-garage__value'>{houses[currentHouse].garage}</div>
+                        className='hud-interactions-property-sell-house-content-info-garage__value'>{houses[currentHouse]?.garage}</div>
                 </div>
                 <div className='hud-interactions-property-sell-house-content-info-cost'>
                     <div className='hud-interactions-property-sell-house-content-info-cost__title'>Гос. стоимость</div>

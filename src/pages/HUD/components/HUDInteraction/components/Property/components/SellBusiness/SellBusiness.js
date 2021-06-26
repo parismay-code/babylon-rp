@@ -10,7 +10,7 @@ const SellBusiness = ({currentOption, prevOption, targetPlayerData, business}) =
     const [currentBusiness, setCurrentBusiness] = React.useState(0);
 
     const cost = React.useMemo(() =>
-        `${String(business[currentBusiness].cost).replace(regExp.money, '$1 ')} $`, [currentBusiness, business]);
+        `${String(business[currentBusiness]?.cost).replace(regExp.money, '$1 ')} $`, [currentBusiness, business]);
 
     const toggleStyles = React.useMemo(() => {
         if (currentOption === 'sellBusiness' && !prevOption)
@@ -88,7 +88,7 @@ const SellBusiness = ({currentOption, prevOption, targetPlayerData, business}) =
                 <div className='hud-interactions-property-sell-business-content-info-name'>
                     <div className='hud-interactions-property-sell-business-content-info-name__title'>Название</div>
                     <div
-                        className='hud-interactions-property-sell-business-content-info-name__value'>{business[currentBusiness].name} #{business[currentBusiness].id}</div>
+                        className='hud-interactions-property-sell-business-content-info-name__value'>{business[currentBusiness]?.name} #{business[currentBusiness]?.id}</div>
                 </div>
                 <div className='hud-interactions-property-sell-business-content-info-cost'>
                     <div className='hud-interactions-property-sell-business-content-info-cost__title'>Гос. стоимость

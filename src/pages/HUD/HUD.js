@@ -10,14 +10,21 @@ const HUD = ({
 	crimeStore,
 	currentHUD,
 	player,
+	setTargetPlayerData,
 	targetPlayerData,
 	inventoryStore,
 	currentJob,
 }) => {
 	return <div className="hud">
 		{
-			currentHUD === 0 ? <HUDMain store={defaultStore} player={player} targetPlayerData={targetPlayerData}
-			                            inventoryStore={inventoryStore} currentJob={currentJob}/>
+			currentHUD === 0 ? <HUDMain
+					store={defaultStore}
+					player={player}
+					targetPlayerData={targetPlayerData}
+					setTargetPlayerData={setTargetPlayerData}
+					inventoryStore={inventoryStore}
+					currentJob={currentJob}
+				/>
 				: <CrimeHUD defaultStore={defaultStore} player={player} crimeStore={crimeStore}/>
 		}
 	</div>;

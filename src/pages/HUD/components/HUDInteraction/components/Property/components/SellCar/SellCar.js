@@ -17,7 +17,7 @@ const SellCar = ({currentOption, prevOption, targetPlayerData, transport}) => {
     const findIndex = React.useCallback((name) => transport.findIndex(el => el.name === name), [transport]);
 
     const cost = React.useMemo(() =>
-        `${String(transport[currentCar].cost).replace(regExp.money, '$1 ')} $`, [currentCar, transport]);
+        `${String(transport[currentCar]?.cost).replace(regExp.money, '$1 ')} $`, [currentCar, transport]);
 
     const toggleStyles = React.useMemo(() => {
         if (currentOption === 'sellCar' && !prevOption)
@@ -146,7 +146,7 @@ const SellCar = ({currentOption, prevOption, targetPlayerData, transport}) => {
                         name='n_sellTransportSubmit'
                         value='Продать'
                         onClick={() => {
-                            window.alt.emit('client::interaction:sellCar', transport[currentCar].name, input.current.value, targetPlayerData.id);
+                            window.alt.emit('client::interaction:sellCar', transport[currentCar]?.name, input.current.value, targetPlayerData.id);
                         }}
                     />
                 </div>
@@ -155,12 +155,12 @@ const SellCar = ({currentOption, prevOption, targetPlayerData, transport}) => {
                 <div className='hud-interactions-property-sell-car-content-info-name'>
                     <div className='hud-interactions-property-sell-car-content-info-name__title'>Марка</div>
                     <div
-                        className='hud-interactions-property-sell-car-content-info-name__value'>{transport[currentCar].name}</div>
+                        className='hud-interactions-property-sell-car-content-info-name__value'>{transport[currentCar]?.name}</div>
                 </div>
                 <div className='hud-interactions-property-sell-car-content-info-trunk'>
                     <div className='hud-interactions-property-sell-car-content-info-trunk__title'>Багажник</div>
                     <div
-                        className='hud-interactions-property-sell-car-content-info-trunk__value'>{transport[currentCar].trunk}</div>
+                        className='hud-interactions-property-sell-car-content-info-trunk__value'>{transport[currentCar]?.trunk}</div>
                 </div>
                 <div className='hud-interactions-property-sell-car-content-info-cost'>
                     <div className='hud-interactions-property-sell-car-content-info-cost__title'>Гос. стоимость</div>
