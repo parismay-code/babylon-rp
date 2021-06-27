@@ -27,7 +27,14 @@ const HUDInteraction = ({targetPlayerData, setTargetPlayerData, player}) => {
 		[nextOption, setNextOption] = React.useState(null),
 		[houses, setHousesData] = React.useState([]),
 		[business, setBusinessData] = React.useState([]),
-		[transport, setTransportData] = React.useState([]);
+		[transport, setTransportData] = React.useState([]),
+		[medKitCost, setMedKitCost] = React.useState(500),
+		[pillsCost, setPillsCost] = React.useState({
+			flu: 100,
+			amnesia: 100,
+			dependence: 100,
+			poisoning: 100,
+		});
 	
 	const optionScreen = React.useRef(null);
 	
@@ -49,6 +56,8 @@ const HUDInteraction = ({targetPlayerData, setTargetPlayerData, player}) => {
 		window.alt.on('cef::interaction:setHousesData', array => setHousesData(array));
 		window.alt.on('cef::interaction:setBusinessData', array => setBusinessData(array));
 		window.alt.on('cef::interaction:setTransportData', array => setTransportData(array));
+		window.alt.on('cef::interaction:setMedKitCost', value => setMedKitCost(value));
+		window.alt.on('cef::interaction:setPillsCost', obj => setPillsCost(obj));
 	}, []);
 	React.useEffect(() => setNextOption(null), [noVisualOption]);
 	React.useEffect(() => setNoVisualOption(null), [nextOption]);
@@ -73,8 +82,18 @@ const HUDInteraction = ({targetPlayerData, setTargetPlayerData, player}) => {
 			          transport={transport}/>
 			<GiveKey currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}
 			         transport={transport}/>
-			<SellMedkit currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}/>
-			<SellPill currentOption={currentOption} prevOption={prevOption} targetPlayerData={targetPlayerData}/>
+			<SellMedkit
+				currentOption={currentOption}
+				prevOption={prevOption}
+				targetPlayerData={targetPlayerData}
+				medKitCost={medKitCost}
+			/>
+			<SellPill
+				currentOption={currentOption}
+				prevOption={prevOption}
+				targetPlayerData={targetPlayerData}
+				pillsCost={pillsCost}
+			/>
 		</div>
 		<div className="hud-interaction" style={isVisible ? {opacity: 1} : {opacity: 0, pointerEvents: 'none'}}>
 			<div className="hud-interaction-wave-1">

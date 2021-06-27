@@ -4,9 +4,7 @@ import arrow from 'assets/images/hud/interactionArrow.svg';
 
 import './SellMedkit.scss';
 
-const SellMedkit = ({currentOption, prevOption, targetPlayerData}) => {
-	const input = React.useRef(null);
-	
+const SellMedkit = ({currentOption, prevOption, targetPlayerData, medKitCost}) => {
 	const toggleStyles = React.useMemo(() => {
 		if (currentOption === 'sellMed' && !prevOption)
 			return {visibility: 'visible', width: '100%', height: '100%'};
@@ -73,8 +71,7 @@ const SellMedkit = ({currentOption, prevOption, targetPlayerData}) => {
 				</div>
 			</div>
 			<div className="hud-interactions-ems-sell-med-content-input">
-				<input ref={input} className="hud-interactions-ems-sell-med-content-input__field" type="number"
-				       name="n_giveMoneyInput"/>
+				<div className="hud-interactions-ems-sell-med-content-input__field">{value * medKitCost}</div>
 				<div className="hud-interactions-ems-sell-med-content-input__dollar">$</div>
 				<input
 					className="hud-interactions-ems-sell-med-content-input__submit"
@@ -82,7 +79,7 @@ const SellMedkit = ({currentOption, prevOption, targetPlayerData}) => {
 					name="n_giveMoneySubmit"
 					value="Продать"
 					onClick={() => {
-						window.alt.emit('client::interaction:sellMedKits', value, input.current.value, targetPlayerData.id);
+						window.alt.emit('client::interaction:sellMedKits', value, value * medKitCost, targetPlayerData.id);
 					}}
 				/>
 			</div>

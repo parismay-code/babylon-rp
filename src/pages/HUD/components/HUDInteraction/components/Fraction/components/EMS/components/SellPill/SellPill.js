@@ -4,9 +4,7 @@ import arrow from 'assets/images/hud/interactionArrow.svg';
 
 import './SellPill.scss';
 
-const SellPill = ({currentOption, prevOption, targetPlayerData}) => {
-	const input = React.useRef(null);
-	
+const SellPill = ({currentOption, prevOption, targetPlayerData, pillsCost}) => {
 	const toggleStyles = React.useMemo(() => {
 		if (currentOption === 'sellPills' && !prevOption)
 			return {visibility: 'visible', width: '100%', height: '100%'};
@@ -27,7 +25,7 @@ const SellPill = ({currentOption, prevOption, targetPlayerData}) => {
 	}, [currentOption, prevOption]);
 	
 	const [value, setValue] = React.useState(0),
-		[type, setType] = React.useState(0);
+		[type, setType] = React.useState('flu');
 	
 	return <div
 		className="hud-interactions-ems-sell-pill"
@@ -54,32 +52,32 @@ const SellPill = ({currentOption, prevOption, targetPlayerData}) => {
 			<div className="hud-interactions-ems-sell-pill-content__title">Выберите вид и кол-во лекарства</div>
 			<div className="hud-interactions-ems-sell-pill-content-type">
 				<svg xmlns="http://www.w3.org/2000/svg" width="29.085" height="15.042" viewBox="0 0 29.085 15.042"
-				     fill={type === 0 ? '#aab4ee' : '#ffffff'} opacity={type === 0 ? 1 : .5}
-				     onClick={() => setType(0)}
+				     fill={type === 'flu' ? '#aab4ee' : '#ffffff'} opacity={type === 'flu' ? 1 : .5}
+				     onClick={() => setType('flu')}
 				>
 					<path
 						d="M12.287,5.266a5.266,5.266,0,1,0-10.532,0V16.42A7.021,7.021,0,0,0,6.971,28.085h.05A7.021,7.021,0,0,0,12.287,16.42ZM7.021,25.452H6.99A4.406,4.406,0,0,1,2.633,21.04a5.105,5.105,0,0,1,1.755-3.625V5.266a2.633,2.633,0,1,1,5.266,0v12.15a5.1,5.1,0,0,1,1.755,3.648A4.393,4.393,0,0,1,7.021,25.452Zm3.511-4.388a3.511,3.511,0,1,1-5.266-3.04V5.266a1.755,1.755,0,1,1,3.511,0V18.024A3.508,3.508,0,0,1,10.532,21.064Z"
 						transform="translate(28.585 0.5) rotate(90)"/>
 				</svg>
 				<svg xmlns="http://www.w3.org/2000/svg" width="22.641" height="25.471" viewBox="0 0 22.641 25.471"
-				     fill={type === 1 ? '#aab4ee' : '#ffffff'} opacity={type === 1 ? 1 : .5}
-				     onClick={() => setType(1)}
+				     fill={type === 'amnesia' ? '#aab4ee' : '#ffffff'} opacity={type === 'amnesia' ? 1 : .5}
+				     onClick={() => setType('amnesia')}
 				>
 					<path
 						d="M9.2,0A2.822,2.822,0,0,0,6.465,2.131c-.035,0-.062-.009-.1-.009a2.833,2.833,0,0,0-2.83,2.83,2.608,2.608,0,0,0,.075.619,3.507,3.507,0,0,0-1.831,4.816,3.525,3.525,0,0,0,.4,6.324,3.241,3.241,0,0,0-.062.624,3.182,3.182,0,0,0,3.184,3.184,3,3,0,0,0,.531-.053,3.176,3.176,0,0,0,6.191-1.008V2.83A2.833,2.833,0,0,0,9.2,0ZM25.471,13.443a3.519,3.519,0,0,0-1.782-3.056,3.48,3.48,0,0,0,.367-1.543,3.538,3.538,0,0,0-2.2-3.272A2.8,2.8,0,0,0,19.1,2.123c-.035,0-.066.009-.1.009a2.825,2.825,0,0,0-5.563.7V19.457a3.176,3.176,0,0,0,6.191,1.008,3,3,0,0,0,.531.053,3.182,3.182,0,0,0,3.184-3.184,3.241,3.241,0,0,0-.062-.624A3.538,3.538,0,0,0,25.471,13.443Z"
 						transform="translate(22.641) rotate(90)"/>
 				</svg>
 				<svg xmlns="http://www.w3.org/2000/svg" width="30.883" height="18.727" viewBox="0 0 30.883 18.727"
-				     fill={type === 2 ? '#aab4ee' : '#ffffff'} opacity={type === 2 ? 1 : .5}
-				     onClick={() => setType(2)}
+				     fill={type === 'poisoning' ? '#aab4ee' : '#ffffff'} opacity={type === 'poisoning' ? 1 : .5}
+				     onClick={() => setType('poisoning')}
 				>
 					<path
 						d="M9.6,29.082v-6.7a1.8,1.8,0,0,1-2.641,0V26.2a1.8,1.8,0,0,1-3.6,0V17.358A5.446,5.446,0,0,1,0,12.329V9.363A9.366,9.366,0,0,1,17.991,5.718a9.3,9.3,0,0,1,.736,3.645v2.966a5.4,5.4,0,0,1-1.593,3.845,5.474,5.474,0,0,1-1.528,1.078v8.708a1.8,1.8,0,0,1-2.4,1.7v1.423a1.8,1.8,0,1,1-3.6,0Zm6.962-13.445v-.176a2.95,2.95,0,0,0-2.946-2.946H5.346A2.949,2.949,0,0,0,2.4,15.461v.176h.96v-1.8H15.606v1.8Z"
 						transform="translate(30.883) rotate(90)"/>
 				</svg>
 				<svg xmlns="http://www.w3.org/2000/svg" width="28.084" height="28.084" viewBox="0 0 28.084 28.084"
-				     fill={type === 3 ? '#aab4ee' : '#ffffff'} opacity={type === 3 ? 1 : .5}
-				     onClick={() => setType(3)}
+				     fill={type === 'dependence' ? '#aab4ee' : '#ffffff'} opacity={type === 'dependence' ? 1 : .5}
+				     onClick={() => setType('dependence')}
 				>
 					<g transform="translate(28.035) rotate(90)">
 						<g transform="translate(0 -0.049)">
@@ -113,8 +111,7 @@ const SellPill = ({currentOption, prevOption, targetPlayerData}) => {
 				</div>
 			</div>
 			<div className="hud-interactions-ems-sell-pill-content-input">
-				<input ref={input} className="hud-interactions-ems-sell-pill-content-input__field" type="number"
-				       name="n_giveMoneyInput"/>
+				<div className="hud-interactions-ems-sell-pill-content-input__field">{value * pillsCost[type]}</div>
 				<div className="hud-interactions-ems-sell-pill-content-input__dollar">$</div>
 				<input
 					className="hud-interactions-ems-sell-pill-content-input__submit"
@@ -122,7 +119,7 @@ const SellPill = ({currentOption, prevOption, targetPlayerData}) => {
 					name="n_giveMoneySubmit"
 					value="Продать"
 					onClick={() => {
-						window.alt.emit('client::interaction:sellPills', value, type, input.current.value, targetPlayerData.id);
+						window.alt.emit('client::interaction:sellPills', value, type, value * pillsCost[type], targetPlayerData.id);
 					}}
 				/>
 			</div>
