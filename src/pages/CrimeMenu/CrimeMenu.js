@@ -8,6 +8,8 @@ import PlayersList       from './components/PlayersList';
 import Ranks             from './components/Ranks';
 import Cars              from './components/Cars';
 
+import SetCapture from './pages/SetCapture';
+
 import ballasIcon    from 'assets/images/crimeMenu/ballasIcon.svg';
 import vagosIcon     from 'assets/images/crimeMenu/vagosIcon.svg';
 import familiesIcon  from 'assets/images/crimeMenu/familiesIcon.svg';
@@ -16,7 +18,8 @@ import marabuntaIcon from 'assets/images/crimeMenu/marabuntaIcon.svg';
 import './CrimeMenu.scss';
 
 const CrimeMenu = ({store}) => {
-	const [currentComponent, setComponent] = React.useState('players');
+	const [currentComponent, setComponent] = React.useState('players'),
+		[currentPage, setPage] = React.useState('main');
 	
 	const fractionIcon = React.useMemo(() => {
 			switch (store.fractionName) {
@@ -76,11 +79,11 @@ const CrimeMenu = ({store}) => {
 			<div className="crime-menu-header__bottom-line"
 			     style={{background: `linear-gradient(to right, #FFFFFF00, #FFFFFF, ${fractionColor})`}}/>
 		</div>
-		<div className="crime-menu-content">
+		{currentPage === 'main' && <div className="crime-menu-content">
 			<div className="crime-menu-content-left">
 				<News store={store}/>
 				<div className="crime-menu-content-left-territories">
-					<GhettoTerritories store={store} color={fractionColor}/>
+					<GhettoTerritories store={store} color={fractionColor} setPage={setPage}/>
 				</div>
 				<Events store={store}/>
 			</div>
@@ -142,13 +145,19 @@ const CrimeMenu = ({store}) => {
 							transform="translate(0)" fill={store.isStoreLocked ? '#eaeaea' : '#000000'}
 							opacity={store.isStoreLocked ? 1 : .5}/>
 					</svg>
-					<div ref={notify} className='crime-menu-content-right-navigation__notify'/>
+					<div ref={notify} className="crime-menu-content-right-navigation__notify"/>
 				</div>
 				{currentComponent === 'players' && <PlayersList store={store} color={fractionColor}/>}
 				{currentComponent === 'cars' && <Cars store={store}/>}
 				{currentComponent === 'ranks' && <Ranks store={store}/>}
 			</div>
-		</div>
+		</div>}
+		{currentPage === 'setCapture' && <div className="crime-menu-content">
+			<SetCapture store={store} fractionIcon={fractionIcon} fractionColor={fractionColor}/>
+		</div>}
+		{currentPage === 'getCapture' && <div className="crime-menu-content">
+		
+		</div>}
 		<div className="crime-menu-footer">
 			<div className="crime-menu-footer__top-line"
 			     style={{background: `linear-gradient(to right, #FFFFFF00, #FFFFFF, ${fractionColor})`}}/>

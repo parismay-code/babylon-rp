@@ -7,9 +7,18 @@ import {regExp}   from 'utils/regExp';
 
 import './GhettoTerritories.scss';
 
-const GhettoTerritories = ({store, color}) => {
+const GhettoTerritories = ({store, color, setPage}) => {
 	const balance = React.useMemo(() =>
-		`$ ${String(store.balance).replace(regExp.money, '$1 ')}`, [store.balance]);
+		`$ ${String(store.balance).replace(regExp.money, '$1 ')}`, [store.balance]),
+		isFractionCaptured = React.useMemo(() => {
+			switch (store.fractionName) {
+				case 'Marabunta': return store.fractionsCaptureStatus.mara;
+				case 'Vagos': return store.fractionsCaptureStatus.vagos;
+				case 'Ballas': return store.fractionsCaptureStatus.ballas;
+				case 'Families': return store.fractionsCaptureStatus.families;
+				default: return;
+			}
+		}, [store.fractionName, store.fractionsCaptureStatus.ballas, store.fractionsCaptureStatus.families, store.fractionsCaptureStatus.mara, store.fractionsCaptureStatus.vagos]);
 	
 	const [territories, setTerritories] = React.useState(0);
 	
@@ -26,7 +35,13 @@ const GhettoTerritories = ({store, color}) => {
 		return () => clearInterval(interval);
 	}, [store.territories]);
 	
-	return <div className="crime-menu-ghetto-territories">
+	return <div
+		className="crime-menu-ghetto-territories"
+		onClick={() => {
+			if (isFractionCaptured) setPage('getCapture');
+			else setPage('setCapture');
+		}}
+	>
 		<div className="crime-menu-ghetto-territories-header">
 			<img className="crime-menu-ghetto-territories-header__icon" src={ghettoIcon} alt="#"/>
 			<div className="crime-menu-ghetto-territories-header__title">вЛиЯНиЕ ghettO</div>

@@ -147,7 +147,7 @@ export default class PlayerStore {
         bonuses: [
             {
                 value: 100,
-                status: false,
+                status: true,
             },
             {
                 value: 200,

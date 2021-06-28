@@ -131,6 +131,10 @@ input[type='email'] {
   font-family: "TT Norms Medium", sans-serif !important;
 }
 
+input[type='range'] {
+  cursor: url("../assets/images/cursorPointer.svg"), pointer;
+}
+
 body {
   //background-image: url(../assets/images/hud/bg.png);
   //background-color: #333333;

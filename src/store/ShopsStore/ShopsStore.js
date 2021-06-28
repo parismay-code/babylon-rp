@@ -11,7 +11,8 @@ export default class ShopsStore {
 	weaponShopData = {
 		categories: [],
 	};
-	weaponBuyList = [];
+	weaponBuyList = [
+	];
 	carDealerData = [];
 	
 	constructor() {

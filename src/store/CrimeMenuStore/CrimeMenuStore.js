@@ -20,6 +20,8 @@ export default class CrimeMenuStore {
 			reprimandLogs: observable,
 			storeLogs: observable,
 			allTerritories: observable,
+			fractionsCaptureStatus: observable,
+			fractionsFreeze: observable,
 			
 			fetchFractionName: action.bound,
 			fetchFractionTerritories: action.bound,
@@ -42,82 +44,46 @@ export default class CrimeMenuStore {
 			addStoreLogs: action.bound,
 			fetchAllTerritories: action.bound,
 			changeTerritory: action.bound,
+			setFractionsFreeze: action.bound,
+			setFractionsCaptureStatus: action.bound,
 		});
 	}
 	
-	playerRank = 11;
+	fractionsFreeze = {
+		families: 0,
+		ballas: 0,
+		vagos: 0,
+		mara: 0,
+	};
+	fractionsCaptureStatus = {
+		families: false,
+		ballas: false,
+		vagos: false,
+		mara: false,
+	}
+	
+	playerRank = 1;
 	playerAccess = [
-		'changeRanks',
-		'changeCars',
-		'spawnCars',
-		'manage',
-		'closeStore',
-		'manageCapture',
-		'playCapture',
-		'sendNews',
-		'removeNews',
+		// 'changeRanks',
+		// 'changeCars',
+		// 'spawnCars',
+		// 'manage',
+		// 'closeStore',
+		// 'manageCapture',
+		// 'playCapture',
+		// 'sendNews',
+		// 'removeNews',
 	];
 	
-	fractionName = 'Marabunta';
+	fractionName = '';
 	territories = 0;
 	isStoreLocked = false;
 	balance = 0;
-	news = [
-		{
-			date: '22.02.2002',
-			text: 'Приятная новость'
-		}
-	];
+	news = [];
 	events = [];
-	players = [
-		{
-			id: 1,
-			nickname: 'Alexsandr Evenkoalexsan',
-			rank: 1,
-			isOnline: true,
-			joinDate: '19.19.2007',
-			punishment: ['ban', 'jail', 'mute'], // если чел в бане / деморгане / муте, просто прокидывай строку в массив
-			onlineLogs: [
-				{
-					date: '24.08.2021',
-					time: 315, // в минутах всегда
-				},
-			],
-		}
-	];
-	filteredPlayersList = [
-		{
-			id: 1,
-			nickname: 'Alexsandr Evenkoalexsan',
-			rank: 1,
-			isOnline: true,
-			joinDate: '19.19.2007',
-			punishment: ['ban', 'jail', 'mute'], // если чел в бане / деморгане / муте, просто прокидывай строку в массив
-			onlineLogs: [
-				{
-					date: '24.08.2021',
-					time: 315, // в минутах всегда
-				},
-			],
-		}
-	];
-	ranks = [
-		{
-			name: 'Первый',
-			access: [
-				{
-					name: 'брать оружие со склада',
-					status: true,
-				},
-			],
-			cars: [
-				{
-					name: 'Baller',
-					status: false,
-				},
-			],
-		}
-	];
+	players = [];
+	filteredPlayersList = [];
+	ranks = [];
 	awardLogs = [];
 	reprimandLogs = [];
 	storeLogs = [];
@@ -195,69 +161,87 @@ export default class CrimeMenuStore {
 		70: 'Marabunta',
 		71: 'Marabunta',
 		72: 'Marabunta',
-	}
+	};
 	
 	fetchFractionName(name) {
 		this.fractionName = name;
 	}
+	
 	fetchFractionTerritories(value) {
 		this.territories = value;
 	}
+	
 	fetchBalance(value) {
 		this.balance = value;
 	}
+	
 	fetchPlayers(array) {
 		this.players = array;
 		this.filteredPlayersList = array;
 	}
+	
 	filterPlayers(text) {
 		if (text) {
 			if (isNaN(Number(text))) this.filteredPlayersList = this.players.filter(el => el.nickname.toLowerCase().includes(text.toLowerCase()));
 			else this.filteredPlayersList = this.players.filter(el => el.id === Number(text));
 		} else this.filteredPlayersList = this.players;
 	}
+	
 	setStoreLocked(bool) {
 		this.isStoreLocked = bool;
 	}
+	
 	changePlayerData(id, obj) {
 		this.players.filter(el => el.id === id)[0] = obj;
 		this.filteredPlayersList = this.players;
 	}
+	
 	fetchNews(array) {
 		this.news = array;
 	}
+	
 	changeNews(type, ...args) {
 		if (type === 'add') this.news.unshift(args[0]);
 		else this.news.splice(args[0], 1);
 	}
+	
 	fetchEvents(array) {
 		this.events = array;
 	}
+	
 	changeEvents(type, ...args) {
 		if (type === 'add') this.events.unshift(args[0]);
 		else this.events.splice(args[0], 1);
 	}
+	
 	fetchRanksData(array) {
 		this.ranks = array;
 	}
+	
 	changeRankData(rank, obj) {
 		this.ranks[rank - 1] = obj;
 	}
+	
 	fetchAwardLogs(array) {
 		this.awardLogs = array;
 	}
+	
 	addAward(obj) {
 		this.awardLogs.unshift(obj);
 	}
+	
 	fetchReprimandLogs(array) {
 		this.reprimandLogs = array;
 	}
+	
 	addReprimandLogs(obj) {
 		this.reprimandLogs.unshift(obj);
 	}
+	
 	fetchStoreLogs(array) {
 		this.storeLogs = array;
 	}
+	
 	addStoreLogs(obj) {
 		this.storeLogs.unshift(obj);
 	}
@@ -265,8 +249,17 @@ export default class CrimeMenuStore {
 	fetchAllTerritories(obj) {
 		this.allTerritories = obj;
 	}
+	
 	changeTerritory(id, gang) {
 		this.allTerritories[id] = gang;
+	}
+	
+	setFractionsFreeze(obj) {
+		this.fractionsFreeze = obj;
+	}
+	
+	setFractionsCaptureStatus(obj) {
+		this.fractionCaptureStatus = obj;
 	}
 	
 	destroy() {

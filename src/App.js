@@ -53,7 +53,7 @@ const App = () => {
 		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
 		[currentHUD, setHUD] = React.useState(0),
-		[isCursorActive, setCursorActive] = React.useState(false),
+		[isCursorActive, setCursorActive] = React.useState(true),
 		[payPrice, setPayPrice] = React.useState(0),
 		[pinCode, setPinCode] = React.useState(null),
 		[targetPlayerData, setTargetPlayerData] = React.useState({
@@ -328,6 +328,8 @@ const App = () => {
 		window.alt.on('client::crimeMenu:addReprimand', obj => crimeMenuStore.addReprimandLogs(obj));
 		window.alt.on('client::crimeMenu:setStoreLogs', array => crimeMenuStore.fetchStoreLogs(array));
 		window.alt.on('client::crimeMenu:addStoreLog', obj => crimeMenuStore.addStoreLogs(obj));
+		window.alt.on('client::crimeMenu:setFractionsFreeze', obj => crimeMenuStore.setFractionsFreeze(obj));
+		window.alt.on('client::crimeMenu:setFractionsCaptureStatus', obj => crimeMenuStore.setFractionsCaptureStatus(obj));
 	}, [crimeMenuStore]);
 	
 	return <div className="app">
