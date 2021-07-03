@@ -1,5 +1,6 @@
-import * as React from 'react';
-import cn         from 'classnames';
+import * as React   from 'react';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import ChoiceCharacterCard from './components/ChoiceCharacterCard';
 
@@ -20,9 +21,13 @@ const Choice = ({characters}) => {
 	}, []);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::choice:deleteChar', () => {
+		EventManager.addHandler('choice', 'deleteChar', () => {
 			setDeleteCharId(null);
-			window.alt.emit('client::choice:deleteCharScreenActive', false);
+			EventManager.emitClient('choice', 'deleteCharScreenActive', false);
+			
+			EventManager.stopAddingHandlers('choice');
+			
+			return () => EventManager.removeTargetHandlers('choice');
 		});
 		
 		const timeout = setTimeout(() => screen.current.classList.add('choice_active'), 100);
@@ -63,7 +68,7 @@ const Choice = ({characters}) => {
 						<div
 							className="choice-delete-char-screen-content-choose-element"
 							onClick={() => {
-								window.alt.emit('client::choice:deleteCharScreenActive', false);
+								EventManager.emitClient('choice', 'deleteCharScreenActive', false);
 								setDeleteCharId(null);
 							}}
 						>
@@ -73,8 +78,8 @@ const Choice = ({characters}) => {
 						<div
 							className="choice-delete-char-screen-content-choose-element"
 							onClick={() => {
-								window.alt.emit('client::choice:deleteCharScreenActive', false);
-								window.alt.emit('client::choice:deleteChar');
+								EventManager.emitClient('choice', 'deleteCharScreenActive', false);
+								EventManager.emitServer('choice', 'deleteChar');
 								setDeleteCharId(null);
 							}}
 						>

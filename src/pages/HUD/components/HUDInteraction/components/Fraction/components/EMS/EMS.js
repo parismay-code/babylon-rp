@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import rightArrow from 'assets/images/hud/rightArrow.svg';
 
@@ -13,11 +14,14 @@ const EMS = ({
 	nextOption,
 	setNextOption,
 	targetPlayerData,
+	setTargetPlayerData,
 }) => {
 	const titles = React.useMemo(() => ({
 		'heal': 'Вылечить',
 		'sellMed': 'Продать мед. набор',
 		'respawn': 'Вколоть адреналин',
+		'invite': 'Пригласить во фракцию',
+		'unInvite': 'Исключить из фракции',
 		'sellPills': 'Продать таблетки',
 	}), []);
 	
@@ -48,6 +52,32 @@ const EMS = ({
 				</g>
 			</svg>;
 		}, [currentOption, nextOption]),
+		inviteIcon = React.useMemo(() => {
+			return <svg xmlns="http://www.w3.org/2000/svg" width="38.778" height="34.277" viewBox="0 0 38.778 34.277"
+			            fill={noVisualOption === 'invite' ? '#eaeaea' : null}
+			            opacity={noVisualOption === 'invite' ? '1' : '.5'}
+			            style={noVisualOption === 'invite' ?
+				            {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}>
+				<g transform="translate(-819.223 -291.724)">
+					<path
+						d="M-7617.091-3759a9.009,9.009,0,0,1,9-9,9.009,9.009,0,0,1,9,9,9.011,9.011,0,0,1-9,9A9.011,9.011,0,0,1-7617.091-3759Zm2.1.7h5.7v5.7h2.4v-5.7h5.7v-2.4h-5.7v-5.7h-2.4v5.7h-5.7Zm-1.388,7.3h-18.371a3.123,3.123,0,0,1-3.121-3.119v-2.7a8.747,8.747,0,0,1,8.735-8.735h1.087a11.317,11.317,0,0,0,4.738,1.041,11.277,11.277,0,0,0,4.736-1.041h1.087c.23,0,.466.01.7.029a11.283,11.283,0,0,0-2.411,7.014,11.391,11.391,0,0,0,2.825,7.514l0,0Zm-15.252-24.958a8.329,8.329,0,0,1,8.321-8.319,8.329,8.329,0,0,1,8.319,8.319,8.328,8.328,0,0,1-8.319,8.319A8.329,8.329,0,0,1-7631.63-3775.958Z"
+						transform="translate(8457.092 4076.001)"/>
+				</g>
+			</svg>;
+		}, [noVisualOption]),
+		unInviteIcon = React.useMemo(() => {
+			return <svg xmlns="http://www.w3.org/2000/svg" width="38.779" height="34.276" viewBox="0 0 38.779 34.276"
+			            fill={noVisualOption === 'unInvite' ? '#eaeaea' : null}
+			            opacity={noVisualOption === 'unInvite' ? '1' : '.5'}
+			            style={noVisualOption === 'unInvite' ?
+				            {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}>
+				<g transform="translate(-819.222 -291.725)">
+					<path
+						d="M-7451.441-3759a9.01,9.01,0,0,1,9-9,9.01,9.01,0,0,1,9,9,9.011,9.011,0,0,1-9,9A9.011,9.011,0,0,1-7451.441-3759Zm2.1.7h13.8v-2.4h-13.8Zm-1.388,7.3H-7469.1a3.124,3.124,0,0,1-3.121-3.119v-2.7a8.746,8.746,0,0,1,8.735-8.737h1.086a11.3,11.3,0,0,0,4.739,1.041,11.243,11.243,0,0,0,4.737-1.041h1.086c.232,0,.467.011.7.028a11.282,11.282,0,0,0-2.412,7.015,11.4,11.4,0,0,0,2.824,7.512l0,0Zm-15.252-24.956a8.328,8.328,0,0,1,8.319-8.319,8.33,8.33,0,0,1,8.321,8.319,8.33,8.33,0,0,1-8.321,8.319A8.328,8.328,0,0,1-7465.979-3775.957Z"
+						transform="translate(8291.441 4076)"/>
+				</g>
+			</svg>;
+		}, [noVisualOption]),
 		respawnIcon = React.useMemo(() => {
 			return <svg xmlns="http://www.w3.org/2000/svg" width="38.008" height="38.038" viewBox="0 0 38.008 38.038"
 			            fill={noVisualOption === 'respawn' ? '#eaeaea' : null}
@@ -94,7 +124,7 @@ const EMS = ({
 			<div
 				className="hud-interactions-fraction-ems-options__element hud-interactions-fraction-ems-options__element_heal"
 				onMouseOver={() => setNoVisualOption('heal')}
-				onClick={() => window.alt.emit('client::interaction:healPlayer', targetPlayerData.id)}
+				onClick={() => EventManager.emitServer('interaction', 'healPlayer', targetPlayerData.id)}
 			>
 				{healIcon}
 			</div>
@@ -106,9 +136,20 @@ const EMS = ({
 				{sellMedIcon}
 			</div>
 			<div
+				className="hud-interactions-fraction-ems-options__element hud-interactions-fraction-ems-options__element_invite"
+				onMouseOver={() => setNoVisualOption(targetPlayerData.isInFraction ? 'unInvite' : 'invite')}
+				onClick={() => {
+					if (targetPlayerData.isInFraction) EventManager.emitServer('interaction', 'fractionInvite', targetPlayerData.id);
+					else EventManager.emitServer('interaction', 'fractionKick', targetPlayerData.id);
+					setTargetPlayerData({...targetPlayerData, isInFraction: !targetPlayerData.isInFraction});
+				}}
+			>
+				{targetPlayerData.isInFraction ? unInviteIcon : inviteIcon}
+			</div>
+			<div
 				className="hud-interactions-fraction-ems-options__element hud-interactions-fraction-ems-options__element_respawn"
 				onMouseOver={() => setNoVisualOption('respawn')}
-				onClick={() => window.alt.emit('client::interaction:respawn', targetPlayerData.id)}
+				onClick={() => EventManager.emitServer('interaction', 'respawn', targetPlayerData.id)}
 			>
 				{respawnIcon}
 			</div>

@@ -4,6 +4,7 @@ import {observer} from 'mobx-react-lite';
 import StateFraction from './components/StateFraction';
 import CrimeFraction from './components/CrimeFraction';
 import EMS           from './components/EMS';
+import FIB           from './components/FIB';
 import SANG          from './components/SANG';
 
 import './Fraction.scss';
@@ -44,10 +45,13 @@ const Fraction = ({
 			setCurrentPage={setCurrentPage}
 			noVisualOption={noVisualOption}
 			setNoVisualOption={setNoVisualOption}
-			currentOption={currentOption}
-			setCurrentOption={setCurrentOption}
-			nextOption={nextOption}
-			setNextOption={setNextOption}
+			targetPlayerData={targetPlayerData}
+			setTargetPlayerData={setTargetPlayerData}
+		/>;
+		else if (player.playerState.fraction.name === 'fib') return <FIB
+			setCurrentPage={setCurrentPage}
+			noVisualOption={noVisualOption}
+			setNoVisualOption={setNoVisualOption}
 			targetPlayerData={targetPlayerData}
 			setTargetPlayerData={setTargetPlayerData}
 		/>;
@@ -55,10 +59,6 @@ const Fraction = ({
 			setCurrentPage={setCurrentPage}
 			noVisualOption={noVisualOption}
 			setNoVisualOption={setNoVisualOption}
-			currentOption={currentOption}
-			setCurrentOption={setCurrentOption}
-			nextOption={nextOption}
-			setNextOption={setNextOption}
 			targetPlayerData={targetPlayerData}
 			setTargetPlayerData={setTargetPlayerData}
 		/>;
@@ -66,10 +66,6 @@ const Fraction = ({
 			setCurrentPage={setCurrentPage}
 			noVisualOption={noVisualOption}
 			setNoVisualOption={setNoVisualOption}
-			currentOption={currentOption}
-			setCurrentOption={setCurrentOption}
-			nextOption={nextOption}
-			setNextOption={setNextOption}
 			targetPlayerData={targetPlayerData}
 			setTargetPlayerData={setTargetPlayerData}
 		/>;

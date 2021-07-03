@@ -1,5 +1,6 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import NewsBlock from './components/NewsBlock';
 
@@ -13,16 +14,17 @@ const News = ({store}) => {
 	const field = React.useRef(null);
 	
 	const handleSubmit = React.useCallback(() => {
-			if (field.current.value) {
-				window.alt.emit('client::crimeMenu:changeNews', 'add', field.current.value);
-				
-				field.current.value = '';
-				field.current.blur();
-			}
-		}, []),
+			if (store.playerAccess.includes('sendNews')) {
+				if (field.current.value) EventManager.emitServer('crimeMenu', 'changeNews', 'add', field.current.value);
+			} else store.addNotify('Вы не можете отправлять новости');
+			
+			field.current.value = '';
+			field.current.blur();
+		}, [store.addNotify, store.playerAccess]),
 		handleRemove = React.useCallback(id => {
-			window.alt.emit('client::crimeMenu:changeNews', 'remove', id);
-		}, []);
+			if (store.playerAccess.includes('removeNews')) EventManager.emitServer('crimeMenu', 'changeNews', 'remove', id);
+			else store.addNotify('Вы не можете удалять новости');
+		}, [store.addNotify, store.playerAccess]);
 	
 	return <div className="crime-menu-news">
 		<form

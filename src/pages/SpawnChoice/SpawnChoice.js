@@ -1,5 +1,6 @@
-import * as React from 'react';
-import cn         from 'classnames';
+import * as React   from 'react';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import SpawnChoiceBlock from './components/SpawnChoiceBlock';
 
@@ -234,7 +235,7 @@ const SpawnChoice = ({player}) => {
 						place: currentComponent,
 					};
 					
-					window.alt.emit('client::spawnChoice:choose', result);
+					EventManager.emitServer('spawnChoice', 'choose', result);
 				}}>
 				<div className="spawn-choice-play__title">играть</div>
 				<div className="spawn-choice-play__slider"/>

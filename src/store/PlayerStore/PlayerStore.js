@@ -24,9 +24,10 @@ export default class PlayerStore {
         level: 0,
         gender: 0,
         fraction: {
-            type: 1, // 0 - gov, 1 - pd, 2 - gang, 3 - mafia
-            name: 'ems'
+            type: 2, // 0 - gov, 1 - pd, 2 - gang, 3 - mafia
+            name: 'vagos'
         },
+        job: null,
         family: {
             // name: 'Крутые',
             // icon: null
@@ -215,6 +216,7 @@ export default class PlayerStore {
             case 'level': return this.playerState.level = obj.data;
             case 'gender': return this.playerState.gender = obj.data;
             case 'fraction': return this.playerState.fraction = obj.data;
+            case 'job': return this.playerState.job = obj.data;
             case 'family': return this.playerState.family = obj.data;
             case 'prime': return this.playerState.prime = obj.data;
             case 'donate': return this.playerState.donate = obj.data;

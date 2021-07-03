@@ -1,23 +1,24 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import arrow from 'assets/images/creator/arrow.svg';
 
 const CreatorPlayerClothes = ({store}) => {
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'clothes',
+		EventManager.emitClient('characterCreator', 'preview', 'clothes',
 			store.data.clothes.head.component, store.data.clothes.head.drawable, store.data.clothes.head.texture);
 	}, [store.data.clothes.head.component, store.data.clothes.head.drawable, store.data.clothes.head.texture]);
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'clothes',
+		EventManager.emitClient('characterCreator', 'preview', 'clothes',
 			store.data.clothes.body.component, store.data.clothes.body.drawable, store.data.clothes.body.texture);
 	}, [store.data.clothes.body.component, store.data.clothes.body.drawable, store.data.clothes.body.texture]);
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'clothes',
+		EventManager.emitClient('characterCreator', 'preview', 'clothes',
 			store.data.clothes.pants.component, store.data.clothes.pants.drawable, store.data.clothes.pants.texture);
 	}, [store.data.clothes.pants.component, store.data.clothes.pants.drawable, store.data.clothes.pants.texture]);
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'clothes',
+		EventManager.emitClient('characterCreator', 'preview', 'clothes',
 			store.data.clothes.shoes.component, store.data.clothes.shoes.drawable, store.data.clothes.shoes.texture);
 	}, [store.data.clothes.shoes.component, store.data.clothes.shoes.drawable, store.data.clothes.shoes.texture]);
 	

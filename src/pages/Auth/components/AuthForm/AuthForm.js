@@ -1,8 +1,9 @@
-import * as React from 'react';
-import cn         from 'classnames';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import cn           from 'classnames';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
-import {regExp}     from 'utils/regExp';
+import {regExp} from 'utils/regExp';
 
 import resetClose   from 'assets/images/auth/resetClose.svg';
 import rememberIcon from 'assets/images/auth/rememberIcon.svg';
@@ -43,7 +44,7 @@ const AuthForm = ({store}) => {
 			else if (password.length < 5) store.addNotify(0, 'Пароль должен быть длиннее 5 символов');
 			else if (password.length > 16) store.addNotify(0, 'Пароль должен быть короче 16 символов');
 			else if (password !== rePassword) store.addNotify(0, 'Пароли не совпадают');
-			else window.alt.emit('client::auth:register', {
+			else EventManager.emitServer('auth', 'register', {
 					login,
 					email,
 					password,
@@ -55,7 +56,7 @@ const AuthForm = ({store}) => {
 			const password = LogFormPassword.current.value;
 			
 			if (login === '' || password === '') store.addNotify(0, 'Заполните все поля');
-			else window.alt.emit('client::auth:login', {
+			else EventManager.emitServer('auth', 'login', {
 				login,
 				password,
 			});
@@ -66,18 +67,18 @@ const AuthForm = ({store}) => {
 			
 			if (!regExp.mail.test(email)) store.addNotify(0, 'Заполните поле "E-Mail" по форме: example@mail.ru');
 			else if (code.disabled) {
-				window.alt.emit('client::auth:sendResetPassword', email);
+				EventManager.emitServer('auth', 'sendResetPassword', email);
 				
 				code.classList.remove('disabled');
 				code.disabled = false;
 				store.addNotify(1, 'Письмо отправлено на почту');
 			} else {
 				if (code.value.toLowerCase() === store.resetCode) {
-					window.alt.emit('client::auth:recovery', true);
+					EventManager.emitServer('auth', 'recovery', true);
 					
 					store.addNotify(1, 'Письмо с новым паролем отправлено на Вашу почту');
 				} else {
-					window.alt.emit('client::auth:recovery', false);
+					EventManager.emitServer('auth', 'recovery', false);
 					
 					store.addNotify(0, 'Неверный код');
 				}
@@ -115,7 +116,7 @@ const AuthForm = ({store}) => {
 	}, [showNotify, store.notifyQueue.length, store.isNotifyShowed]);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::auth:setLogin', text => LogFormLogin.current.value = text);
+		EventManager.addHandler('auth', 'setLogin', text => LogFormLogin.current.value = text);
 	}, []);
 	
 	return (
@@ -213,7 +214,7 @@ const AuthForm = ({store}) => {
 					</div>
 					<div
 						className="auth-form-login-content-remember"
-						onClick={() => window.alt.emit('client::auth:remember')}
+						onClick={() => EventManager.emitServer('auth', 'remember')}
 					>
 						<span>Запомнить</span>
 						<img src={rememberIcon} alt="remember"/>

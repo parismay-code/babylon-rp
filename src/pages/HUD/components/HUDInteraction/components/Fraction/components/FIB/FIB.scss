@@ -1,0 +1,186 @@
+@import '../../../../../../../../styles/vars';
+
+.hud-interactions-fraction-fib {
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  &-navigation {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 20px);
+	
+	width: 40%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+	font-family: "TT Norms Bold", sans-serif;
+	color: $color-white;
+	
+	@media (max-width: 1280px) {
+	  transform: translate(-50%, 10px);
+	}
+	
+	@media (max-height: 800px) {
+	  transform: translate(-50%, 10px);
+	}
+	
+	&-back,
+	&-next {
+	  display: flex;
+	  align-items: center;
+	  
+	  opacity: .5;
+	  
+	  transition: opacity .2s;
+	  
+	  cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+	  
+	  &:hover {
+		opacity: 1;
+	  }
+	  
+	  &__arrow {
+		height: 25px;
+		margin-left: 10px;
+		
+		@media (max-width: 1280px) {
+		  height: 12.5px;
+		  margin-left: 5px;
+		}
+		
+		@media (max-height: 800px) {
+		  height: 12.5px;
+		  margin-left: 5px;
+		}
+	  }
+	  
+	  &__title {
+		opacity: .5;
+		
+		@media (max-width: 1280px) {
+		  font-size: .8rem;
+		}
+		
+		@media (max-height: 800px) {
+		  font-size: .8rem;
+		}
+	  }
+	}
+	
+	&-back__arrow {
+	  transform: scaleX(-1);
+	  margin-right: 10px;
+	  
+	  @media (max-width: 1280px) {
+		margin-right: 5px;
+	  }
+	  
+	  @media (max-height: 800px) {
+		margin-right: 5px;
+	  }
+	}
+  }
+  
+  &__title {
+	position: absolute;
+	left: 50%;
+	
+	font-family: "TT Norms Regular", sans-serif;
+	transform: translate(-50%, 80px);
+	color: $color-white;
+	text-shadow: 0 2px 2px $color-black;
+	text-align: center;
+	
+	@media (max-width: 1280px) {
+	  transform: translate(-50%, 30px);
+	  
+	  font-size: .7rem;
+	}
+	
+	@media (max-height: 800px) {
+	  transform: translate(-50%, 30px);
+	  
+	  font-size: .7rem;
+	}
+  }
+  
+  &-options {
+	width: 100%;
+	height: 100%;
+	
+	&__element {
+	  position: absolute;
+	  transform: translate(-50%, -50%);
+	  
+	  cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
+	  
+	  & svg {
+		max-height: 35px;
+		max-width: 40px;
+		
+		transition: fill .2s, opacity .2s;
+		
+		@media (max-width: 1280px) {
+		  max-height: 17.5px;
+		  max-width: 20px;
+		}
+		
+		@media (max-height: 800px) {
+		  max-height: 17.5px;
+		  max-width: 20px;
+		}
+	  }
+	  
+	  &_search {
+		left: 10%;
+		top: 15%;
+	  }
+	  
+	  &_control {
+		left: 25%;
+		top: 34%;
+	  }
+	  
+	  &_pushCar {
+		left: 50%;
+		top: 43%;
+	  }
+	  
+	  &_cuff {
+		left: 75%;
+		top: 34%;
+	  }
+	  
+	  &_takeOffMask {
+		left: 90%;
+		top: 15%;
+	  }
+	  
+	  &_jail {
+		 left: 10%;
+        top: 15%;
+	  }
+	  
+	  &_get-docs {
+		 left: 30%;
+        top: 38%;
+	  }
+	  
+	  &_invite {
+		 left: 70%;
+        top: 38%;
+	  }
+	  
+	  &_rescue {
+		left: 90%;
+        top: 15%;
+	  }
+	}
+  }
+}

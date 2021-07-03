@@ -344,6 +344,8 @@
 		  text-shadow: none;
 		
 		  background: linear-gradient(to right, #00000066, $color-blank);
+		  
+		  cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
 		
 		  &_active {
 			background: linear-gradient(to right, #ffffff66, $color-blank);

@@ -147,8 +147,7 @@
 		top: 34%;
 	  }
 	  
-	  &_pushCar,
-	  &_jail {
+	  &_pushCar {
 		left: 50%;
 		top: 43%;
 	  }
@@ -163,14 +162,24 @@
 		top: 15%;
 	  }
 	  
+	  &_invite {
+		left: 10%;
+		top: 15%;
+	  }
+	  
+	  &_jail {
+		left: 30%;
+		top: 38%;
+	  }
+	  
 	  &_get-docs {
-		top: 30%;
-		left: 20%;
+		left: 70%;
+		top: 38%;
 	  }
 	  
 	  &_army-certificate {
-		top: 30%;
-		left: 80%;
+		left: 90%;
+		top: 15%;
 	  }
 	}
   }

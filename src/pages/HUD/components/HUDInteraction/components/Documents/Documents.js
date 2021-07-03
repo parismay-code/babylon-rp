@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import rightArrow from 'assets/images/hud/rightArrow.svg';
 
@@ -89,7 +90,7 @@ const Documents = ({setCurrentPage, noVisualOption, setNoVisualOption, targetPla
 				className="hud-interactions-documents-options__element hud-interactions-documents-options__element_passport"
 				onMouseOver={() => setNoVisualOption('passport')}
 				onClick={() => {
-					window.alt.emit('client::interaction:showDocuments', 'passport', targetPlayerData.id);
+					EventManager.emitServer('interaction', 'showDocuments', 'passport', targetPlayerData.id);
 				}}
 			>
 				{passportIcon}
@@ -98,7 +99,7 @@ const Documents = ({setCurrentPage, noVisualOption, setNoVisualOption, targetPla
 				className="hud-interactions-documents-options__element hud-interactions-documents-options__element_license"
 				onMouseOver={() => setNoVisualOption('license')}
 				onClick={() => {
-					window.alt.emit('client::interaction:showDocuments', 'license', targetPlayerData.id);
+					EventManager.emitServer('interaction', 'showDocuments', 'license', targetPlayerData.id);
 				}}
 			>
 				{licenseIcon}
@@ -107,7 +108,7 @@ const Documents = ({setCurrentPage, noVisualOption, setNoVisualOption, targetPla
 				className="hud-interactions-documents-options__element hud-interactions-documents-options__element_certificate"
 				onMouseOver={() => setNoVisualOption('certificate')}
 				onClick={() => {
-					window.alt.emit('client::interaction:showDocuments', 'certificate', targetPlayerData.id);
+					EventManager.emitServer('interaction', 'showDocuments', 'certificate', targetPlayerData.id);
 				}}
 			>
 				{certificateIcon}
@@ -116,7 +117,7 @@ const Documents = ({setCurrentPage, noVisualOption, setNoVisualOption, targetPla
 				className="hud-interactions-documents-options__element hud-interactions-documents-options__element_fracCertificate"
 				onMouseOver={() => setNoVisualOption('fracCertificate')}
 				onClick={() => {
-					window.alt.emit('client::interaction:showDocuments', 'fracCertificate', targetPlayerData.id);
+					EventManager.emitServer('interaction', 'showDocuments', 'fracCertificate', targetPlayerData.id);
 				}}
 			>
 				{fracCertificateIcon}

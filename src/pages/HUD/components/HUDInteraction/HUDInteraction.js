@@ -1,4 +1,5 @@
 import * as React from 'react';
+import EventManager from 'utils/eventManager';
 
 import MainPage  from './components/MainPage';
 import Documents from './components/Documents';
@@ -18,7 +19,7 @@ import SellPill     from './components/Fraction/components/EMS/components/SellPi
 
 import './HUDInteraction.scss';
 
-const HUDInteraction = ({targetPlayerData, setTargetPlayerData, player}) => {
+const HUDInteraction = ({player}) => {
 	const [currentPage, setCurrentPage] = React.useState('main'),
 		[isVisible, setVisible] = React.useState(false),
 		[noVisualOption, setNoVisualOption] = React.useState(null),
@@ -34,6 +35,17 @@ const HUDInteraction = ({targetPlayerData, setTargetPlayerData, player}) => {
 			amnesia: 100,
 			dependence: 100,
 			poisoning: 100,
+		}),
+		[targetPlayerData, setTargetPlayerData] = React.useState({
+			nickname: 'Paris May',
+			id: 112344,
+			isHandcuffed: false,
+			isTied: false,
+			isControlled: false,
+			isBagPut: false,
+			isJailed: false,
+			isInCar: false,
+			isInFraction: false,
 		});
 	
 	const optionScreen = React.useRef(null);
@@ -51,13 +63,18 @@ const HUDInteraction = ({targetPlayerData, setTargetPlayerData, player}) => {
 	}, [isVisible, currentOption, prevOption]);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::hud:toggleInteraction', (bool) => setVisible(bool));
+		EventManager.addHandler('interaction', 'setTargetPlayerData', obj => setTargetPlayerData(obj));
+		EventManager.addHandler('cef::hud:toggleInteraction', (bool) => setVisible(bool));
 		
-		window.alt.on('cef::interaction:setHousesData', array => setHousesData(array));
-		window.alt.on('cef::interaction:setBusinessData', array => setBusinessData(array));
-		window.alt.on('cef::interaction:setTransportData', array => setTransportData(array));
-		window.alt.on('cef::interaction:setMedKitCost', value => setMedKitCost(value));
-		window.alt.on('cef::interaction:setPillsCost', obj => setPillsCost(obj));
+		EventManager.addHandler('interaction', 'setHousesData', array => setHousesData(array));
+		EventManager.addHandler('interaction', 'setBusinessData', array => setBusinessData(array));
+		EventManager.addHandler('interaction', 'setTransportData', array => setTransportData(array));
+		EventManager.addHandler('interaction', 'setMedKitCost', value => setMedKitCost(value));
+		EventManager.addHandler('interaction', 'setPillsCost', obj => setPillsCost(obj));
+		
+		EventManager.stopAddingHandlers('interaction');
+		
+		return () => EventManager.removeTargetHandlers('interaction');
 	}, []);
 	React.useEffect(() => setNextOption(null), [noVisualOption]);
 	React.useEffect(() => setNoVisualOption(null), [nextOption]);

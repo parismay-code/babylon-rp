@@ -1,11 +1,14 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import truckDriverOrders from 'assets/images/jobs/truckDriverOrders.svg';
 
+import {regExp} from 'utils/regExp';
+
 import './TruckDriverOrders.scss';
-import {regExp}          from 'utils/regExp';
+
 
 const TruckDriverOrders = ({store}) => {
 	const [type, setType] = React.useState('state');
@@ -49,30 +52,40 @@ const TruckDriverOrders = ({store}) => {
 						Частные
 					</div>}
 				</div>
-				<div className='job-truck-driver-orders-content-header-free-orders'>
-					<div className='job-truck-driver-orders-content-header-free-orders__value'>{store.truckDriverData.orders.filter(el => el.type === type).length}</div>
-					<div className='job-truck-driver-orders-content-header-free-orders__title'>{rightWord.split(' ')[0]} <br/>{rightWord.split(' ')[1]}</div>
+				<div className="job-truck-driver-orders-content-header-free-orders">
+					<div
+						className="job-truck-driver-orders-content-header-free-orders__value">{store.truckDriverData.orders.filter(el => el.type === type).length}</div>
+					<div className="job-truck-driver-orders-content-header-free-orders__title">{rightWord.split(' ')[0]}
+						<br/>{rightWord.split(' ')[1]}</div>
 				</div>
 			</div>
-			<div className='job-truck-driver-orders-content-list'>
-				<div className='job-truck-driver-orders-content-list-header'>
-					<div className='job-truck-driver-orders-content-list-header__element job-truck-driver-orders-content-list-header__element_product'>Продукт</div>
-					<div className='job-truck-driver-orders-content-list-header__element job-truck-driver-orders-content-list-header__element_count'>Количество</div>
-					<div className='job-truck-driver-orders-content-list-header__element job-truck-driver-orders-content-list-header__element_earning'>Оплата</div>
+			<div className="job-truck-driver-orders-content-list">
+				<div className="job-truck-driver-orders-content-list-header">
+					<div
+						className="job-truck-driver-orders-content-list-header__element job-truck-driver-orders-content-list-header__element_product">Продукт
+					</div>
+					<div
+						className="job-truck-driver-orders-content-list-header__element job-truck-driver-orders-content-list-header__element_count">Количество
+					</div>
+					<div
+						className="job-truck-driver-orders-content-list-header__element job-truck-driver-orders-content-list-header__element_earning">Оплата
+					</div>
 				</div>
-				<div className='job-truck-driver-orders-content-list-main'>
+				<div className="job-truck-driver-orders-content-list-main">
 					{store.truckDriverData.orders.filter(el => el.type === type).map((el, key) => {
 						const earning = `${String(el.earning).replace(regExp.money, '$1 ')} $`;
 						
-						return <div key={key} className='job-truck-driver-orders-content-list-main-element'>
-							<div className='job-truck-driver-orders-content-list-main-element__product'>{el.product}</div>
-							<div className='job-truck-driver-orders-content-list-main-element__count'>{el.count}</div>
-							<div className='job-truck-driver-orders-content-list-main-element__earning'>{earning}</div>
+						return <div key={key} className="job-truck-driver-orders-content-list-main-element">
 							<div
-								className='job-truck-driver-orders-content-list-main-element__submit'
-								onClick={() => window.alt.emit('client::job:acceptTruckDriverOrder', el.id, el.earning)}
-							>принять заказ</div>
-						</div>
+								className="job-truck-driver-orders-content-list-main-element__product">{el.product}</div>
+							<div className="job-truck-driver-orders-content-list-main-element__count">{el.count}</div>
+							<div className="job-truck-driver-orders-content-list-main-element__earning">{earning}</div>
+							<div
+								className="job-truck-driver-orders-content-list-main-element__submit"
+								onClick={() => EventManager.emitServer('job', 'acceptTruckDriverOrder', el.id, el.earning)}
+							>принять заказ
+							</div>
+						</div>;
 					})}
 				</div>
 			</div>

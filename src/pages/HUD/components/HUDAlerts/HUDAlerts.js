@@ -1,5 +1,6 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import HUDAlertsTaxi        from './components/HUDAlertsTaxi';
 import HUDAlertsTruckDriver from './components/HUDAlertsTruckDriver';
@@ -8,7 +9,7 @@ import HUDAlertsDefault     from './components/HUDAlertsDefault';
 
 import './HUDAlerts.scss';
 
-const HUDAlerts = ({store, currentJob}) => {
+const HUDAlerts = ({store, player}) => {
 	const [isJobVisible, setJobVisible] = React.useState(false),
 		[jobNotifyData, setJobNotifyData] = React.useState({});
 	
@@ -26,7 +27,7 @@ const HUDAlerts = ({store, currentJob}) => {
 	}, [store.notifyQueue.length, store.notifyList.length, store]);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::hud:showJobAlert', (bool, data) => {
+		EventManager.addHandler('hud', 'showJobAlert', (bool, data) => {
 			if (bool) {
 				setJobVisible(bool);
 				setJobNotifyData(data);
@@ -48,8 +49,10 @@ const HUDAlerts = ({store, currentJob}) => {
 			})}
 		</div>
 		<div className="hud-alerts-job">
-			{currentJob === 'taxi' && <HUDAlertsTaxi isVisible={isJobVisible} jobNotifyData={jobNotifyData}/>}
-			{currentJob === 'truckDriver' && <HUDAlertsTruckDriver isVisible={isJobVisible} jobNotifyData={jobNotifyData}/>}
+			{player.playerState.job === 'taxi' &&
+			<HUDAlertsTaxi isVisible={isJobVisible} jobNotifyData={jobNotifyData}/>}
+			{player.playerState.job === 'truckDriver' &&
+			<HUDAlertsTruckDriver isVisible={isJobVisible} jobNotifyData={jobNotifyData}/>}
 		</div>
 	</div>;
 };

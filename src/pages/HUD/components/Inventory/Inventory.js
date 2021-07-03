@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import Clothes      from './components/Clothes';
 import Main         from './components/Main';
@@ -118,7 +119,7 @@ const Inventory = ({store}) => {
 				options: store.clothes[id].options,
 			});
 			
-			window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+			EventManager.emitServer('inventory', 'update', store.clothes, store.inventory);
 		}, [currentItem, showNotify, store]),
 		handlePutOff = React.useCallback(() => {
 			const item = store.clothes[currentItem.id];
@@ -180,7 +181,7 @@ const Inventory = ({store}) => {
 				id,
 				options: item.options,
 			});
-			window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+			EventManager.emitServer('inventory', 'update', store.clothes, store.inventory);
 		}, [currentItem.id, showNotify, store]),
 		handleDrop = React.useCallback(isAccepted => {
 			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
@@ -191,7 +192,7 @@ const Inventory = ({store}) => {
 				setMiddleComponent('dropZone');
 				setItem({component: null, id: null, options: null});
 				
-				window.alt.emit('client::inventory:dropItem', item.hash, item.quality, item.count);
+				EventManager.emitServer('inventory', 'dropItem', item.hash, item.quality, item.count);
 			}
 		}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
 		handleTrade = React.useCallback(id => {
@@ -201,7 +202,7 @@ const Inventory = ({store}) => {
 				setMiddleComponent('dropZone');
 				setItem({component: null, id: null, options: null});
 				
-				window.alt.emit('client::inventory:tradeItem', id, item.hash, item.quality, item.count);
+				EventManager.emitServer('inventory', 'tradeItem', id, item.hash, item.quality, item.count);
 			} else {
 				setMiddleComponent('tradeList');
 			}
@@ -223,7 +224,7 @@ const Inventory = ({store}) => {
 				store.changeInventoryData(
 					{
 						component,
-						id: component === 'pockets' ? pocketsFreeIndex : backpackFreeIndex
+						id: component === 'pockets' ? pocketsFreeIndex : backpackFreeIndex,
 					},
 					{
 						type: item.type,
@@ -238,7 +239,7 @@ const Inventory = ({store}) => {
 						weight: item.weight,
 						maxStack: item.maxStack,
 						options: item.options,
-					}
+					},
 				);
 				
 				setItem({
@@ -247,7 +248,7 @@ const Inventory = ({store}) => {
 					options: item.options,
 				});
 				
-				window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+				EventManager.emitServer('inventory', 'update', store.clothes, store.inventory);
 			} else setMiddleComponent('dropZone');
 		}, [currentItem.component, currentItem.id, showNotify, store]),
 		handleMouseDown = React.useCallback((_targetCell) => {
@@ -279,7 +280,7 @@ const Inventory = ({store}) => {
 				setDropCell({component: null, id: null});
 				setCellDragged(false);
 				
-				return window.alt.emit('client::inventory:update', store.clothes, store.inventory);
+				return EventManager.emitServer('inventory', 'update', store.clothes, store.inventory);
 			};
 			
 			const target = targetCell.component === 'clothes' ? store.clothes[targetCell.id] : store.inventory[targetCell.component][targetCell.id];
@@ -565,7 +566,7 @@ const Inventory = ({store}) => {
 	}, [store.clothes, store.inventory.fastSlots, store.clothes[7].isPlaced]);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::inventory:showNotify', (title, subtitle, timeout) => showNotify(title, subtitle, timeout));
+		EventManager.addHandler('inventory', 'showNotify', (title, subtitle, timeout) => showNotify(title, subtitle, timeout));
 	}, [showNotify]);
 	
 	React.useEffect(() => {

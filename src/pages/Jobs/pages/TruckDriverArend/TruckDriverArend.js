@@ -1,5 +1,6 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import truckDriverArend from 'assets/images/jobs/truckDriverArend.svg';
 
@@ -20,16 +21,17 @@ const TruckDriverArend = ({store}) => {
 			</div>
 			<div className="job-truck-driver-arend-content-price">
 				<div className="job-truck-driver-arend-content-price__value">{price}</div>
-				<div className='job-truck-driver-arend-content-price__title'>стоимость <br/>аренды ТС</div>
+				<div className="job-truck-driver-arend-content-price__title">стоимость <br/>аренды ТС</div>
 			</div>
-			<div className='job-truck-driver-arend-content__description'>
+			<div className="job-truck-driver-arend-content__description">
 				Вы действительно хотите арендовать грузовой автомобиль?
 			</div>
 		</div>
 		<div
-			className='job-truck-driver-arend__submit'
-			onClick={() => window.alt.emit('client::job:arendTruckDriver', store.truckDriverData.arendPrice)}
-		>арендовать</div>
+			className="job-truck-driver-arend__submit"
+			onClick={() => EventManager.emitServer('job', 'arendTruckDriver', store.truckDriverData.arendPrice)}
+		>арендовать
+		</div>
 	</div>;
 };
 

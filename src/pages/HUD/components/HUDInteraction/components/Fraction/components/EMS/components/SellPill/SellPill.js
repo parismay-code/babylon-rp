@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import arrow from 'assets/images/hud/interactionArrow.svg';
 
@@ -119,7 +120,7 @@ const SellPill = ({currentOption, prevOption, targetPlayerData, pillsCost}) => {
 					name="n_giveMoneySubmit"
 					value="Продать"
 					onClick={() => {
-						window.alt.emit('client::interaction:sellPills', value, type, value * pillsCost[type], targetPlayerData.id);
+						EventManager.emitServer('interaction', 'sellPills', value, type, value * pillsCost[type], targetPlayerData.id);
 					}}
 				/>
 			</div>

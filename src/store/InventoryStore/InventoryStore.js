@@ -5,6 +5,27 @@ import {
 } from 'mobx';
 
 export default class InventoryStore {
+	constructor() {
+		makeObservable(this, {
+			isVisible: observable,
+			clothes: observable,
+			inventory: observable,
+			trunk: observable,
+			playersAround: observable,
+			inventoryWeight: observable,
+			inventoryMaxWeight: observable,
+			
+			setVisible: action.bound,
+			calcInventoryWeight: action.bound,
+			fetchClothesData: action.bound,
+			fetchInventoryData: action.bound,
+			changeInventoryData: action.bound,
+			fetchTrunkData: action.bound,
+			fetchPlayersAround: action.bound,
+		});
+	}
+	
+	isVisible = false;
 	inventoryWeight = 0;
 	inventoryMaxWeight = 40;
 	
@@ -171,24 +192,9 @@ export default class InventoryStore {
 	trunk = [];
 	playersAround = [];
 	
-	constructor() {
-		makeObservable(this, {
-			clothes: observable,
-			inventory: observable,
-			trunk: observable,
-			playersAround: observable,
-			inventoryWeight: observable,
-			inventoryMaxWeight: observable,
-			
-			calcInventoryWeight: action.bound,
-			fetchClothesData: action.bound,
-			fetchInventoryData: action.bound,
-			changeInventoryData: action.bound,
-			fetchTrunkData: action.bound,
-			fetchPlayersAround: action.bound,
-		});
+	setVisible(bool) {
+		this.isVisible = bool;
 	}
-	
 	calcInventoryWeight() {
 		const pocketsArr = this.inventory.pockets.filter(el => el.weight);
 		const backpackArr = this.inventory.backpack.filter(el => el.weight);

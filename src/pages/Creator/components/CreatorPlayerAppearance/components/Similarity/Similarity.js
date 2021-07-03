@@ -1,5 +1,6 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import male0    from 'assets/images/creator/male/0.png';
 import male1    from 'assets/images/creator/male/1.png';
@@ -133,19 +134,19 @@ const Similarity = ({store}) => {
 		}, [lastScrollFemaleTop, mothersList, store.data.parents]);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'parents', 0, store.data.parents.father);
+		EventManager.emitClient('characterCreator', 'preview', 'parents', 0, store.data.parents.father);
 	}, [store.data.parents.father]);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'parents', 1, store.data.parents.mother);
+		EventManager.emitClient('characterCreator', 'preview', 'parents', 1, store.data.parents.mother);
 	}, [store.data.parents.mother]);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'parents', 2, store.data.parents.leatherMix);
+		EventManager.emitClient('characterCreator', 'preview', 'parents', 2, store.data.parents.leatherMix);
 	}, [store.data.parents.leatherMix]);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:preview', 'parents', 3, store.data.parents.similarity);
+		EventManager.emitClient('characterCreator', 'preview', 'parents', 3, store.data.parents.similarity);
 	}, [store.data.parents.similarity]);
 	
 	return (

@@ -20,32 +20,17 @@ import captureMap     from 'assets/images/crimeMenu/captureMap.png';
 
 import './SetCapture.scss';
 
-const SetCapture = ({store, fractionColor, fractionIcon}) => {
-	const [currentFraction, setFraction] = React.useState(null),
-		[hours, setHours] = React.useState(14),
-		[minutes, setMinutes] = React.useState(0),
-		[playersCount, setPlayersCount] = React.useState(5),
-		[itemsAccess, setItemsAccess] = React.useState({
-			medkits: false,
-			armour: false,
-			drugs: false,
-			animations: false,
-		}),
-		[gunsAccess, setGunsAccess] = React.useState({
-			pistol: false,
-			smg: false,
-			assault: false,
-			shotgun: false,
-		});
+const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
+	const [currentFraction, setFraction] = React.useState(null);
 	
 	const _hours = React.useMemo(() => {
-			if (String(hours).length < 2) return `0${hours}`;
-			else return hours;
-		}, [hours]),
+			if (String(store.capture.time.hours).length < 2) return `0${store.capture.time.hours}`;
+			else return store.capture.time.hours;
+		}, [store.capture.time.hours]),
 		_minutes = React.useMemo(() => {
-			if (String(minutes).length < 2) return `0${minutes}`;
-			else return minutes;
-		}, [minutes]),
+			if (String(store.capture.time.minutes).length < 2) return `0${store.capture.time.minutes}`;
+			else return store.capture.time.minutes;
+		}, [store.capture.time.minutes]),
 		players = React.useMemo(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], []),
 		fractionFreezeTime = React.useMemo(() => {
 			switch (store.fractionName) {
@@ -851,8 +836,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (hours + 1 > 23) setHours(14);
-								else setHours(hours + 1);
+								if (store.capture.time.hours + 1 > 23) store.capture.time.hours = 14;
+								else store.capture.time.hours++;
 							}}
 						/>
 						<div className="crime-menu-set-capture-conditions-time-content-hours__value">{_hours}</div>
@@ -861,8 +846,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (hours - 1 < 14) setHours(23);
-								else setHours(hours - 1);
+								if (store.capture.time.hours - 1 < 14) store.capture.time.hours = 23;
+								else store.capture.time.hours--;
 							}}
 						/>
 					</div>
@@ -873,8 +858,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (minutes + 1 > 59) setMinutes(0);
-								else setMinutes(minutes + 1);
+								if (store.capture.time.minutes + 1 > 59) store.capture.time.minutes = 0;
+								else store.capture.time.minutes++;
 							}}
 						/>
 						<div className="crime-menu-set-capture-conditions-time-content-minutes__value">{_minutes}</div>
@@ -883,8 +868,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (minutes - 1 < 0) setMinutes(59);
-								else setMinutes(minutes - 1);
+								if (store.capture.time.minutes - 1 < 0) store.capture.time.minutes = 59;
+								else store.capture.time.minutes--;
 							}}
 						/>
 					</div>
@@ -895,8 +880,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 				<div className="crime-menu-set-capture-conditions-items-content">
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
-							itemsAccess.medkits ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => setItemsAccess({...itemsAccess, medkits: !itemsAccess.medkits})}
+							store.capture.access.items.medkit ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {...store.capture.access.items, medkit: !store.capture.access.items.medkit}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -907,8 +892,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
-							itemsAccess.armour ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => setItemsAccess({...itemsAccess, armour: !itemsAccess.armour})}
+							store.capture.access.items.armour ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {...store.capture.access.items, armour: !store.capture.access.items.armour}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -920,8 +905,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
-							itemsAccess.drugs ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => setItemsAccess({...itemsAccess, drugs: !itemsAccess.drugs})}
+							store.capture.access.items.drug ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {...store.capture.access.items, drug: !store.capture.access.items.drug}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -933,8 +918,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
-							itemsAccess.animations ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => setItemsAccess({...itemsAccess, animations: !itemsAccess.animations})}
+							store.capture.access.items.animation ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {...store.capture.access.items, animation: !store.capture.access.items.animation}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -950,8 +935,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 				<div className="crime-menu-set-capture-conditions-guns-content">
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
-							gunsAccess.pistol ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => setGunsAccess({...gunsAccess, pistol: !gunsAccess.pistol})}
+							store.capture.access.guns.pistol ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {...store.capture.access.guns, pistol: !store.capture.access.guns.pistol}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -962,8 +947,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
-							gunsAccess.smg ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => setGunsAccess({...gunsAccess, smg: !gunsAccess.smg})}
+							store.capture.access.guns.smg ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {...store.capture.access.guns, smg: !store.capture.access.guns.smg}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -976,8 +961,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
-							gunsAccess.assault ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => setGunsAccess({...gunsAccess, assault: !gunsAccess.assault})}
+							store.capture.access.guns.assault ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {...store.capture.access.guns, assault: !store.capture.access.guns.assault}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -990,8 +975,8 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
-							gunsAccess.shotgun ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => setGunsAccess({...gunsAccess, shotgun: !gunsAccess.shotgun})}
+							store.capture.access.guns.shotgun ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {...store.capture.access.guns, shotgun: !store.capture.access.guns.shotgun}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -1013,25 +998,25 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 							src={rightArrow}
 							alt="#"
 							onClick={() => {
-								if (playersCount - 1 < 5) setPlayersCount(15);
-								else setPlayersCount(playersCount - 1);
+								if (store.capture.count - 1 < 5) store.capture.count = 15;
+								else store.capture.count--;
 							}}
 						/>
 						<input
 							type="range"
 							name="n_crimeMenuSetCapturePlayers"
-							value={playersCount}
+							value={store.capture.count}
 							min="5"
 							max="15"
-							onChange={(e) => setPlayersCount(Number(e.target.value))}
+							onChange={(e) => store.capture.count = Number(e.target.value)}
 						/>
 						<img
 							className="crime-menu-set-capture-conditions-players-input-range__next"
 							src={rightArrow}
 							alt="#"
 							onClick={() => {
-								if (playersCount + 1 > 15) setPlayersCount(5);
-								else setPlayersCount(playersCount + 1);
+								if (store.capture.count + 1 > 15) store.capture.count = 5;
+								else store.capture.count++;
 							}}
 						/>
 					</div>
@@ -1039,11 +1024,11 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 				<div className="crime-menu-set-capture-conditions-players-list">
 					<div className="crime-menu-set-capture-conditions-players-list-count">
 						<div
-							className="crime-menu-set-capture-conditions-players-list-count__attack">{playersCount}</div>
+							className="crime-menu-set-capture-conditions-players-list-count__attack">{store.capture.count}</div>
 						<img className="crime-menu-set-capture-conditions-players-list-count__icon" src={versus}
 						     alt="#"/>
 						<div
-							className="crime-menu-set-capture-conditions-players-list-count__defence">{playersCount}</div>
+							className="crime-menu-set-capture-conditions-players-list-count__defence">{store.capture.count}</div>
 					</div>
 					<div className="crime-menu-set-capture-conditions-players-list-content">
 						<div className="crime-menu-set-capture-conditions-players-list-content-top">
@@ -1053,7 +1038,7 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 									className="crime-menu-set-capture-conditions-players-list-content-top__icon"
 									src={player}
 									alt="#"
-									style={el > playersCount ? {
+									style={el > store.capture.count ? {
 										filter: 'brightness(0)',
 										opacity: .5,
 									} : {filter: 'brightness(1)'}}
@@ -1067,7 +1052,7 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 									className="crime-menu-set-capture-conditions-players-list-content-bottom__icon"
 									src={player}
 									alt="#"
-									style={el > playersCount ? {
+									style={el > store.capture.count ? {
 										filter: 'brightness(0)',
 										opacity: .5,
 									} : {filter: 'brightness(1)'}}
@@ -1081,35 +1066,18 @@ const SetCapture = ({store, fractionColor, fractionIcon}) => {
 		<div
 			className="crime-menu-set-capture-submit"
 			onClick={() => {
-				if (
-					fractionFreezeTime === 0 &&
-					currentFraction &&
-					Object.values(itemsAccess).filter(el => el).length > 0 &&
-					Object.values(gunsAccess).filter(el => el).length > 0
-				) {
-					window.alt.emit('client::crimeMenu:setCapture', {
-						hours,
-						minutes,
-						currentFraction,
-						playersCount,
-						itemsAccess,
-						gunsAccess,
-					});
-					console.log({
-						hours,
-						minutes,
-						currentFraction,
-						playersCount,
-						itemsAccess,
-						gunsAccess,
-					});
-				}
+				if (fractionFreezeTime !== 0) store.addNotify('Вы не можете назначить капт, находясь на отдыхе');
+				else if (!currentFraction) store.addNotify('Выберите фракцию, против которой будет назначен капт');
+				else if (Object.values(store.capture.access.items).filter(el => el).length === 0 ||
+					Object.values(store.capture.access.guns).filter(el => el).length === 0)
+					store.addNotify('Установите хотя бы по одному ограничению на предметы и оружие');
+				else setPage('changeCaptureList');
 			}}
 		>
 			{fractionFreezeTime !== 0 ? <div className="crime-menu-set-capture-submit-disabled">
 				<img className="crime-menu-set-capture-submit-disabled__icon" src={fractionFreeze} alt="#"/>
 				<div className="crime-menu-set-capture-submit-disabled__title">Захват через {fractionFreezeTime}</div>
-			</div> : <div className="crime-menu-setcapture-submit__title">Назначить захват</div>}
+			</div> : <div className="crime-menu-set-capture-submit__title">Далее</div>}
 		</div>
 	</div>;
 };

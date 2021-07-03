@@ -1,6 +1,7 @@
-import * as React from 'react';
-import cn         from 'classnames';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import cn           from 'classnames';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import Money          from './components/Money';
 import GunCard        from './components/GunCard';
@@ -17,6 +18,20 @@ const WeaponShop = ({player, store}) => {
 	const notify = React.useRef(null),
 		screen = React.useRef(null);
 	
+	const sendNotify = React.useCallback((text, timeout) => {
+		notify.current.innerText = text;
+		notify.current.style.opacity = 1;
+		
+		setTimeout(() => notify.current.style.opacity = 0, timeout ? timeout : 3000);
+	}, [notify]);
+	const buyWeapons = React.useCallback(() => {
+		if (value > 0) EventManager.emitServer('gunShop', 'buy', store.weaponBuyList, value);
+		else sendNotify('Для покупки необходимо добавить оружие в корзину');
+	}, [sendNotify, store.weaponBuyList, value]);
+	
+	const buyAmmo = React.useCallback((ammoValue, ammoPrice) =>
+		EventManager.emitServer('gunShop', 'buyAmmo', ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * ammoPrice), [currentCategory, store.weaponShopData.categories]);
+	
 	React.useEffect(() => {
 		const timeout = setTimeout(() => screen.current.classList.add('weapon-shop_active'), 100);
 		
@@ -26,25 +41,17 @@ const WeaponShop = ({player, store}) => {
 	React.useEffect(() => {
 		setWeapon(0);
 	}, [currentCategory]);
-	
-	const sendNotify = React.useCallback((text, timeout) => {
-		notify.current.innerText = text;
-		notify.current.style.opacity = 1;
-		
-		setTimeout(() => notify.current.style.opacity = 0, timeout ? timeout : 3000);
-	}, [notify]);
-	
 	React.useEffect(() => {
-		window.alt.on('cef::gunShop:sendNotify', (text, timeout) => sendNotify(text, timeout));
+		EventManager.addHandler('gunShop', 'sendNotify', (text, timeout) => sendNotify(text, timeout));
 	}, [sendNotify]);
-	
-	const buyWeapons = React.useCallback(() => {
-		if (value > 0) window.alt.emit('client::gunShop:buy', store.weaponBuyList, value);
-		else sendNotify('Для покупки необходимо добавить оружие в корзину');
-	}, [sendNotify, store.weaponBuyList, value]);
-	
-	const buyAmmo = React.useCallback((ammoValue, ammoPrice) =>
-		window.alt.emit('client::gunShop:buyAmmo', ammoValue, store.weaponShopData.categories[currentCategory].name, ammoValue * ammoPrice), [currentCategory, store.weaponShopData.categories]);
+	React.useEffect(() => {
+		EventManager.addHandler('gunShop', 'fetchData', obj => store.fetchWeaponShopData(obj));
+		EventManager.addHandler('gunShop', 'clearBuyList', () => store.clearWeaponBuyList());
+		
+		EventManager.stopAddingHandlers('gunShop');
+		
+		return () => EventManager.removeTargetHandlers('gunShop');
+	}, [store]);
 	
 	return <div ref={screen} className="weapon-shop">
 		<div className="weapon-shop-category">
@@ -66,7 +73,7 @@ const WeaponShop = ({player, store}) => {
 			<Money player={player}/>
 			<div className="weapon-shop-list__title">выберите оружие</div>
 			<div className="weapon-shop-list-content">
-				{store.weaponShopData.categories[currentCategory].guns.map((el, key) => {
+				{store.weaponShopData.categories[currentCategory]?.guns.map((el, key) => {
 					return <GunCard
 						key={key}
 						el={el}
@@ -80,10 +87,10 @@ const WeaponShop = ({player, store}) => {
 				})}
 			</div>
 		</div>
-		<GunDescription
+		{store.weaponShopData.categories[currentCategory]?.guns[currentWeapon] && <GunDescription
 			el={store.weaponShopData.categories[currentCategory].guns[currentWeapon]}
 			buyAmmo={buyAmmo}
-		/>
+		/>}
 		<BuyList
 			store={store}
 			notify={notify}

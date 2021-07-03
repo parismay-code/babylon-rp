@@ -1,13 +1,14 @@
 import * as React from 'react';
 import cn         from 'classnames';
 import {observer} from 'mobx-react-lite';
+import EventManager    from 'utils/eventManager';
 
 import BankHeader      from './components/BankHeader';
 import BankNav         from './components/BankNav';
 import BankAccount     from './components/BankAccount';
 import BankTopUpMobile from './components/BankTopUpMobile';
 import BankFines       from './components/BankFines';
-import BankTaxes       from './components/BankTaxes';
+import BankTaxes     from './components/BankTaxes';
 import BankOpenCard    from './components/BankOpenCard';
 import BankWithdraw    from './components/BankWithdraw';
 import BankTopUp       from './components/BankTopUp';
@@ -19,7 +20,7 @@ import BankCard        from 'components/BankCard';
 
 import './Bank.scss';
 
-const Bank = ({store, player}) => {
+const Bank = ({player, store}) => {
 	const [currentPage, setPage] = React.useState(player.playerState.bank.type ? 'account' : 'open');
 	
 	const [cardType, setCardType] = React.useState(),
@@ -43,21 +44,6 @@ const Bank = ({store, player}) => {
 		}
 	}, [cardType]);
 	
-	React.useEffect(() => {
-		window.alt.on('cef::bank:cardChoosed', bool => {
-			setNotifyVisible(false);
-			if (bool) window.alt.emit('client::bank:openCard', cardType);
-		});
-	}, [cardType]);
-	
-	React.useEffect(() => {
-		if (eventTimeout) {
-			const timeout = setTimeout(() => setEventTimeout(false), 5000);
-			
-			return () => clearTimeout(timeout);
-		}
-	}, [eventTimeout]);
-	
 	const sendNotify = React.useCallback((text, timeout) => {
 			setNotifyText(text);
 			setMainNotifyVisible(true);
@@ -73,13 +59,41 @@ const Bank = ({store, player}) => {
 		}, [sendNotify, eventTimeout]);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::bank:sendNotify', (text, timeout) => sendNotify(text, timeout));
+		EventManager.addHandler('bank', 'cardChoosed', bool => {
+			setNotifyVisible(false);
+			if (bool) EventManager.emitServer('bank', 'openCard', cardType);
+		});
+	}, [cardType]);
+	React.useEffect(() => {
+		if (eventTimeout) {
+			const timeout = setTimeout(() => setEventTimeout(false), 5000);
+			
+			return () => clearTimeout(timeout);
+		}
+	}, [eventTimeout]);
+	React.useEffect(() => {
+		EventManager.addHandler('bank', 'sendNotify', (text, timeout) => sendNotify(text, timeout));
 	}, [sendNotify]);
 	React.useEffect(() => {
 		const timeout = setTimeout(() => screen.current.classList.add('bank_active'), 100);
 		
 		return () => clearTimeout(timeout);
 	}, []);
+	React.useEffect(() => {
+		EventManager.addHandler('bank', 'setFines', array => store.fetchFines(array));
+		EventManager.addHandler('bank', 'changeFines', obj => store.changeFines(obj));
+		EventManager.addHandler('bank', 'setCards', array => store.fetchCards(array));
+		EventManager.addHandler('bank', 'setWithdrawHistory', array => store.fetchWithdrawHistory(array));
+		EventManager.addHandler('bank', 'addWithdraw', data => store.addWithdraw(data));
+		EventManager.addHandler('bank', 'setTopUpHistory', array => store.fetchTopUpHistory(array));
+		EventManager.addHandler('bank', 'addTopUp', data => store.addTopUp(data));
+		EventManager.addHandler('bank', 'setTransferHistory', array => store.fetchTransferHistory(array));
+		EventManager.addHandler('bank', 'addTransfer', data => store.addTransfer(data));
+		
+		EventManager.stopAddingHandlers('bank');
+		
+		return () => EventManager.removeTargetHandlers('bank');
+	}, [store]);
 	
 	return <>
 		<div ref={screen} className="bank">
@@ -133,7 +147,7 @@ const Bank = ({store, player}) => {
 					<div
 						className="bank-open-card-notify-choose-buttons__element bank-open-card-notify-choose-buttons__element_no"
 						onClick={() => {
-							window.alt.emit('client::bank:openCardStatus', false);
+							EventManager.emitClient('bank', 'openCardStatus', false);
 							setNotifyVisible(false);
 						}}
 					>N
@@ -141,8 +155,8 @@ const Bank = ({store, player}) => {
 					<div
 						className="bank-open-card-notify-choose-buttons__element bank-open-card-notify-choose-buttons__element_yes"
 						onClick={() => {
-							window.alt.emit('client::bank:openCardStatus', false);
-							window.alt.emit('client::bank:openCard', cardType);
+							EventManager.emitClient('bank', 'openCardStatus', false);
+							EventManager.emitServer('bank', 'openCard', cardType);
 							setNotifyVisible(false);
 						}}
 					>Y

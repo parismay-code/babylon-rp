@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import rightArrow from 'assets/images/hud/rightArrow.svg';
 
@@ -21,6 +22,8 @@ const CrimeFraction = ({
 		'tieHands': 'Связать руки',
 		'unTieHands': 'Развязать руки',
 		'rob': 'Ограбить',
+		'invite': 'Пригласить во фракцию',
+		'unInvite': 'Исключить из фракции',
 	}), []);
 	
 	const putOnBagIcon = React.useMemo(() => {
@@ -45,6 +48,32 @@ const CrimeFraction = ({
 				<path
 					d="M56.272,48.677a.566.566,0,0,0-.093-.006c-1.646.006-3.291,0-4.937,0H50.77q-6.649,0-13.3,0l-10.337,0-12.1,0q-7.272,0-14.545.011c-.4,0-.5-.106-.494-.5a18.831,18.831,0,0,1,.837-5.162,13.717,13.717,0,0,1,2.091-3.983,14.424,14.424,0,0,1,5.219-4.387,24.642,24.642,0,0,1,4.683-1.927.225.225,0,0,1,0-.042,1.507,1.507,0,0,0-.27-1.016.61.61,0,0,1,.129-.881,3.656,3.656,0,0,1,.391-.353c.133-.1.231-.185.152-.355s.066-.293.211-.406a14.126,14.126,0,0,0,1.672-1.454c.388-.411.634-.9,1.009-1.324a5.986,5.986,0,0,1,1.841-1.381,1.022,1.022,0,0,0,.712-1,1.406,1.406,0,0,1,.106-.538,1.307,1.307,0,0,0-.34-1.385,9.248,9.248,0,0,1-2.148-3.2c-.169-.57-.216-1.165-.382-1.736a2.815,2.815,0,0,1,.174-2.111c.181-.363.012-.742-.039-1.111-.014-.092-.13-.12-.233-.144-.548-.131-.733-.471-.482-.911a.62.62,0,0,0,.128-.329A4.981,4.981,0,0,1,16.5,10.4c.051-.086.146-.167.158-.255a5.721,5.721,0,0,1,1.579-2.61,9.259,9.259,0,0,0,1.5-2.731,15.4,15.4,0,0,1,.541-1.542,2.387,2.387,0,0,1,2.147-1.642A2.87,2.87,0,0,0,23.769,1.2,11.24,11.24,0,0,1,26.5.357c.768-.231,1.591-.1,2.341-.358h2.9A15.294,15.294,0,0,1,34.37,1.083a8.646,8.646,0,0,0,.94.428.3.3,0,0,1,.068.028,9.992,9.992,0,0,1,1.907,1.691c.206.247.182.573.332.852.4.734,1,1.37,1.333,2.134a23.952,23.952,0,0,1,1.209,2.362,9.027,9.027,0,0,1,.355,2.417c.019.765-.111,1.521-.109,2.281,0,.653.079,1.308.128,1.959a13.342,13.342,0,0,1-.317,2.135,9.471,9.471,0,0,1-.86,2.39,6.923,6.923,0,0,1-1.447,2.218,2.744,2.744,0,0,0-.537,2.565c.107.545.39,1.084.148,1.655-.047.11.031.21.078.307.371.8,1,1.5,1.366,2.3a.472.472,0,0,0,.39.229c.133.02.289.076.26.194-.122.527.43.728.736.985a3.344,3.344,0,0,1,.914,1.383,2.973,2.973,0,0,1,.168.573,24.88,24.88,0,0,1,4.3,1.236,23.4,23.4,0,0,1,3.61,1.753,17.14,17.14,0,0,1,3.729,3.117,16.362,16.362,0,0,1,1.651,2.48,12.662,12.662,0,0,1,1.009,2.3,19.153,19.153,0,0,1,.679,3.125,12.236,12.236,0,0,1,.131,2.25c-.005.213-.085.255-.182.255A.659.659,0,0,1,56.272,48.677Zm-25.51-6.94c.076.662.154,1.325.218,1.987.017.188.093.294.275.319a.451.451,0,0,0,.531-.255c.482-.955,1.013-1.889,1.456-2.862.3-.647.643-1.265.984-1.886l-.309.128a.835.835,0,0,0-.41.3,5.23,5.23,0,0,1-.993,1.1.735.735,0,0,1-.928.081.382.382,0,0,0-.409-.055.251.251,0,0,1-.332-.073.841.841,0,0,0-.248-.229Q30.68,41.014,30.762,41.737ZM22.1,38.572c.7,1.292,1.33,2.618,2,3.923.22.432.471.848.694,1.278.094.185.2.322.427.265a.446.446,0,0,0,.368-.419c.071-.982.22-1.954.345-2.929.061-.482.117-.967.172-1.449a19.788,19.788,0,0,1-2.087-.549,10.544,10.544,0,0,0-2.088-.445C21.982,38.356,22.039,38.465,22.1,38.572ZM49.478,25.031,42.593,31.9l-2.115-2.115,9-9,9,9L56.363,31.9Zm0-11.115-6.885,6.87L40.478,18.67l9-9,9,9-2.115,2.115Z"
 					transform="translate(0.5 0.501)" strokeMiterlimit="10" strokeWidth="1"/>
+			</svg>;
+		}, [noVisualOption]),
+		inviteIcon = React.useMemo(() => {
+			return <svg xmlns="http://www.w3.org/2000/svg" width="38.778" height="34.277" viewBox="0 0 38.778 34.277"
+			            fill={noVisualOption === 'invite' ? '#eaeaea' : null}
+			            opacity={noVisualOption === 'invite' ? '1' : '.5'}
+			            style={noVisualOption === 'invite' ?
+				            {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}>
+				<g transform="translate(-819.223 -291.724)">
+					<path
+						d="M-7617.091-3759a9.009,9.009,0,0,1,9-9,9.009,9.009,0,0,1,9,9,9.011,9.011,0,0,1-9,9A9.011,9.011,0,0,1-7617.091-3759Zm2.1.7h5.7v5.7h2.4v-5.7h5.7v-2.4h-5.7v-5.7h-2.4v5.7h-5.7Zm-1.388,7.3h-18.371a3.123,3.123,0,0,1-3.121-3.119v-2.7a8.747,8.747,0,0,1,8.735-8.735h1.087a11.317,11.317,0,0,0,4.738,1.041,11.277,11.277,0,0,0,4.736-1.041h1.087c.23,0,.466.01.7.029a11.283,11.283,0,0,0-2.411,7.014,11.391,11.391,0,0,0,2.825,7.514l0,0Zm-15.252-24.958a8.329,8.329,0,0,1,8.321-8.319,8.329,8.329,0,0,1,8.319,8.319,8.328,8.328,0,0,1-8.319,8.319A8.329,8.329,0,0,1-7631.63-3775.958Z"
+						transform="translate(8457.092 4076.001)"/>
+				</g>
+			</svg>;
+		}, [noVisualOption]),
+		unInviteIcon = React.useMemo(() => {
+			return <svg xmlns="http://www.w3.org/2000/svg" width="38.779" height="34.276" viewBox="0 0 38.779 34.276"
+			            fill={noVisualOption === 'unInvite' ? '#eaeaea' : null}
+			            opacity={noVisualOption === 'unInvite' ? '1' : '.5'}
+			            style={noVisualOption === 'unInvite' ?
+				            {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}>
+				<g transform="translate(-819.222 -291.725)">
+					<path
+						d="M-7451.441-3759a9.01,9.01,0,0,1,9-9,9.01,9.01,0,0,1,9,9,9.011,9.011,0,0,1-9,9A9.011,9.011,0,0,1-7451.441-3759Zm2.1.7h13.8v-2.4h-13.8Zm-1.388,7.3H-7469.1a3.124,3.124,0,0,1-3.121-3.119v-2.7a8.746,8.746,0,0,1,8.735-8.737h1.086a11.3,11.3,0,0,0,4.739,1.041,11.243,11.243,0,0,0,4.737-1.041h1.086c.232,0,.467.011.7.028a11.282,11.282,0,0,0-2.412,7.015,11.4,11.4,0,0,0,2.824,7.512l0,0Zm-15.252-24.956a8.328,8.328,0,0,1,8.319-8.319,8.33,8.33,0,0,1,8.321,8.319,8.33,8.33,0,0,1-8.321,8.319A8.328,8.328,0,0,1-7465.979-3775.957Z"
+						transform="translate(8291.441 4076)"/>
+				</g>
 			</svg>;
 		}, [noVisualOption]),
 		tieHandsIcon = React.useMemo(() => {
@@ -96,10 +125,21 @@ const CrimeFraction = ({
 			className="hud-interactions-fraction-crime__title">{titles[nextOption] ? titles[nextOption] : titles[noVisualOption] ? titles[noVisualOption] : null}</div>
 		<div className="hud-interactions-fraction-crime-options">
 			<div
+				className="hud-interactions-fraction-crime-options__element hud-interactions-fraction-crime-options__element_invite"
+				onMouseOver={() => setNoVisualOption(targetPlayerData.isInFraction ? 'unInvite' : 'invite')}
+				onClick={() => {
+					if (targetPlayerData.isInFraction) EventManager.emitServer('interaction', 'fractionInvite', targetPlayerData.id);
+					else EventManager.emitServer('interaction', 'fractionKick', targetPlayerData.id);
+					setTargetPlayerData({...targetPlayerData, isInFraction: !targetPlayerData.isInFraction});
+				}}
+			>
+				{targetPlayerData.isInFraction ? unInviteIcon : inviteIcon}
+			</div>
+			<div
 				className="hud-interactions-fraction-crime-options__element hud-interactions-fraction-crime-options__element_put-on-bag"
 				onMouseOver={() => setNoVisualOption(targetPlayerData.isBagPut ? 'putOffBag' : 'putOnBag')}
 				onClick={() => {
-					window.alt.emit('client::interaction:putBag', targetPlayerData.id, !targetPlayerData.isBagPut);
+					EventManager.emitServer('interaction', 'putBag', targetPlayerData.id, !targetPlayerData.isBagPut);
 					setTargetPlayerData({...targetPlayerData, isBagPut: !targetPlayerData.isBagPut});
 				}}
 			>
@@ -109,7 +149,7 @@ const CrimeFraction = ({
 				className="hud-interactions-fraction-crime-options__element hud-interactions-fraction-crime-options__element_tie-hands"
 				onMouseOver={() => setNoVisualOption(targetPlayerData.isTied ? 'unTieHands' : 'tieHands')}
 				onClick={() => {
-					window.alt.emit('client::interaction:tiePlayer', targetPlayerData.id, !targetPlayerData.isTied);
+					EventManager.emitServer('interaction', 'tiePlayer', targetPlayerData.id, !targetPlayerData.isTied);
 					setTargetPlayerData({...targetPlayerData, isTied: !targetPlayerData.isTied});
 				}}
 			>
@@ -118,7 +158,7 @@ const CrimeFraction = ({
 			<div
 				className="hud-interactions-fraction-crime-options__element hud-interactions-fraction-crime-options__element_rob"
 				onMouseOver={() => setNoVisualOption('rob')}
-				onClick={() => window.alt.emit('client::interaction:rob', targetPlayerData.id)}
+				onClick={() => EventManager.emitServer('interaction', 'rob', targetPlayerData.id)}
 			>
 				{robIcon}
 			</div>

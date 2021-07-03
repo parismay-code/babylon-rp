@@ -22,6 +22,10 @@ export default class CrimeMenuStore {
 			allTerritories: observable,
 			fractionsCaptureStatus: observable,
 			fractionsFreeze: observable,
+			capture: observable,
+			notifyQueue: observable,
+			isNotifyShowed: observable,
+			isQueuePaused: observable,
 			
 			fetchFractionName: action.bound,
 			fetchFractionTerritories: action.bound,
@@ -46,9 +50,13 @@ export default class CrimeMenuStore {
 			changeTerritory: action.bound,
 			setFractionsFreeze: action.bound,
 			setFractionsCaptureStatus: action.bound,
+			addNotify: action.bound,
 		});
 	}
 	
+	notifyQueue = [];
+	isNotifyShowed = false;
+	isQueuePaused = false;
 	fractionsFreeze = {
 		families: 0,
 		ballas: 0,
@@ -56,38 +64,263 @@ export default class CrimeMenuStore {
 		mara: 0,
 	};
 	fractionsCaptureStatus = {
-		families: false,
-		ballas: false,
-		vagos: false,
-		mara: false,
-	}
-	
+		families: null,
+		ballas: null,
+		vagos: null,
+		mara: null,
+	};
+	capture = {
+		defence: 'Vagos',
+		count: 10,
+		time: {
+			hours: 14,
+			minutes: 0,
+		},
+		access: {
+			items: {
+				medkit: false,
+				armour: false,
+				drug: false,
+				animation: false,
+			},
+			guns: {
+				pistol: false,
+				smg: false,
+				assault: false,
+				shotgun: false
+			},
+		},
+		players: [],
+		lastGameBest: [
+			{
+				place: 1,
+				id: 87598,
+				nickname: 'Alexeaxer Alexeaxaraer',
+				kills: 5,
+				isDied: false,
+			},
+			{
+				place: 2,
+				id: 5959,
+				nickname: 'Paris May',
+				kills: 4,
+				isDied: false,
+			},
+			{
+				place: 3,
+				id: 1234,
+				nickname: 'Paris May',
+				kills: 5,
+				isDied: true,
+			},
+		],
+	};
 	playerRank = 1;
 	playerAccess = [
-		// 'changeRanks',
-		// 'changeCars',
-		// 'spawnCars',
-		// 'manage',
-		// 'closeStore',
-		// 'manageCapture',
-		// 'playCapture',
-		// 'sendNews',
-		// 'removeNews',
+		'changeRanks',
+		'changeCars',
+		'spawnCars',
+		'manage',
+		'closeStore',
+		'manageCapture',
+		'sendNews',
+		'removeNews',
 	];
-	
-	fractionName = '';
+	fractionName = 'Marabunta';
 	territories = 0;
 	isStoreLocked = false;
 	balance = 0;
 	news = [];
 	events = [];
-	players = [];
-	filteredPlayersList = [];
-	ranks = [];
+	players = [
+		{
+			id: 25,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 6,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 5,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 11,
+			nickname: 'basarus basarus',
+			rank: 2,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: false,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 12,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 23,
+			nickname: 'basarus basarus',
+			rank: 3,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 13,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 26,
+			nickname: 'basarus basarus',
+			rank: 4,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: false,
+			punishment: [],
+			onlineLogs: []
+		},
+	];
+	filteredPlayersList = [
+		{
+			id: 25,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 6,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 5,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 11,
+			nickname: 'basarus basarus',
+			rank: 2,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: false,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 12,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 23,
+			nickname: 'basarus basarus',
+			rank: 3,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 13,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: true,
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 26,
+			nickname: 'basarus basarus',
+			rank: 4,
+			isOnline: true,
+			joinDate: '29.06.21',
+			isCapture: false,
+			punishment: [],
+			onlineLogs: []
+		},
+	];
+	ranks = [
+		{
+			access: [],
+			name: 'Первый',
+			cars: []
+		},
+		{
+			access: [],
+			name: 'Второй',
+			cars: []
+		},
+		{
+			access: [],
+			name: 'Третий',
+			cars: []
+		},
+		{
+			access: [],
+			name: 'Четвертый',
+			cars: []
+		}
+	];
 	awardLogs = [];
 	reprimandLogs = [];
 	storeLogs = [];
-	
 	allTerritories = {
 		1: 'Families',
 		2: 'Families',
@@ -163,101 +396,94 @@ export default class CrimeMenuStore {
 		72: 'Marabunta',
 	};
 	
+	addNotify(text, timeout) {
+		if (!this.isQueuePaused) {
+			if (text === this.notifyQueue[this.notifyQueue.length - 1]?.text) return;
+			this.notifyQueue.push({text, timeout});
+			
+			if (this.notifyQueue.length > 5) {
+				this.notifyQueue = [];
+				this.notifyQueue.push({text: 'Слишком часто'});
+				
+				this.isQueuePaused = true;
+				
+				setTimeout(() => this.isQueuePaused = false, 3000);
+			}
+		}
+	}
 	fetchFractionName(name) {
 		this.fractionName = name;
 	}
-	
 	fetchFractionTerritories(value) {
 		this.territories = value;
 	}
-	
 	fetchBalance(value) {
 		this.balance = value;
 	}
-	
 	fetchPlayers(array) {
 		this.players = array;
 		this.filteredPlayersList = array;
 	}
-	
 	filterPlayers(text) {
 		if (text) {
 			if (isNaN(Number(text))) this.filteredPlayersList = this.players.filter(el => el.nickname.toLowerCase().includes(text.toLowerCase()));
 			else this.filteredPlayersList = this.players.filter(el => el.id === Number(text));
 		} else this.filteredPlayersList = this.players;
 	}
-	
 	setStoreLocked(bool) {
 		this.isStoreLocked = bool;
 	}
-	
 	changePlayerData(id, obj) {
-		this.players.filter(el => el.id === id)[0] = obj;
+		this.players[this.players.findIndex(el => el.id === id)] = obj;
 		this.filteredPlayersList = this.players;
 	}
-	
 	fetchNews(array) {
 		this.news = array;
 	}
-	
 	changeNews(type, ...args) {
 		if (type === 'add') this.news.unshift(args[0]);
 		else this.news.splice(args[0], 1);
 	}
-	
 	fetchEvents(array) {
 		this.events = array;
 	}
-	
 	changeEvents(type, ...args) {
 		if (type === 'add') this.events.unshift(args[0]);
 		else this.events.splice(args[0], 1);
 	}
-	
 	fetchRanksData(array) {
 		this.ranks = array;
 	}
-	
 	changeRankData(rank, obj) {
 		this.ranks[rank - 1] = obj;
 	}
-	
 	fetchAwardLogs(array) {
 		this.awardLogs = array;
 	}
-	
 	addAward(obj) {
 		this.awardLogs.unshift(obj);
 	}
-	
 	fetchReprimandLogs(array) {
 		this.reprimandLogs = array;
 	}
-	
 	addReprimandLogs(obj) {
 		this.reprimandLogs.unshift(obj);
 	}
-	
 	fetchStoreLogs(array) {
 		this.storeLogs = array;
 	}
-	
 	addStoreLogs(obj) {
 		this.storeLogs.unshift(obj);
 	}
-	
 	fetchAllTerritories(obj) {
 		this.allTerritories = obj;
 	}
-	
 	changeTerritory(id, gang) {
 		this.allTerritories[id] = gang;
 	}
-	
 	setFractionsFreeze(obj) {
 		this.fractionsFreeze = obj;
 	}
-	
 	setFractionsCaptureStatus(obj) {
 		this.fractionCaptureStatus = obj;
 	}

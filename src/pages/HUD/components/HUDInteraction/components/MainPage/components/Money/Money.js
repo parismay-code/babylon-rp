@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import './Money.scss';
 
@@ -53,7 +54,7 @@ const Money = ({currentOption, prevOption, targetPlayerData}) => {
                     name='n_giveMoneySubmit'
                     value='Передать'
                     onClick={() => {
-                        window.alt.emit('client::interaction:giveMoney', input.current.value, targetPlayerData.id);
+                        EventManager.emitServer('interaction', 'giveMoney', input.current.value, targetPlayerData.id);
                     }}
                 />
             </div>

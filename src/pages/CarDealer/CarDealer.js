@@ -1,6 +1,7 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import rotateIcon    from 'assets/images/shops/carDealer/rotateIcon.svg';
 import testDriveIcon from 'assets/images/shops/carDealer/testDriveIcon.svg';
@@ -41,12 +42,19 @@ const CarDealer = ({store}) => {
 	}, [currentCategory]);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::carDealer:preview', data?.cars[currentCar].id);
+		EventManager.emitClient('carDealer', 'preview', data?.cars[currentCar].id);
 	}, [currentCar, data?.cars]);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::carDealer:setColor', colorsList[currentColor]);
+		EventManager.emitClient('carDealer', 'setColor', colorsList[currentColor]);
 	}, [colorsList, currentColor]);
+	React.useEffect(() => {
+		EventManager.addHandler('carDealer', 'setData', array => store.fetchCarDealerData(array));
+		
+		EventManager.stopAddingHandlers('carDealer');
+		
+		return () => EventManager.removeTargetHandlers('carDealer');
+	}, [store]);
 	
 	const screen = React.useRef(null);
 	
@@ -160,7 +168,7 @@ const CarDealer = ({store}) => {
 			</div>
 			<div
 				className="car-dealer-info-test"
-				onClick={() => window.alt.emit('client::carDealer:testDrive', data?.cars[currentCar].id)}
+				onClick={() => EventManager.emitServer('carDealer', 'testDrive', data?.cars[currentCar].id)}
 			>
 				<img className="car-dealer-info-test__icon" src={testDriveIcon} alt="#"/>
 				<div className="car-dealer-info-test__title">тест-драйв</div>
@@ -222,7 +230,7 @@ const CarDealer = ({store}) => {
 			className="car-dealer-buy"
 			onClick={() => {
 				if (data?.cars[currentCar].isInStock)
-					window.alt.emit('client::carDealer:buy', data?.cars[currentCar].id, data?.cars[currentCar].price);
+					EventManager.emitServer('carDealer', 'buy', data?.cars[currentCar].id, colorsList[currentColor], data?.cars[currentCar].price);
 			}}
 		>
 			<img className="car-dealer-buy__bg" src={data?.cars[currentCar].isInStock ? buyBg : buyBgDisabled} alt="#"/>

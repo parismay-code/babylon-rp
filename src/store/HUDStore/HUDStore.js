@@ -5,6 +5,31 @@ import {
 } from "mobx";
 
 export default class HUDStore {
+    constructor() {
+        makeObservable(this, {
+            currentHud: observable,
+            mapState: observable,
+            carState: observable,
+            time: observable,
+            date: observable,
+            speakers: observable,
+            notifyQueue: observable,
+            notifyList: observable,
+            notifyId: observable,
+            
+            fetchMapState: action.bound,
+            fetchDate: action.bound,
+            fetchTime: action.bound,
+            fetchCarState: action.bound,
+            fetchSpeaker: action.bound,
+            removeSpeaker: action.bound,
+            pushNotify: action.bound,
+            shiftNotify: action.bound,
+            setHud: action.bound,
+        })
+    }
+    
+    currentHud = 0;
     carState = {
         engine: 100,
         fuel: 120,
@@ -16,7 +41,6 @@ export default class HUDStore {
         launched: false,
         cruiseControl: false
     }
-
     mapState = {
         area: '',
         street: '',
@@ -24,38 +48,16 @@ export default class HUDStore {
         players: 0,
         id: 0
     }
-
     time = '';
     date = '';
-
     speakers = [];
-    
     notifyQueue = [];
     notifyList = [];
     notifyId = 0;
 
-    constructor() {
-        makeObservable(this, {
-            mapState: observable,
-            carState: observable,
-            time: observable,
-            date: observable,
-            speakers: observable,
-            notifyQueue: observable,
-            notifyList: observable,
-            notifyId: observable,
-
-            fetchMapState: action.bound,
-            fetchDate: action.bound,
-            fetchTime: action.bound,
-            fetchCarState: action.bound,
-            fetchSpeaker: action.bound,
-            removeSpeaker: action.bound,
-            pushNotify: action.bound,
-            shiftNotify: action.bound,
-        })
+    setHud(int) {
+        this.currentHud = int;
     }
-
     fetchMapState(obj) {
         switch (obj.type) {
             case 0:
@@ -72,15 +74,12 @@ export default class HUDStore {
                 return this.mapState = obj.data;
         }
     }
-
     fetchDate(date) {
-        return this.date = date;
+        this.date = date;
     }
-
     fetchTime(time) {
-        return this.time = time;
+        this.time = time;
     }
-
     fetchCarState(obj) {
         switch (obj.type) {
             case 'engine': return this.carState.engine = obj.data;
@@ -95,12 +94,10 @@ export default class HUDStore {
             default: return this.carState = obj.data;
         }
     }
-
     fetchSpeaker(obj) {
         this.speakers.push(obj);
         if (this.speakers.length > 4) this.speakers.shift();
     }
-
     removeSpeaker(id) {
         for (let i = 0; i < this.speakers.length; i++) {
             if (this.speakers[i].id === id) {
@@ -109,7 +106,6 @@ export default class HUDStore {
             }
         }
     }
-    
     pushNotify(target, obj) {
         target.push({
             type: obj.type,
@@ -121,7 +117,6 @@ export default class HUDStore {
             id: this.notifyId++
         });
     }
-    
     shiftNotify(target) {
         target.shift();
     }

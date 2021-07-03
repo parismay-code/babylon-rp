@@ -1,6 +1,7 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import {regExp} from 'utils/regExp';
 
@@ -27,7 +28,7 @@ const BusWays = ({store}) => {
 				</div>
 				<div
 					className="job-bus-ways-content-header__button"
-					onClick={() => window.alt.emit('client::job:startBus', store.busData.ways[currentWay].id)}
+					onClick={() => EventManager.emitServer('job', 'startBus', store.busData.ways[currentWay].id)}
 				>начать работу
 				</div>
 			</div>
@@ -40,15 +41,18 @@ const BusWays = ({store}) => {
 						className={cn('job-bus-ways-content-list-element', currentWay === key ? 'job-bus-ways-content-list-element_active' : null)}
 						onClick={() => setCurrentWay(key)}
 					>
-						<div className='job-bus-ways-content-list-element-content'>
+						<div className="job-bus-ways-content-list-element-content">
 							<div className="job-bus-ways-content-list-element-content-name">
 								<div className="job-bus-ways-content-list-element-content-name__title">№{el.id}</div>
-								<div className="job-bus-ways-content-list-element-content-name__subtitle">{el.name}</div>
+								<div
+									className="job-bus-ways-content-list-element-content-name__subtitle">{el.name}</div>
 							</div>
 							<div className="job-bus-ways-content-list-element-content__length">{el.length}/km</div>
 							<div className="job-bus-ways-content-list-element-content-earning">
-								<div className="job-bus-ways-content-list-element-content-earning__title">Заработок</div>
-								<div className="job-bus-ways-content-list-element-content-earning__subtitle">{earning}</div>
+								<div className="job-bus-ways-content-list-element-content-earning__title">Заработок
+								</div>
+								<div
+									className="job-bus-ways-content-list-element-content-earning__subtitle">{earning}</div>
 							</div>
 						</div>
 					</div>;

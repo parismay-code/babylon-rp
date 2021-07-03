@@ -1,5 +1,6 @@
-import * as React from 'react';
-import cn from 'classnames';
+import * as React   from 'react';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import rightArrow from 'assets/images/hud/rightArrow.svg';
 
@@ -114,21 +115,21 @@ const Actions = ({
 			<div
 				className="hud-interactions-actions-options__element hud-interactions-actions-options__element_trade"
 				onMouseOver={() => setNoVisualOption('trade')}
-				onClick={() => window.alt.emit('client::interaction:sendTrade', targetPlayerData.id)}
+				onClick={() => EventManager.emitServer('interaction', 'sendTrade', targetPlayerData.id)}
 			>
 				{tradeIcon}
 			</div>
 			<div
 				className="hud-interactions-actions-options__element hud-interactions-actions-options__element_shakeHands"
 				onMouseOver={() => setNoVisualOption('shakeHands')}
-				onClick={() => window.alt.emit('client::interaction:shakeHands', targetPlayerData.id)}
+				onClick={() => EventManager.emitServer('interaction', 'shakeHands', targetPlayerData.id)}
 			>
 				{shakeHandsIcon}
 			</div>
 			<div
 				className="hud-interactions-actions-options__element hud-interactions-actions-options__element_heal"
 				onMouseOver={() => setNoVisualOption('heal')}
-				onClick={() => window.alt.emit('client::interaction:heal', targetPlayerData.id)}
+				onClick={() => EventManager.emitServer('interaction', 'heal', targetPlayerData.id)}
 			>
 				{healIcon}
 			</div>

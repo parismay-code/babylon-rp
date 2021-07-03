@@ -1,0 +1,409 @@
+@import '../../../../styles/vars';
+
+.crime-menu-change-capture-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+  text-shadow: 0 2px 2px $color-black;
+  
+  &-players,
+  &-achievements {
+	width: 25%;
+	height: 100%;
+	padding-top: 110px;
+  }
+  
+  &-players {
+	background: linear-gradient(to right, #00000080, #00000010);
+	
+	&-header {
+	  margin: 0 40px 40px 40px;
+	  
+	  &-title {
+		display: flex;
+		align-items: center;
+		font-size: 3rem;
+		
+		&__icon {
+		  height: 3rem;
+		  margin-right: 10px;
+		}
+	  }
+	  
+	  &__subtitle {
+		font-family: "Baron Neue", sans-serif;
+		font-size: 2rem;
+		text-transform: uppercase;
+	  }
+	}
+	
+	&-content {
+	  height: 80%;
+	  overflow: auto;
+	  
+	  &::-webkit-scrollbar {
+		display: none;
+	  }
+	  
+	  &-element {
+		display: flex;
+		align-items: center;
+		padding: 5px 10px;
+		margin-bottom: 10px;
+		
+		background: linear-gradient(to right, #FFFFFF66, $color-blank);
+		
+		text-transform: uppercase;
+		
+		cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+		
+		&_blue {
+		  background: linear-gradient(to right, #30CDFE80, $color-blank);
+		}
+		
+		&_yellow {
+		  background: linear-gradient(to right, #FEEF3080, $color-blank);
+		}
+		
+		&_green {
+		  background: linear-gradient(to right, #30FE3E80, $color-blank);
+		}
+		
+		&_purple {
+		  background: linear-gradient(to right, #8B00FF80, $color-blank);
+		}
+		
+		&:hover &__add {
+		  transform: rotate(90deg);
+		}
+		
+		&__add {
+		  height: 90%;
+		  
+		  transition: transform .2s ease;
+		  
+		  pointer-events: none;
+		}
+		
+		&__rank {
+		  width: 50px;
+		  text-align: center;
+		  text-shadow: 0 0 10px #FFD139;
+		  font-size: 1.5rem;
+		  
+		  pointer-events: none;
+		}
+		
+		&__nickname {
+		  pointer-events: none;
+		}
+	  }
+	}
+  }
+  
+  &-team {
+	width: 35%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	&-header {
+	  position: relative;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  padding: 20px 0 30px 0;
+	  
+	  &__icon {
+		width: 50px;
+		margin-bottom: 30px;
+		
+		z-index: 5;
+	  }
+	  
+	  &__title {
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		font-size: 2rem;
+		
+		z-index: 5;
+	  }
+	  
+	  &::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		
+		height: 120%;
+		width: 25px;
+		
+		background: linear-gradient(to bottom, #FFFFFF66, #FFFFFF10);
+	  }
+	}
+	
+	&-content {
+	  width: 100%;
+	  
+	  &-element {
+		position: relative;
+		width: 100%;
+		height: 30px;
+		margin-bottom: 10px;
+		
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		background: linear-gradient(to right, #EAEAEA10, #EAEAEA80, #EAEAEA10);
+		
+		text-transform: uppercase;
+		
+		cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+		
+		&_hovered {
+		  background: linear-gradient(to right, #00000010, #FF363680, #00000010) !important;
+		}
+		
+		&__rank {
+		  width: 50px;
+		  text-align: center;
+		  text-shadow: 0 0 10px #FFD139;
+		  font-size: 1.5rem;
+		  
+		  pointer-events: none;
+		}
+		
+		&__nickname {
+		  width: 35%;
+		  
+		  pointer-events: none;
+		}
+		
+		&:hover &__remove {
+		  transform: translateX(-100%);
+		}
+		
+		&__remove {
+		  margin-left: 15px;
+		  transition: transform .2s ease;
+		  
+		  pointer-events: none;
+		}
+		
+		&_blank {
+		  color: #00000080;
+		  text-shadow: none;
+		  font-family: "TT Norms Bold", sans-serif;
+		  font-size: 3.5rem;
+		  
+		  background: linear-gradient(to right, #00000010, #00000080, #00000010);
+		}
+		
+		&__key {
+		  width: 20px;
+		  position: absolute;
+		  bottom: -.5rem;
+		  left: 50%;
+		  transform: translateX(calc(-50% - 10px));
+		  
+		  display: flex;
+		  align-items: flex-end;
+		  justify-content: flex-end;
+		}
+		
+		&__reserve {
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(25%, -50%);
+		  font-size: 1.5rem;
+		}
+		
+		&__icon {
+		  z-index: 5;
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  transform: translate(-50%, -50%);
+		}
+	  }
+	}
+  }
+  
+  &-achievements {
+	background: linear-gradient(to left, #00000080, #00000010);
+	
+	&-header {
+	  margin: 0 0 20px 60px;
+	  width: 55%;
+	  
+	  &__title {
+		font-size: 2rem;
+		font-family: "Baron Neue", sans-serif;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+	  }
+	  
+	  &__subtitle {
+		margin-bottom: 15px;
+		font-family: "TT Norms Regular", sans-serif;
+	  }
+	}
+	
+	&-content {
+	  display: flex;
+	  align-items: flex-end;
+	  justify-content: space-evenly;
+	  
+	  height: 400px;
+	  
+	  &-element {
+		&_first {
+		  height: 100%;
+		}
+		
+		&_first &-pedestal {
+		  background: linear-gradient(to bottom, #FFEE34, $color-blank);
+		}
+		
+		&_second {
+		  height: 85%;
+		}
+		
+		&_second &-pedestal {
+		  background: linear-gradient(to bottom, #E1E1E1, $color-blank)
+		}
+		
+		&_third {
+		  height: 70%;
+		}
+		
+		&_third &-pedestal {
+		  background: linear-gradient(to bottom, #FFB95E, $color-blank);
+		}
+		
+		&-kills {
+		  text-align: center;
+		  text-transform: uppercase;
+		  
+		  &__value {
+			font-family: "TT Norms Bold", sans-serif;
+			font-size: 2rem;
+		  }
+		}
+		
+		&-pedestal {
+		  position: relative;
+		  width: 60px;
+		  padding: 15px;
+		  height: 100%;
+		  
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  
+		  &::before,
+		  &::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			
+			width: 2px;
+			height: 100%;
+		 
+			background: linear-gradient(to bottom, $color-white, $color-blank);
+		  }
+		  
+		  &::before {
+			left: 0;
+		  }
+		  
+		  &::after {
+			right: 0;
+		  }
+		  
+		  &__icon {
+			width: 120%;
+		  }
+		  
+		  &__status {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%);
+		 
+			font-family: "TT Norms Extra Bold", sans-serif;
+			color: #000000;
+			opacity: .5;
+			text-transform: uppercase;
+			text-shadow: none;
+		  }
+		  
+		  &__nickname {
+			width: 200%;
+			position: absolute;
+			bottom: 5%;
+			left: 50%;
+			transform: translateX(-50%);
+		 
+			font-family: "TT Norms Bold", sans-serif;
+			text-transform: uppercase;
+			text-align: center;
+		  }
+		}
+	  }
+	}
+  }
+  
+  &-submit {
+	position: absolute;
+	right: 0;
+	bottom: 5%;
+	width: 25%;
+	height: 10%;
+	padding: 0 60px;
+ 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+ 
+	text-transform: uppercase;
+	font-family: "TT Norms Bold", sans-serif;
+	font-size: 2rem;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+ 
+	background: linear-gradient(to right, $color-blank, #00000033);
+ 
+	cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+ 
+	&:hover {
+	  background: linear-gradient(to right, $color-blank, #00000080);
+	  color: #00000080;
+	  text-shadow: none;
+	}
+ 
+	&::before,
+	&::after {
+	  content: '';
+	  position: absolute;
+	
+	  width: 100%;
+	  height: 2px;
+	
+	  background: linear-gradient(to right, $color-blank, $color-black-high-opacity, $color-white 50%);
+	}
+ 
+	&::before {
+	  top: 0;
+	}
+ 
+	&::after {
+	  bottom: 0;
+	}
+  }
+}

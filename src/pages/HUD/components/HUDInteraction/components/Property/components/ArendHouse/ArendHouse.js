@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import arrow from 'assets/images/creator/arrow.svg';
 
@@ -88,7 +89,7 @@ const ArendHouse = ({currentOption, prevOption, targetPlayerData, houses}) => {
 						name="n_arendHouseSubmit"
 						value="Сдать"
 						onClick={() => {
-							window.alt.emit('client::interaction:arendHouse', houses[currentHouse].id, arendTerm, input.current.value, targetPlayerData.id);
+							EventManager.emitServer('interaction', 'arendHouse', houses[currentHouse].id, arendTerm, input.current.value, targetPlayerData.id);
 						}}
 					/>
 				</div>

@@ -137,20 +137,25 @@
 		}
 	  }
 	  
-	  &_put-on-bag {
-		left: 50%;
-		top: 43%;
+	  &_invite {
+		left: 10%;
+		top: 15%;
 	  }
-
+	  
+	  &_put-on-bag {
+		left: 30%;
+		top: 38%;
+	  }
+	  
 	  
 	  &_tie-hands {
-		top: 30%;
-		left: 20%;
+		left: 70%;
+		top: 38%;
 	  }
 	  
 	  &_rob {
-		top: 30%;
-		left: 80%;
+		left: 90%;
+		top: 15%;
 	  }
 	}
   }

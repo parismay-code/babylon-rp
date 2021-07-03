@@ -9,9 +9,10 @@ import CreatorPlayerClothes    from './components/CreatorPlayerClothes';
 
 import {setRandomOptions} from './utils/setRandomOptions';
 
-import mouse from 'assets/images/creator/mouse.svg';
+import mouse        from 'assets/images/creator/mouse.svg';
 
 import './Creator.scss';
+import EventManager from 'utils/eventManager';
 
 const Creator = ({store}) => {
 	const [optionsPage, setOptionsPage] = React.useState('name');
@@ -25,7 +26,15 @@ const Creator = ({store}) => {
 		notify = React.useRef(null);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::characterCreator:navigation', optionsPage);
+		EventManager.addHandler('creator', 'setData', data => store.fetchData(data));
+		EventManager.addHandler('creator', 'setClothes', data => store.fetchClothes(data));
+		
+		EventManager.stopAddingHandlers('creator');
+		
+		return () => EventManager.removeTargetHandlers('creator');
+	}, [store]);
+	React.useEffect(() => {
+		EventManager.emitClient('characterCreator', 'navigation', optionsPage);
 	}, [optionsPage]);
 	React.useEffect(() => {
 		const timeout = setTimeout(() => screen.current.classList.add('creator_active'), 100);
@@ -40,7 +49,7 @@ const Creator = ({store}) => {
 			if (store.data.name.firstname && store.data.name.lastname) {
 				store.addNotify(1, 'Персонаж успешно создан');
 
-				window.alt.emit('client::characterCreator:create', store.data);
+				EventManager.emitServer('characterCreator', 'create', store.data);
 			} else store.addNotify(0, 'Укажите имя и фамилию персонажа');
 		}, [store.data]),
 		showNotify = React.useCallback(() => {

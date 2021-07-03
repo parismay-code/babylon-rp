@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import HUDMic     from '../../components/HUDMic';
 import HUDMapInfo from '../../components/HUDMapInfo';
@@ -46,15 +47,15 @@ const CrimeHUD = ({defaultStore, crimeStore, player}) => {
 	}, []);
 	
 	React.useEffect(() => {
-		window.alt.on('cef::crimeHud:addKill', () => addKill(kills => kills + 1));
-		window.alt.on('cef::crimeHud:clearKills', () => addKill(0));
-		window.alt.on('cef::crimeHud:showDamage', obj => {
+		EventManager.addHandler('crimeHud', 'addKill', () => addKill(kills => kills + 1));
+		EventManager.addHandler('crimeHud', 'clearKills', () => addKill(0));
+		EventManager.addHandler('crimeHud', 'showDamage', obj => {
 			setDamageData(obj);
 			setDamageNotifyVisible(false);
 			setDamageNotifyVisible(true);
 		});
-		window.alt.on('cef::crimeHud:showTeams', bool => setTeamsVisible(bool));
-		window.alt.on('cef::crimeHud:showKill', obj => {
+		EventManager.addHandler('crimeHud', 'showTeams', bool => setTeamsVisible(bool));
+		EventManager.addHandler('crimeHud', 'showKill', obj => {
 			setKillData(obj);
 			setKillNotifyVisible(false);
 			setKillNotifyVisible(true);

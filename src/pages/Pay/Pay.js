@@ -1,6 +1,7 @@
-import * as React from 'react';
-import cn         from 'classnames';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import cn           from 'classnames';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import BankCard from 'components/BankCard';
 
@@ -51,7 +52,7 @@ const Pay = ({player, payPrice}) => {
 				setTimeout(() => {
 					setType(null);
 					setTimeout(() => {
-						window.alt.emit('client::pay:type', type, payPrice);
+						EventManager.emitServer('pay', 'type', type, payPrice);
 					}, type === 'bank' ? 500 : 0);
 				}, type === 'bank' ? 3000 : 2000);
 			}, type === 'bank' ? 850 : 0);

@@ -22,13 +22,8 @@ import './HUDMain.scss';
 const HUDMain = ({
 	store,
 	player,
-	setTargetPlayerData,
-	targetPlayerData,
 	inventoryStore,
-	currentJob,
 }) => {
-	const [isInventoryOpened, setInventoryOpened] = React.useState(false);
-	
 	const screen = React.useRef(null);
 	
 	React.useEffect(() => {
@@ -38,10 +33,6 @@ const HUDMain = ({
 	}, []);
 	
 	React.useEffect(() => {
-		window.alt.emit('client::hud:ready');
-		
-		window.alt.on('cef::inventory:show', bool => setInventoryOpened(bool));
-		
 		const handleTabKey = (e) => {
 			if (e.keyCode === 9) {
 				e.preventDefault();
@@ -54,7 +45,7 @@ const HUDMain = ({
 			}
 		};
 		
-		document.getElementsByClassName('hud-main')[0].addEventListener('keydown', e => handleTabKey(e));
+		screen.current.addEventListener('keydown', e => handleTabKey(e));
 	}, []);
 	
 	return <div ref={screen} className="hud-main">
@@ -67,18 +58,13 @@ const HUDMain = ({
 		</>}
 		<>
 			<HUDLevelUp/>
-			{player.playerState.dead.isDead &&
-			<HUDDead player={player}/>}
+			{player.playerState.dead.isDead && <HUDDead player={player}/>}
 			<HUDNotify/>
 			<HUDFriendship/>
-			<HUDAlerts store={store} currentJob={currentJob}/>
+			<HUDAlerts player={player} store={store}/>
 		</>
 		{!player.playerState.dead.isDead && <>
-			<HUDInteraction
-				setTargetPlayerData={setTargetPlayerData}
-				targetPlayerData={targetPlayerData}
-				player={player}
-			/>
+			<HUDInteraction player={player}/>
 			{player.playerState.effects.isHealing && <div className="hud-main__heal"/>}
 			<div
 				className={cn('hud-main-green-zone', player.playerState.isInGreenZone ? 'hud-main-green-zone_active' : null)}>
@@ -86,7 +72,7 @@ const HUDMain = ({
 				<div className="hud-main-green-zone__title">GreenZone</div>
 			</div>
 		</>}
-		{isInventoryOpened && <Inventory store={inventoryStore}/>}
+		{inventoryStore.isVisible && <Inventory store={inventoryStore}/>}
 	</div>;
 };
 

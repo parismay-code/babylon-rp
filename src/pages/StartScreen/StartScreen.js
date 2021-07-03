@@ -1,6 +1,7 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import play from 'assets/images/startScreen/play.svg';
 
@@ -8,7 +9,15 @@ import {regExp} from 'utils/regExp';
 
 import './StartScreen.scss';
 
-const StartScreen = ({news, player, updates, weeklyBonus}) => {
+const StartScreen = ({player}) => {
+	const [news, setNews] = React.useState(''),
+		[updates, setUpdates] = React.useState({
+			url: '',
+			text: '',
+			date: '',
+		}),
+		[weeklyBonus, setWeeklyBonus] = React.useState(0);
+	
 	const _weeklyBonus = React.useMemo(() =>
 		`$ ${String(weeklyBonus).replace(regExp.money, '$1 ')}`, [weeklyBonus]);
 	
@@ -32,21 +41,18 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 			else if (lastSymbol === 1) return 'день';
 			else if (lastSymbol > 1 && lastSymbol < 5) return 'дня';
 			else return 'дней';
-		}
-		else if (type === 'score') {
+		} else if (type === 'score') {
 			if (lastTwoSymbols > 10 && lastTwoSymbols < 15) return 'babycoins';
 			else if (lastSymbol === 1) return 'babycoin';
 			else if (lastSymbol > 1 && lastSymbol < 5) return 'babycoins';
 			else return 'babycoins';
-		}
-		else if (type === 'hours') {
+		} else if (type === 'hours') {
 			if (isMinutes) {
 				if (lastTwoSymbols > 10 && lastTwoSymbols < 15) return 'минут';
 				else if (lastSymbol === 1) return 'минута';
 				else if (lastSymbol > 1 && lastSymbol < 5) return 'минуты';
 				else return 'минут';
-			}
-			else {
+			} else {
 				if (lastTwoSymbols > 10 && lastTwoSymbols < 15) return 'часов';
 				else if (lastSymbol === 1) return 'час';
 				else if (lastSymbol > 1 && lastSymbol < 5) return 'часа';
@@ -54,6 +60,16 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 			}
 			
 		}
+	}, []);
+	
+	React.useEffect(() => {
+		EventManager.addHandler('startScreen', 'setNews', json => setNews(json));
+		EventManager.addHandler('startScreen', 'setUpdates', obj => setUpdates(obj));
+		EventManager.addHandler('startScreen', 'setWeeklyBonus', value => setWeeklyBonus(value));
+		
+		EventManager.stopAddingHandlers('startScreen');
+		
+		return () => EventManager.removeTargetHandlers('startScreen');
 	}, []);
 	
 	return <div className={cn('start-screen', player.playerState.prime.status ? 'start-screen_prime' : null)}>
@@ -93,7 +109,7 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 				<div
 					className="start-screen-bonuses-daily__withdraw"
 					onClick={() => {
-						window.alt.emit('client::startScreen:withdrawDailyBonus');
+						EventManager.emitServer('startScreen', 'withdrawDailyBonus');
 					}}
 				>
 					Забрать ежедневный бонус
@@ -113,13 +129,15 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 				</div>
 				{!player.playerState.prime.status ? <div
 						className="start-screen-stats-prime__buy"
-						onClick={() => window.alt.emit('client::startScreen:buyPrime')}
+						onClick={() => EventManager.emitServer('startScreen', 'buyPrime')}
 					>
 						Купить PRIME
 					</div> :
 					<div className="start-screen-stats-prime-info">
 						<div className="start-screen-stats-prime-info__value">{player.playerState.prime.days}</div>
-						<div className="start-screen-stats-prime-info__title">{validDays(player.playerState.prime.days, 'days')} Prime</div>
+						<div
+							className="start-screen-stats-prime-info__title">{validDays(player.playerState.prime.days, 'days')} Prime
+						</div>
 					</div>}
 			</div>
 			<div className="start-screen-stats-element">
@@ -138,14 +156,16 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 					{player.playerState.timePlayed > 60 ?
 						(player.playerState.timePlayed / 60).toFixed() : player.playerState.timePlayed}
 				</div>
-				<div className="start-screen-stats-element__title">{validDays(player.playerState.timePlayed, 'hours')} отыграно</div>
+				<div
+					className="start-screen-stats-element__title">{validDays(player.playerState.timePlayed, 'hours')} отыграно
+				</div>
 			</div>
 		</div>
 		<div className="start-screen-media">
 			<div className="start-screen-media-news">
 				<div className="start-screen-media-news__title">Новости</div>
 				<div className="start-screen-media-news__img"/>
-				<div className="start-screen-media-news__text">{JSON.parse(news)}</div>
+				<div className="start-screen-media-news__text">{news && JSON.parse(news)}</div>
 			</div>
 			<div className="start-screen-media-update">
 				<div className="start-screen-media-update-header">
@@ -160,7 +180,7 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 					</a>
 				</div>
 				<div className="start-screen-media-update__img"/>
-				<div className="start-screen-media-update__text">{JSON.parse(updates.text)}</div>
+				<div className="start-screen-media-update__text">{updates.text && JSON.parse(updates.text)}</div>
 			</div>
 		</div>
 		<div className="start-screen-quests">
@@ -184,7 +204,7 @@ const StartScreen = ({news, player, updates, weeklyBonus}) => {
 				</div>
 				<div
 					className="start-screen-quests-bottom__play"
-					onClick={() => window.alt.emit('client::startScreen:play')}
+					onClick={() => EventManager.emitServer('startScreen', 'play')}
 				>
 					Играть
 				</div>

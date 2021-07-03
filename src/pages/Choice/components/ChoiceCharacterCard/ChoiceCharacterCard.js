@@ -1,5 +1,6 @@
-import * as React from 'react';
-import cn         from 'classnames';
+import * as React   from 'react';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import {regExp} from 'utils/regExp';
 
@@ -50,7 +51,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteChar
 			return (
 				<div className={cn('choice-character-card', currentCard === id && 'card-active')}
 				     onClick={() => {
-					     window.alt.emit('client::characterChoice:create');
+					     EventManager.emitClient('characterChoice', 'create');
 				     }}
 				>
 					<div className="choice-character-card-blank">
@@ -77,7 +78,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteChar
 					className="choice-character-card"
 					onClick={() => {
 						setCurrentCard(id);
-						window.alt.emit('client::characterChoice:setPreview', id);
+						EventManager.emitClient('characterChoice', 'setPreview', id);
 					}}
 				>
 					<div className="choice-character-card-header">
@@ -148,7 +149,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteChar
 							style={el.level >= 5 ? {display: 'flex'} : {display: 'none'}}
 							onClick={() => {
 								setDeleteCharId(id);
-								window.alt.emit('client::choice:deleteCharScreenActive', true, id);
+								EventManager.emitClient('choice', 'deleteCharScreenActive', true, id);
 							}}
 						>
 							<div className="choice-character-card-delete-char__bg"/>
@@ -172,7 +173,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteChar
 						</div>
 					</div>
 					<div className="choice-character-card-button" onClick={() => {
-						window.alt.emit('client::characterChoice:chooseCharacter', id);
+						EventManager.emitServer('characterChoice', 'chooseCharacter', id);
 					}}>
 						<div className="choice-character-card-button__nickname">
                             <span className="choice-character-card-button__nickname-firstname">
@@ -192,7 +193,7 @@ const ChoiceCharacterCard = ({el, id, currentCard, setCurrentCard, setDeleteChar
 					className="choice-character-card"
 					onClick={() => {
 						setCurrentCard(id);
-						window.alt.emit('client::characterChoice:setPreview', id);
+						EventManager.emitClient('client::characterChoice:setPreview', id);
 					}}
 				>
 					<div className="choice-character-card-header">

@@ -142,8 +142,7 @@
 		top: 15%;
 	  }
 	  
-	  &_control,
-	  &_get-docs {
+	  &_control {
 		left: 25%;
 		top: 34%;
 	  }
@@ -153,8 +152,7 @@
 		top: 43%;
 	  }
 	  
-	  &_cuff,
-	  &_jail {
+	  &_cuff {
 		left: 75%;
 		top: 34%;
 	  }
@@ -162,6 +160,21 @@
 	  &_takeOffMask {
 		left: 90%;
 		top: 15%;
+	  }
+	  
+	  &_jail {
+		top: 30%;
+		left: 80%;
+	  }
+	  
+	  &_get-docs {
+		left: 50%;
+		top: 43%;
+	  }
+	  
+	  &_invite {
+		top: 30%;
+		left: 20%;
 	  }
 	}
   }

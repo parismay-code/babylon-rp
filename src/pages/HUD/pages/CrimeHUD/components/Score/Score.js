@@ -1,5 +1,6 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import './Score.scss';
 
@@ -37,7 +38,7 @@ const Score = ({store}) => {
 			if (time <= 0) {
 				clearInterval(interval);
 				
-				window.alt.emit('client::capture:end');
+				EventManager.emitServer('capture', 'end');
 			} else setTimer(`${Math.trunc(minutes)}:${Math.trunc(seconds)}`);
 			
 			time -= 1;
@@ -55,9 +56,10 @@ const Score = ({store}) => {
 						className="crime-hud-score-attack-players__element"
 						style={el.isDead ? {backgroundColor: '#000000', opacity: .7} :
 							{backgroundColor: attackColor}}
-					/>
+					/>,
 				)}
-				<div className='crime-hud-score-attack-players__count'>{store.teams.attack.players.filter(el => !el.isDead).length}</div>
+				<div
+					className="crime-hud-score-attack-players__count">{store.teams.attack.players.filter(el => !el.isDead).length}</div>
 			</div>
 		</div>
 		<div className="crime-hud-score-timer">
@@ -72,9 +74,10 @@ const Score = ({store}) => {
 						className="crime-hud-score-defence-players__element"
 						style={el.isDead ? {backgroundColor: '#000000', opacity: .7} :
 							{backgroundColor: defenceColor}}
-					/>
+					/>,
 				)}
-				<div className='crime-hud-score-defence-players__count'>{store.teams.defence.players.filter(el => !el.isDead).length}</div>
+				<div
+					className="crime-hud-score-defence-players__count">{store.teams.defence.players.filter(el => !el.isDead).length}</div>
 			</div>
 		</div>
 	</div>;

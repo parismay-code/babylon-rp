@@ -1,6 +1,7 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import arrow from 'assets/images/inventory/arrow.svg';
 
@@ -18,7 +19,7 @@ const Backpack = ({
 	handlePutOff,
 	handleDrop,
 	handleTrade,
-	setMiddleComponent
+	setMiddleComponent,
 }) => {
 	const backpackQuality = React.useMemo(() => {
 		switch (store.clothes[7].quality) {
@@ -208,7 +209,7 @@ const Backpack = ({
 						const item = currentItem.component === 'fastSlots' ? store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
 							currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
 						
-						window.alt.emit('client::inventory:useItem', item);
+						EventManager.emitServer('inventory', 'useItem', item);
 					}}
 				>Использовать</div>}
 				{currentItem.options?.indexOf('putOn') >= 0 &&

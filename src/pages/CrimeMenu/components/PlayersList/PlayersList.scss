@@ -23,9 +23,18 @@
 		}
 		
 		&_nickname,
-		&_rank-name,
-		&_online {
+		&_rank-name {
 		  width: 230px;
+		}
+		
+		&_online {
+		  width: 115px;
+		}
+		
+		&_capt {
+		  width: 50px;
+		  margin-right: 65px;
+		  text-align: center;
 		}
 	  }
 	}
@@ -84,9 +93,12 @@
 		}
 	 
 		&__nickname,
-		&__rank-name,
-		&-online {
+		&__rank-name {
 		  width: 230px;
+		}
+	 
+		&-online {
+		  width: 115px;
 		  
 		  &__status {
 			width: 10px;
@@ -100,6 +112,25 @@
 		  &__date {
 			color: #000000;
 			opacity: .5;
+		  }
+		}
+		
+		&__capt {
+		  width: 50px;
+		  margin-right: 65px;
+		  padding-right: 10px;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  
+		  opacity: .5;
+		  
+		  transition: opacity .2s;
+		  
+		  cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+		  
+		  &:hover {
+			opacity: 1;
 		  }
 		}
 		

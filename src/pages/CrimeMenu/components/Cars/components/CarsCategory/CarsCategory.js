@@ -1,6 +1,7 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import arrow from 'assets/images/crimeMenu/arrow.svg';
 
@@ -31,7 +32,7 @@ const CarsCategory = ({store, el, id}) => {
 					onClick={() => {
 						el.status = !el.status;
 						
-						window.alt.emit('client::crimeMenu:changeRank', rank, store.ranks[rank - 1]);
+						EventManager.emitServer('crimeMenu', 'changeRank', rank, store.ranks[rank - 1]);
 					}}
 				>
 					<div

@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React   from 'react';
+import EventManager from 'utils/eventManager';
 
 import {regExp} from 'utils/regExp';
 
@@ -132,7 +133,7 @@ const GiveKey = ({currentOption, prevOption, targetPlayerData, transport}) => {
 			</div>
 			<div
 				className="hud-interactions-actions-give-car-key-content__submit"
-				onClick={() => window.alt.emit('client::interaction:giveCarKey', transport[currentCar]?.name)}
+				onClick={() => EventManager.emitServer('interaction', 'giveCarKey', transport[currentCar]?.name)}
 			>Передать ключи
 			</div>
 			<div className="hud-interactions-actions-give-car-key-content-info">
