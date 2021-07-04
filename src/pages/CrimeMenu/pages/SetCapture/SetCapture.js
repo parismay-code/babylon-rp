@@ -23,6 +23,11 @@ import './SetCapture.scss';
 const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 	const [currentFraction, setFraction] = React.useState(null);
 	
+	React.useEffect(() => {
+		store.capture.defence = currentFraction;
+		store.capture.attack = store.fractionName;
+	}, [currentFraction, store.capture, store.fractionName]);
+	
 	const _hours = React.useMemo(() => {
 			if (String(store.capture.time.hours).length < 2) return `0${store.capture.time.hours}`;
 			else return store.capture.time.hours;

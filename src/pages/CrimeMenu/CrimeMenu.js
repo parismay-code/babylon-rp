@@ -1,7 +1,6 @@
-import * as React      from 'react';
-import {observer}      from 'mobx-react-lite';
-
-import EventManager    from 'utils/eventManager';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import News              from './components/News';
 import GhettoTerritories from './components/GhettoTerritories';
@@ -97,6 +96,7 @@ const CrimeMenu = ({store}) => {
 		EventManager.addHandler('crimeMenu', 'addStoreLog', obj => store.addStoreLogs(obj));
 		EventManager.addHandler('crimeMenu', 'setFractionsFreeze', obj => store.setFractionsFreeze(obj));
 		EventManager.addHandler('crimeMenu', 'setFractionsCaptureStatus', obj => store.setFractionsCaptureStatus(obj));
+		EventManager.addHandler('crimeMenu', 'setCapture', obj => store.fetchCapture(obj));
 		
 		EventManager.stopAddingHandlers('crimeMenu');
 		
@@ -209,7 +209,7 @@ const CrimeMenu = ({store}) => {
 			{currentPage === 'setCapture' &&
 			<SetCapture store={store} setPage={setPage} fractionIcon={fractionIcon} fractionColor={fractionColor}/>}
 			{currentPage === 'getCapture' &&
-			<GetCapture store={store}/>}
+			<GetCapture store={store} setPage={setPage} fractionColor={fractionColor}/>}
 			{currentPage === 'changeCaptureList' &&
 			<ChangeCaptureList store={store} setPage={setPage} fractionColor={fractionColor}/>}
 			<div ref={notify} className="crime-menu-content-notify"/>

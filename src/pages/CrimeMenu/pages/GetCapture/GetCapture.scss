@@ -103,143 +103,30 @@
 	}
   }
   
-  &-fractions {
-	display: flex;
-	margin: 0 40px;
+  &-attack {
+	margin-right: 40px;
 	height: 100%;
-	width: 25%;
+	width: 120px;
 	
 	&-element {
 	  position: relative;
-	  
-	  width: 33.3%;
+	  width: 100%;
 	  height: 100%;
-	  
-	  background: linear-gradient(to top, $color-blank, #99979F33 15%, #CBCACE33 55%, $color-blank);
 	  
 	  display: flex;
 	  flex-direction: column;
 	  align-items: center;
 	  
-	  cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
-	  
-	  &:nth-of-type(2) {
-		&::after,
-		&::before {
-		  content: '';
-		  position: absolute;
-		  
-		  height: 100%;
-		  width: 2px;
-		  
-		  background: linear-gradient(to bottom, $color-blank, $color-white, $color-blank);
-		}
-		
-		&::after {
-		  left: 0;
-		}
-		
-		&::before {
-		  right: 0;
-		}
-	  }
-	  
-	  
-	  &_active_marabunta &-content {
-		background: linear-gradient(to top, $color-blank, #30CDFE);
-	  }
-	  &_active_vagos &-content {
-		background: linear-gradient(to top, $color-blank, #FEEF30);
-	  }
-	  &_active_families &-content {
-		background: linear-gradient(to top, $color-blank, #30FE3E);
-	  }
-	  &_active_ballas &-content {
-		background: linear-gradient(to top, $color-blank, #8B00FF);
-	  }
-	  
-	  &_active &-attack {
-		height: 50%;
-		padding-bottom: 20px;
-	  }
-	  
-	  &_active &-content {
-		height: 50%;
-		
-		&__icon {
-		  top: 55%;
-		}
-	  }
-	  
-	  &-attack {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding-bottom: 0;
-		
-		display: flex;
-		align-items: flex-end;
-		justify-content: center;
-		
-		overflow: hidden;
-		
-		transition: height .5s ease, padding-bottom .2s ease;
-		
-		&__bottom {
-		  position: absolute;
-		  bottom: 0;
-		  
-		  width: 100%;
-		  height: 2px;
-		  background-color: $color-white;
-		}
-		
-		&__icon {
-		  width: 40%;
-		}
-	  }
-	  
 	  &-content {
 		width: 100%;
 		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		
-		transition: height .5s ease;
 		
 		&__icon {
-		  width: 50%;
+		  width: 80%;
 		  position: absolute;
-		  top: 50%;
-		  transform: translateY(-50%);
-		  
-		  transition: top .5s ease;
-		}
-		
-		&-freeze {
-		  position: absolute;
-		  bottom: 15%;
-		  
-		  width: 100%;
-		  display: flex;
-		  flex-direction: column;
-		  align-items: center;
-		  
-		  color: #00000080;
-		  font-size: 1.5rem;
-		  
-		  &__icon {
-			width: 20%;
-			margin-bottom: 10px;
-		  }
-		}
-		
-		&__captured {
-		  position: absolute;
-		  bottom: 15%;
-		  
-		  width: 25%;
+		  bottom: 40px;
+		  left: 50%;
+		  transform: translateX(-50%);
 		}
 	  }
 	}
@@ -247,149 +134,190 @@
   
   &-conditions {
 	width: 630px;
-	padding-top: 75px;
+	padding-top: 40px;
 	
 	text-shadow: 0 2px 2px $color-black;
 	
 	&__title {
 	  font-family: "Baron Neue", sans-serif;
 	  text-transform: uppercase;
-	  font-size: 1.5rem;
+	  font-size: 2rem;
 	  
-	  margin-bottom: 60px;
+	  margin-bottom: 40px;
+	}
+	
+	&-description {
+	  margin-bottom: 40px;
+	  
+	  font-size: 1.1rem;
+	  
+	  &__title {
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		font-size: 1.5rem;
+	  }
 	}
 	
 	&-time {
-	  margin-bottom: 70px;
+	  margin-bottom: 40px;
+	  display: flex;
+	  align-items: flex-start;
+	  justify-content: space-between;
 	  
-	  &__title {
-		text-transform: uppercase;
-		font-size: .8rem;
-	  }
-	  
-	  &-content {
-		display: flex;
-		align-items: center;
-		
-		font-size: 3.5rem;
-		font-family: "TT Norms Light", sans-serif;
-		
-		& span {
-		  margin: 0 5px;
+	  &-main {
+		&__title {
+		  text-transform: uppercase;
+		  font-size: 1.5rem;
 		}
 		
-		&-hours,
-		&-minutes {
+		&-content {
 		  display: flex;
-		  flex-direction: column;
 		  align-items: center;
-		  padding: 20px 10px;
-		  width: 80px;
 		  
-		  background: linear-gradient(to bottom, $color-blank, #00000033, $color-blank);
+		  font-size: 3.5rem;
+		  font-family: "TT Norms Light", sans-serif;
 		  
-		  &__value {
-			margin: 5px 0;
+		  & span {
+			margin: 0 5px;
 		  }
 		  
-		  &__arrow-next,
-		  &__arrow-prev {
-			width: 50%;
+		  &-hours,
+		  &-minutes {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px 10px;
+			width: 80px;
 			
-			cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+			background: linear-gradient(to bottom, $color-blank, #00000033, $color-blank);
 			
-			transition: opacity .2s;
+			&__value {
+			  margin: 5px 0;
+			}
 			
-			&:hover {
-			  opacity: .5;
+			&__arrow-next,
+			&__arrow-prev {
+			  width: 50%;
+			  
+			  cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+			  
+			  transition: opacity .2s;
+			  
+			  &:hover {
+				opacity: .5;
+			  }
+			}
+			
+			&__arrow-prev {
+			  transform: scaleY(-1);
 			}
 		  }
-		  
-		  &__arrow-prev {
-			transform: scaleY(-1);
-		  }
 		}
 	  }
-	}
-	
-	&-items,
-	&-guns {
-	  width: 100%;
-	  height: 130px;
-	  margin-bottom: 60px;
 	  
-	  &__title {
-		margin-bottom: 10px;
-		text-transform: uppercase;
-		font-size: .8rem;
-	  }
-	  
-	  &-content {
-		width: 100%;
-		height: 100%;
+	  &-move {
+		width: 50%;
+		padding-right: 5%;
 		
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
+		&__title {
+		  margin-bottom: 15px;
+		  
+		  font-size: 1.5rem;
+		  text-transform: uppercase;
+		}
 		
-		&-element {
+		&__description {
+		  margin-bottom: 10px;
+		  font-size: 1.1rem;
+		}
+		
+		&-options {
 		  display: flex;
 		  align-items: center;
-		  width: 50%;
-		  height: 45px;
-		  margin-bottom: 10px;
-		  padding-left: 10px;
+		  justify-content: space-between;
 		  
-		  color: #00000080;
-		  text-shadow: none;
-		  
-		  background: linear-gradient(to right, #00000066, $color-blank);
-		  
-		  &_active {
-			background: linear-gradient(to right, #ffffff66, $color-blank);
-			text-shadow: 0 2px 2px $color-black;
-			color: $color-white;
-		  }
-		  
-		  &_active &-status__fill {
-			opacity: 1;
-		  }
-		  
-		  &_active &__icon {
-			filter: drop-shadow(0 2px 2px $color-black);
-		  }
-		  
-		  &-status {
-			width: 20px;
-			height: 20px;
-			margin-right: 15px;
+		  &__element {
+			width: 33%;
+			padding: 10px;
 			
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			
-			background-color: #00000033;
+			background: linear-gradient(to right, #00000066, $color-blank);
 			
-			&__fill {
-			  width: 10px;
-			  height: 10px;
-			  background-color: #ffffff;
-			  
-			  opacity: 0;
+			cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+			
+			text-transform: uppercase;
+			
+			&_active {
+			  background: linear-gradient(to right, #8C899280, #FFFFFF80);
+			  color: #000000;
+			  text-shadow: none;
 			}
 		  }
+		}
+	  }
+	}
+	
+	&-access {
+	  display: flex;
+	  align-items: flex-end;
+	  justify-content: space-between;
+	  margin-bottom: 50px;
+	  
+	  &-items,
+	  &-guns {
+		width: 50%;
+		
+		&__title {
+		  font-size: 1.5rem;
+		  margin-bottom: 15px;
+		  text-transform: uppercase;
+		}
+		
+		&-content {
+		  width: 100%;
+		  height: 100%;
 		  
-		  &__icon {
-			max-height: 100%;
-			width: 10%;
-			margin-right: 20px;
+		  display: flex;
+		  flex-direction: column;
+		  
+		  &-element {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 45px;
+			margin-bottom: 10px;
+			padding-left: 20px;
 			
-			filter: brightness(.11);
-		  }
-		  
-		  &__title {
-			text-transform: uppercase;
-			word-spacing: 5px;
+			color: #00000080;
+			text-shadow: none;
+			
+			background: linear-gradient(to right, #00000066, $color-blank);
+			
+			&_active {
+			  background: linear-gradient(to right, #ffffff66, $color-blank);
+			  text-shadow: 0 2px 2px $color-black;
+			  color: $color-white;
+			}
+			
+			&_active &__icon {
+			  filter: drop-shadow(0 2px 2px $color-black);
+			}
+			
+			&__icon {
+			  max-height: 80%;
+			  width: 15%;
+			  margin-right: 20px;
+			  
+			  filter: brightness(.11);
+			}
+			
+			&__title {
+			  text-transform: uppercase;
+			  word-spacing: 5px;
+			}
 		  }
 		}
 	  }
@@ -398,63 +326,11 @@
 	&-players {
 	  width: 100%;
 	  
-	  &-input {
-		display: flex;
-		align-items: center;
-		margin-bottom: 10px;
+	  &__title {
+		margin-bottom: 20px;
 		
-		&__title {
-		  width: 30%;
-		  
-		  text-transform: uppercase;
-		  font-size: .8rem;
-		}
-		
-		&-range {
-		  width: 70%;
-		  display: flex;
-		  align-items: center;
-		  justify-content: space-between;
-		  
-		  &__prev {
-			transform: scaleX(-1);
-		  }
-		  
-		  &__prev,
-		  &__next {
-			height: 30px;
-			cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
-			transition: opacity .2s;
-			
-			&:hover {
-			  opacity: .5;
-			}
-		  }
-		  
-		  & input {
-			width: 85%;
-			
-			appearance: none;
-			-webkit-appearance: none;
-			
-			height: 3px;
-			
-			background-color: #00000080;
-			
-			&::-webkit-slider-thumb {
-			  width: 20px;
-			  height: 20px;
-			  
-			  border-radius: 20px;
-			  
-			  background-color: #2C2727;
-			  filter: drop-shadow(0 2px 2px $color-black);
-			  
-			  appearance: none;
-			  -webkit-appearance: none;
-			}
-		  }
-		}
+		text-transform: uppercase;
+		font-size: 1.5rem;
 	  }
 	  
 	  &-list {
@@ -506,6 +382,53 @@
 			}
 		  }
 		}
+	  }
+	}
+  }
+  
+  &-change {
+	position: absolute;
+	left: 55%;
+	bottom: 5%;
+	transform: translateX(-50%);
+	
+	display: flex;
+	
+	cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+	
+	&::before {
+	  content: '';
+	  position: absolute;
+	  top: 40%;
+	  left: 25%;
+	  transform: translateY(-50%);
+	  
+	  width: 150px;
+	  height: 20px;
+	  
+	  background: linear-gradient(to right, #FFFFFF66, $color-blank);
+	}
+	
+	&__value {
+	  font-size: 2rem;
+	}
+	
+	&__icon {
+	  width: 50px;
+	  transform: translateY(-30%);
+	}
+	
+	&-main {
+	  &__title {
+		margin-bottom: 10px;
+		
+		text-transform: uppercase;
+		font-family: "Baron Neue", sans-serif;
+		font-size: 1.5rem;
+	  }
+	  
+	  &__edit {
+		font-size: 1.1rem;
 	  }
 	}
   }

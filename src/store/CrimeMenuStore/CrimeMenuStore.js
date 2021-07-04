@@ -50,6 +50,7 @@ export default class CrimeMenuStore {
 			changeTerritory: action.bound,
 			setFractionsFreeze: action.bound,
 			setFractionsCaptureStatus: action.bound,
+			fetchCapture: action.bound,
 			addNotify: action.bound,
 		});
 	}
@@ -67,27 +68,29 @@ export default class CrimeMenuStore {
 		families: null,
 		ballas: null,
 		vagos: null,
-		mara: null,
+		mara: 'defence',
 	};
 	capture = {
-		defence: 'Vagos',
+		attack: 'Vagos',
+		defence: 'Marabunta',
 		count: 10,
 		time: {
 			hours: 14,
 			minutes: 0,
+			move: 0,
 		},
 		access: {
 			items: {
-				medkit: false,
-				armour: false,
-				drug: false,
+				medkit: true,
+				armour: true,
+				drug: true,
 				animation: false,
 			},
 			guns: {
-				pistol: false,
+				pistol: true,
 				smg: false,
 				assault: false,
-				shotgun: false
+				shotgun: false,
 			},
 		},
 		players: [],
@@ -141,7 +144,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 6,
@@ -151,7 +154,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 5,
@@ -161,7 +164,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 11,
@@ -171,7 +174,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: false,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 12,
@@ -181,7 +184,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 23,
@@ -191,7 +194,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 13,
@@ -201,7 +204,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 26,
@@ -211,7 +214,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: false,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 	];
 	filteredPlayersList = [
@@ -223,7 +226,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 6,
@@ -233,7 +236,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 5,
@@ -243,7 +246,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 11,
@@ -253,7 +256,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: false,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 12,
@@ -263,7 +266,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 23,
@@ -273,7 +276,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 13,
@@ -283,7 +286,7 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: true,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 		{
 			id: 26,
@@ -293,30 +296,30 @@ export default class CrimeMenuStore {
 			joinDate: '29.06.21',
 			isCapture: false,
 			punishment: [],
-			onlineLogs: []
+			onlineLogs: [],
 		},
 	];
 	ranks = [
 		{
 			access: [],
 			name: 'Первый',
-			cars: []
+			cars: [],
 		},
 		{
 			access: [],
 			name: 'Второй',
-			cars: []
+			cars: [],
 		},
 		{
 			access: [],
 			name: 'Третий',
-			cars: []
+			cars: [],
 		},
 		{
 			access: [],
 			name: 'Четвертый',
-			cars: []
-		}
+			cars: [],
+		},
 	];
 	awardLogs = [];
 	reprimandLogs = [];
@@ -480,6 +483,9 @@ export default class CrimeMenuStore {
 	}
 	changeTerritory(id, gang) {
 		this.allTerritories[id] = gang;
+	}
+	fetchCapture(obj) {
+		this.capture = obj;
 	}
 	setFractionsFreeze(obj) {
 		this.fractionsFreeze = obj;

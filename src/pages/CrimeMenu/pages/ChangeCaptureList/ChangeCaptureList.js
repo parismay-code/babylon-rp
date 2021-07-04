@@ -1,25 +1,34 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
-import players     from 'assets/images/crimeMenu/players.svg';
-import add         from 'assets/images/crimeMenu/add.svg';
-import remove      from 'assets/images/crimeMenu/remove.svg';
-import killedScull from 'assets/images/crimeMenu/killedScull.svg';
-import scull       from 'assets/images/crimeMenu/scull.svg';
-import firstPlaceIcon       from 'assets/images/crimeMenu/firstPlaceIcon.svg';
-import secondPlaceIcon       from 'assets/images/crimeMenu/secondPlaceIcon.svg';
-import thirdPlaceIcon       from 'assets/images/crimeMenu/thirdPlaceIcon.svg';
+import players         from 'assets/images/crimeMenu/players.svg';
+import add             from 'assets/images/crimeMenu/add.svg';
+import remove          from 'assets/images/crimeMenu/remove.svg';
+import killedScull     from 'assets/images/crimeMenu/killedScull.svg';
+import scull           from 'assets/images/crimeMenu/scull.svg';
+import firstPlaceIcon  from 'assets/images/crimeMenu/firstPlaceIcon.svg';
+import secondPlaceIcon from 'assets/images/crimeMenu/secondPlaceIcon.svg';
+import thirdPlaceIcon  from 'assets/images/crimeMenu/thirdPlaceIcon.svg';
 
 import './ChangeCaptureList.scss';
 
 const ChangeCaptureList = ({store, setPage, fractionColor}) => {
 	const captureList = React.useMemo(() => {
-			console.log(store.players.filter(el => el.isCapture));
 			return store.players.filter(el => el.isCapture);
 		}, [store.players]),
 		firstPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 1)], [store.capture.lastGameBest]),
 		secondPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 2)], [store.capture.lastGameBest]),
-		thirdPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 3)], [store.capture.lastGameBest]);
+		thirdPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 3)], [store.capture.lastGameBest]),
+		fractionCaptureStatus = React.useMemo(() => {
+			switch (store.fractionName) {
+				case 'Marabunta': return store.fractionsCaptureStatus.mara;
+				case 'Families': return store.fractionsCaptureStatus.families;
+				case 'Ballas': return store.fractionsCaptureStatus.ballas;
+				case 'Vagos': return store.fractionsCaptureStatus.vagos;
+				default: return;
+			}
+		}, [store.fractionName, store.fractionsCaptureStatus]);
 	
 	React.useEffect(() => {
 		store.capture.players = [];
@@ -211,7 +220,17 @@ const ChangeCaptureList = ({store, setPage, fractionColor}) => {
 				</div>}
 			</div>
 		</div>
-		<div className="crime-menu-change-capture-list-submit">Готово</div>
+		<div
+			className="crime-menu-change-capture-list-submit"
+			onClick={() => {
+				if (!fractionCaptureStatus) EventManager.emitServer('crimeMenu', 'setCapture', store.capture);
+				else EventManager.emitServer('crimeMenu', 'getCapture', store.capture);
+				
+				setPage('main');
+			}}
+		>
+			Готово
+		</div>
 	</div>;
 };
 
