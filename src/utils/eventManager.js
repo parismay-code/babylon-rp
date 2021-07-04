@@ -74,17 +74,21 @@ const EventManager = {
 		if (typeof (eventTarget) !== 'string' || typeof (eventName) !== 'string') {
 			throw new Error('event address must be string');
 		}
-		window.alt.emit(`server::${eventTarget}:${eventName}`, ...args);
+		const event = `server::${eventTarget}:${eventName}`;
 		
-		if (isDev) console.log(`emitted:\nserver::${eventTarget}:${eventName}\n`, ...args);
+		window.alt.emit('client::eventManager', event, ...args);
+		
+		if (isDev) console.log(`emitted:\n${event}\n`, ...args);
 	},
 	emitClient: (eventTarget, eventName, ...args) => {
 		if (typeof (eventTarget) !== 'string' || typeof (eventName) !== 'string') {
 			throw new Error('event address must be string');
 		}
-		window.alt.emit(`client::${eventTarget}:${eventName}`, ...args);
+		const event = `client::${eventTarget}:${eventName}`;
 		
-		if (isDev) console.log(`emitted:\nclient::${eventTarget}:${eventName}\n`, ...args);
+		window.alt.emit('client::eventManager', event, ...args);
+		
+		if (isDev) console.log(`emitted:\n${event}\n`, ...args);
 	},
 };
 

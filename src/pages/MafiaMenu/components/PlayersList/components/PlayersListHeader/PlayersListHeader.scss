@@ -1,0 +1,79 @@
+@import '../../../../../../styles/vars';
+
+.mafia-menu-players-list-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  &__title {
+	font-family: "Baron Neue", sans-serif;
+	text-transform: uppercase;
+	font-size: 2rem;
+ 
+	margin-right: 15px;
+	transform: translateY(-4px);
+  }
+  
+  &-online {
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+	
+	&__value {
+	  font-family: "TT Norms Bold", sans-serif;
+	  font-size: 1.8rem;
+	  
+	  margin-right: 10px;
+	}
+	
+	&__title {
+	  color: $color-green;
+	}
+  }
+  
+  &-search {
+	display: flex;
+	align-items: center;
+ 
+	height: 35px;
+	
+	&__field {
+	  width: 270px;
+	  height: 100%;
+	  padding: 0 20px;
+	  
+	  display: flex;
+	  align-items: center;
+	  justify-content: flex-start;
+	  
+	  background: linear-gradient(to left, #3232324C, #5A5A5A4C);
+	  
+	  outline: none;
+	  border: none;
+	  
+	  color: $color-white;
+	  font-family: "TT Norms Medium", sans-serif;
+	  font-size: 1rem;
+	  
+	  &::placeholder {
+		color: $color-white;
+		opacity: .5;
+	  }
+	}
+	
+	&-submit {
+	  width: 35px;
+	  height: 100%;
+	  
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  
+	  background: linear-gradient(135deg, #adadadFF, #878484FF);
+	  
+	  &__icon {
+		height: 50%;
+	  }
+	}
+  }
+}

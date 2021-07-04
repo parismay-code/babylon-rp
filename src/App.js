@@ -18,6 +18,7 @@ import GasStation    from 'pages/GasStation';
 import Jobs          from 'pages/Jobs';
 import Parking       from 'pages/Parking';
 import CrimeMenu     from 'pages/CrimeMenu';
+import MafiaMenu     from 'pages/MafiaMenu';
 import CarDealer     from 'pages/CarDealer';
 import StartScreen   from 'pages/StartScreen';
 
@@ -35,6 +36,7 @@ import InventoryStore  from 'store/InventoryStore';
 import AuthStore       from 'store/AuthStore';
 import BankStore       from 'store/BankStore';
 import CrimeMenuStore  from 'store/CrimeMenuStore';
+import MafiaMenuStore  from 'store/MafiaMenuStore';
 
 const App = () => {
 	const bankStore = useLocalStore(() => new BankStore()),
@@ -44,6 +46,7 @@ const App = () => {
 		hudStore = useLocalStore(() => new HUDStore()),
 		crimeHudStore = useLocalStore(() => new CrimeHUDStore()),
 		crimeMenuStore = useLocalStore(() => new CrimeMenuStore()),
+		mafiaMenuStore = useLocalStore(() => new MafiaMenuStore()),
 		battlePassStore = useLocalStore(() => new BattlePassStore()),
 		playerStore = useLocalStore(() => new PlayerStore()),
 		shopsStore = useLocalStore(() => new ShopsStore()),
@@ -227,6 +230,7 @@ const App = () => {
 		{component === 'jobs' && <Jobs store={jobsStore} player={playerStore} jobParams={jobParams}/>}
 		{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}
 		{component === 'crimeMenu' && <CrimeMenu store={crimeMenuStore}/>}
+		{component === 'mafiaMenu' && <MafiaMenu store={mafiaMenuStore}/>}
 		{component === 'carDealer' && <CarDealer store={shopsStore}/>}
 		{component === 'startScreen' && <StartScreen player={playerStore}/>}
 	</div>;

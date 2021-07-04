@@ -1,0 +1,240 @@
+@import '../../styles/vars';
+
+.mafia-menu {
+  width: 100vw;
+  height: 100vh;
+  
+  backdrop-filter: blur(5px);
+  
+  background: linear-gradient(to right, #7D7A82, #AAB6EF2B, #7D7A82);
+  
+  font-family: "TT Norms Medium", sans-serif;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+	opacity: 1;
+  }
+  
+  &-header,
+  &-footer {
+	background: linear-gradient(45deg, $color-blank, #99979F66, #FFFFFF66);
+  }
+  
+  &-header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+ 
+	width: 100%;
+	padding: 10px;
+ 
+	font-family: "Baron Neue", sans-serif;
+	text-transform: lowercase;
+	font-size: 2rem;
+	color: #00000080;
+	
+	&__title {
+	  transform: translateY(-4px);
+	}
+	
+	&__top-light {
+	  position: absolute;
+	  top: 0;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  
+	  filter: blur(5px);
+	  
+	  width: 70%;
+	  height: 100%;
+	}
+	
+	&__bottom-line {
+	  position: absolute;
+	  bottom: 0;
+	  
+	  width: 100%;
+	  height: 2px;
+	}
+  }
+  
+  &-footer {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	&__top-line {
+	  position: absolute;
+	  top: 0;
+	  
+	  width: 100%;
+	  height: 2px;
+	}
+	
+	&__icon {
+	  height: 80%;
+	}
+ 
+	&-exit {
+	  position: absolute;
+	  top: 50%;
+	  left: 40px;
+	  transform: translateY(-50%);
+	
+	  display: flex;
+	  align-items: center;
+	
+	  font-family: "TT Norms Medium", sans-serif;
+	
+	  @media (max-width: 1000px) {
+		bottom: 25px;
+		left: 35px;
+	  }
+	
+	  @media (max-height: 800px) {
+		bottom: 25px;
+		left: 35px;
+	  }
+	
+	  &__button {
+		width: 40px;
+		height: 40px;
+		margin-right: 5px;
+	 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	 
+		font-size: 1.2rem;
+	 
+		border: 1px solid $color-white;
+	 
+		@media (max-width: 1280px) {
+		  font-size: 1rem;
+		}
+	 
+		@media (max-width: 1000px) {
+		  width: 20px;
+		  height: 20px;
+		  margin-right: 2.5px;
+		  font-size: .8rem;
+		}
+	 
+		@media (max-height: 800px) {
+		  width: 20px;
+		  height: 20px;
+		  margin-right: 2.5px;
+		  font-size: .8rem;
+		}
+	 
+		@media (min-width: 3000px) {
+		  font-size: .8rem;
+		}
+	  }
+	
+	  &__text {
+		font-size: 1.2rem;
+	 
+		@media (max-width: 1280px) {
+		  font-size: 1rem;
+		}
+	 
+		@media (max-width: 1000px) {
+		  font-size: .8rem;
+		}
+	 
+		@media (max-height: 800px) {
+		  font-size: .8rem;
+		}
+	 
+		@media (min-width: 3000px) {
+		  font-size: .8rem;
+		}
+	  }
+	}
+  }
+  
+  &-content {
+	position: relative;
+	height: calc(100% - 136px);
+	width: 100%;
+ 
+	display: flex;
+	align-items: center;
+	
+	overflow: hidden;
+ 
+	&-notify {
+	  position: absolute;
+	  top: 0;
+	  right: 80px;
+	
+	  width: 315px;
+	  height: 105px;
+	  padding: 50px 50px 20px 50px;
+	
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  text-align: center;
+	
+	  opacity: 0;
+	
+	  transition: opacity .2s;
+	
+	  background: linear-gradient(to bottom, $color-blank, #FFD4A24D);
+	
+	  text-shadow: 0 2px 2px $color-blank;
+	}
+	
+	&-left {
+	  width: 870px;
+	  margin-right: 50px;
+	  height: 100%;
+	  
+	  background-color: #00000033;
+	  
+	  &-territories {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	  }
+	}
+	
+	&-right {
+	  position: relative;
+	  width: calc(100% - 920px);
+	  height: 100%;
+	  
+	  &-navigation {
+		padding-top: 20px;
+		margin-bottom: 20px;
+		display: flex;
+		align-items: center;
+		
+		&__players,
+		&__cars,
+		&__ranks,
+		&__store {
+		  height: 2rem;
+		  margin-right: 10px;
+		  
+		  cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+		  
+		  filter: drop-shadow(0 2px 2px $color-black);
+		}
+		
+		&__ranks {
+		  margin-right: 80px;
+		}
+	  }
+	}
+  }
+}

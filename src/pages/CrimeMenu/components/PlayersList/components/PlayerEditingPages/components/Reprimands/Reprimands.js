@@ -1,10 +1,9 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
-import cn         from 'classnames';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import cn           from 'classnames';
+import EventManager from 'utils/eventManager';
 
 import reprimandIcon from 'assets/images/crimeMenu/reprimandIcon.svg';
-
-import {regExp} from 'utils/regExp';
 
 import './Reprimands.scss';
 
@@ -15,7 +14,7 @@ const Reprimands = ({store, editData}) => {
 	
 	const handleSubmit = React.useCallback(() => {
 		if (field.current.value) {
-			window.alt.emit('client::crimeMenu:sendReprimand', editData.data?.id, reprimandType, field.current.value);
+			EventManager.emitServer('crimeMenu', 'sendReprimand', editData.data?.id, reprimandType, field.current.value);
 		}
 	}, [editData.data?.id, reprimandType]);
 	

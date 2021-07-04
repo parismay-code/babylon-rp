@@ -5,7 +5,6 @@ import lcn from 'assets/images/chat/lcn.svg';
 import russian from 'assets/images/chat/russian.svg';
 import yakuza from 'assets/images/chat/yakuza.svg';
 import armenian from 'assets/images/chat/armenian.svg';
-import ukranian from 'assets/images/chat/ukranian.svg';
 
 import './MafiaFracMessage.scss';
 
@@ -14,9 +13,8 @@ const MafiaFracMessage = ({ data }) => {
         switch (data.fraction.name) {
             case 'lcn': return lcn;
             case 'russian': return russian;
-            case 'yakuza': return yakuza;
+            case 'japanese': return yakuza;
             case 'armenian': return armenian;
-            case 'ukranian': return ukranian;
             default: break;
         }
     }, [data.fraction.name]);
@@ -27,7 +25,6 @@ const MafiaFracMessage = ({ data }) => {
             case 'russian': return ['#AFAFAF', '#585858'];
             case 'yakuza': return ['#FF2C2C', '#801616'];
             case 'armenian': return ['#FFBF95', '#80604B'];
-            case 'ukranian': return ['#F7FF00', '#7C8000'];
             default: break;
         }
     }, [data.fraction.name]);

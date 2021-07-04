@@ -1,0 +1,31 @@
+@import '../../../../../../styles/vars';
+
+.mafia-menu-player-editing-pages {
+  width: 50%;
+  height: 100%;
+  
+  &-navigation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    
+    &__element {
+      width: 33.3%;
+      padding: 12px;
+  
+      background: linear-gradient(-90deg, #21212166, #ffffff66);
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      cursor: url("../../../../../../assets/images/cursorPointer.svg"), pointer;
+      
+      &_active {
+        background: #00000033;
+        padding: 10px;
+        border: 2px solid $color-blue;
+      }
+    }
+  }
+}

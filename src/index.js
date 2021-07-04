@@ -7,13 +7,6 @@ import 'utils/initMobX';
 
 import './styles/global.scss';
 
-if (window.alt === undefined) {
-    window.alt = {
-        emit: () => {},
-        on: () => {}
-    };
-}
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -1,9 +1,10 @@
-import * as React from 'react';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import submitIcon from 'assets/images/crimeMenu/submitIcon.svg';
 
-import {regExp}   from 'utils/regExp';
+import {regExp} from 'utils/regExp';
 
 import './Awards.scss';
 
@@ -12,7 +13,7 @@ const Awards = ({store, editData}) => {
 	
 	const handleSubmit = React.useCallback(() => {
 		if (field.current.value) {
-			window.alt.emit('client::crimeMenu:sendAward', editData.data?.id, field.current.value);
+			EventManager.emitServer('crimeMenu' ,'sendAward', editData.data?.id, field.current.value);
 		}
 	}, [editData.data?.id]);
 	
@@ -34,9 +35,9 @@ const Awards = ({store, editData}) => {
 				<input
 					ref={field}
 					className="crime-menu-player-awards-form-input__field"
-					type='number'
+					type="number"
 					name="n_crimeMenuPlayerAwardFormField"
-					placeholder='0'
+					placeholder="0"
 				/>
 				<div className="crime-menu-player-awards-form-input__dollar">$</div>
 			</div>
@@ -60,15 +61,16 @@ const Awards = ({store, editData}) => {
 					Дата
 				</div>
 			</div>
-			<div className='crime-menu-player-awards-list-content'>
+			<div className="crime-menu-player-awards-list-content">
 				{store.awardLogs.filter(el => el.to === editData.data?.id).map((el, key) => {
 					const count = `${String(el.count).replace(regExp.money, '$1 ')} $`;
 					
-					return <div key={key} className='crime-menu-player-awards-list-content-element'>
-						<div className='crime-menu-player-awards-list-content-element__count'>{count}</div>
-						<div className='crime-menu-player-awards-list-content-element__from'>{el.from.id}: {el.from.nickname}</div>
-						<div className='crime-menu-player-awards-list-content-element__date'>{el.date}</div>
-					</div>
+					return <div key={key} className="crime-menu-player-awards-list-content-element">
+						<div className="crime-menu-player-awards-list-content-element__count">{count}</div>
+						<div
+							className="crime-menu-player-awards-list-content-element__from">{el.from.id}: {el.from.nickname}</div>
+						<div className="crime-menu-player-awards-list-content-element__date">{el.date}</div>
+					</div>;
 				})}
 			</div>
 		</div>

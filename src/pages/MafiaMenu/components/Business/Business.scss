@@ -1,0 +1,102 @@
+@import '../../../../styles/vars';
+
+.crime-menu-ghetto-territories {
+  width: calc(50% - 10px);
+  padding: 0 20px 20px 20px;
+  margin-bottom: 15px;
+  
+  font-family: "TT Norms Medium", sans-serif;
+  
+  cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+  
+  &-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+	
+	font-family: "Baron Neue", sans-serif;
+	font-size: 2rem;
+	
+	&__icon {
+	  height: 3rem;
+	  margin-right: 15px;
+	}
+	
+	&__title {
+	  transform: translateY(-4px);
+	  text-transform: uppercase;
+	}
+  }
+  
+  &-content {
+	position: relative;
+	width: 100%;
+	height: 230px;
+	background: url('../../../../assets/images/crimeMenu/ghettoMap.png') no-repeat center;
+	background-size: contain;
+	
+	text-shadow: 0 2px 2px $color-black;
+	font-size: 1.5rem;
+	
+	&-fill {
+	  position: relative;
+	  height: 100%;
+	  
+	  transition: width .0125s;
+	  
+	  &::before {
+		content: '';
+		position: absolute;
+		right: 0;
+	 
+		height: 100%;
+		width: 2px;
+	 
+		background: linear-gradient(to bottom, $color-blank, $color-white, $color-blank);
+	  }
+	  
+	  &__point {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translate(calc(50% - 2px), -50%) rotate(45deg);
+		
+		width: 20px;
+		height: 20px;
+	 
+		clip-path: polygon(0 0, 95% 50%, 100% 100%, 50% 95%);
+	 
+		background-color: $color-white;
+	  }
+	}
+	
+	&-info {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  
+	  width: 100%;
+	  height: 100%;
+	  padding: 20px;
+	  
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: space-between;
+	  
+	  &-percent {
+		&__title {
+		  font-size: 2rem;
+		}
+	  }
+	  
+	  &-stats {
+		display: flex;
+		align-items: center;
+		
+		&-players {
+		  margin-right: 20px;
+		}
+	  }
+	}
+  }
+}

@@ -204,7 +204,7 @@ const StartScreen = ({player}) => {
 				</div>
 				<div
 					className="start-screen-quests-bottom__play"
-					onClick={() => EventManager.emitServer('startScreen', 'play')}
+					onClick={() => EventManager.emitServer('startScreen', 'start')}
 				>
 					Играть
 				</div>
