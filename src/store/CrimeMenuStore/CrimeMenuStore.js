@@ -68,11 +68,11 @@ export default class CrimeMenuStore {
 		families: null,
 		ballas: null,
 		vagos: null,
-		mara: 'defence',
+		mara: null,
 	};
 	capture = {
-		attack: 'Vagos',
-		defence: 'Marabunta',
+		attack: null,
+		defence: null,
 		count: 10,
 		time: {
 			hours: 14,
@@ -81,246 +81,41 @@ export default class CrimeMenuStore {
 		},
 		access: {
 			items: {
-				medkit: true,
-				armour: true,
-				drug: true,
+				medkit: false,
+				armour: false,
+				drug: false,
 				animation: false,
 			},
 			guns: {
-				pistol: true,
+				pistol: false,
 				smg: false,
 				assault: false,
 				shotgun: false,
 			},
 		},
 		players: [],
-		lastGameBest: [
-			{
-				place: 1,
-				id: 87598,
-				nickname: 'Alexeaxer Alexeaxaraer',
-				kills: 5,
-				isDied: false,
-			},
-			{
-				place: 2,
-				id: 5959,
-				nickname: 'Paris May',
-				kills: 4,
-				isDied: false,
-			},
-			{
-				place: 3,
-				id: 1234,
-				nickname: 'Paris May',
-				kills: 5,
-				isDied: true,
-			},
-		],
+		lastGameBest: [],
 	};
 	playerRank = 1;
 	playerAccess = [
-		'changeRanks',
-		'changeCars',
-		'spawnCars',
-		'manage',
-		'closeStore',
-		'manageCapture',
-		'sendNews',
-		'removeNews',
+		// 'changeRanks',
+		// 'changeCars',
+		// 'spawnCars',
+		// 'manage',
+		// 'closeStore',
+		// 'manageCapture',
+		// 'sendNews',
+		// 'removeNews',
 	];
-	fractionName = 'Marabunta';
+	fractionName = null;
 	territories = 0;
 	isStoreLocked = false;
 	balance = 0;
 	news = [];
 	events = [];
-	players = [
-		{
-			id: 25,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 6,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 5,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 11,
-			nickname: 'basarus basarus',
-			rank: 2,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: false,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 12,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 23,
-			nickname: 'basarus basarus',
-			rank: 3,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 13,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 26,
-			nickname: 'basarus basarus',
-			rank: 4,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: false,
-			punishment: [],
-			onlineLogs: [],
-		},
-	];
-	filteredPlayersList = [
-		{
-			id: 25,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 6,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 5,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 11,
-			nickname: 'basarus basarus',
-			rank: 2,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: false,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 12,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 23,
-			nickname: 'basarus basarus',
-			rank: 3,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 13,
-			nickname: 'basarus basarus',
-			rank: 1,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: true,
-			punishment: [],
-			onlineLogs: [],
-		},
-		{
-			id: 26,
-			nickname: 'basarus basarus',
-			rank: 4,
-			isOnline: true,
-			joinDate: '29.06.21',
-			isCapture: false,
-			punishment: [],
-			onlineLogs: [],
-		},
-	];
-	ranks = [
-		{
-			access: [],
-			name: 'Первый',
-			cars: [],
-		},
-		{
-			access: [],
-			name: 'Второй',
-			cars: [],
-		},
-		{
-			access: [],
-			name: 'Третий',
-			cars: [],
-		},
-		{
-			access: [],
-			name: 'Четвертый',
-			cars: [],
-		},
-	];
+	players = [];
+	filteredPlayersList = [];
+	ranks = [];
 	awardLogs = [];
 	reprimandLogs = [];
 	storeLogs = [];
