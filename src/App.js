@@ -21,6 +21,7 @@ import CrimeMenu     from 'pages/CrimeMenu';
 import MafiaMenu     from 'pages/MafiaMenu';
 import CarDealer     from 'pages/CarDealer';
 import StartScreen   from 'pages/StartScreen';
+import MainMenu      from 'pages/MainMenu';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -233,6 +234,7 @@ const App = () => {
 		{component === 'mafiaMenu' && <MafiaMenu store={mafiaMenuStore}/>}
 		{component === 'carDealer' && <CarDealer store={shopsStore}/>}
 		{component === 'startScreen' && <StartScreen player={playerStore}/>}
+		{component === 'mainMenu' && <MainMenu player={playerStore}/>}
 	</div>;
 };
 

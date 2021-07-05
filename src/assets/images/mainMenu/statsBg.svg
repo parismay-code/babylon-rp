@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180.001" height="857.998" viewBox="0 0 180.001 857.998">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="gray" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path id="Вычитание_63" data-name="Вычитание 63" d="M-2364-11244h-180v-417.192h13.124v-37.446H-2544V-12102h180v858h0Zm-91.983-508.137v90.943h21.4v-90.943Zm-32.1,32.1v58.846h21.4v-58.846Zm-32.1-69.543v128.389h21.4v-128.389Z" transform="translate(2544 12101.999)" opacity="0.2" fill="url(#linear-gradient)"/>
+</svg>

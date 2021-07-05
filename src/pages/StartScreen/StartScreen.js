@@ -58,7 +58,6 @@ const StartScreen = ({player}) => {
 				else if (lastSymbol > 1 && lastSymbol < 5) return 'часа';
 				else return 'часов';
 			}
-			
 		}
 	}, []);
 	
@@ -153,8 +152,8 @@ const StartScreen = ({player}) => {
 			<div className="start-screen-stats-element">
 				<div className="start-screen-stats-element__right-stick"/>
 				<div className="start-screen-stats-element__value">
-					{player.playerState.timePlayed > 60 ?
-						(player.playerState.timePlayed / 60).toFixed() : player.playerState.timePlayed}
+					{player.playerState.timePlayed.all > 60 ?
+						(player.playerState.timePlayed.all / 60).toFixed() : player.playerState.timePlayed.all}
 				</div>
 				<div
 					className="start-screen-stats-element__title">{validDays(player.playerState.timePlayed, 'hours')} отыграно
