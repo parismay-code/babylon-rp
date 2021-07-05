@@ -1,17 +1,6 @@
 const isDev = process.env.NODE_ENV === 'development';
 
-if (!window.alt) {
-	window.alt = {
-		emit: () => {
-		},
-		on: () => {
-		}
-	};
-}
-
 const eventsInMemory = [];
-
-window.alt.on('cef::eventManager', (event, ...args) => EventManager.callHandler(event, ...args));
 
 const EventManager = {
 	// add event to memory
