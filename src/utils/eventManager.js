@@ -5,39 +5,44 @@ if (!window.alt) {
 		emit: () => {
 		},
 		on: () => {
-		},
-		off: () => {
-		},
+		}
 	};
 }
 
 const eventsInMemory = [];
 
+window.alt.on('cef::eventManager', (event, ...args) => EventManager.callHandler(event, ...args));
+
 const EventManager = {
 	// add event to memory
 	addHandler: (eventTarget, eventName, handler) => {
-		// if event exists it will be resubscribed
-		if (eventsInMemory.find(el => el.target === eventTarget && el.name === eventName)) {
-			window.alt.off(`cef::${eventTarget}:${eventName}`, handler);
-			window.alt.on(`cef::${eventTarget}:${eventName}`, handler);
-			
-			if (isDev) console.log(`cef::${eventTarget}:${eventName} resubscribed`);
+		if (!eventsInMemory.find(el => el.target === eventTarget && el.name === eventName)) {
+			eventsInMemory.push({
+				id: eventsInMemory.length,
+				target: eventTarget,
+				name: eventName,
+				handler: handler,
+			});
+		}
+	},
+	
+	callHandler: (event, ...args) => {
+		const target = event.split(':')[0],
+			eventName = event.split(':')[1],
+			index = eventsInMemory.findIndex(el => el.target === target && el.name === eventName);
+		
+		if (index !== -1) {
+			eventsInMemory[index].handler(...args);
+			if (isDev) console.log(`cef::${eventsInMemory[index].target}:${eventsInMemory[index].name} called`);
 		}
 		
-		// if event not exists it will be added to memory
-		else eventsInMemory.push({
-			id: eventsInMemory.length,
-			target: eventTarget,
-			name: eventName,
-			handler: handler,
-		});
+		else if (isDev) console.log(`cef::${event} is not exists`);
 	},
 	
 	// initialize all events added in component, should be after all events
 	stopAddingHandlers: (target) => {
 		for (let i = 0; i < eventsInMemory.length; i++) {
 			if (eventsInMemory[i].target === target) {
-				window.alt.on(`cef::${eventsInMemory[i].target}:${eventsInMemory[i].name}`, eventsInMemory.handler);
 				if (isDev) console.log(`cef::${eventsInMemory[i].target}:${eventsInMemory[i].name} loaded`);
 			}
 		}
@@ -56,8 +61,6 @@ const EventManager = {
 		const events = eventsInMemory.filter(el => el.target === eventTarget);
 		
 		for (let i = 0; i < events.length; i++) {
-			window.alt.off(`cef::${events[i].target}:${events[i].name}`, events[i].handler);
-			
 			eventsInMemory.splice(eventsInMemory.findIndex(el => el.id === events[i].id), 1);
 			
 			if (isDev) console.log(`unsubscribe from cef::${events[i].target}:${events[i].name}`);
