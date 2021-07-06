@@ -11,7 +11,7 @@ const ChatInput = ({store, isCursorActive}) => {
 	const [currentChat, setChat] = React.useState('default'),
 		[currentCommand, setCommand] = React.useState(null),
 		[isCommandsActive, setCommandsActive] = React.useState(false),
-		[isFocused, setFocused] = React.useState(false),
+		[isFocused, setFocused] = React.useState(true),
 		[byInput, setByInput] = React.useState(false);
 	
 	const chatTypes = React.useMemo(() => [
@@ -82,31 +82,29 @@ const ChatInput = ({store, isCursorActive}) => {
 	const input = React.useRef(null);
 	
 	React.useEffect(() => {
-		if ('alt' in window) {
-			EventManager.addHandler('chat', 'toggle', (bool) => {
-				setFocused(bool);
-				if (bool) input.current.focus();
-				else input.current.blur();
-			});
-			EventManager.addHandler('chat', 'changeMode', (string) => {
-				const command = chatTypes.filter((el) => el.type === string)[0].command;
-				setChat(string);
-				input.current.focus();
-				input.current.value = `${command} `;
-			});
-			EventManager.addHandler('chat', 'sendMessage', () => {
-				EventManager.emitServer('chat', 'sendMessage', String(input.current.value));
-				if (input.current.value) {
-					store.updateLastMessages(String(input.current.value));
-					input.current.value = null;
-				}
-			});
-			EventManager.addHandler('chat', 'command', () => {
-				setFocused(true);
-				input.current.focus();
-				input.current.value = '/';
-			});
-		}
+		EventManager.addHandler('chat', 'toggle', (bool) => {
+			setFocused(bool);
+			if (bool) input.current.focus();
+			else input.current.blur();
+		});
+		EventManager.addHandler('chat', 'changeMode', (string) => {
+			const command = chatTypes.filter((el) => el.type === string)[0].command;
+			setChat(string);
+			input.current.focus();
+			input.current.value = `${command} `;
+		});
+		EventManager.addHandler('chat', 'sendMessage', () => {
+			EventManager.emitServer('chat', 'sendMessage', String(input.current.value));
+			if (input.current.value) {
+				store.updateLastMessages(String(input.current.value));
+				input.current.value = null;
+			}
+		});
+		EventManager.addHandler('chat', 'command', () => {
+			setFocused(true);
+			input.current.focus();
+			input.current.value = '/';
+		});
 	}, [input, chatTypes, store]);
 	
 	React.useEffect(() => {

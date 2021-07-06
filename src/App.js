@@ -206,7 +206,7 @@ const App = () => {
 	
 	return <div className="app">
 		<Chat store={chatStore} isCursorActive={isCursorActive}
-		      isVisible={(component === 'hud' || component === 'clothesShop') && hudStore.currentHud !== 0 && !playerStore.playerState.dead.isDead}/>
+		      isVisible={(component === 'hud' || component === 'clothesShop') && hudStore.currentHud === 0 && !playerStore.playerState.dead.isDead}/>
 		
 		{component === 'auth' && <Auth store={authStore}/>}
 		{component === 'creator' && <Creator store={creatorStore}/>}
