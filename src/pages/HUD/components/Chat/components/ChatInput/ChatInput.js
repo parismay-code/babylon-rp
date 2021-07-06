@@ -11,7 +11,7 @@ const ChatInput = ({store, isCursorActive}) => {
 	const [currentChat, setChat] = React.useState('default'),
 		[currentCommand, setCommand] = React.useState(null),
 		[isCommandsActive, setCommandsActive] = React.useState(false),
-		[isFocused, setFocused] = React.useState(true),
+		[isFocused, setFocused] = React.useState(false),
 		[byInput, setByInput] = React.useState(false);
 	
 	const chatTypes = React.useMemo(() => [
