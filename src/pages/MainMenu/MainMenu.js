@@ -17,6 +17,8 @@ import timePlayedIcon from 'assets/images/mainMenu/timePlayedIcon.svg';
 import deathsIcon     from 'assets/images/mainMenu/deathsIcon.svg';
 import daysPlayedIcon from 'assets/images/mainMenu/daysPlayedIcon.svg';
 import staticTower    from 'assets/images/mainMenu/staticTower.svg';
+import reportBg       from 'assets/images/mainMenu/reportBg.svg';
+import settingsBg     from 'assets/images/mainMenu/settingsBg.svg';
 import money          from 'assets/images/hud/money.svg';
 import bank           from 'assets/images/hud/bank.svg';
 
@@ -106,6 +108,14 @@ const MainMenu = ({player}) => {
 		donate = React.useMemo(() =>
 			String(player.playerState.donate).replace(regExp.money, '$1 '), [player.playerState.donate]);
 	
+	const screen = React.useRef(null);
+	
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.classList.add('main-menu_active'), 200);
+		
+		return () => clearTimeout(timeout);
+	}, []);
+	
 	const correctWord = React.useCallback((value) => {
 		const lastSymbol = Number(String(value)[String(value).length - 1]);
 		const preLastSymbol = Number(String(value)[String(value).length - 2]);
@@ -117,7 +127,7 @@ const MainMenu = ({player}) => {
 		else return 'дней';
 	}, []);
 	
-	return <div className={cn('main-menu', player.playerState.prime.status ? 'main-menu_prime' : null)}>
+	return <div ref={screen} className={cn('main-menu', player.playerState.prime.status ? 'main-menu_prime' : null)}>
 		<div className="main-menu-options">
 			{options.map((el, key) => {
 				return <div
@@ -166,6 +176,20 @@ const MainMenu = ({player}) => {
 				<div className="main-menu-info-nickname__title">{player.playerState.nickname.split(' ')[0]}</div>
 				<div className="main-menu-info-nickname__subtitle">{player.playerState.nickname.split(' ')[1]}</div>
 			</div>
+			<div
+				className="main-menu-info-report"
+				onClick={() => EventManager.emitClient('mainMenu', 'openReport')}
+			>
+				<img className="main-menu-info-report__bg" src={reportBg} alt="#"/>
+				<div className="main-menu-info-report__title">Помощь</div>
+			</div>
+			<div
+				className="main-menu-info-settings"
+				onClick={() => EventManager.emitClient('mainMenu', 'openSettings')}
+			>
+				<img className="main-menu-info-settings__bg" src={settingsBg} alt="#"/>
+				<div className="main-menu-info-settings__title">Настройки</div>
+			</div>
 			<div className="main-menu-info__middle-line"/>
 		</div>
 		<div className="main-menu-bottom">
@@ -193,7 +217,7 @@ const MainMenu = ({player}) => {
 			<div className="main-menu-bottom-hours">
 				<img className="main-menu-bottom-hours__icon" src={timePlayedIcon} alt="#"/>
 				<div className="main-menu-bottom-hours-value">
-					<div className="main-menu-bottom-hours-value__title">{player.playerState.timePlayed.weekly}</div>
+					<div className="main-menu-bottom-hours-value__title">{player.playerState.stats.timePlayed.weekly}</div>
 					<div className="main-menu-bottom-hours-value__subtitle">Часов отыграно<br/>за неделю</div>
 				</div>
 			</div>
@@ -203,14 +227,14 @@ const MainMenu = ({player}) => {
 			<div className="main-menu-bottom-deaths">
 				<img className="main-menu-bottom-deaths__icon" src={deathsIcon} alt="#"/>
 				<div className="main-menu-bottom-deaths-value">
-					<div className="main-menu-bottom-deaths-value__title">{player.playerState.deaths}</div>
+					<div className="main-menu-bottom-deaths-value__title">{player.playerState.stats.deaths}</div>
 					<div className="main-menu-bottom-deaths-value__subtitle">Смертей<br/>за всю игру</div>
 				</div>
 			</div>
 			<div className="main-menu-bottom-days">
 				<img className="main-menu-bottom-days__icon" src={daysPlayedIcon} alt="#"/>
 				<div className="main-menu-bottom-days-value">
-					<div className="main-menu-bottom-days-value__title">{player.playerState.timePlayed.allDays}</div>
+					<div className="main-menu-bottom-days-value__title">{player.playerState.stats.timePlayed.allDays}</div>
 					<div className="main-menu-bottom-days-value__subtitle">Дней в игре</div>
 				</div>
 			</div>

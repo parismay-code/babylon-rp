@@ -18,6 +18,8 @@ const StartScreen = ({player}) => {
 		}),
 		[weeklyBonus, setWeeklyBonus] = React.useState(0);
 	
+	const screen = React.useRef(null);
+	
 	const _weeklyBonus = React.useMemo(() =>
 		`$ ${String(weeklyBonus).replace(regExp.money, '$1 ')}`, [weeklyBonus]);
 	
@@ -70,8 +72,13 @@ const StartScreen = ({player}) => {
 		
 		return () => EventManager.removeTargetHandlers('startScreen');
 	}, []);
+	React.useEffect(() => {
+		const timeout = setTimeout(() => screen.current.classList.add('start-screen_active'), 200);
+		
+		return () => clearTimeout(timeout);
+	}, []);
 	
-	return <div className={cn('start-screen', player.playerState.prime.status ? 'start-screen_prime' : null)}>
+	return <div ref={screen} className={cn('start-screen', player.playerState.prime.status ? 'start-screen_prime' : null)}>
 		<div className="start-screen-bonuses">
 			<div className="start-screen-bonuses__title">
 				ДОБРО ПОЖаЛОВаТЬ На⦁сЕРВЕР BABYLON
@@ -152,11 +159,11 @@ const StartScreen = ({player}) => {
 			<div className="start-screen-stats-element">
 				<div className="start-screen-stats-element__right-stick"/>
 				<div className="start-screen-stats-element__value">
-					{player.playerState.timePlayed.all > 60 ?
-						(player.playerState.timePlayed.all / 60).toFixed() : player.playerState.timePlayed.all}
+					{player.playerState.stats.timePlayed.all > 60 ?
+						(player.playerState.stats.timePlayed.all / 60).toFixed() : player.playerState.stats.timePlayed.all}
 				</div>
 				<div
-					className="start-screen-stats-element__title">{validDays(player.playerState.timePlayed, 'hours')} отыграно
+					className="start-screen-stats-element__title">{validDays(player.playerState.stats.timePlayed, 'hours')} отыграно
 				</div>
 			</div>
 		</div>

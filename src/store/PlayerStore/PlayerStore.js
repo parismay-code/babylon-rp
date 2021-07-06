@@ -32,7 +32,7 @@ export default class PlayerStore {
 			// name: 'Крутые',
 			// icon: null
 		},
-		nickname: null,
+		nickname: 'Paris May',
 		phone: {
 			number: null,
 			balance: 0,
@@ -144,11 +144,6 @@ export default class PlayerStore {
 			status: false,
 			days: 0,
 		},
-		timePlayed: {
-			all: 0,
-			weekly: 0,
-			allDays: 0,
-		},
 		bonuses: [
 			{
 				value: 100,
@@ -179,7 +174,14 @@ export default class PlayerStore {
 				status: false,
 			},
 		],
-		deaths: 0,
+		stats: {
+			deaths: 0,
+			timePlayed: {
+				all: 0,
+				weekly: 0,
+				allDays: 0,
+			},
+		}
 	};
 	
 	quests = [
@@ -252,11 +254,11 @@ export default class PlayerStore {
 			case 'donate':
 				return this.playerState.donate = obj.data;
 			case 'timePlayed':
-				return this.playerState.timePlayed = obj.data;
+				return this.playerState.stats.timePlayed = obj.data;
 			case 'bonuses':
 				return this.playerState.bonuses = obj.data;
 			case 'deaths':
-				return this.playerState.deaths = obj.data;
+				return this.playerState.stats.deaths = obj.data;
 			default:
 				return this.playerState = obj.data;
 		}

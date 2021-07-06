@@ -178,18 +178,16 @@ const App = () => {
 		return () => EventManager.removeTargetHandlers('shop');
 	}, [shopsStore]);
 	React.useEffect(() => {
-		window.setPage = page => setComponent(page);
-		
 		EventManager.addHandler('router', 'setComponent', (...args) => {
 			setComponent(args[0]);
 			
-			if (args[0] === 'characterChoice') setCharacters(args[1]);
-			if (args[0] === 'adminRedactor') setAdminRedactorData(args[1]);
+			if (args[0] === 'characterChoice') setCharacters(JSON.parse(args[1]));
+			if (args[0] === 'adminRedactor') setAdminRedactorData(JSON.parse(args[1]));
 			if (args[0] === 'atm') setPinCode(args[1]);
 			if (args[0] === 'pay') setPayPrice(args[1]);
-			if (args[0] === 'gasStation') setGasStation(args[1]);
+			if (args[0] === 'gasStation') setGasStation(JSON.parse(args[1]));
 			if (args[0] === 'jobs') setJobParams(args[1]);
-			if (args[0] === 'parking') setParkingData(args[1]);
+			if (args[0] === 'parking') setParkingData(JSON.parse(args[1]));
 		});
 		
 		EventManager.addHandler('cursor', 'change', bool => setCursorActive(bool));

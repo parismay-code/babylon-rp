@@ -19,6 +19,8 @@ if (!window.alt) {
 
 window.alt.on('cef::eventManager', (event, ...args) => EventManager.callHandler(event, ...args));
 
+window.callHandler = (event, ...args) => EventManager.callHandler(event, ...args);
+
 ReactDOM.render(
 	<React.StrictMode>
 		<App/>

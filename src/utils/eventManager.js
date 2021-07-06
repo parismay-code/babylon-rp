@@ -15,6 +15,7 @@ const EventManager = {
 		}
 	},
 	
+	// call event from memory
 	callHandler: (event, ...args) => {
 		const target = event.split(':')[0],
 			eventName = event.split(':')[1],
@@ -23,9 +24,7 @@ const EventManager = {
 		if (index !== -1) {
 			eventsInMemory[index].handler(...args);
 			if (isDev) console.log(`cef::${eventsInMemory[index].target}:${eventsInMemory[index].name} called`);
-		}
-		
-		else if (isDev) console.log(`cef::${event} is not exists`);
+		} else if (isDev) console.log(`cef::${event} is not exists`);
 	},
 	
 	// initialize all events added in component, should be after all events

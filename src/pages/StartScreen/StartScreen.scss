@@ -13,6 +13,21 @@
   
   background: linear-gradient(145deg, #AAB6EF33, #84818A 80%, #7D7A82);
   
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+	opacity: 1;
+  }
+  
+  &_active &-bonuses,
+  &_active &-stats,
+  &_active &-media,
+  &_active &-quests {
+	transform: translateY(0);
+  }
+  
   &_prime {
 	background: linear-gradient(145deg, #C373F333, #84818A 80%, #7D7A82);
   }
@@ -20,6 +35,10 @@
   &-bonuses {
 	width: 430px;
 	margin-right: 20px;
+	
+	transform: translateY(100%);
+	
+	transition: transform .5s;
 	
 	&__title {
 	  width: 100%;
@@ -187,6 +206,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+ 
+	transform: translateY(-100%);
+ 
+	transition: transform .5s;
 	
 	&-prime {
 	  position: relative;
@@ -376,6 +399,10 @@
 	background: linear-gradient(to right, #FFFFFF66, #8C899266);
 	
 	text-shadow: 0 2px 2px $color-black;
+ 
+	transform: translateY(100%);
+ 
+	transition: transform .5s;
 	
 	&-news,
 	&-update {
@@ -480,6 +507,10 @@
 	flex-direction: column;
  
 	text-shadow: 0 2px 2px $color-black;
+ 
+	transform: translateY(-100%);
+ 
+	transition: transform .5s;
 	
 	&-main {
 	  position: relative;

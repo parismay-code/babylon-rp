@@ -11,7 +11,7 @@ import HUDLevelUp     from '../../components/HUDLevelUp';
 import HUDAlerts      from '../../components/HUDAlerts';
 import HUDSpeedometer from '../../components/HUDSpeedometer';
 import HUDDead        from '../../components/HUDDead';
-import HUDFriendship  from '../../components/HUDFriendship';
+import HUDSubmit      from '../../components/HUDSubmit';
 import HUDInteraction from '../../components/HUDInteraction';
 import Inventory      from '../../components/Inventory';
 
@@ -60,7 +60,7 @@ const HUDMain = ({
 			<HUDLevelUp/>
 			{player.playerState.dead.isDead && <HUDDead player={player}/>}
 			<HUDNotify/>
-			<HUDFriendship/>
+			<HUDSubmit/>
 			<HUDAlerts player={player} store={store}/>
 		</>
 		{!player.playerState.dead.isDead && <>
