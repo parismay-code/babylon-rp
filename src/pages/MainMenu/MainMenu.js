@@ -34,7 +34,7 @@ const MainMenu = ({player}) => {
 				modifier: 'stats',
 				background: statsBg,
 				stat: null,
-				event: 'openInventory',
+				event: 'openStats',
 			},
 			{
 				name: 'Инвентарь',
@@ -42,7 +42,7 @@ const MainMenu = ({player}) => {
 				modifier: 'inventory',
 				background: inventoryBg,
 				stat: null,
-				event: 'openQuests',
+				event: 'openInventory',
 			},
 			{
 				name: 'Задания',
@@ -50,7 +50,7 @@ const MainMenu = ({player}) => {
 				modifier: 'quests',
 				background: questsBg,
 				stat: null,
-				event: 'openStats',
+				event: 'openQuests',
 			},
 			{
 				name: 'Достижения',
