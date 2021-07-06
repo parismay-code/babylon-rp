@@ -181,7 +181,7 @@ const App = () => {
 		EventManager.addHandler('router', 'setComponent', (...args) => {
 			setComponent(args[0]);
 			
-			if (args[0] === 'characterChoice') setCharacters(JSON.parse(args[1]));
+			if (args[0] === 'choice') setCharacters(JSON.parse(args[1]));
 			if (args[0] === 'adminRedactor') setAdminRedactorData(JSON.parse(args[1]));
 			if (args[0] === 'atm') setPinCode(args[1]);
 			if (args[0] === 'pay') setPayPrice(args[1]);
