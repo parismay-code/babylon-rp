@@ -15,23 +15,23 @@ import arrow from 'assets/images/creator/arrow.svg';
 
 const Hair = ({store}) => {
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'hair', 0, store.data.hair.head);
+		EventManager.emitClient('creator', 'preview', 'hair', 0, store.data.hair.head);
 	}, [store.data.hair.head]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'hair', 2, store.data.hair.chest);
+		EventManager.emitClient('creator', 'preview', 'hair', 2, store.data.hair.chest);
 	}, [store.data.hair.chest]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'hair', 3, store.data.hair.beard);
+		EventManager.emitClient('creator', 'preview', 'hair', 3, store.data.hair.beard);
 	}, [store.data.hair.beard]);
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'color', 0, store.data.color.head);
+		EventManager.emitClient('creator', 'preview', 'color', 0, store.data.color.head);
 	}, [store.data.color.head]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'color', 3, store.data.color.chest);
+		EventManager.emitClient('creator', 'preview', 'color', 3, store.data.color.chest);
 	}, [store.data.color.chest]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'color', 4, store.data.color.beard);
+		EventManager.emitClient('creator', 'preview', 'color', 4, store.data.color.beard);
 	}, [store.data.color.beard]);
 	
 	return (

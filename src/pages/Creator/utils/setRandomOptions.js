@@ -75,5 +75,5 @@ export const setRandomOptions = (store) => {
 	store.data.clothes.shoes.drawable = getRandomDrawable(getClothesArray(sex, 6));
 	store.data.clothes.shoes.texture = getRandomTexture(getElementByDrawable(getClothesArray(sex, 6), store.data.clothes.shoes.drawable));
 	
-	EventManager.emitClient('characterCreator', 'random', store.data);
+	EventManager.emitClient('creator', 'random', store.data);
 };

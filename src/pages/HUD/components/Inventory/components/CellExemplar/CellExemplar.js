@@ -7,9 +7,11 @@ import './CellExemplar.scss';
 const CellExemplar = ({cellExemplar, store, targetCell}) => {
 	const item = React.useMemo(() => {
 		if (targetCell.component === 'clothes') return store.clothes[targetCell.id];
+		else if (targetCell.component === 'trunk') return store.trunk[targetCell.id];
+		else if (targetCell.component === 'tradeTo') return store.trade.items[targetCell.id];
 		else if (targetCell.component === 'fastSlots') return store.inventory[store.inventory.fastSlots[targetCell.id].component][store.inventory.fastSlots[targetCell.id].id];
 		else if (targetCell.component) return store.inventory[targetCell.component][targetCell.id];
-	}, [store.clothes, store.inventory, targetCell.component, targetCell.id]);
+	}, [store.clothes, store.inventory, store.trunk, targetCell.component, targetCell.id]);
 	const quality = React.useMemo(() => {
 		switch (item?.quality) {
 			case 0:

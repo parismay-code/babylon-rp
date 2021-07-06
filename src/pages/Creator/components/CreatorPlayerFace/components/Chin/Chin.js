@@ -6,16 +6,16 @@ import arrow from 'assets/images/creator/arrow.svg';
 
 const Chin = ({store}) => {
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 15, store.data.face.ChimpBoneLowering);
+		EventManager.emitClient('creator', 'preview', 'face', 15, store.data.face.ChimpBoneLowering);
 	}, [store.data.face.ChimpBoneLowering]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 16, store.data.face.ChimpBoneLength);
+		EventManager.emitClient('creator', 'preview', 'face', 16, store.data.face.ChimpBoneLength);
 	}, [store.data.face.ChimpBoneLength]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 17, store.data.face.ChimpBoneWidth);
+		EventManager.emitClient('creator', 'preview', 'face', 17, store.data.face.ChimpBoneWidth);
 	}, [store.data.face.ChimpBoneWidth]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 18, store.data.face.ChimpHole);
+		EventManager.emitClient('creator', 'preview', 'face', 18, store.data.face.ChimpHole);
 	}, [store.data.face.ChimpHole]);
 	
 	return (

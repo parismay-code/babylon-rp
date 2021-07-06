@@ -11,16 +11,16 @@ import colors         from 'configs/colors';
 const Eyebrows = ({store}) => {
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'hair', 1, store.data.hair.eyebrows);
+		EventManager.emitClient('creator', 'preview', 'hair', 1, store.data.hair.eyebrows);
 	}, [store.data.hair.eyebrows]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 6, store.data.face.eyebrowHeight);
+		EventManager.emitClient('creator', 'preview', 'face', 6, store.data.face.eyebrowHeight);
 	}, [store.data.face.eyebrowHeight]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 7, store.data.face.eyebrowForward);
+		EventManager.emitClient('creator', 'preview', 'face', 7, store.data.face.eyebrowForward);
 	}, [store.data.face.eyebrowForward]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'color', 1, store.data.color.eyebrows);
+		EventManager.emitClient('creator', 'preview', 'color', 1, store.data.color.eyebrows);
 	}, [store.data.color.eyebrows]);
 	
 	return (

@@ -34,7 +34,7 @@ const Creator = ({store}) => {
 		return () => EventManager.removeTargetHandlers('creator');
 	}, [store]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'navigation', optionsPage);
+		EventManager.emitClient('creator', 'navigation', optionsPage);
 	}, [optionsPage]);
 	React.useEffect(() => {
 		const timeout = setTimeout(() => screen.current.classList.add('creator_active'), 100);
@@ -49,7 +49,7 @@ const Creator = ({store}) => {
 			if (store.data.name.firstname && store.data.name.lastname) {
 				store.addNotify(1, 'Персонаж успешно создан');
 
-				EventManager.emitServer('characterCreator', 'create', store.data);
+				EventManager.emitServer('creator', 'create', store.data);
 			} else store.addNotify(0, 'Укажите имя и фамилию персонажа');
 		}, [store.data]),
 		showNotify = React.useCallback(() => {

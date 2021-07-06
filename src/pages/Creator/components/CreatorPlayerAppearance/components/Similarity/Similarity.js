@@ -134,19 +134,19 @@ const Similarity = ({store}) => {
 		}, [lastScrollFemaleTop, mothersList, store.data.parents]);
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'parents', 0, store.data.parents.father);
+		EventManager.emitClient('creator', 'preview', 'parents', 0, store.data.parents.father);
 	}, [store.data.parents.father]);
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'parents', 1, store.data.parents.mother);
+		EventManager.emitClient('creator', 'preview', 'parents', 1, store.data.parents.mother);
 	}, [store.data.parents.mother]);
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'parents', 2, store.data.parents.leatherMix);
+		EventManager.emitClient('creator', 'preview', 'parents', 2, store.data.parents.leatherMix);
 	}, [store.data.parents.leatherMix]);
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'parents', 3, store.data.parents.similarity);
+		EventManager.emitClient('creator', 'preview', 'parents', 3, store.data.parents.similarity);
 	}, [store.data.parents.similarity]);
 	
 	return (

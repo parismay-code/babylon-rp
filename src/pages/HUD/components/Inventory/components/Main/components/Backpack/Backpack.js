@@ -207,7 +207,8 @@ const Backpack = ({
 					className="inventory-backpack-content-options__element"
 					onClick={() => {
 						const item = currentItem.component === 'fastSlots' ? store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
-							currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+							currentItem.component === 'trunk' ? store.trunk[currentItem.id] :
+								currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
 						
 						EventManager.emitServer('inventory', 'useItem', item);
 					}}
@@ -234,7 +235,8 @@ const Backpack = ({
 					className="inventory-backpack-content-options__element"
 					onClick={() => {
 						const item = currentItem.component === 'fastSlots' ? store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
-							currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+							currentItem.component === 'trunk' ? store.trunk[currentItem.id] :
+								currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
 						
 						if (item.count > 1) setMiddleComponent('split');
 					}}

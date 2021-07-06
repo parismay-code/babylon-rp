@@ -7,16 +7,16 @@ import arrow from 'assets/images/creator/arrow.svg';
 const Other = ({store}) => {
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 12, store.data.face.lips);
+		EventManager.emitClient('creator', 'preview', 'face', 12, store.data.face.lips);
 	}, [store.data.face.lips]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 13, store.data.face.jawBoneWidth);
+		EventManager.emitClient('creator', 'preview', 'face', 13, store.data.face.jawBoneWidth);
 	}, [store.data.face.jawBoneWidth]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 14, store.data.face.jawBoneBackLength);
+		EventManager.emitClient('creator', 'preview', 'face', 14, store.data.face.jawBoneBackLength);
 	}, [store.data.face.jawBoneBackLength]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 19, store.data.face.neckWidth);
+		EventManager.emitClient('creator', 'preview', 'face', 19, store.data.face.neckWidth);
 	}, [store.data.face.neckWidth]);
 	
 	return (

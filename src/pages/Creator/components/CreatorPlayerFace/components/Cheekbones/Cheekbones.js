@@ -7,10 +7,10 @@ import arrow from 'assets/images/creator/arrow.svg';
 const Cheekbones = ({store}) => {
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 8, store.data.face.cheekboneHeight);
+		EventManager.emitClient('creator', 'preview', 'face', 8, store.data.face.cheekboneHeight);
 	}, [store.data.face.cheekboneHeight]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 9, store.data.face.cheekboneWidth);
+		EventManager.emitClient('creator', 'preview', 'face', 9, store.data.face.cheekboneWidth);
 	}, [store.data.face.cheekboneWidth]);
 	
 	return (

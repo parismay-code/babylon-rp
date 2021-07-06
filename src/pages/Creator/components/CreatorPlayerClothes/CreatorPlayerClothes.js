@@ -6,19 +6,19 @@ import arrow from 'assets/images/creator/arrow.svg';
 
 const CreatorPlayerClothes = ({store}) => {
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'clothes',
+		EventManager.emitClient('creator', 'preview', 'clothes',
 			store.data.clothes.head.component, store.data.clothes.head.drawable, store.data.clothes.head.texture);
 	}, [store.data.clothes.head.component, store.data.clothes.head.drawable, store.data.clothes.head.texture]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'clothes',
+		EventManager.emitClient('creator', 'preview', 'clothes',
 			store.data.clothes.body.component, store.data.clothes.body.drawable, store.data.clothes.body.texture);
 	}, [store.data.clothes.body.component, store.data.clothes.body.drawable, store.data.clothes.body.texture]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'clothes',
+		EventManager.emitClient('creator', 'preview', 'clothes',
 			store.data.clothes.pants.component, store.data.clothes.pants.drawable, store.data.clothes.pants.texture);
 	}, [store.data.clothes.pants.component, store.data.clothes.pants.drawable, store.data.clothes.pants.texture]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'clothes',
+		EventManager.emitClient('creator', 'preview', 'clothes',
 			store.data.clothes.shoes.component, store.data.clothes.shoes.drawable, store.data.clothes.shoes.texture);
 	}, [store.data.clothes.shoes.component, store.data.clothes.shoes.drawable, store.data.clothes.shoes.texture]);
 	

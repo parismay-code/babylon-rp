@@ -6,7 +6,7 @@ import arrow from 'assets/images/creator/arrow.svg';
 
 const Cheeks = ({store}) => {
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator' ,'preview', 'face', 10, store.data.face.cheekWidth);
+		EventManager.emitClient('creator' ,'preview', 'face', 10, store.data.face.cheekWidth);
 	}, [store.data.face.cheekWidth]);
 	
 	return (

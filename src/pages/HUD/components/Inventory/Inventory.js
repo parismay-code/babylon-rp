@@ -8,6 +8,8 @@ import DropZone     from './components/DropZone';
 import RemoveAccept from './components/RemoveAccept';
 import TradeList    from './components/TradeList';
 import Split        from './components/Split';
+import Trunk        from './components/Trunk';
+import Trade        from './components/Trade';
 
 import './Inventory.scss';
 
@@ -31,12 +33,18 @@ const Inventory = ({store}) => {
 			setTimeout(() => notify.current.style.opacity = 0, timeout ? timeout : 3000);
 		}, []),
 		handlePutOn = React.useCallback(item => {
-			const target = item ? item : store.inventory[currentItem.component][currentItem.id];
+			if (currentItem.component === 'tradeTo') return;
+			
+			const target = item ? item :
+				currentItem.component === 'trunk' ? store.trunk[currentItem.id] :
+					store.inventory[currentItem.component][currentItem.id];
 			
 			const id = store.clothes.findIndex(el => el.type === target.type);
 			const drop = store.clothes[id];
 			
-			const freeIndex = store.inventory[currentItem.component].findIndex(el => !el.type);
+			const freeIndex = currentItem.component === 'trunk' ? store.trunk.findIndex(el => !el.type) :
+				currentItem.component === 'tradeTo' ? store.trade.items.findIndex(el => !el.type) :
+					store.inventory[currentItem.component].findIndex(el => !el.type);
 			
 			if (target.type === drop.type && target.key === drop.key && target.quality === drop.quality) return showNotify('Ошибка', 'Этот предмет уже надет на Вас');
 			
@@ -184,7 +192,11 @@ const Inventory = ({store}) => {
 			EventManager.emitServer('inventory', 'update', store.clothes, store.inventory);
 		}, [currentItem.id, showNotify, store]),
 		handleDrop = React.useCallback(isAccepted => {
-			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+			if (currentItem.component === 'tradeTo') return;
+			
+			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] :
+				currentItem.component === 'trunk' ? store.trunk[currentItem.id] :
+					store.inventory[currentItem.component][currentItem.id];
 			
 			if (item.quality >= 3 && !isAccepted) {
 				setMiddleComponent('removeAccept');
@@ -194,9 +206,13 @@ const Inventory = ({store}) => {
 				
 				EventManager.emitServer('inventory', 'dropItem', item.hash, item.quality, item.count);
 			}
-		}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
+		}, [currentItem.component, currentItem.id, store.clothes, store.inventory, store.trunk]),
 		handleTrade = React.useCallback(id => {
-			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+			if (currentItem.component === 'tradeTo') return;
+			
+			const item = currentItem.component === 'clothes' ? store.clothes[currentItem.id] :
+				currentItem.component === 'trunk' ? store.trunk[currentItem.id] :
+					store.inventory[currentItem.component][currentItem.id];
 			
 			if (id) {
 				setMiddleComponent('dropZone');
@@ -206,7 +222,7 @@ const Inventory = ({store}) => {
 			} else {
 				setMiddleComponent('tradeList');
 			}
-		}, [currentItem.component, currentItem.id, store.clothes, store.inventory]),
+		}, [currentItem.component, currentItem.id, store.clothes, store.inventory, store.trunk]),
 		handleSplit = React.useCallback((item, value) => {
 			if (value > 0) {
 				let component;
@@ -254,15 +270,21 @@ const Inventory = ({store}) => {
 		handleMouseDown = React.useCallback((_targetCell) => {
 			setItem({
 				..._targetCell,
-				options: _targetCell.component === 'clothes' ? store.clothes[_targetCell.id].options : store.inventory[_targetCell.component][_targetCell.id].options,
+				options: _targetCell.component === 'clothes' ? store.clothes[_targetCell.id].options :
+					_targetCell.component === 'trunk' ? store.trunk[_targetCell.id].options :
+						_targetCell.component === 'tradeTo' ? null :
+							store.inventory[_targetCell.component][_targetCell.id].options,
 			});
 			setCellDragged(true);
-		}, [store.clothes, store.inventory]),
+		}, [store.clothes, store.inventory, store.trunk]),
 		handleMouseUp = React.useCallback(() => {
 			const error = (title, subtitle, timeout) => {
 				setItem({
 					...targetCell,
-					options: targetCell.component === 'clothes' ? store.clothes[targetCell.id].options : store.inventory[targetCell.component][targetCell.id].options,
+					options: targetCell.component === 'clothes' ? store.clothes[targetCell.id].options :
+						targetCell.component === 'trunk' ? store.trunk[targetCell.id].options :
+							targetCell.component === 'tradeTo' ? null :
+								store.inventory[targetCell.component][targetCell.id].options,
 				});
 				setTargetCell({component: null, id: null});
 				setDropCell({component: null, id: null});
@@ -274,16 +296,27 @@ const Inventory = ({store}) => {
 			const success = () => {
 				setItem({
 					...dropCell,
-					options: dropCell.component === 'clothes' ? store.clothes[dropCell.id].options : store.inventory[dropCell.component][dropCell.id].options,
+					options: dropCell.component === 'clothes' ? store.clothes[dropCell.id].options :
+						dropCell.component === 'trunk' ? store.trunk[dropCell.id].options :
+							dropCell.component === 'tradeTo' ? null :
+								store.inventory[dropCell.component][dropCell.id].options,
 				});
 				setTargetCell({component: null, id: null});
 				setDropCell({component: null, id: null});
 				setCellDragged(false);
 				
+				if (targetCell.component === 'tradeTo' || dropCell.component === 'tradeTo')
+					EventManager.emitServer('inventory', 'changeTrade', store.trade);
 				return EventManager.emitServer('inventory', 'update', store.clothes, store.inventory);
 			};
 			
-			const target = targetCell.component === 'clothes' ? store.clothes[targetCell.id] : store.inventory[targetCell.component][targetCell.id];
+			const target = targetCell.component === 'clothes' ? store.clothes[targetCell.id] :
+				targetCell.component === 'trunk' ? store.trunk[targetCell.id] :
+					targetCell.component === 'tradeTo' ? store.trade.items[targetCell.id] :
+						store.inventory[targetCell.component][targetCell.id];
+			
+			if ((targetCell.component === 'tradeTo' || dropCell.component === 'tradeTo') && store.trade.isReady)
+				return error('Ошибка', 'Для изменения условий отмените готовность');
 			
 			if (dropCell.component === 'trade') {
 				if (targetCell.component === 'fastSlots') return error('Ошибка', 'Нельзя передать предмет из быстрого доступа');
@@ -316,7 +349,10 @@ const Inventory = ({store}) => {
 				} else return error('Ошибка', 'Предмет нельзя одеть на себя');
 			}
 			
-			const drop = dropCell.component === 'clothes' ? store.clothes[dropCell.id] : store.inventory[dropCell.component][dropCell.id];
+			const drop = dropCell.component === 'clothes' ? store.clothes[dropCell.id] :
+				dropCell.component === 'trunk' ? store.trunk[dropCell.id] :
+					dropCell.component === 'tradeTo' ? store.trade.items[dropCell.id] :
+						store.inventory[dropCell.component][dropCell.id];
 			
 			if (targetCell.component === 'fastSlots') {
 				if (dropCell.component === 'fastSlots') {
@@ -341,6 +377,8 @@ const Inventory = ({store}) => {
 			}
 			
 			if (dropCell.component === 'fastSlots') {
+				if (targetCell.component === 'tradeTo') return error('Ошибка', 'Сначала переместите предмет в инвентарь');
+				
 				if (store.inventory.fastSlots.findIndex(el => el.component === targetCell.component && el.id === targetCell.id) >= 0) return error('Ошибка', 'Предмет уже находится в быстром доступе');
 				else {
 					if (target.options.indexOf('fast') >= 0) {
@@ -351,6 +389,8 @@ const Inventory = ({store}) => {
 			}
 			
 			if (dropCell.component === 'clothes') {
+				if (targetCell.component === 'tradeTo') return error('Ошибка', 'Сначала переместите предмет в инвентарь');
+				
 				if (targetCell.component !== 'clothes' && target.type === drop.type) {
 					if (target.key === drop.key && target.quality === drop.quality) return error('Ошибка', 'Этот предмет уже надет на Вас');
 					if (target.count === 1) {
@@ -512,14 +552,16 @@ const Inventory = ({store}) => {
 			const isTargetEqualsDrop = target.key === drop.key && target.quality === drop.quality && (dropCell.component !== targetCell.component || dropCell.id !== targetCell.id);
 			
 			if (isTargetEqualsDrop) {
-				const remains = drop.maxStack - drop.count;
-				
-				if (remains - target.count < 0) {
-					store.inventory[targetCell.component][targetCell.id].count -= remains;
-					store.inventory[dropCell.component][dropCell.id].count += remains;
-				} else {
-					store.inventory[dropCell.component][dropCell.id].count += target.count;
-					store.changeInventoryData(targetCell, {type: null});
+				if (targetCell.component !== 'tradeTo' && dropCell.component !== 'tradeTo') {
+					const remains = drop.maxStack - drop.count;
+					
+					if (remains - target.count < 0) {
+						store.inventory[targetCell.component][targetCell.id].count -= remains;
+						store.inventory[dropCell.component][dropCell.id].count += remains;
+					} else {
+						store.inventory[dropCell.component][dropCell.id].count += target.count;
+						store.changeInventoryData(targetCell, {type: null});
+					}
 				}
 			} else {
 				store.changeInventoryData(targetCell, drop);
@@ -534,8 +576,13 @@ const Inventory = ({store}) => {
 	
 	React.useEffect(() => {
 		if (currentItem.component) {
-			const item = currentItem.component === 'fastSlots' ? store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
-				currentItem.component === 'clothes' ? store.clothes[currentItem.id] : store.inventory[currentItem.component][currentItem.id];
+			const item = currentItem.component === 'fastSlots' ?
+				store.inventory[store.inventory.fastSlots[currentItem.id].component][store.inventory.fastSlots[currentItem.id].id] :
+				currentItem.component === 'trunk' ? store.trunk[currentItem.id] :
+					currentItem.component === 'clothes' ? store.clothes[currentItem.id] :
+						currentItem.component === 'tradeTarget' ? store.tradeTarget.items[currentItem.id] :
+							currentItem.component === 'tradeTo' ? store.trade.items[currentItem.id] :
+								store.inventory[currentItem.component][currentItem.id];
 			
 			setRender({
 				image: item.image,
@@ -551,7 +598,7 @@ const Inventory = ({store}) => {
 		});
 		
 		setMiddleComponent('dropZone');
-	}, [currentItem, store.clothes, store.inventory]);
+	}, [currentItem, store.clothes, store.inventory, store.trade.items, store.tradeTarget.items, store.trunk]);
 	
 	React.useEffect(() => {
 		if (!store.clothes[7].isPlaced) {
@@ -567,7 +614,66 @@ const Inventory = ({store}) => {
 	
 	React.useEffect(() => {
 		EventManager.addHandler('inventory', 'showNotify', (title, subtitle, timeout) => showNotify(title, subtitle, timeout));
-	}, [showNotify]);
+		EventManager.addHandler('inventory', 'showTrunk', bool => store.setTrunkVisible(bool));
+		EventManager.addHandler('inventory', 'showTrade', (bool, tradeTarget) => {
+			if (bool) store.setTradeVisible(bool, tradeTarget);
+			else {
+				store.setTradeVisible(bool, {
+					id: null,
+					nickname: null,
+					isReady: false,
+					money: 0,
+					items: [
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+					],
+				});
+				store.trade = {
+					isReady: false,
+					money: 0,
+					items: [
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+						{type: null},
+					],
+				}
+			}
+		});
+		EventManager.addHandler('inventory', 'setTradeTargetReady', bool => store.setTradeTargetReady(bool));
+		EventManager.addHandler('inventory', 'changeTradeTargetItem', (id, item) => store.changeTradeTargetItem(id, item));
+		EventManager.addHandler('inventory', 'changeTradeTargetMoney', value => store.changeTradeTargetMoney(value));
+	}, [showNotify, store]);
 	
 	React.useEffect(() => {
 		const timeout = setTimeout(() => screen.current.classList.add('inventory_active'), 200);
@@ -631,6 +737,31 @@ const Inventory = ({store}) => {
 				currentItem={currentItem}
 				handleSplit={handleSplit}
 			/>}
+			<div className="inventory-content-right">
+				{store.isTrunkVisible && <Trunk
+					store={store}
+					currentItem={currentItem}
+					setItem={setItem}
+					setTargetCell={setTargetCell}
+					setDropCell={setDropCell}
+					isCellDragged={isCellDragged}
+					handleMouseDown={handleMouseDown}
+					handlePutOn={handlePutOn}
+					handlePutOff={handlePutOff}
+					handleDrop={handleDrop}
+					handleTrade={handleTrade}
+					setMiddleComponent={setMiddleComponent}
+				/>}
+				{store.isTradeVisible && <Trade
+					store={store}
+					currentItem={currentItem}
+					setItem={setItem}
+					setTargetCell={setTargetCell}
+					setDropCell={setDropCell}
+					isCellDragged={isCellDragged}
+					handleMouseDown={handleMouseDown}
+				/>}
+			</div>
 		</div>
 		<div className="inventory-exit">
 			<div className="inventory-exit__button">Esc</div>

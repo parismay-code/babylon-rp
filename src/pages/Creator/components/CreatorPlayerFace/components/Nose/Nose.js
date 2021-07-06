@@ -7,22 +7,22 @@ import arrow from 'assets/images/creator/arrow.svg';
 const Nose = ({store}) => {
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 0, store.data.face.noseWidth);
+		EventManager.emitClient('creator', 'preview', 'face', 0, store.data.face.noseWidth);
 	}, [store.data.face.noseWidth]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 1, store.data.face.nosePeakHeight);
+		EventManager.emitClient('creator', 'preview', 'face', 1, store.data.face.nosePeakHeight);
 	}, [store.data.face.nosePeakHeight]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 2, store.data.face.nosePeakLength);
+		EventManager.emitClient('creator', 'preview', 'face', 2, store.data.face.nosePeakLength);
 	}, [store.data.face.nosePeakLength]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 3, store.data.face.noseBoneHeight);
+		EventManager.emitClient('creator', 'preview', 'face', 3, store.data.face.noseBoneHeight);
 	}, [store.data.face.noseBoneHeight]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 4, store.data.face.nosePeakLowering);
+		EventManager.emitClient('creator', 'preview', 'face', 4, store.data.face.nosePeakLowering);
 	}, [store.data.face.nosePeakLowering]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator', 'preview', 'face', 5, store.data.face.noseBoneTwist);
+		EventManager.emitClient('creator', 'preview', 'face', 5, store.data.face.noseBoneTwist);
 	}, [store.data.face.noseBoneTwist]);
 	
 	return (

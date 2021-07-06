@@ -2,30 +2,70 @@ import {
 	makeObservable,
 	observable,
 	action,
-} from 'mobx';
+}                   from 'mobx';
+import EventManager from 'utils/eventManager';
 
 export default class InventoryStore {
 	constructor() {
 		makeObservable(this, {
 			isVisible: observable,
+			isTrunkVisible: observable,
+			isTradeVisible: observable,
+			tradeTarget: observable,
 			clothes: observable,
 			inventory: observable,
 			trunk: observable,
+			trade: observable,
 			playersAround: observable,
 			inventoryWeight: observable,
 			inventoryMaxWeight: observable,
 			
 			setVisible: action.bound,
+			setTradeVisible: action.bound,
+			setTrunkVisible: action.bound,
 			calcInventoryWeight: action.bound,
 			fetchClothesData: action.bound,
 			fetchInventoryData: action.bound,
 			changeInventoryData: action.bound,
 			fetchTrunkData: action.bound,
 			fetchPlayersAround: action.bound,
+			setTradeTargetReady: action.bound,
+			changeTradeTargetItem: action.bound,
+			changeTradeTargetMoney: action.bound,
 		});
 	}
 	
 	isVisible = false;
+	isTrunkVisible = false;
+	isTradeVisible = false;
+	
+	tradeTarget = {
+		id: null,
+		nickname: null,
+		isReady: false,
+		money: 0,
+		items: [
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+		],
+	};
+	
 	inventoryWeight = 0;
 	inventoryMaxWeight = 40;
 	
@@ -165,36 +205,119 @@ export default class InventoryStore {
 		fastSlots: [
 			{
 				component: null,
-				id: null
+				id: null,
 			},
 			{
 				component: null,
-				id: null
+				id: null,
 			},
 			{
 				component: null,
-				id: null
+				id: null,
 			},
 			{
 				component: null,
-				id: null
+				id: null,
 			},
 			{
 				component: null,
-				id: null
+				id: null,
 			},
 			{
 				component: null,
-				id: null
+				id: null,
 			},
 		],
 	};
-	trunk = [];
+	trunk = [
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+		{type: null},
+	];
+	trade = {
+		isReady: false,
+		money: 0,
+		items: [
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+			{type: null},
+		],
+	};
 	playersAround = [];
 	
 	setVisible(bool) {
 		this.isVisible = bool;
 	}
+	
+	setTrunkVisible(bool) {
+		this.isTrunkVisible = bool;
+	}
+	
+	setTradeVisible(bool, tradeTarget) {
+		this.isTrunkVisible = bool;
+		this.tradeTarget = tradeTarget;
+	}
+	
+	setTradeTargetReady(bool) {
+		this.tradeTarget.isReady = bool;
+	}
+	
+	changeTradeTargetItem(id, item) {
+		this.tradeTarget.items[id] = item;
+	}
+	
+	changeTradeTargetMoney(value) {
+		this.tradeTarget.money = value;
+	}
+	
 	calcInventoryWeight() {
 		const pocketsArr = this.inventory.pockets.filter(el => el.weight);
 		const backpackArr = this.inventory.backpack.filter(el => el.weight);
@@ -209,26 +332,28 @@ export default class InventoryStore {
 		else if (backpackArr.length === 1) backpackWeight = backpackArr[0].weight * backpackArr[0].count;
 		else backpackWeight = 0;
 		
-		window.alt.emit('client::inventory:sendWeight', (pocketsWeight + backpackWeight).toFixed(1));
+		EventManager.emitServer('inventory', 'sendWeight', (pocketsWeight + backpackWeight).toFixed(1));
 		
-		return this.inventoryWeight = (pocketsWeight + backpackWeight).toFixed(1);
+		this.inventoryWeight = (pocketsWeight + backpackWeight).toFixed(1);
 	}
 	
 	fetchClothesData(array) {
 		this.clothes = array;
-		return this.calcInventoryWeight();
+		this.calcInventoryWeight();
 	}
 	
 	fetchInventoryData(obj) {
 		this.inventory = obj;
-		return this.calcInventoryWeight();
+		this.calcInventoryWeight();
 	}
 	
 	changeInventoryData(data, obj) {
 		if (data.component === 'clothes') this.clothes[data.id] = obj;
+		else if (data.component === 'trunk') this.trunk[data.id] = obj;
+		else if (data.component === 'tradeTo') this.trade.items[data.id] = obj;
 		else this.inventory[data.component][data.id] = obj;
 		
-		return this.calcInventoryWeight();
+		this.calcInventoryWeight();
 	}
 	
 	fetchTrunkData(array) {

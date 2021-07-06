@@ -10,10 +10,10 @@ import arrow from 'assets/images/creator/arrow.svg';
 const Eyes = ({store}) => {
 	
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator' ,'preview', 'face', 11, store.data.face.eyesWidth);
+		EventManager.emitClient('creator' ,'preview', 'face', 11, store.data.face.eyesWidth);
 	}, [store.data.face.eyesWidth]);
 	React.useEffect(() => {
-		EventManager.emitClient('characterCreator' ,'preview', 'color', 2, store.data.color.eyes);
+		EventManager.emitClient('creator' ,'preview', 'color', 2, store.data.color.eyes);
 	}, [store.data.color.eyes]);
 	
 	return (

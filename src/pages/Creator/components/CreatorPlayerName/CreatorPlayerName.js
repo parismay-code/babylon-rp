@@ -36,7 +36,7 @@ const CreatorPlayerName = ({store}) => {
 		else if (firstname.length > 13) return;
 		else if (lastname.length > 13) return;
 		else {
-			EventManager.emitClient('characterCreator', 'preview', 'name', store.data.name);
+			EventManager.emitClient('creator', 'preview', 'name', store.data.name);
 			
 			return setNicknameValid(true);
 		}
@@ -59,7 +59,7 @@ const CreatorPlayerName = ({store}) => {
 						     store.data.sex = 1;
 						     store.addNotify(1, 'Пол изменен на женский');
 						
-						     EventManager.emitClient('characterCreator', 'preview', 'sex', 1);
+						     EventManager.emitClient('creator', 'preview', 'sex', 1);
 					     }}>
 						<svg width="57" height="100" viewBox="0 0 40 100" fill="none"
 						     xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@ const CreatorPlayerName = ({store}) => {
 						     store.data.sex = 0;
 						     store.addNotify(1, 'Пол изменен на мужской');
 						
-						     EventManager.emitClient('characterCreator', 'preview', 'sex', 0);
+						     EventManager.emitClient('creator', 'preview', 'sex', 0);
 					     }}>
 						<svg width="57" height="100" viewBox="0 0 40 100" fill="none"
 						     xmlns="http://www.w3.org/2000/svg">

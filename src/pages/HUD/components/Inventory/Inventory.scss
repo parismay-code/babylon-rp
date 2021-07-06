@@ -16,10 +16,15 @@
   }
   
   &_active &-content {
-    &-left {
+    &-left,
+    &-right {
       transform: translateX(0);
       opacity: 1;
     }
+  }
+  
+  &_active .inventory-trunk {
+    transform: translateX(0);
   }
   
   &-content {
@@ -28,12 +33,21 @@
     position: relative;
     
     display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     
     &-left {
       display: flex;
   
       opacity: 0;
       transform: translateX(-50%);
+      
+      transition: opacity .2s, transform .2s;
+    }
+    
+    &-right {
+      opacity: 0;
+      transform: translateX(50%);
       
       transition: opacity .2s, transform .2s;
     }
