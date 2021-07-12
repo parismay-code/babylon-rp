@@ -281,7 +281,7 @@ export default class FractionMenuStore {
 	fetchAllTerritories(obj) {
 		this.allTerritories = obj;
 		
-		this.territories = Object.value(this.allTerritories).filter(el => el === this.fractionName).length;
+		this.territories = Object.values(this.allTerritories).filter(el => el === this.fractionName).length;
 	}
 	changeTerritory(id, gang) {
 		this.allTerritories[id] = gang;
