@@ -22,19 +22,19 @@ import './GetBizwar.scss';
 import mafiaMenuBg  from 'assets/images/mafiaMenu/mafiaMenuBg.png';
 
 const GetBizwar = ({store, setPage, fractionColor}) => {
-	const [moveTime, setMoveTime] = React.useState(store.bizwar.time.move);
+	const [moveTime, setMoveTime] = React.useState(store.capture.time.move);
 	
 	const hours = React.useMemo(() => {
-			if (String(store.bizwar.time.hours).length < 2) return `0${store.bizwar.time.hours}`;
-			else return store.bizwar.time.hours;
-		}, [store.bizwar.time.hours]),
+			if (String(store.capture.time.hours).length < 2) return `0${store.capture.time.hours}`;
+			else return store.capture.time.hours;
+		}, [store.capture.time.hours]),
 		minutes = React.useMemo(() => {
-			if (String(store.bizwar.time.minutes).length < 2) return `0${store.bizwar.time.minutes}`;
-			else return store.bizwar.time.minutes;
-		}, [store.bizwar.time.minutes]),
+			if (String(store.capture.time.minutes).length < 2) return `0${store.capture.time.minutes}`;
+			else return store.capture.time.minutes;
+		}, [store.capture.time.minutes]),
 		players = React.useMemo(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], []),
 		attackIcon = React.useMemo(() => {
-			switch (store.bizwar.attack) {
+			switch (store.capture.attack) {
 				case 'Armenian':
 					return armenianIcon;
 				case 'Japanese':
@@ -46,9 +46,9 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 				default:
 					return;
 			}
-		}, [store.bizwar.attack]),
+		}, [store.capture.attack]),
 		attackColor = React.useMemo(() => {
-			switch (store.bizwar.attack) {
+			switch (store.capture.attack) {
 				case 'Armenian':
 					return '#FFBF95';
 				case 'Japanese':
@@ -60,9 +60,9 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 				default:
 					return;
 			}
-		}, [store.bizwar.attack]),
+		}, [store.capture.attack]),
 		armenianBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Armenian');
+			const businessCount = store.getFractionTerritory('Armenian');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -73,7 +73,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 			else return '100%';
 		}, [store]),
 		japaneseBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Japanese');
+			const businessCount = store.getFractionTerritory('Japanese');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -84,7 +84,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 			else return '100%';
 		}, [store]),
 		russianBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Russian');
+			const businessCount = store.getFractionTerritory('Russian');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -95,7 +95,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 			else return '100%';
 		}, [store]),
 		italianBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Italian');
+			const businessCount = store.getFractionTerritory('Italian');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -145,7 +145,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Armenian')}</div>
+								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Armenian')}</div>
 						</div>
 						<div className="mafia-menu-get-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -171,7 +171,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Japanese')}</div>
+								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Japanese')}</div>
 						</div>
 						<div className="mafia-menu-get-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -198,7 +198,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Russian')}</div>
+								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Russian')}</div>
 						</div>
 						<div className="mafia-menu-get-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -229,7 +229,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Italian')}</div>
+								className="mafia-menu-get-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Italian')}</div>
 						</div>
 						<div className="mafia-menu-get-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -280,7 +280,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 							className={cn('mafia-menu-get-bizwar-conditions-time-move-options__element',
 								moveTime === 5 ? 'mafia-menu-get-bizwar-conditions-time-move-options__element_active' : null)}
 							onClick={() => {
-								if (store.bizwar.time.move > 0) store.addNotify(`Вы уже перенесли бизвар на ${store.bizwar.time.move} минут`);
+								if (store.capture.time.move > 0) store.addNotify(`Вы уже перенесли бизвар на ${store.capture.time.move} минут`);
 								else setMoveTime(5);
 							}}
 						>
@@ -290,7 +290,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 							className={cn('mafia-menu-get-bizwar-conditions-time-move-options__element',
 								moveTime === 10 ? 'mafia-menu-get-bizwar-conditions-time-move-options__element_active' : null)}
 							onClick={() => {
-								if (store.bizwar.time.move > 0) store.addNotify(`Вы уже перенесли бизвар на ${store.bizwar.time.move} минут`);
+								if (store.capture.time.move > 0) store.addNotify(`Вы уже перенесли бизвар на ${store.capture.time.move} минут`);
 								else setMoveTime(10);
 							}}
 						>
@@ -300,7 +300,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 							className={cn('mafia-menu-get-bizwar-conditions-time-move-options__element',
 								moveTime === 15 ? 'mafia-menu-get-bizwar-conditions-time-move-options__element_active' : null)}
 							onClick={() => {
-								if (store.bizwar.time.move > 0) store.addNotify(`Вы уже перенесли бизвар на ${store.bizwar.time.move} минут`);
+								if (store.capture.time.move > 0) store.addNotify(`Вы уже перенесли бизвар на ${store.capture.time.move} минут`);
 								else setMoveTime(15);
 							}}
 						>
@@ -315,7 +315,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 					<div className="mafia-menu-get-bizwar-conditions-access-guns-content">
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-guns-content-element',
-								store.bizwar.access.guns.pistol ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
+								store.capture.access.guns.pistol ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-guns-content-element-status">
 								<div
@@ -330,7 +330,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 						</div>
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-guns-content-element',
-								store.bizwar.access.guns.smg ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
+								store.capture.access.guns.smg ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-guns-content-element-status">
 								<div
@@ -345,7 +345,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 						</div>
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-guns-content-element',
-								store.bizwar.access.guns.assault ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
+								store.capture.access.guns.assault ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-guns-content-element-status">
 								<div
@@ -361,7 +361,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 						</div>
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-guns-content-element',
-								store.bizwar.access.guns.shotgun ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
+								store.capture.access.guns.shotgun ? 'mafia-menu-get-bizwar-conditions-access-guns-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-guns-content-element-status">
 								<div
@@ -381,7 +381,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 					<div className="mafia-menu-get-bizwar-conditions-access-items-content">
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-items-content-element',
-								store.bizwar.access.items.medkit ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
+								store.capture.access.items.medkit ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-items-content-element-status">
 								<div
@@ -396,7 +396,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 						</div>
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-items-content-element',
-								store.bizwar.access.items.armour ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
+								store.capture.access.items.armour ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-items-content-element-status">
 								<div
@@ -411,7 +411,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 						</div>
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-items-content-element',
-								store.bizwar.access.items.drug ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
+								store.capture.access.items.drug ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-items-content-element-status">
 								<div
@@ -426,7 +426,7 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 						</div>
 						<div
 							className={cn('mafia-menu-get-bizwar-conditions-access-items-content-element',
-								store.bizwar.access.items.animation ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
+								store.capture.access.items.animation ? 'mafia-menu-get-bizwar-conditions-access-items-content-element_active' : null)}
 						>
 							<div className="mafia-menu-get-bizwar-conditions-access-items-content-element-status">
 								<div
@@ -447,11 +447,11 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 				<div className="mafia-menu-get-bizwar-conditions-players-list">
 					<div className="mafia-menu-get-bizwar-conditions-players-list-count">
 						<div
-							className="mafia-menu-get-bizwar-conditions-players-list-count__attack">{store.bizwar.count}</div>
+							className="mafia-menu-get-bizwar-conditions-players-list-count__attack">{store.capture.count}</div>
 						<img className="mafia-menu-get-bizwar-conditions-players-list-count__icon" src={versus}
 						     alt="#"/>
 						<div
-							className="mafia-menu-get-bizwar-conditions-players-list-count__defence">{store.bizwar.count}</div>
+							className="mafia-menu-get-bizwar-conditions-players-list-count__defence">{store.capture.count}</div>
 					</div>
 					<div className="mafia-menu-get-bizwar-conditions-players-list-content">
 						<div className="mafia-menu-get-bizwar-conditions-players-list-content-top">
@@ -463,8 +463,8 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 									width="20.486"
 									height="23.901"
 									viewBox="0 0 20.486 23.901"
-									opacity={el > store.bizwar.count ? .5 : .75}
-									fill={el > store.bizwar.count ? '#000000' : attackColor}
+									opacity={el > store.capture.count ? .5 : .75}
+									fill={el > store.capture.count ? '#000000' : attackColor}
 								>
 									<path
 										d="M10.243,14.2A5.975,5.975,0,1,0,4.268,8.225,5.972,5.972,0,0,0,10.243,14.2Zm4.1,1.707H13.9a8.25,8.25,0,0,1-7.309,0H6.146A6.147,6.147,0,0,0,0,22.053V23.59a2.561,2.561,0,0,0,2.561,2.561H17.926a2.561,2.561,0,0,0,2.561-2.561V22.053A6.147,6.147,0,0,0,14.34,15.908Z"
@@ -482,10 +482,10 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 									width="20.486"
 									height="23.901"
 									viewBox="0 0 20.486 23.901"
-									opacity={el > store.bizwar.count ? .5 : .75}
+									opacity={el > store.capture.count ? .5 : .75}
 									fill={
-										el > store.bizwar.count ? '#000000' :
-											el > store.bizwar.players.filter(el => !el.isBlank && !el.reserve).length ? '#ffffff' : fractionColor
+										el > store.capture.count ? '#000000' :
+											el > store.capture.players.filter(el => !el.isBlank && !el.reserve).length ? '#ffffff' : fractionColor
 									}
 								>
 									<path
@@ -504,11 +504,11 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 			onClick={() => setPage('changeCaptureList')}
 		>
 			<div
-				className="mafia-menu-get-bizwar-change__value">{store.bizwar.players.filter(el => !el.isBlank && !el.reserve).length}</div>
+				className="mafia-menu-get-bizwar-change__value">{store.capture.players.filter(el => !el.isBlank && !el.reserve).length}</div>
 			<img className="mafia-menu-get-bizwar-change__icon" src={killedScull} alt="#"/>
 			<div className="mafia-menu-get-bizwar-change-main">
 				<div className="mafia-menu-get-bizwar-change-main__title">
-					{correctWord(store.bizwar.players.filter(el => !el.isBlank && !el.reserve).length)}
+					{correctWord(store.capture.players.filter(el => !el.isBlank && !el.reserve).length)}
 				</div>
 				<div className="mafia-menu-get-bizwar-change-main__edit">редактировать</div>
 			</div>
@@ -516,13 +516,13 @@ const GetBizwar = ({store, setPage, fractionColor}) => {
 		<div
 			className="mafia-menu-get-bizwar-submit"
 			onClick={() => {
-				if (store.bizwar.time.move > 0) {
-					store.addNotify(`Вы уже перенесли бизвар на ${store.bizwar.time.move} минут`);
+				if (store.capture.time.move > 0) {
+					store.addNotify(`Вы уже перенесли бизвар на ${store.capture.time.move} минут`);
 					setPage('main');
 				} else if (moveTime > 0) {
-					store.bizwar.time.move = moveTime;
+					store.capture.time.move = moveTime;
 					store.addNotify(`Бизвар перенесен на ${moveTime} минут`);
-					EventManager.emitServer('mafiaMenu', 'moveBizwarTime', store.fractionName, moveTime);
+					EventManager.emitServer('fraction', 'moveCaptureTime', moveTime);
 					setPage('main');
 				} else store.addNotify('Выберите время для переноса');
 			}}

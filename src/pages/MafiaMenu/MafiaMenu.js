@@ -73,34 +73,34 @@ const MafiaMenu = ({store}) => {
 	}, [store.notifyQueue, store.isNotifyShowed]);
 	
 	React.useEffect(() => {
-		EventManager.addHandler('mafiaMenu', 'sendNotify', (text, timeout) => store.addNotify(text, timeout));
+		EventManager.addHandler('fraction', 'sendNotify', (text, timeout) => store.addNotify(text, timeout));
 	}, [store.addNotify]);
 	React.useEffect(() => {
-		EventManager.addHandler('mafiaMenu', 'setFractionName', text => store.fetchFractionName(text));
-		EventManager.addHandler('mafiaMenu', 'setFractionBusiness', value => store.fetchFractionBusiness(value));
-		EventManager.addHandler('mafiaMenu', 'setBalance', value => store.fetchBalance(value));
-		EventManager.addHandler('mafiaMenu', 'setPlayers', array => store.fetchPlayers(array));
-		EventManager.addHandler('mafiaMenu', 'setStoreLocked', bool => store.setStoreLocked(bool));
-		EventManager.addHandler('mafiaMenu', 'changePlayerData', (id, obj) => store.changePlayerData(id, obj));
-		EventManager.addHandler('mafiaMenu', 'setNews', array => store.fetchNews(array));
-		EventManager.addHandler('mafiaMenu', 'changeNews', (type, ...args) => store.changeNews(type, ...args));
-		EventManager.addHandler('mafiaMenu', 'setEvents', array => store.fetchEvents(array));
-		EventManager.addHandler('mafiaMenu', 'changeEvents', (type, ...args) => store.changeEvents(type, ...args));
-		EventManager.addHandler('mafiaMenu', 'setRanks', array => store.fetchRanksData(array));
-		EventManager.addHandler('mafiaMenu', 'changeRankData', (rank, obj) => store.changeRankData(rank, obj));
-		EventManager.addHandler('mafiaMenu', 'setAwardLogs', array => store.fetchAwardLogs(array));
-		EventManager.addHandler('mafiaMenu', 'addAward', obj => store.addAward(obj));
-		EventManager.addHandler('mafiaMenu', 'setReprimandLogs', array => store.fetchReprimandLogs(array));
-		EventManager.addHandler('mafiaMenu', 'addReprimand', obj => store.addReprimandLogs(obj));
-		EventManager.addHandler('mafiaMenu', 'setStoreLogs', array => store.fetchStoreLogs(array));
-		EventManager.addHandler('mafiaMenu', 'addStoreLog', obj => store.addStoreLogs(obj));
-		EventManager.addHandler('mafiaMenu', 'setFractionsFreeze', obj => store.setFractionsFreeze(obj));
-		EventManager.addHandler('mafiaMenu', 'setFractionsBizwarStatus', obj => store.setFractionsBizwarStatus(obj));
-		EventManager.addHandler('mafiaMenu', 'setBizwar', obj => store.fetchBizwar(obj));
+		EventManager.addHandler('fraction', 'setFractionName', text => store.fetchFractionName(text));
+		EventManager.addHandler('fraction', 'setAllTerritories', obj => store.fetchAllTerritories(obj));
+		EventManager.addHandler('fraction', 'setBalance', value => store.fetchBalance(value));
+		EventManager.addHandler('fraction', 'setPlayers', array => store.fetchPlayers(array));
+		EventManager.addHandler('fraction', 'setStoreLocked', bool => store.setStoreLocked(bool));
+		EventManager.addHandler('fraction', 'changePlayerData', (id, obj) => store.changePlayerData(id, obj));
+		EventManager.addHandler('fraction', 'setNews', array => store.fetchNews(array));
+		EventManager.addHandler('fraction', 'changeNews', (type, ...args) => store.changeNews(type, ...args));
+		EventManager.addHandler('fraction', 'setEvents', array => store.fetchEvents(array));
+		EventManager.addHandler('fraction', 'changeEvents', (type, ...args) => store.changeEvents(type, ...args));
+		EventManager.addHandler('fraction', 'setRanks', array => store.fetchRanksData(array));
+		EventManager.addHandler('fraction', 'changeRankData', (rank, obj) => store.changeRankData(rank, obj));
+		EventManager.addHandler('fraction', 'setAwardLogs', array => store.fetchAwardLogs(array));
+		EventManager.addHandler('fraction', 'addAward', obj => store.addAward(obj));
+		EventManager.addHandler('fraction', 'setReprimandLogs', array => store.fetchReprimandLogs(array));
+		EventManager.addHandler('fraction', 'addReprimand', obj => store.addReprimandLogs(obj));
+		EventManager.addHandler('fraction', 'setStoreLogs', array => store.fetchStoreLogs(array));
+		EventManager.addHandler('fraction', 'addStoreLog', obj => store.addStoreLogs(obj));
+		EventManager.addHandler('fraction', 'setFractionsFreeze', obj => store.setFractionsFreeze(obj));
+		EventManager.addHandler('fraction', 'setFractionsCaptureStatus', obj => store.setFractionsCaptureStatus(obj));
+		EventManager.addHandler('fraction', 'setCapture', obj => store.fetchCapture(obj));
 		
-		EventManager.stopAddingHandlers('mafiaMenu');
+		EventManager.stopAddingHandlers('fraction');
 		
-		return () => EventManager.removeTargetHandlers('mafiaMenu');
+		return () => EventManager.removeTargetHandlers('fraction');
 	}, [store]);
 	React.useEffect(() => {
 		if (!store.isNotifyShowed) {
@@ -191,7 +191,7 @@ const MafiaMenu = ({store}) => {
 							onClick={() => {
 								if (store.playerAccess.includes('closeStore')) {
 									store.setStoreLocked(!store.isStoreLocked);
-									EventManager.emitServer('mafiaMenu', 'lockStore', store.isStoreLocked);
+									EventManager.emitServer('fraction', 'lockStore', store.isStoreLocked);
 								} else store.addNotify('Вы не можете управлять складом.');
 							}}
 						>

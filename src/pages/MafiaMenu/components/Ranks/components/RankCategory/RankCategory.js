@@ -32,7 +32,7 @@ const RankCategory = ({store, el, id}) => {
 					onClick={() => {
 						el.status = !el.status;
 						
-						EventManager.emitServer('mafiaMenu', 'changeRank', rank, store.ranks[rank - 1]);
+						EventManager.emitServer('fraction', 'changeRank', rank, store.ranks[rank - 1]);
 					}}
 				>
 					<div

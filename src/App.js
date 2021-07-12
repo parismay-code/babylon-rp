@@ -22,6 +22,7 @@ import MafiaMenu     from 'pages/MafiaMenu';
 import CarDealer     from 'pages/CarDealer';
 import StartScreen   from 'pages/StartScreen';
 import MainMenu      from 'pages/MainMenu';
+import Dialogue      from 'pages/Dialogue';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -35,9 +36,8 @@ import ShopsStore      from 'store/ShopsStore';
 import JobsStore       from 'store/JobsStore';
 import InventoryStore  from 'store/InventoryStore';
 import AuthStore       from 'store/AuthStore';
-import BankStore       from 'store/BankStore';
-import CrimeMenuStore  from 'store/CrimeMenuStore';
-import MafiaMenuStore  from 'store/MafiaMenuStore';
+import BankStore      from 'store/BankStore';
+import FractionMenuStore from 'store/FractionMenuStore';
 
 const App = () => {
 	const bankStore = useLocalStore(() => new BankStore()),
@@ -46,8 +46,7 @@ const App = () => {
 		creatorStore = useLocalStore(() => new CreatorStore()),
 		hudStore = useLocalStore(() => new HUDStore()),
 		crimeHudStore = useLocalStore(() => new CrimeHUDStore()),
-		crimeMenuStore = useLocalStore(() => new CrimeMenuStore()),
-		mafiaMenuStore = useLocalStore(() => new MafiaMenuStore()),
+		fractionMenuStore = useLocalStore(() => new FractionMenuStore()),
 		battlePassStore = useLocalStore(() => new BattlePassStore()),
 		playerStore = useLocalStore(() => new PlayerStore()),
 		shopsStore = useLocalStore(() => new ShopsStore()),
@@ -149,6 +148,12 @@ const App = () => {
 				true,
 				false,
 			],
+		}),
+		[dialogueData, setDialogueData] = React.useState({
+			name: null,
+			title: null,
+			question: null,
+			answers: [],
 		});
 	
 	React.useEffect(() => {
@@ -188,6 +193,7 @@ const App = () => {
 			if (args[0] === 'gasStation') setGasStation(args[1]);
 			if (args[0] === 'jobs') setJobParams(args[1]);
 			if (args[0] === 'parking') setParkingData(args[1]);
+			if (args[0] === 'dialogue') setDialogueData(args[1]);
 		});
 		
 		EventManager.addHandler('cursor', 'change', bool => setCursorActive(bool));
@@ -228,11 +234,12 @@ const App = () => {
 		{component === 'gasStation' && <GasStation data={gasStation} store={hudStore} player={playerStore}/>}
 		{component === 'jobs' && <Jobs store={jobsStore} player={playerStore} jobParams={jobParams}/>}
 		{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}
-		{component === 'crimeMenu' && <CrimeMenu store={crimeMenuStore}/>}
-		{component === 'mafiaMenu' && <MafiaMenu store={mafiaMenuStore}/>}
+		{component === 'crimeMenu' && <CrimeMenu store={fractionMenuStore}/>}
+		{component === 'mafiaMenu' && <MafiaMenu store={fractionMenuStore}/>}
 		{component === 'carDealer' && <CarDealer store={shopsStore}/>}
 		{component === 'startScreen' && <StartScreen player={playerStore}/>}
 		{component === 'mainMenu' && <MainMenu player={playerStore}/>}
+		{component === 'dialogue' && <Dialogue data={dialogueData}/>}
 	</div>;
 };
 

@@ -73,17 +73,17 @@ const PlayersList = ({store, color}) => {
 							className="mafia-menu-players-list-content-list-element__capt"
 							onClick={() => {
 								if (store.playerAccess.includes('manageCapture')) {
-									store.changePlayerData(el.id, {...el, isBizwar: !el.isBizwar});
-									EventManager.emitServer('mafiaMenu', 'toggleBizwarRole', el.id, el.isBizwar);
+									store.changePlayerData(el.id, {...el, isCapture: !el.isCapture});
+									EventManager.emitServer('fraction', 'toggleCaptureRole', el.id, el.isCapture);
 								} else store.addNotify('Вы не можете управлять бизварами.');
 							}}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg" width="18.953" height="20.678"
 								viewBox="0 0 18.953 20.678"
-								fill={el.isBizwar ? '#ffffff' : null}
-								opacity={el.isBizwar ? 1 : .5}
-								style={el.isBizwar ? {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}
+								fill={el.isCapture ? '#ffffff' : null}
+								opacity={el.isCapture ? 1 : .5}
+								style={el.isCapture ? {filter: 'drop-shadow(0 2px 2px #00000080)'} : null}
 							>
 								<path
 									d="M8.773,20.678H7.311v-3.1H5.849v2.505l-2-4.478A8.468,8.468,0,0,1,0,8.649C0,3.88,4.251,0,9.477,0s9.476,3.88,9.476,8.649a8.464,8.464,0,0,1-3.851,6.96l-1.944,4.355V17.582H11.7v3.1H10.235v-3.1H8.773v3.1Zm.7-7.567a.781.781,0,0,0-.75.546l-.364,1.105a.792.792,0,0,0,.109.715.781.781,0,0,0,.641.329h.728a.779.779,0,0,0,.64-.329.791.791,0,0,0,.109-.716l-.364-1.105A.779.779,0,0,0,9.476,13.111ZM14.3,9.021a2.241,2.241,0,0,0-.766.215h0l-.4.149-.19.07a5.3,5.3,0,0,0-2,.973,3.307,3.307,0,0,0,.422,2.276c.384.637.646.644.657.644a.333.333,0,0,0,.07.006,3.324,3.324,0,0,0,1.046-.262l.238-.086A5.07,5.07,0,0,0,15.761,11.6a1.572,1.572,0,0,0-.123-1.8,1.514,1.514,0,0,0-.869-.688A1.747,1.747,0,0,0,14.3,9.021Zm-9.644,0a1.729,1.729,0,0,0-.469.087,1.49,1.49,0,0,0-.868.687,1.567,1.567,0,0,0-.124,1.8,5.066,5.066,0,0,0,2.389,1.411l.24.087a3.313,3.313,0,0,0,1.044.262.414.414,0,0,0,.065,0c.029,0,.294-.032.664-.645a3.313,3.313,0,0,0,.421-2.276,5.291,5.291,0,0,0-2-.973l-.19-.07-.4-.149h0A2.244,2.244,0,0,0,4.655,9.021Z"
@@ -137,7 +137,7 @@ const PlayersList = ({store, color}) => {
 							mafia-menu-players-list-content-edit-player-reputation-rank__change_top"
 							src={arrow}
 							alt="#"
-							onClick={() => EventManager.emitServer('mafiaMenu', 'setRank', editData.data?.id, true)}
+							onClick={() => EventManager.emitServer('fraction', 'setRank', editData.data?.id, true)}
 						/>
 						<div className="mafia-menu-players-list-content-edit-player-reputation-rank-value">
 							<span className="mafia-menu-players-list-content-edit-player-reputation-rank-value__count">
@@ -150,7 +150,7 @@ const PlayersList = ({store, color}) => {
 							mafia-menu-players-list-content-edit-player-reputation-rank__change_bottom"
 							src={arrow}
 							alt="#"
-							onClick={() => EventManager.emitServer('mafiaMenu', 'setRank', editData.data?.id, false)}
+							onClick={() => EventManager.emitServer('fraction', 'setRank', editData.data?.id, false)}
 						/>
 					</div>
 					<div className="mafia-menu-players-list-content-edit-player-reputation-reprimands">
@@ -182,7 +182,7 @@ const PlayersList = ({store, color}) => {
 				</div>
 				<div
 					className="mafia-menu-players-list-content-edit-player-kick"
-					onClick={() => EventManager.emitServer('mafiaMenu', 'kick', editData.data?.id)}
+					onClick={() => EventManager.emitServer('fraction', 'kick', editData.data?.id)}
 				>
 					<img className="mafia-menu-players-list-content-edit-player-kick__icon" src={kickIcon} alt="#"/>
 					исключить

@@ -15,14 +15,14 @@ const News = ({store}) => {
 	
 	const handleSubmit = React.useCallback(() => {
 			if (store.playerAccess.includes('sendNews')) {
-				if (field.current.value) EventManager.emitServer('crimeMenu', 'changeNews', 'add', field.current.value);
+				if (field.current.value) EventManager.emitServer('fraction', 'changeNews', 'add', field.current.value);
 			} else store.addNotify('Вы не можете отправлять новости');
 			
 			field.current.value = '';
 			field.current.blur();
 		}, [store.addNotify, store.playerAccess]),
 		handleRemove = React.useCallback(id => {
-			if (store.playerAccess.includes('removeNews')) EventManager.emitServer('crimeMenu', 'changeNews', 'remove', id);
+			if (store.playerAccess.includes('removeNews')) EventManager.emitServer('fraction', 'changeNews', 'remove', id);
 			else store.addNotify('Вы не можете удалять новости');
 		}, [store.addNotify, store.playerAccess]);
 	

@@ -4,7 +4,7 @@ import {
 	action,
 } from 'mobx';
 
-export default class CrimeMenuStore {
+export default class FractionMenuStore {
 	constructor() {
 		makeObservable(this, {
 			fractionName: observable,
@@ -28,7 +28,6 @@ export default class CrimeMenuStore {
 			isQueuePaused: observable,
 			
 			fetchFractionName: action.bound,
-			fetchFractionTerritories: action.bound,
 			fetchPlayers: action.bound,
 			filterPlayers: action.bound,
 			setStoreLocked: action.bound,
@@ -52,6 +51,7 @@ export default class CrimeMenuStore {
 			setFractionsCaptureStatus: action.bound,
 			fetchCapture: action.bound,
 			addNotify: action.bound,
+			getFractionTerritory: action.bound,
 		});
 	}
 	
@@ -63,12 +63,20 @@ export default class CrimeMenuStore {
 		ballas: 0,
 		vagos: 0,
 		mara: 0,
+		armenian: 0,
+		japanese: 0,
+		russian: 0,
+		lcn: 0,
 	};
 	fractionsCaptureStatus = {
 		families: null,
 		ballas: null,
 		vagos: null,
 		mara: null,
+		armenian: null,
+		japanese: null,
+		russian: null,
+		lcn: null,
 	};
 	capture = {
 		attack: null,
@@ -212,9 +220,6 @@ export default class CrimeMenuStore {
 	fetchFractionName(name) {
 		this.fractionName = name;
 	}
-	fetchFractionTerritories(value) {
-		this.territories = value;
-	}
 	fetchBalance(value) {
 		this.balance = value;
 	}
@@ -275,6 +280,8 @@ export default class CrimeMenuStore {
 	}
 	fetchAllTerritories(obj) {
 		this.allTerritories = obj;
+		
+		this.territories = Object.value(this.allTerritories).filter(el => el === this.fractionName).length;
 	}
 	changeTerritory(id, gang) {
 		this.allTerritories[id] = gang;
@@ -287,6 +294,9 @@ export default class CrimeMenuStore {
 	}
 	setFractionsCaptureStatus(obj) {
 		this.fractionCaptureStatus = obj;
+	}
+	getFractionTerritory(fraction) {
+		return Object.values(this.allTerritories).filter(el => el === fraction).length;
 	}
 	
 	destroy() {

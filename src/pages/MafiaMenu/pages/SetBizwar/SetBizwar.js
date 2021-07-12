@@ -24,18 +24,18 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 	const [currentFraction, setFraction] = React.useState(null);
 	
 	React.useEffect(() => {
-		store.bizwar.defence = currentFraction;
-		store.bizwar.attack = store.fractionName;
-	}, [currentFraction, store.bizwar, store.fractionName]);
+		store.capture.defence = currentFraction;
+		store.capture.attack = store.fractionName;
+	}, [currentFraction, store.capture, store.fractionName]);
 	
 	const _hours = React.useMemo(() => {
-			if (String(store.bizwar.time.hours).length < 2) return `0${store.bizwar.time.hours}`;
-			else return store.bizwar.time.hours;
-		}, [store.bizwar.time.hours]),
+			if (String(store.capture.time.hours).length < 2) return `0${store.capture.time.hours}`;
+			else return store.capture.time.hours;
+		}, [store.capture.time.hours]),
 		_minutes = React.useMemo(() => {
-			if (String(store.bizwar.time.minutes).length < 2) return `0${store.bizwar.time.minutes}`;
-			else return store.bizwar.time.minutes;
-		}, [store.bizwar.time.minutes]),
+			if (String(store.capture.time.minutes).length < 2) return `0${store.capture.time.minutes}`;
+			else return store.capture.time.minutes;
+		}, [store.capture.time.minutes]),
 		players = React.useMemo(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], []),
 		fractionFreezeTime = React.useMemo(() => {
 			switch (store.fractionName) {
@@ -52,7 +52,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 			}
 		}, [store.fractionName, store.fractionsFreeze.armenian, store.fractionsFreeze.lcn, store.fractionsFreeze.russian, store.fractionsFreeze.japanese]),
 		armenianBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Armenian');
+			const businessCount = store.getFractionTerritory('Armenian');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -63,7 +63,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 			else return '100%';
 		}, [store]),
 		japaneseBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Japanese');
+			const businessCount = store.getFractionTerritory('Japanese');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -74,7 +74,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 			else return '100%';
 		}, [store]),
 		russianBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Russian');
+			const businessCount = store.getFractionTerritory('Russian');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -85,7 +85,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 			else return '100%';
 		}, [store]),
 		italianBusiness = React.useMemo(() => {
-			const businessCount = store.getFractionBusiness('Italian');
+			const businessCount = store.getFractionTerritory('Italian');
 			
 			if (businessCount <= 72 * .1) return '10%';
 			else if (businessCount <= 72 * .25) return '35%';
@@ -124,7 +124,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Armenian')}</div>
+								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Armenian')}</div>
 						</div>
 						<div className="mafia-menu-set-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -150,7 +150,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Japanese')}</div>
+								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Japanese')}</div>
 						</div>
 						<div className="mafia-menu-set-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -177,7 +177,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Russian')}</div>
+								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Russian')}</div>
 						</div>
 						<div className="mafia-menu-set-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -208,7 +208,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 								</g>
 							</svg>
 							<div
-								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionBusiness('Italian')}</div>
+								className="mafia-menu-set-bizwar-info-content-business-element-content__value">{store.getFractionTerritory('Italian')}</div>
 						</div>
 						<div className="mafia-menu-set-bizwar-info-content-business-element__bottom"/>
 					</div>
@@ -222,7 +222,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					currentFraction === 'italian' ? 'mafia-menu-set-bizwar-fractions-element_active mafia-menu-set-bizwar-fractions-element_active_italian'
 						: null)}
 				onClick={() => {
-					if (store.fractionsFreeze.lcn === 0 && !store.fractionsBizwarStatus.lcn) setFraction('italian');
+					if (store.fractionsFreeze.lcn === 0 && !store.fractionsCaptureStatus.lcn) setFraction('italian');
 				}}
 			>
 				<div
@@ -263,7 +263,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						<div
 							className="mafia-menu-set-bizwar-fractions-element-content-freeze__value">{store.fractionsFreeze.lcn}</div>
 					</div>}
-					{store.fractionsBizwarStatus.lcn &&
+					{store.fractionsCaptureStatus.lcn &&
 					<img className="mafia-menu-set-bizwar-fractions-element-content__captured" src={captureIcon}
 					     alt="#"/>}
 				</div>
@@ -274,7 +274,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					currentFraction === 'russian' ? 'mafia-menu-set-bizwar-fractions-element_active mafia-menu-set-bizwar-fractions-element_active_russian'
 						: null)}
 				onClick={() => {
-					if (store.fractionsFreeze.russian === 0 && !store.fractionsBizwarStatus.russian) setFraction('russian');
+					if (store.fractionsFreeze.russian === 0 && !store.fractionsCaptureStatus.russian) setFraction('russian');
 				}}
 			>
 				<div
@@ -310,7 +310,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						<div
 							className="mafia-menu-set-bizwar-fractions-element-content-freeze__value">{store.fractionsFreeze.russian}</div>
 					</div>}
-					{store.fractionsBizwarStatus.russian &&
+					{store.fractionsCaptureStatus.russian &&
 					<img className="mafia-menu-set-bizwar-fractions-element-content__captured" src={captureIcon}
 					     alt="#"/>}
 				</div>
@@ -321,7 +321,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					currentFraction === 'japanese' ? 'mafia-menu-set-bizwar-fractions-element_active mafia-menu-set-bizwar-fractions-element_active_yakuza'
 						: null)}
 				onClick={() => {
-					if (store.fractionsFreeze.japanese === 0 && !store.fractionsBizwarStatus.japanese) setFraction('japanese');
+					if (store.fractionsFreeze.japanese === 0 && !store.fractionsCaptureStatus.japanese) setFraction('japanese');
 				}}
 			>
 				<div
@@ -356,7 +356,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						<div
 							className="mafia-menu-set-bizwar-fractions-element-content-freeze__value">{store.fractionsFreeze.japanese}</div>
 					</div>}
-					{store.fractionsBizwarStatus.japanese &&
+					{store.fractionsCaptureStatus.japanese &&
 					<img className="mafia-menu-set-bizwar-fractions-element-content__captured" src={captureIcon}
 					     alt="#"/>}
 				</div>
@@ -367,7 +367,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					currentFraction === 'armenian' ? 'mafia-menu-set-bizwar-fractions-element_active mafia-menu-set-bizwar-fractions-element_active_armenian'
 						: null)}
 				onClick={() => {
-					if (store.fractionsFreeze.armenian === 0 && !store.fractionsBizwarStatus.armenian) setFraction('armenian');
+					if (store.fractionsFreeze.armenian === 0 && !store.fractionsCaptureStatus.armenian) setFraction('armenian');
 				}}
 			>
 				<div
@@ -402,7 +402,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						<div
 							className="mafia-menu-set-bizwar-fractions-element-content-freeze__value">{store.fractionsFreeze.armenian}</div>
 					</div>}
-					{store.fractionsBizwarStatus.armenian &&
+					{store.fractionsCaptureStatus.armenian &&
 					<img className="mafia-menu-set-bizwar-fractions-element-content__captured" src={captureIcon}
 					     alt="#"/>}
 				</div>
@@ -419,8 +419,8 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (store.bizwar.time.hours + 1 > 23) store.bizwar.time.hours = 14;
-								else store.bizwar.time.hours++;
+								if (store.capture.time.hours + 1 > 23) store.capture.time.hours = 14;
+								else store.capture.time.hours++;
 							}}
 						/>
 						<div className="mafia-menu-set-bizwar-conditions-time-content-hours__value">{_hours}</div>
@@ -429,8 +429,8 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (store.bizwar.time.hours - 1 < 14) store.bizwar.time.hours = 23;
-								else store.bizwar.time.hours--;
+								if (store.capture.time.hours - 1 < 14) store.capture.time.hours = 23;
+								else store.capture.time.hours--;
 							}}
 						/>
 					</div>
@@ -441,8 +441,8 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (store.bizwar.time.minutes + 1 > 59) store.bizwar.time.minutes = 0;
-								else store.bizwar.time.minutes++;
+								if (store.capture.time.minutes + 1 > 59) store.capture.time.minutes = 0;
+								else store.capture.time.minutes++;
 							}}
 						/>
 						<div className="mafia-menu-set-bizwar-conditions-time-content-minutes__value">{_minutes}</div>
@@ -451,8 +451,8 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 							src={arrowTop}
 							alt="#"
 							onClick={() => {
-								if (store.bizwar.time.minutes - 1 < 0) store.bizwar.time.minutes = 59;
-								else store.bizwar.time.minutes--;
+								if (store.capture.time.minutes - 1 < 0) store.capture.time.minutes = 59;
+								else store.capture.time.minutes--;
 							}}
 						/>
 					</div>
@@ -463,10 +463,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 				<div className="mafia-menu-set-bizwar-conditions-items-content">
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
-							store.bizwar.access.items.medkit ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.bizwar.access.items = {
-							...store.bizwar.access.items,
-							medkit: !store.bizwar.access.items.medkit,
+							store.capture.access.items.medkit ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {
+							...store.capture.access.items,
+							medkit: !store.capture.access.items.medkit,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -478,10 +478,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
-							store.bizwar.access.items.armour ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.bizwar.access.items = {
-							...store.bizwar.access.items,
-							armour: !store.bizwar.access.items.armour,
+							store.capture.access.items.armour ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {
+							...store.capture.access.items,
+							armour: !store.capture.access.items.armour,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -494,10 +494,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
-							store.bizwar.access.items.drug ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.bizwar.access.items = {
-							...store.bizwar.access.items,
-							drug: !store.bizwar.access.items.drug,
+							store.capture.access.items.drug ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {
+							...store.capture.access.items,
+							drug: !store.capture.access.items.drug,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -510,10 +510,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
-							store.bizwar.access.items.animation ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.bizwar.access.items = {
-							...store.bizwar.access.items,
-							animation: !store.bizwar.access.items.animation,
+							store.capture.access.items.animation ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
+						onClick={() => store.capture.access.items = {
+							...store.capture.access.items,
+							animation: !store.capture.access.items.animation,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -530,10 +530,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 				<div className="mafia-menu-set-bizwar-conditions-guns-content">
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
-							store.bizwar.access.guns.pistol ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
-						onClick={() => store.bizwar.access.guns = {
-							...store.bizwar.access.guns,
-							pistol: !store.bizwar.access.guns.pistol,
+							store.capture.access.guns.pistol ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {
+							...store.capture.access.guns,
+							pistol: !store.capture.access.guns.pistol,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">
@@ -545,10 +545,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
-							store.bizwar.access.guns.smg ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
-						onClick={() => store.bizwar.access.guns = {
-							...store.bizwar.access.guns,
-							smg: !store.bizwar.access.guns.smg,
+							store.capture.access.guns.smg ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {
+							...store.capture.access.guns,
+							smg: !store.capture.access.guns.smg,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">
@@ -562,10 +562,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
-							store.bizwar.access.guns.assault ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
-						onClick={() => store.bizwar.access.guns = {
-							...store.bizwar.access.guns,
-							assault: !store.bizwar.access.guns.assault,
+							store.capture.access.guns.assault ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {
+							...store.capture.access.guns,
+							assault: !store.capture.access.guns.assault,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">
@@ -579,10 +579,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					</div>
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
-							store.bizwar.access.guns.shotgun ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
-						onClick={() => store.bizwar.access.guns = {
-							...store.bizwar.access.guns,
-							shotgun: !store.bizwar.access.guns.shotgun,
+							store.capture.access.guns.shotgun ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
+						onClick={() => store.capture.access.guns = {
+							...store.capture.access.guns,
+							shotgun: !store.capture.access.guns.shotgun,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">
@@ -605,25 +605,25 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 							src={rightArrow}
 							alt="#"
 							onClick={() => {
-								if (store.bizwar.count - 1 < 5) store.bizwar.count = 15;
-								else store.bizwar.count--;
+								if (store.capture.count - 1 < 5) store.capture.count = 15;
+								else store.capture.count--;
 							}}
 						/>
 						<input
 							type="range"
 							name="n_crimeMenuSetCapturePlayers"
-							value={store.bizwar.count}
+							value={store.capture.count}
 							min="5"
 							max="15"
-							onChange={(e) => store.bizwar.count = Number(e.target.value)}
+							onChange={(e) => store.capture.count = Number(e.target.value)}
 						/>
 						<img
 							className="mafia-menu-set-bizwar-conditions-players-input-range__next"
 							src={rightArrow}
 							alt="#"
 							onClick={() => {
-								if (store.bizwar.count + 1 > 15) store.bizwar.count = 5;
-								else store.bizwar.count++;
+								if (store.capture.count + 1 > 15) store.capture.count = 5;
+								else store.capture.count++;
 							}}
 						/>
 					</div>
@@ -631,11 +631,11 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 				<div className="mafia-menu-set-bizwar-conditions-players-list">
 					<div className="mafia-menu-set-bizwar-conditions-players-list-count">
 						<div
-							className="mafia-menu-set-bizwar-conditions-players-list-count__attack">{store.bizwar.count}</div>
+							className="mafia-menu-set-bizwar-conditions-players-list-count__attack">{store.capture.count}</div>
 						<img className="mafia-menu-set-bizwar-conditions-players-list-count__icon" src={versus}
 						     alt="#"/>
 						<div
-							className="mafia-menu-set-bizwar-conditions-players-list-count__defence">{store.bizwar.count}</div>
+							className="mafia-menu-set-bizwar-conditions-players-list-count__defence">{store.capture.count}</div>
 					</div>
 					<div className="mafia-menu-set-bizwar-conditions-players-list-content">
 						<div className="mafia-menu-set-bizwar-conditions-players-list-content-top">
@@ -645,7 +645,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 									className="mafia-menu-set-bizwar-conditions-players-list-content-top__icon"
 									src={player}
 									alt="#"
-									style={el > store.bizwar.count ? {
+									style={el > store.capture.count ? {
 										filter: 'brightness(0)',
 										opacity: .5,
 									} : {filter: 'brightness(1)'}}
@@ -659,7 +659,7 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 									className="mafia-menu-set-bizwar-conditions-players-list-content-bottom__icon"
 									src={player}
 									alt="#"
-									style={el > store.bizwar.count ? {
+									style={el > store.capture.count ? {
 										filter: 'brightness(0)',
 										opacity: .5,
 									} : {filter: 'brightness(1)'}}
@@ -673,10 +673,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 		<div
 			className="mafia-menu-set-bizwar-submit"
 			onClick={() => {
-				if (fractionFreezeTime !== 0) store.addNotify('Вы не можете назначить капт, находясь на отдыхе');
-				else if (!currentFraction) store.addNotify('Выберите фракцию, против которой будет назначен капт');
-				else if (Object.values(store.bizwar.access.items).filter(el => el).length === 0 ||
-					Object.values(store.bizwar.access.guns).filter(el => el).length === 0)
+				if (fractionFreezeTime !== 0) store.addNotify('Вы не можете назначить бизвар, находясь на отдыхе');
+				else if (!currentFraction) store.addNotify('Выберите фракцию, против которой будет назначен бизвар');
+				else if (Object.values(store.capture.access.items).filter(el => el).length === 0 ||
+					Object.values(store.capture.access.guns).filter(el => el).length === 0)
 					store.addNotify('Установите хотя бы по одному ограничению на предметы и оружие');
 				else setPage('changeCaptureList');
 			}}

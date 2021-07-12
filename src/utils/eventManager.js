@@ -36,11 +36,11 @@ const EventManager = {
 		}
 		
 		if (isDev) console.log(`${target} events loaded\n===============================================\n\n`);
-		window.alt.emit(`client::${target}:ready`);
+		window.alt.emit('client::eventManager', `client::${target}:ready`);
 		
 		if (target === 'app') {
 			if (isDev) console.log('all events ready');
-			window.alt.emit('client::cef:ready');
+			window.alt.emit('client::eventManager', 'client::cef:ready');
 		}
 	},
 	

@@ -74,7 +74,7 @@ const PlayersList = ({store, color}) => {
 							onClick={() => {
 								if (store.playerAccess.includes('manageCapture')) {
 									store.changePlayerData(el.id, {...el, isCapture: !el.isCapture});
-									EventManager.emitServer('crimeMenu', 'toggleCaptureRole', el.id, el.isCapture);
+									EventManager.emitServer('fraction', 'toggleCaptureRole', el.id, el.isCapture);
 								} else store.addNotify('Вы не можете управлять каптами.');
 							}}
 						>
@@ -137,7 +137,7 @@ const PlayersList = ({store, color}) => {
 							crime-menu-players-list-content-edit-player-reputation-rank__change_top"
 							src={arrow}
 							alt="#"
-							onClick={() => EventManager.emitServer('crimeMenu', 'setRank', editData.data?.id, true)}
+							onClick={() => EventManager.emitServer('fraction', 'setRank', editData.data?.id, true)}
 						/>
 						<div className="crime-menu-players-list-content-edit-player-reputation-rank-value">
 							<span className="crime-menu-players-list-content-edit-player-reputation-rank-value__count">
@@ -150,7 +150,7 @@ const PlayersList = ({store, color}) => {
 							crime-menu-players-list-content-edit-player-reputation-rank__change_bottom"
 							src={arrow}
 							alt="#"
-							onClick={() => EventManager.emitServer('crimeMenu', 'setRank', editData.data?.id, false)}
+							onClick={() => EventManager.emitServer('fraction', 'setRank', editData.data?.id, false)}
 						/>
 					</div>
 					<div className="crime-menu-players-list-content-edit-player-reputation-reprimands">
@@ -182,7 +182,7 @@ const PlayersList = ({store, color}) => {
 				</div>
 				<div
 					className="crime-menu-players-list-content-edit-player-kick"
-					onClick={() => EventManager.emitServer('crimeMenu', 'kick', editData.data?.id)}
+					onClick={() => EventManager.emitServer('fraction', 'kick', editData.data?.id)}
 				>
 					<img className="crime-menu-players-list-content-edit-player-kick__icon" src={kickIcon} alt="#"/>
 					исключить

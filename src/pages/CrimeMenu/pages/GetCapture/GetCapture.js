@@ -944,7 +944,7 @@ const GetCapture = ({store, setPage, fractionColor}) => {
 				} else if (moveTime > 0) {
 					store.capture.time.move = moveTime;
 					store.addNotify(`Капт перенесен на ${moveTime} минут`);
-					EventManager.emitServer('crimeMenu', 'moveCaptureTime', store.fractionName, moveTime);
+					EventManager.emitServer('fraction', 'moveCaptureTime', store.fractionName, moveTime);
 					setPage('main');
 				} else store.addNotify('Выберите время для переноса');
 			}}

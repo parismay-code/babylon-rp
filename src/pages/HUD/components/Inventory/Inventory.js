@@ -1,5 +1,6 @@
 import * as React   from 'react';
 import EventManager from 'utils/eventManager';
+import {observer}   from 'mobx-react-lite';
 
 import Clothes      from './components/Clothes';
 import Main         from './components/Main';
@@ -667,7 +668,7 @@ const Inventory = ({store}) => {
 						{type: null},
 						{type: null},
 					],
-				}
+				};
 			}
 		});
 		EventManager.addHandler('inventory', 'setTradeTargetReady', bool => store.setTradeTargetReady(bool));
@@ -771,4 +772,4 @@ const Inventory = ({store}) => {
 	</div>;
 };
 
-export default React.memo(Inventory);
+export default observer(Inventory);

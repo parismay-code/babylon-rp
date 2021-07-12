@@ -14,7 +14,7 @@ const Reprimands = ({store, editData}) => {
 	
 	const handleSubmit = React.useCallback(() => {
 		if (field.current.value) {
-			EventManager.emitServer('mafiaMenu', 'sendReprimand', editData.data?.id, reprimandType, field.current.value);
+			EventManager.emitServer('fraction', 'sendReprimand', editData.data?.id, reprimandType, field.current.value);
 		}
 	}, [editData.data?.id, reprimandType]);
 	

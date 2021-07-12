@@ -38,6 +38,7 @@
     
     &-left {
       display: flex;
+      height: 100%;
   
       opacity: 0;
       transform: translateX(-50%);
@@ -46,6 +47,8 @@
     }
     
     &-right {
+      height: 100%;
+      
       opacity: 0;
       transform: translateX(50%);
       

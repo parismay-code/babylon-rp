@@ -223,8 +223,8 @@ const ChangeCaptureList = ({store, setPage, fractionColor}) => {
 		<div
 			className="crime-menu-change-capture-list-submit"
 			onClick={() => {
-				if (!fractionCaptureStatus) EventManager.emitServer('crimeMenu', 'setCapture', store.capture);
-				else EventManager.emitServer('crimeMenu', 'getCapture', store.capture);
+				if (!fractionCaptureStatus) EventManager.emitServer('fraction', 'setCapture', store.capture);
+				else EventManager.emitServer('fraction', 'getCapture', store.capture);
 				
 				setPage('main');
 			}}

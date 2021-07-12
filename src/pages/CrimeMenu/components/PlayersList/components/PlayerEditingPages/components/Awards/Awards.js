@@ -13,7 +13,7 @@ const Awards = ({store, editData}) => {
 	
 	const handleSubmit = React.useCallback(() => {
 		if (field.current.value) {
-			EventManager.emitServer('crimeMenu' ,'sendAward', editData.data?.id, field.current.value);
+			EventManager.emitServer('fraction' ,'sendAward', editData.data?.id, field.current.value);
 		}
 	}, [editData.data?.id]);
 	

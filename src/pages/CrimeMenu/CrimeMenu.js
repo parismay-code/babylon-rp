@@ -73,34 +73,34 @@ const CrimeMenu = ({store}) => {
 	}, [store.notifyQueue, store.isNotifyShowed]);
 	
 	React.useEffect(() => {
-		EventManager.addHandler('crimeMenu', 'sendNotify', (text, timeout) => store.addNotify(text, timeout));
+		EventManager.addHandler('fraction', 'sendNotify', (text, timeout) => store.addNotify(text, timeout));
 	}, [store.addNotify]);
 	React.useEffect(() => {
-		EventManager.addHandler('crimeMenu', 'setFractionName', text => store.fetchFractionName(text));
-		EventManager.addHandler('crimeMenu', 'setFractionTerritories', value => store.fetchFractionTerritories(value));
-		EventManager.addHandler('crimeMenu', 'setBalance', value => store.fetchBalance(value));
-		EventManager.addHandler('crimeMenu', 'setPlayers', array => store.fetchPlayers(array));
-		EventManager.addHandler('crimeMenu', 'setStoreLocked', bool => store.setStoreLocked(bool));
-		EventManager.addHandler('crimeMenu', 'changePlayerData', (id, obj) => store.changePlayerData(id, obj));
-		EventManager.addHandler('crimeMenu', 'setNews', array => store.fetchNews(array));
-		EventManager.addHandler('crimeMenu', 'changeNews', (type, ...args) => store.changeNews(type, ...args));
-		EventManager.addHandler('crimeMenu', 'setEvents', array => store.fetchEvents(array));
-		EventManager.addHandler('crimeMenu', 'changeEvents', (type, ...args) => store.changeEvents(type, ...args));
-		EventManager.addHandler('crimeMenu', 'setRanks', array => store.fetchRanksData(array));
-		EventManager.addHandler('crimeMenu', 'changeRankData', (rank, obj) => store.changeRankData(rank, obj));
-		EventManager.addHandler('crimeMenu', 'setAwardLogs', array => store.fetchAwardLogs(array));
-		EventManager.addHandler('crimeMenu', 'addAward', obj => store.addAward(obj));
-		EventManager.addHandler('crimeMenu', 'setReprimandLogs', array => store.fetchReprimandLogs(array));
-		EventManager.addHandler('crimeMenu', 'addReprimand', obj => store.addReprimandLogs(obj));
-		EventManager.addHandler('crimeMenu', 'setStoreLogs', array => store.fetchStoreLogs(array));
-		EventManager.addHandler('crimeMenu', 'addStoreLog', obj => store.addStoreLogs(obj));
-		EventManager.addHandler('crimeMenu', 'setFractionsFreeze', obj => store.setFractionsFreeze(obj));
-		EventManager.addHandler('crimeMenu', 'setFractionsCaptureStatus', obj => store.setFractionsCaptureStatus(obj));
-		EventManager.addHandler('crimeMenu', 'setCapture', obj => store.fetchCapture(obj));
+		EventManager.addHandler('fraction', 'setFractionName', text => store.fetchFractionName(text));
+		EventManager.addHandler('fraction', 'setAllTerritories', obj => store.fetchAllTerritories(obj));
+		EventManager.addHandler('fraction', 'setBalance', value => store.fetchBalance(value));
+		EventManager.addHandler('fraction', 'setPlayers', array => store.fetchPlayers(array));
+		EventManager.addHandler('fraction', 'setStoreLocked', bool => store.setStoreLocked(bool));
+		EventManager.addHandler('fraction', 'changePlayerData', (id, obj) => store.changePlayerData(id, obj));
+		EventManager.addHandler('fraction', 'setNews', array => store.fetchNews(array));
+		EventManager.addHandler('fraction', 'changeNews', (type, ...args) => store.changeNews(type, ...args));
+		EventManager.addHandler('fraction', 'setEvents', array => store.fetchEvents(array));
+		EventManager.addHandler('fraction', 'changeEvents', (type, ...args) => store.changeEvents(type, ...args));
+		EventManager.addHandler('fraction', 'setRanks', array => store.fetchRanksData(array));
+		EventManager.addHandler('fraction', 'changeRankData', (rank, obj) => store.changeRankData(rank, obj));
+		EventManager.addHandler('fraction', 'setAwardLogs', array => store.fetchAwardLogs(array));
+		EventManager.addHandler('fraction', 'addAward', obj => store.addAward(obj));
+		EventManager.addHandler('fraction', 'setReprimandLogs', array => store.fetchReprimandLogs(array));
+		EventManager.addHandler('fraction', 'addReprimand', obj => store.addReprimandLogs(obj));
+		EventManager.addHandler('fraction', 'setStoreLogs', array => store.fetchStoreLogs(array));
+		EventManager.addHandler('fraction', 'addStoreLog', obj => store.addStoreLogs(obj));
+		EventManager.addHandler('fraction', 'setFractionsFreeze', obj => store.setFractionsFreeze(obj));
+		EventManager.addHandler('fraction', 'setFractionsCaptureStatus', obj => store.setFractionsCaptureStatus(obj));
+		EventManager.addHandler('fraction', 'setCapture', obj => store.fetchCapture(obj));
 		
-		EventManager.stopAddingHandlers('crimeMenu');
+		EventManager.stopAddingHandlers('fraction');
 		
-		return () => EventManager.removeTargetHandlers('crimeMenu');
+		return () => EventManager.removeTargetHandlers('fraction');
 	}, [store]);
 	React.useEffect(() => {
 		if (!store.isNotifyShowed) {
@@ -191,7 +191,7 @@ const CrimeMenu = ({store}) => {
 							onClick={() => {
 								if (store.playerAccess.includes('closeStore')) {
 									store.setStoreLocked(!store.isStoreLocked);
-									EventManager.emitServer('crimeMenu', 'lockStore', store.isStoreLocked);
+									EventManager.emitServer('fraction', 'lockStore', store.isStoreLocked);
 								} else store.addNotify('Вы не можете управлять складом.');
 							}}
 						>

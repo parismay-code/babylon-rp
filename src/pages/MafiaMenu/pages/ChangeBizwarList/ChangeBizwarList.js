@@ -15,31 +15,31 @@ import './ChangeBizwarList.scss';
 
 const ChangeBizwarList = ({store, setPage, fractionColor}) => {
 	const captureList = React.useMemo(() => {
-			return store.players.filter(el => el.isBizwar);
+			return store.players.filter(el => el.isCapture);
 		}, [store.players]),
-		firstPlace = React.useMemo(() => store.bizwar.lastGameBest[store.bizwar.lastGameBest.findIndex(el => el.place === 1)], [store.bizwar.lastGameBest]),
-		secondPlace = React.useMemo(() => store.bizwar.lastGameBest[store.bizwar.lastGameBest.findIndex(el => el.place === 2)], [store.bizwar.lastGameBest]),
-		thirdPlace = React.useMemo(() => store.bizwar.lastGameBest[store.bizwar.lastGameBest.findIndex(el => el.place === 3)], [store.bizwar.lastGameBest]),
+		firstPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 1)], [store.capture.lastGameBest]),
+		secondPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 2)], [store.capture.lastGameBest]),
+		thirdPlace = React.useMemo(() => store.capture.lastGameBest[store.capture.lastGameBest.findIndex(el => el.place === 3)], [store.capture.lastGameBest]),
 		fractionCaptureStatus = React.useMemo(() => {
 			switch (store.fractionName) {
-				case 'Armenian': return store.fractionsBizwarStatus.armenian;
-				case 'Japanese': return store.fractionsBizwarStatus.japanese;
-				case 'Russian': return store.fractionsBizwarStatus.russian;
-				case 'Italian': return store.fractionsBizwarStatus.lcn;
+				case 'Armenian': return store.fractionsCaptureStatus.armenian;
+				case 'Japanese': return store.fractionsCaptureStatus.japanese;
+				case 'Russian': return store.fractionsCaptureStatus.russian;
+				case 'Italian': return store.fractionsCaptureStatus.lcn;
 				default: return;
 			}
-		}, [store.fractionName, store.fractionsBizwarStatus]);
+		}, [store.fractionName, store.fractionsCaptureStatus]);
 	
 	React.useEffect(() => {
-		store.bizwar.players = [];
+		store.capture.players = [];
 		
-		for (let i = 0; i < store.bizwar.count; i++) {
-			store.bizwar.players.push({isBlank: true});
+		for (let i = 0; i < store.capture.count; i++) {
+			store.capture.players.push({isBlank: true});
 		}
 		
-		store.bizwar.players.push({isBlank: true, reserve: true});
-		store.bizwar.players.push({isBlank: true, reserve: true});
-	}, [store.bizwar]);
+		store.capture.players.push({isBlank: true, reserve: true});
+		store.capture.players.push({isBlank: true, reserve: true});
+	}, [store.capture]);
 	
 	return <div className="mafia-menu-change-bizwar-list">
 		<div className="mafia-menu-change-bizwar-list-players">
@@ -58,8 +58,8 @@ const ChangeBizwarList = ({store, setPage, fractionColor}) => {
 						key={key}
 						className="mafia-menu-change-bizwar-list-players-content-element"
 						onClick={() => {
-							const index = store.bizwar.players.findIndex(el => el.isBlank);
-							store.bizwar.players[index] = {...el, reserve: index + 1 > store.bizwar.count};
+							const index = store.capture.players.findIndex(el => el.isBlank);
+							store.capture.players[index] = {...el, reserve: index + 1 > store.capture.count};
 							captureList.splice(captureList.findIndex(_el => _el.id === el.id), 1);
 						}}
 						onMouseEnter={e => {
@@ -100,7 +100,7 @@ const ChangeBizwarList = ({store, setPage, fractionColor}) => {
 				<div className="mafia-menu-change-bizwar-list-team-header__title">Команда</div>
 			</div>
 			<div className="mafia-menu-change-bizwar-list-team-content">
-				{store.bizwar.players.map((el, key) => {
+				{store.capture.players.map((el, key) => {
 					return el.isBlank ? <div
 							key={key}
 							className="mafia-menu-change-bizwar-list-team-content-element mafia-menu-change-bizwar-list-team-content-element_blank"
@@ -118,7 +118,7 @@ const ChangeBizwarList = ({store, setPage, fractionColor}) => {
 							style={el.reserve ? {background: `linear-gradient(to right, #00000000, ${fractionColor}10, ${fractionColor}80, ${fractionColor}10, #00000000)`} : null}
 							onClick={() => {
 								captureList.push(el);
-								store.bizwar.players[key] = {isBlank: true, reserve: key + 1 > store.bizwar.count};
+								store.capture.players[key] = {isBlank: true, reserve: key + 1 > store.capture.count};
 							}}
 							onMouseEnter={e => {
 								e.target.classList.add('mafia-menu-change-bizwar-list-team-content-element_hovered');
@@ -223,8 +223,8 @@ const ChangeBizwarList = ({store, setPage, fractionColor}) => {
 		<div
 			className="mafia-menu-change-bizwar-list-submit"
 			onClick={() => {
-				if (!fractionCaptureStatus) EventManager.emitServer('mafiaMenu', 'setBizwar', store.bizwar);
-				else EventManager.emitServer('mafiaMenu', 'getBizwar', store.bizwar);
+				if (!fractionCaptureStatus) EventManager.emitServer('fraction', 'setCapture', store.capture);
+				else EventManager.emitServer('fraction', 'getCapture', store.capture);
 				
 				setPage('main');
 			}}

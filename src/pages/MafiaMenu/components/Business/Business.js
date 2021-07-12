@@ -13,17 +13,17 @@ const Business = ({store, color, setPage}) => {
 		isFractionCaptured = React.useMemo(() => {
 			switch (store.fractionName) {
 				case 'Armenian':
-					return store.fractionsBizwarStatus.armenian;
+					return store.fractionsCaptureStatus.armenian;
 				case 'Japanese':
-					return store.fractionsBizwarStatus.japanese;
+					return store.fractionsCaptureStatus.japanese;
 				case 'Russian':
-					return store.fractionsBizwarStatus.russian;
+					return store.fractionsCaptureStatus.russian;
 				case 'Italian':
-					return store.fractionsBizwarStatus.lcn;
+					return store.fractionsCaptureStatus.lcn;
 				default:
 					return;
 			}
-		}, [store.fractionName, store.fractionsBizwarStatus.armenian, store.fractionsBizwarStatus.lcn, store.fractionsBizwarStatus.russian, store.fractionsBizwarStatus.japanese]);
+		}, [store.fractionName, store.fractionsCaptureStatus.armenian, store.fractionsCaptureStatus.lcn, store.fractionsCaptureStatus.russian, store.fractionsCaptureStatus.japanese]);
 	
 	const [business, setBusiness] = React.useState(0);
 	
@@ -31,23 +31,23 @@ const Business = ({store, color, setPage}) => {
 		let _business = 0;
 		
 		const interval = setInterval(() => {
-			if (_business === store.business) return clearInterval(interval);
+			if (_business === store.territories) return clearInterval(interval);
 			
 			_business++;
 			setBusiness(_business);
 		}, 25);
 		
 		return () => clearInterval(interval);
-	}, [store.business]);
+	}, [store.territories]);
 	
 	const hours = React.useMemo(() => {
-			if (String(store.bizwar.time.hours).length < 2) return `0${store.bizwar.time.hours}`;
-			else return store.bizwar.time.hours;
-		}, [store.bizwar.time.hours]),
+			if (String(store.capture.time.hours).length < 2) return `0${store.capture.time.hours}`;
+			else return store.capture.time.hours;
+		}, [store.capture.time.hours]),
 		minutes = React.useMemo(() => {
-			if (String(store.bizwar.time.minutes).length < 2) return `0${store.bizwar.time.minutes}`;
-			else return store.bizwar.time.minutes;
-		}, [store.bizwar.time.minutes]);
+			if (String(store.capture.time.minutes).length < 2) return `0${store.capture.time.minutes}`;
+			else return store.capture.time.minutes;
+		}, [store.capture.time.minutes]);
 	
 	return <div
 		className="crime-menu-ghetto-territories"
@@ -55,7 +55,7 @@ const Business = ({store, color, setPage}) => {
 			if (store.playerAccess.includes('manageBizwar')) {
 				if (isFractionCaptured === 'defence') setPage('getBizwar');
 				else if (isFractionCaptured !== 'attack') setPage('setBizwar');
-				else store.addNotify(`Вы уже назначили бизвар против ${store.bizwar.defence} в ${hours}:${minutes}`);
+				else store.addNotify(`Вы уже назначили бизвар против ${store.capture.defence} в ${hours}:${minutes}`);
 			} else store.addNotify('Вы не можете управлять бизварами.');
 		}}
 	>
