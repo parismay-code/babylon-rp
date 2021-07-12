@@ -52,6 +52,8 @@ export default class FractionMenuStore {
 			fetchCapture: action.bound,
 			addNotify: action.bound,
 			getFractionTerritory: action.bound,
+			fetchPlayerRank: action.bound,
+			fetchPlayerAccess: action.bound,
 		});
 	}
 	
@@ -217,86 +219,118 @@ export default class FractionMenuStore {
 			}
 		}
 	}
+	
 	fetchFractionName(name) {
 		this.fractionName = name;
 	}
+	
 	fetchBalance(value) {
 		this.balance = value;
 	}
+	
 	fetchPlayers(array) {
 		this.players = array;
 		this.filteredPlayersList = array;
 	}
+	
 	filterPlayers(text) {
 		if (text) {
 			if (isNaN(Number(text))) this.filteredPlayersList = this.players.filter(el => el.nickname.toLowerCase().includes(text.toLowerCase()));
 			else this.filteredPlayersList = this.players.filter(el => el.id === Number(text));
 		} else this.filteredPlayersList = this.players;
 	}
+	
 	setStoreLocked(bool) {
 		this.isStoreLocked = bool;
 	}
+	
 	changePlayerData(id, obj) {
 		this.players[this.players.findIndex(el => el.id === id)] = obj;
 		this.filteredPlayersList = this.players;
 	}
+	
 	fetchNews(array) {
 		this.news = array;
 	}
+	
 	changeNews(type, ...args) {
 		if (type === 'add') this.news.unshift(args[0]);
 		else this.news.splice(args[0], 1);
 	}
+	
 	fetchEvents(array) {
 		this.events = array;
 	}
+	
 	changeEvents(type, ...args) {
 		if (type === 'add') this.events.unshift(args[0]);
 		else this.events.splice(args[0], 1);
 	}
+	
 	fetchRanksData(array) {
 		this.ranks = array;
 	}
+	
 	changeRankData(rank, obj) {
 		this.ranks[rank - 1] = obj;
 	}
+	
 	fetchAwardLogs(array) {
 		this.awardLogs = array;
 	}
+	
 	addAward(obj) {
 		this.awardLogs.unshift(obj);
 	}
+	
 	fetchReprimandLogs(array) {
 		this.reprimandLogs = array;
 	}
+	
 	addReprimandLogs(obj) {
 		this.reprimandLogs.unshift(obj);
 	}
+	
 	fetchStoreLogs(array) {
 		this.storeLogs = array;
 	}
+	
 	addStoreLogs(obj) {
 		this.storeLogs.unshift(obj);
 	}
+	
 	fetchAllTerritories(obj) {
 		this.allTerritories = obj;
 		
 		this.territories = Object.values(this.allTerritories).filter(el => el === this.fractionName).length;
 	}
+	
 	changeTerritory(id, gang) {
 		this.allTerritories[id] = gang;
 	}
+	
 	fetchCapture(obj) {
 		this.capture = obj;
 	}
+	
 	setFractionsFreeze(obj) {
 		this.fractionsFreeze = obj;
 	}
+	
 	setFractionsCaptureStatus(obj) {
 		this.fractionCaptureStatus = obj;
 	}
+	
 	getFractionTerritory(fraction) {
 		return Object.values(this.allTerritories).filter(el => el === fraction).length;
+	}
+	
+	fetchPlayerRank(value) {
+		this.playerRank = value;
+	}
+	
+	fetchPlayerAccess(array) {
+		this.playerAccess = array;
 	}
 	
 	destroy() {

@@ -97,6 +97,8 @@ const CrimeMenu = ({store}) => {
 		EventManager.addHandler('fraction', 'setFractionsFreeze', obj => store.setFractionsFreeze(obj));
 		EventManager.addHandler('fraction', 'setFractionsCaptureStatus', obj => store.setFractionsCaptureStatus(obj));
 		EventManager.addHandler('fraction', 'setCapture', obj => store.fetchCapture(obj));
+		EventManager.addHandler('fraction', 'setPlayerRank', value => store.fetchPlayerRank(value));
+		EventManager.addHandler('fraction', 'setPlayerAccess', array => store.fetchPlayerAccess(array));
 		
 		EventManager.stopAddingHandlers('fraction');
 		
