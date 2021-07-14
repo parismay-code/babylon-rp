@@ -9,7 +9,6 @@ import {regExp} from 'utils/regExp';
 
 import './TruckDriverOrders.scss';
 
-
 const TruckDriverOrders = ({store}) => {
 	const [type, setType] = React.useState('state');
 	
@@ -28,7 +27,6 @@ const TruckDriverOrders = ({store}) => {
 	
 	return <div className="job-truck-driver-orders">
 		<img className="job-truck-driver-orders__bg" src={truckDriverOrders} alt="#"/>
-		
 		<div className="job-truck-driver-orders-content">
 			<div className="job-truck-driver-orders-content-header">
 				<div className="job-truck-driver-orders-content-header-title">
@@ -52,9 +50,32 @@ const TruckDriverOrders = ({store}) => {
 						Частные
 					</div>}
 				</div>
+				<div className={cn('job-truck-driver-orders-content-header-current',
+					store.truckDriverData.current.name ? 'job-truck-driver-orders-content-header-current_active' : null)}>
+					<div className="job-truck-driver-orders-content-header-current__title">
+						{store.truckDriverData.current.name}
+					</div>
+					<div className="job-truck-driver-orders-content-header-current-content">
+						<div className="job-truck-driver-orders-content-header-current-content-price">
+							<div className="job-truck-driver-orders-content-header-current-content-price__title">
+								{store.truckDriverData.current.price} $
+							</div>
+							<div className="job-truck-driver-orders-content-header-current-content-price__subtitle">
+								текущий
+							</div>
+						</div>
+						<div
+							className="job-truck-driver-orders-content-header-current-content__cancel"
+							onClick={() => EventManager.emitServer('job', 'cancelOrder')}
+						>
+							отменить заказ
+						</div>
+					</div>
+				</div>
 				<div className="job-truck-driver-orders-content-header-free-orders">
-					<div
-						className="job-truck-driver-orders-content-header-free-orders__value">{store.truckDriverData.orders.filter(el => el.type === type).length}</div>
+					<div className="job-truck-driver-orders-content-header-free-orders__value">
+						{store.truckDriverData.orders.filter(el => el.type === type).length}
+					</div>
 					<div className="job-truck-driver-orders-content-header-free-orders__title">{rightWord.split(' ')[0]}
 						<br/>{rightWord.split(' ')[1]}</div>
 				</div>

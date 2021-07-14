@@ -7,6 +7,7 @@ import BusWays           from './pages/BusWays';
 import TruckDriver       from './pages/TruckDriver';
 import TruckDriverArend  from './pages/TruckDriverArend';
 import TruckDriverOrders from './pages/TruckDriverOrders';
+import Taxi              from './pages/Taxi';
 
 import './Jobs.scss';
 
@@ -32,12 +33,11 @@ const Jobs = ({store, jobParams, player}) => {
 	return <div ref={screen} className="jobs">
 		{player.playerState.job === 'bus' && !jobParams && <Bus store={store}/>}
 		{player.playerState.job === 'truckDriver' && !jobParams && <TruckDriver store={store}/>}
-		{player.playerState.job === 'taxi' && !jobParams && <div>taxi</div>}
+		{player.playerState.job === 'taxi' && !jobParams && <Taxi store={store}/>}
 		
 		{player.playerState.job === 'bus' && jobParams === 'ways' && <BusWays store={store}/>}
 		{player.playerState.job === 'truckDriver' && jobParams === 'arend' && <TruckDriverArend store={store}/>}
 		{player.playerState.job === 'truckDriver' && jobParams === 'orders' && <TruckDriverOrders store={store}/>}
-		{player.playerState.job === 'taxi' && jobParams && <div>taxi</div>}
 		
 		<div className="jobs-exit">
 			<div className="jobs-exit__button">Esc</div>

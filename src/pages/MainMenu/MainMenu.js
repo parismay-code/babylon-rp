@@ -26,7 +26,7 @@ import {regExp} from 'utils/regExp';
 
 import './MainMenu.scss';
 
-const MainMenu = ({player}) => {
+const MainMenu = ({player, setComponent}) => {
 	const options = React.useMemo(() => [
 			{
 				name: 'Статистика',
@@ -58,7 +58,7 @@ const MainMenu = ({player}) => {
 				modifier: 'achievements',
 				background: achievementsBg,
 				stat: null,
-				event: 'openAchievements',
+				event: () => setComponent('achievements'),
 			},
 			{
 				name: 'Магазин',
@@ -133,7 +133,10 @@ const MainMenu = ({player}) => {
 				return <div
 					key={key}
 					className={`main-menu-options-element main-menu-options-element_${el.modifier}`}
-					onClick={() => EventManager.emitClient('mainMenu', el.event)}
+					onClick={() => {
+						if (typeof el.event === 'string') EventManager.emitClient('mainMenu', el.event);
+						else el.event();
+					}}
 				>
 					<img className="main-menu-options-element__bg" src={el.background} alt="#"/>
 					<div className="main-menu-options-element-top">

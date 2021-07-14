@@ -30,7 +30,7 @@
     ]
   },
   "browserslist": [
-      "last 2 chrome version"
+    "last 2 chrome version"
   ],
   "devDependencies": {
     "mobx": "^6.2.0",

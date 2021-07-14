@@ -23,23 +23,38 @@ const EventManager = {
 		
 		if (index !== -1) {
 			eventsInMemory[index].handler(...args);
-			if (isDev) console.log(`cef::${eventsInMemory[index].target}:${eventsInMemory[index].name} called`);
-		} else if (isDev) console.log(`cef::${event} is not exists`);
+			if (isDev) console.log(
+				`%c cef::${eventsInMemory[index].target}:${eventsInMemory[index].name} called`,
+				'background: yellow; color: black; font-weight: 700; padding: 10px 20px;',
+			);
+		} else if (isDev) console.log(
+			`%c cef::${event} is not exists`,
+			'color: red; font-weight: 700;',
+		);
 	},
 	
 	// initialize all events added in component, should be after all events
 	stopAddingHandlers: (target) => {
 		for (let i = 0; i < eventsInMemory.length; i++) {
 			if (eventsInMemory[i].target === target) {
-				if (isDev) console.log(`cef::${eventsInMemory[i].target}:${eventsInMemory[i].name} loaded`);
+				if (isDev) console.log(
+					`%c cef::${eventsInMemory[i].target}:${eventsInMemory[i].name} loaded`,
+					'color: yellow; font-weight: 700;',
+				);
 			}
 		}
 		
-		if (isDev) console.log(`${target} events loaded\n===============================================\n\n`);
+		if (isDev) console.log(
+			`%c ${target} events loaded`,
+			'background: green; color: black; padding: 10px 40px; text-align: center; font-weight: 700;',
+		);
 		window.alt.emit('client::eventManager', `client::${target}:ready`);
 		
 		if (target === 'app') {
-			if (isDev) console.log('all events ready');
+			if (isDev) console.log(
+				'%c all events loaded',
+				'background: green; color: black; padding: 10px 40px; text-align: center; font-weight: 700;',
+			);
 			window.alt.emit('client::eventManager', 'client::cef:ready');
 		}
 	},
@@ -51,7 +66,10 @@ const EventManager = {
 		for (let i = 0; i < events.length; i++) {
 			eventsInMemory.splice(eventsInMemory.findIndex(el => el.id === events[i].id), 1);
 			
-			if (isDev) console.log(`unsubscribe from cef::${events[i].target}:${events[i].name}`);
+			if (isDev) console.log(
+				`%c unsubscribe from cef::${events[i].target}:${events[i].name}`,
+				'color: red; font-weight: 700;',
+			);
 		}
 		
 		// logs remaining events if second argue was true
@@ -69,7 +87,7 @@ const EventManager = {
 		
 		window.alt.emit('client::eventManager', event, ...args);
 		
-		if (isDev) console.log(`emitted:\n${event}\n`, ...args);
+		if (isDev) console.log(`emitted: ${event}\n`, ...args);
 	},
 	emitClient: (eventTarget, eventName, ...args) => {
 		if (typeof (eventTarget) !== 'string' || typeof (eventName) !== 'string') {
@@ -79,7 +97,7 @@ const EventManager = {
 		
 		window.alt.emit('client::eventManager', event, ...args);
 		
-		if (isDev) console.log(`emitted:\n${event}\n`, ...args);
+		if (isDev) console.log(`emitted: ${event}\n`, ...args);
 	},
 };
 

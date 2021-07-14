@@ -14,6 +14,7 @@ import HUDDead        from '../../components/HUDDead';
 import HUDSubmit      from '../../components/HUDSubmit';
 import HUDInteraction from '../../components/HUDInteraction';
 import Inventory      from '../../components/Inventory';
+import CaptureNotify  from '../../components/CaptureNotify';
 
 import greenZone from 'assets/images/hud/greenZone.svg';
 
@@ -62,6 +63,7 @@ const HUDMain = ({
 			<HUDNotify/>
 			<HUDSubmit/>
 			<HUDAlerts player={player} store={store}/>
+			<CaptureNotify/>
 		</>
 		{!player.playerState.dead.isDead && <>
 			<HUDInteraction player={player}/>

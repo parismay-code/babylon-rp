@@ -1,0 +1,119 @@
+@import '../../../../styles/vars';
+
+.hud-capture-notify {
+  position: absolute;
+  top: 0;
+  left: 35%;
+  transform: translateX(-50%);
+  
+  width: 30px;
+  height: 300px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  
+  text-shadow: 0 2px 2px $color-black;
+  
+  opacity: 0;
+  
+  transition: height .5s, opacity .5s;
+  
+  &_active {
+	opacity: 1;
+	height: 550px;
+  }
+  
+  &_active &__knife {
+	top: 6%;
+  }
+  
+  &_active &-description {
+	opacity: 1;
+	transform: translate(110%, -50%);
+  }
+  
+  &__knife {
+	position: absolute;
+	top: -20%;
+	transform: translateY(-50%) rotate(135deg);
+	
+	height: 30px;
+	
+	filter: drop-shadow(0 2px 2px $color-black);
+	
+	transition: top .5s .2s;
+  }
+  
+  &__scull {
+	position: absolute;
+	top: 10%;
+	transform: translateY(-50%);
+	
+	height: 30px;
+	
+	filter: drop-shadow(0 2px 2px $color-black);
+  }
+  
+  &__logo {
+	position: absolute;
+	top: 25%;
+	transform: translateY(-50%);
+	
+	filter: drop-shadow(0 2px 2px $color-black);
+	
+	& svg {
+	  height: 60px;
+	  max-width: 60px;
+	}
+  }
+  
+  &-fraction {
+	text-transform: uppercase;
+	font-family: "Baron Neue", sans-serif;
+	font-size: 1.5rem;
+	
+	&-first,
+	&-second {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  
+	  &__letter {
+		margin-bottom: 5px;
+	  }
+	}
+	
+	&-first {
+	  margin-bottom: 30px;
+	}
+  }
+  
+  &-description {
+	position: absolute;
+	top: 55%;
+	right: 0;
+	transform: translate(110%, -100%);
+ 
+	width: 300px;
+	
+	font-family: "TT Norms Medium", sans-serif;
+ 
+	opacity: 0;
+	
+	transition: opacity .5s .5s, transform .5s .5s;
+	
+	&__title {
+	  margin-bottom: 5px;
+	  
+	  font-family: "TT Norms Bold", sans-serif;
+	  text-transform: uppercase;
+	  font-size: 1.5rem;
+	}
+	
+	&__subtitle {
+	  font-size: 1.2rem;
+	}
+  }
+}
