@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="139.838" height="152.281" viewBox="0 0 139.838 152.281">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.938" y1="0.774" x2="0" y2="0.225" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#c373f3"/>
+      <stop offset="1" stop-color="#aab6ef"/>
+    </linearGradient>
+    <filter id="Объединение_47" x="0" y="0" width="139.838" height="152.281" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#70f"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Icon_ionic-ios-call" x="23.946" y="30.169" width="91.946" height="91.943" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur-2"/>
+      <feFlood flood-color="#70f"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_3034" data-name="Сгруппировать 3034" transform="translate(-193.08 -161.859)">
+    <g transform="matrix(1, 0, 0, 1, 193.08, 161.86)" filter="url(#Объединение_47)">
+      <path id="Объединение_47-2" data-name="Объединение 47" d="M-6566-5341.719h0l-39.919-23.141L-6606-5411l39.838-23,39.917,23.141.083,46.141-39.838,23Zm-.147-83.443-32.207,18.593.066,37.3,32.272,18.707,32.207-18.593-.066-37.3-32.273-18.707Z" transform="translate(6636 5464)" fill="url(#linear-gradient)"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 193.08, 161.86)" filter="url(#Icon_ionic-ios-call)">
+      <path id="Icon_ionic-ios-call-2" data-name="Icon ionic-ios-call" d="M35.513,29.515a26.832,26.832,0,0,0-5.605-3.751c-1.68-.807-2.3-.79-3.484.067-.99.715-1.63,1.38-2.769,1.131s-3.385-1.946-5.564-4.117-3.875-4.424-4.117-5.564.424-1.78,1.131-2.769c.857-1.189.882-1.8.067-3.484a26.3,26.3,0,0,0-3.751-5.605C10.2,4.2,9.924,4.466,9.25,4.707A12.351,12.351,0,0,0,7.263,5.764a6,6,0,0,0-2.387,2.52c-.474,1.023-1.023,2.927,1.771,7.9A44.084,44.084,0,0,0,14.4,26.521h0l.008.008.008.008h0a44.256,44.256,0,0,0,10.337,7.751c4.973,2.794,6.878,2.245,7.9,1.771a5.894,5.894,0,0,0,2.52-2.387,12.351,12.351,0,0,0,1.056-1.988C36.469,31.012,36.744,30.737,35.513,29.515Z" transform="translate(49.46 55.67)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

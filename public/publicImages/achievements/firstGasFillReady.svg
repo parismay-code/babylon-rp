@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="139.839" height="152.281" viewBox="0 0 139.839 152.281">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.938" y1="0.774" x2="0" y2="0.225" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#c373f3"/>
+      <stop offset="1" stop-color="#aab6ef"/>
+    </linearGradient>
+    <filter id="Объединение_47" x="0" y="0" width="139.839" height="152.281" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#70f"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Объединение_47)">
+    <path id="Объединение_47-2" data-name="Объединение 47" d="M-6605.919-5364.859-6606-5411l39.837-23,39.918,23.139.083,46.141-39.839,23Zm44.387,8.626v3.087l7-4.043a6.5,6.5,0,0,1-3.1-5.541v-13h-3.9Zm-5.2-46.787a5.214,5.214,0,0,1,5.2,5.2v18.2h2.6a5.214,5.214,0,0,1,5.2,5.2v11.7a2.605,2.605,0,0,0,2.6,2.6,2.606,2.606,0,0,0,2.6-2.6v-18.741a6.634,6.634,0,0,1-2.6.545,6.5,6.5,0,0,1-6.5-6.5,6.478,6.478,0,0,1,4.185-6.056l-5.484-5.484,2.755-2.755,9.668,9.67-.026.025a6.5,6.5,0,0,1,1.9,4.6v24.524l10.828-6.251-.065-37.3-32.274-18.706-32.206,18.593.066,37.3,10.763,6.238v-34.8a5.214,5.214,0,0,1,5.2-5.2Zm13,15.6a2.605,2.605,0,0,0,2.6,2.6,2.606,2.606,0,0,0,2.6-2.6,2.605,2.605,0,0,0-2.6-2.6A2.6,2.6,0,0,0-6553.733-5387.425Zm-28.594,2.6h15.6v-13h-15.6Z" transform="translate(6636 5464)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
