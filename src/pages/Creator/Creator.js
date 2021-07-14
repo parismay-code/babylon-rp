@@ -1,6 +1,7 @@
-import * as React from 'react';
-import cn         from 'classnames';
-import {observer} from 'mobx-react-lite';
+import * as React   from 'react';
+import cn           from 'classnames';
+import {observer}   from 'mobx-react-lite';
+import EventManager from 'utils/eventManager';
 
 import CreatorPlayerName       from './components/CreatorPlayerName';
 import CreatorPlayerAppearance from './components/CreatorPlayerAppearance';
@@ -9,10 +10,9 @@ import CreatorPlayerClothes    from './components/CreatorPlayerClothes';
 
 import {setRandomOptions} from './utils/setRandomOptions';
 
-import mouse        from 'assets/images/creator/mouse.svg';
+import mouse from 'assets/images/creator/mouse.svg';
 
 import './Creator.scss';
-import EventManager from 'utils/eventManager';
 
 const Creator = ({store}) => {
 	const [optionsPage, setOptionsPage] = React.useState('name');
@@ -43,25 +43,25 @@ const Creator = ({store}) => {
 	}, []);
 	
 	const handleSwitch = React.useCallback((page) => {
-		setOptionsPage(page);
-	}, []),
+			setOptionsPage(page);
+		}, []),
 		handleCreate = React.useCallback(() => {
 			if (store.data.name.firstname && store.data.name.lastname) {
 				store.addNotify(1, 'Персонаж успешно создан');
-
+				
 				EventManager.emitServer('creator', 'create', store.data);
 			} else store.addNotify(0, 'Укажите имя и фамилию персонажа');
 		}, [store.data]),
 		showNotify = React.useCallback(() => {
 			if (store.notifyQueue.length > 0) {
 				store.isNotifyShowed = true;
-
+				
 				notify.current.innerText = store.notifyQueue[0].text;
 				if (store.notifyQueue[0].type === 0) {
 					notify.current.classList.add('creator-error');
 				} else notify.current.classList.add('creator-success');
 				notify.current.style.opacity = '1';
-
+				
 				setTimeout(() => {
 					notify.current.style.opacity = '0';
 					notify.current.classList.remove('creator-success', 'creator-error');
@@ -72,7 +72,7 @@ const Creator = ({store}) => {
 				}, 3000);
 			}
 		}, [store.notifyQueue, store.isNotifyShowed]);
-
+	
 	React.useEffect(() => {
 		if (!store.isNotifyShowed) {
 			showNotify();
@@ -179,9 +179,7 @@ const Creator = ({store}) => {
 					/>
 				</div>
 				{optionsPage === 'name' && <CreatorPlayerName store={store}/>}
-				{optionsPage === 'appearance' && (
-					<CreatorPlayerAppearance store={store}/>
-				)}
+				{optionsPage === 'appearance' && <CreatorPlayerAppearance store={store}/>}
 				{optionsPage === 'face' && <CreatorPlayerFace store={store}/>}
 				{optionsPage === 'clothes' && <CreatorPlayerClothes store={store}/>}
 				<div className="creator__player-name">
@@ -198,7 +196,7 @@ const Creator = ({store}) => {
 						alt="#"
 					/>
 				</div>
-
+				
 				<div className="creator-description">
 					<div className="creator-description__title">
 						{optionsPage === 'name' && 'Используя переключатели, выберите гендер, а также имя персонажу.'}

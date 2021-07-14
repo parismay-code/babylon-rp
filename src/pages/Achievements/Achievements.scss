@@ -1,0 +1,168 @@
+@import '../../styles/vars';
+
+.achievements {
+  width: 100vw;
+  height: 100vh;
+  padding: 0 70px;
+  
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  
+  background-color: #000000BF;
+  
+  font-family: "TT Norms Regular", sans-serif;
+  text-shadow: 0 2px 2px #000000;
+  
+  backdrop-filter: blur(5px);
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+	opacity: 1;
+  }
+  
+  &-back {
+	position: absolute;
+	top: 7%;
+	left: 35px;
+	
+	display: flex;
+	align-items: center;
+	
+	z-index: 500;
+ 
+	cursor: url("../../assets/images/cursorPointer.svg"), pointer;
+	
+	&__arrow {
+	  height: 7rem;
+	}
+	
+	&__title {
+	  font-family: "Baron Neue", sans-serif;
+	  text-transform: uppercase;
+	  font-size: 2.5rem;
+	  
+	  transform: translateY(-6px);
+	}
+  }
+  
+  &-column {
+	position: relative;
+	width: 440px;
+	height: 100%;
+	
+	padding-top: 340px;
+	
+	&::before {
+	  content: '';
+	  position: absolute;
+	  left: 75px;
+	  top: 0;
+	  transform: translateX(-50%);
+	  
+	  width: 50px;
+	  height: 100%;
+	  
+	  background: linear-gradient(to bottom, #FFFFFF33, $color-blank 20%);
+	  
+	  pointer-events: none;
+	}
+	
+	&::after {
+	  content: '';
+	  position: absolute;
+	  left: 75px;
+	  top: 0;
+	  transform: translateX(-50%);
+	  
+	  width: 20px;
+	  height: 100%;
+	  
+	  pointer-events: none;
+	}
+	
+	&-top {
+	  position: absolute;
+	  top: 0;
+	  left: 75px;
+	  transform: translate(-50%, -30%);
+	  
+	  width: 50px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  
+	  z-index: 500;
+	  
+	  &-block {
+		width: 100%;
+		height: 100px;
+		
+		filter: drop-shadow(0 0 10px #7700FF);
+		
+		&__fill {
+		  width: 100%;
+		  height: 100%;
+		  background-color: $color-white;
+		  
+		  clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 50% 70%);
+		}
+	  }
+	  
+	  &__star {
+		width: 200%;
+		transform: translateY(-30%);
+	  }
+	}
+	
+	&_purple::after {
+	  background: linear-gradient(to bottom, #C07BF233, $color-blank);
+	}
+	
+	&_red::after {
+	  background: linear-gradient(to bottom, #FF796333, $color-blank);
+	}
+	
+	&_yellow::after {
+	  background: linear-gradient(to bottom, #FFEA8033, $color-blank);
+	}
+	
+	&_blue::after {
+	  background: linear-gradient(to bottom, #8B9EF233, $color-blank);
+	}
+	
+	&-title {
+	  position: absolute;
+	  top: 180px;
+	  left: 0;
+	  
+	  &__icon {
+		width: 150px;
+	  }
+	  
+	  &__text {
+		position: absolute;
+		top: 50px;
+		left: 65px;
+		
+		text-transform: uppercase;
+		font-family: "Baron Neue", sans-serif;
+		font-size: 2rem;
+	  }
+	}
+	
+	&-content {
+	  padding: 20px 0 0 130px;
+	  height: 100%;
+	  
+	  overflow: auto;
+	  
+	  &::-webkit-scrollbar {
+		display: none;
+	  }
+	}
+  }
+}

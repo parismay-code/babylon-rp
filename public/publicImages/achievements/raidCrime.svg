@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="97.839" height="110.281" viewBox="0 0 97.839 110.281">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.242" x2="1" y2="0.749" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f1f1f1"/>
+      <stop offset="1" stop-color="#8e8e8e"/>
+    </linearGradient>
+    <filter id="Объединение_56" x="0" y="0" width="97.839" height="110.281" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="raidCrime" transform="translate(-214.08 -185.86)">
+    <g transform="matrix(1, 0, 0, 1, 214.08, 185.86)" filter="url(#Объединение_56)">
+      <path id="Объединение_56-2" data-name="Объединение 56" d="M-6728.42-5504.063l-.081-46.141,39.837-23,39.918,23.139.083,46.141-39.839,23Zm7.565-41.709.066,37.3,32.272,18.706,32.206-18.593-.065-37.3-32.274-18.706Zm35.175,35.144v-32.864h3.5c2.38,0,4.763-.012,7.142.02a1.672,1.672,0,0,1,1.073.322c1.5,1.351,2.939,2.762,4.406,4.155v8.029c-1.1,1.041-2.311,2.171-3.644,3.422,1.436,1.349,2.663,2.5,3.906,3.668v8.333l-5.077,4.916Zm5.9-5.834h4.657v-7.593h-4.657Zm-.023-13.966h4.455v-7.031h-4.455Zm-13.626,19.793v-32.755h6.186v32.755Zm-14.434-.053v-32.739h12.656v5.868h-6.729v6.766h6.707v5.77h-6.707v14.336Z" transform="translate(6737.5 5579.2)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

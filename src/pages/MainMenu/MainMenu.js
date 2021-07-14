@@ -100,7 +100,7 @@ const MainMenu = ({player, setComponent}) => {
 				stat: null,
 				event: 'openBusiness',
 			},
-		], []),
+		], [setComponent]),
 		cash = React.useMemo(() =>
 			`$ ${String(player.playerState.money.cash).replace(regExp.money, '$1 ')}`, [player.playerState.money.cash]),
 		card = React.useMemo(() =>
@@ -111,7 +111,7 @@ const MainMenu = ({player, setComponent}) => {
 	const screen = React.useRef(null);
 	
 	React.useEffect(() => {
-		const timeout = setTimeout(() => screen.current.classList.add('main-menu_active'), 200);
+		const timeout = setTimeout(() => screen.current.classList.add('main-menu_active'), 100);
 		
 		return () => clearTimeout(timeout);
 	}, []);

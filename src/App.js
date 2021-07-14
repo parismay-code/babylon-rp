@@ -23,6 +23,7 @@ import CarDealer     from 'pages/CarDealer';
 import StartScreen   from 'pages/StartScreen';
 import MainMenu      from 'pages/MainMenu';
 import Dialogue      from 'pages/Dialogue';
+import Achievements  from 'pages/Achievements';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -153,6 +154,7 @@ const App = () => {
 		{component === 'startScreen' && <StartScreen player={playerStore}/>}
 		{component === 'mainMenu' && <MainMenu player={playerStore} setComponent={setComponent}/>}
 		{component === 'dialogue' && <Dialogue data={dialogueData}/>}
+		{component === 'achievements' && <Achievements player={playerStore} setComponent={setComponent}/>}
 	</div>;
 };
 

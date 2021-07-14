@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104.113" height="101.892" viewBox="0 0 104.113 101.892">
+  <defs>
+    <filter id="Icon_material-star" x="0" y="0" width="104.113" height="101.892" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#70f"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_material-star)">
+    <path id="Icon_material-star-2" data-name="Icon material-star" d="M25.056,36.668l13.631,8.224-3.617-15.5L47.113,18.963,31.254,17.618,25.056,3l-6.2,14.618L3,18.963,15.043,29.392l-3.617,15.5Z" transform="translate(27 27)" fill="#fff"/>
+  </g>
+</svg>

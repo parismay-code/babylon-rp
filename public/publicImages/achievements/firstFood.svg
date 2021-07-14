@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="97.838" height="110.281" viewBox="0 0 97.838 110.281">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.242" x2="1" y2="0.749" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f1f1f1"/>
+      <stop offset="1" stop-color="#8e8e8e"/>
+    </linearGradient>
+    <filter id="Объединение_47" x="0" y="0" width="97.838" height="110.281" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Icon_map-food" x="17.187" y="26.213" width="63.465" height="57.855" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Сгруппировать_2551" data-name="Сгруппировать 2551" transform="translate(-214.08 -185.859)">
+    <g transform="matrix(1, 0, 0, 1, 214.08, 185.86)" filter="url(#Объединение_47)">
+      <path id="Объединение_47-2" data-name="Объединение 47" d="M-6566-5341.719h0l-39.919-23.141L-6606-5411l39.838-23,39.917,23.141.083,46.141-39.838,23Zm-.147-83.443-32.207,18.593.066,37.3,32.272,18.707,32.207-18.593-.066-37.3-32.273-18.707Z" transform="translate(6615 5440)" fill="url(#linear-gradient)"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 214.08, 185.86)" filter="url(#Icon_map-food)">
+      <path id="Icon_map-food-2" data-name="Icon map-food" d="M46.084,13.462,42.357,42.679H29.768L26.056,13.317H41.425L44.463,2.825l1.722.519-2.914,10.1,2.814.022Zm-21.808,16.9s.471-3.789-6.057-3.789H7.823c-6.519,0-6.057,3.789-6.057,3.789H24.276ZM1.766,38.891S1.3,42.679,7.823,42.679h10.4c6.528,0,6.057-3.789,6.057-3.789H1.766ZM23.3,37a2.179,2.179,0,0,0,1.931-2.367A2.176,2.176,0,0,0,23.3,32.26H2.652A2.18,2.18,0,0,0,.72,34.629,2.183,2.183,0,0,0,2.652,37H23.3Z" transform="translate(25.47 29.39)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>
