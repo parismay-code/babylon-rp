@@ -8,6 +8,8 @@ import TruckDriver       from './pages/TruckDriver';
 import TruckDriverArend  from './pages/TruckDriverArend';
 import TruckDriverOrders from './pages/TruckDriverOrders';
 import Taxi              from './pages/Taxi';
+import TaxiOrders        from './pages/TaxiOrders';
+import TaxiPrice         from './pages/TaxiPrice';
 
 import './Jobs.scss';
 
@@ -24,6 +26,8 @@ const Jobs = ({store, jobParams, player}) => {
 		EventManager.addHandler('jobs', 'setTruckDriverOrders', array => store.fetchTruckDriverOrders(array));
 		EventManager.addHandler('jobs', 'addTruckDriverOrder', obj => store.addTruckDriverOrder(obj));
 		EventManager.addHandler('jobs', 'removeTruckDriverOrder', id => store.removeTruckDriverOrder(id));
+		EventManager.addHandler('jobs', 'addTaxiOrder', obj => store.addTaxiOrder(obj));
+		EventManager.addHandler('jobs', 'removeTaxiOrder', id => store.removeTaxiOrder(id));
 		
 		EventManager.stopAddingHandlers('jobs');
 		
@@ -38,6 +42,8 @@ const Jobs = ({store, jobParams, player}) => {
 		{player.playerState.job === 'bus' && jobParams === 'ways' && <BusWays store={store}/>}
 		{player.playerState.job === 'truckDriver' && jobParams === 'arend' && <TruckDriverArend store={store}/>}
 		{player.playerState.job === 'truckDriver' && jobParams === 'orders' && <TruckDriverOrders store={store}/>}
+		{player.playerState.job === 'taxi' && jobParams === 'orders' && <TaxiOrders store={store}/>}
+		{player.playerState.job === 'taxi' && jobParams === 'price' && <TaxiPrice/>}
 		
 		<div className="jobs-exit">
 			<div className="jobs-exit__button">Esc</div>

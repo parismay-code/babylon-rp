@@ -66,7 +66,7 @@ const TruckDriverOrders = ({store}) => {
 						</div>
 						<div
 							className="job-truck-driver-orders-content-header-current-content__cancel"
-							onClick={() => EventManager.emitServer('job', 'cancelOrder')}
+							onClick={() => EventManager.emitServer('jobs', 'cancelOrder')}
 						>
 							отменить заказ
 						</div>
@@ -103,7 +103,7 @@ const TruckDriverOrders = ({store}) => {
 							<div className="job-truck-driver-orders-content-list-main-element__earning">{earning}</div>
 							<div
 								className="job-truck-driver-orders-content-list-main-element__submit"
-								onClick={() => EventManager.emitServer('job', 'acceptTruckDriverOrder', el.id, el.earning)}
+								onClick={() => EventManager.emitServer('jobs', 'acceptTruckDriverOrder', el.id, el.earning)}
 							>принять заказ
 							</div>
 						</div>;

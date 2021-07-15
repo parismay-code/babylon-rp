@@ -5,6 +5,21 @@ import {
 } from 'mobx';
 
 export default class JobsStore {
+	constructor() {
+		makeObservable(this, {
+			busData: observable,
+			truckDriverData: observable,
+			taxiData: observable,
+			
+			fetchJobData: action.bound,
+			fetchTruckDriverOrders: action.bound,
+			addTruckDriverOrder: action.bound,
+			removeTruckDriverOrder: action.bound,
+			addTaxiOrder: action.bound,
+			removeTaxiOrder: action.bound,
+		});
+	}
+	
 	busData = {
 		isEmployed: false,
 		level: 3,
@@ -179,104 +194,49 @@ export default class JobsStore {
 		arendPrice: 500,
 		orders: [
 			{
-				id: 0,
-				type: 'state',
-				product: 'Дерево',
-				count: 3000,
-				earning: 6000,
-			},
-			{
 				id: 1,
-				type: 'state',
-				product: 'Металл',
-				count: 2000,
-				earning: 4000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 			{
 				id: 2,
-				type: 'state',
-				product: 'Стекло',
-				count: 8570,
-				earning: 3000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 			{
 				id: 3,
-				type: 'state',
-				product: 'Песок',
-				count: 1550,
-				earning: 2000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 			{
 				id: 4,
-				type: 'private',
-				product: 'Автомобиль',
-				count: 3,
-				earning: 10000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 			{
 				id: 5,
-				type: 'private',
-				product: 'Еда',
-				count: 1000,
-				earning: 5000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 			{
 				id: 6,
-				type: 'private',
-				product: 'Почта',
-				count: 5000,
-				earning: 3000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 			{
 				id: 7,
-				type: 'private',
-				product: 'Сырье',
-				count: 5000,
-				earning: 8000,
-			},
-			{
-				id: 8,
-				type: 'private',
-				product: 'Аммуниция',
-				count: 3000,
-				earning: 15000,
-			},
-			{
-				id: 9,
-				type: 'private',
-				product: 'Одежда',
-				count: 500,
-				earning: 4000,
-			},
-			{
-				id: 10,
-				type: 'private',
-				product: 'Автомобиль',
-				count: 5,
-				earning: 20000,
-			},
-			{
-				id: 11,
-				type: 'private',
-				product: 'Сырье',
-				count: 1550,
-				earning: 2000,
+				name: 'Paris May',
+				distance: '24.8km',
+				description: 'Короткий текст примечания ограниченный по количеству символов',
 			},
 		],
 	};
-	
-	constructor() {
-		makeObservable(this, {
-			busData: observable,
-			truckDriverData: observable,
-			taxiData: observable,
-			
-			fetchJobData: action.bound,
-			fetchTruckDriverOrders: action.bound,
-			addTruckDriverOrder: action.bound,
-			removeTruckDriverOrder: action.bound,
-		});
-	}
 	
 	fetchJobData(obj) {
 		switch (obj.type) {
@@ -301,6 +261,14 @@ export default class JobsStore {
 	
 	removeTruckDriverOrder(id) {
 		return this.truckDriverData.orders.filter(el => el.id === id).splice(0, 1);
+	}
+	
+	addTaxiOrder(obj) {
+		return this.taxiData.orders.unshift(obj);
+	}
+	
+	removeTaxiOrder(id) {
+		return this.taxiData.orders.filter(el => el.id === id).splice(0, 1);
 	}
 	
 	destroy() {

@@ -67,7 +67,7 @@
 	}
 	
 	&-main {
-	  height: 100%;
+	  height: calc(100% - 10px);
 	  border-left: 2px solid #FFEF8457;
 	  
 	  @media (max-width: 1000px) {

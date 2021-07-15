@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React   from 'react';
 import EventManager from 'utils/eventManager';
 
 import MainPage  from './components/MainPage';
@@ -6,6 +6,7 @@ import Documents from './components/Documents';
 import Property  from './components/Property';
 import Actions   from './components/Actions';
 import Fraction  from './components/Fraction';
+import Car       from './components/Car';
 
 import Money        from './components/MainPage/components/Money';
 import ArendHouse   from './components/Property/components/ArendHouse';
@@ -20,8 +21,7 @@ import SellPill     from './components/Fraction/components/EMS/components/SellPi
 import './HUDInteraction.scss';
 
 const HUDInteraction = ({player}) => {
-	const [currentPage, setCurrentPage] = React.useState('main'),
-		[isVisible, setVisible] = React.useState(false),
+	const [isVisible, setVisible] = React.useState(false),
 		[noVisualOption, setNoVisualOption] = React.useState(null),
 		[currentOption, setCurrentOption] = React.useState(null),
 		[prevOption, setPrevOption] = React.useState(null),
@@ -37,6 +37,7 @@ const HUDInteraction = ({player}) => {
 			poisoning: 100,
 		}),
 		[targetPlayerData, setTargetPlayerData] = React.useState({
+			type: 'car',
 			nickname: 'Paris May',
 			id: 112344,
 			isHandcuffed: false,
@@ -44,9 +45,23 @@ const HUDInteraction = ({player}) => {
 			isControlled: false,
 			isBagPut: false,
 			isJailed: false,
-			isInCar: false,
+			isInCar: true,
 			isInFraction: false,
-		});
+			carData: {
+				name: 'Lamborghini aventodor 450 RTX',
+				engine: 98,
+				fuel: 69,
+				insurance: false,
+				price: 77000,
+				tuning: {
+					suspension: 1,
+					engine: 2,
+					transmission: 5,
+					brakes: 4,
+				},
+			},
+		}),
+		[currentPage, setCurrentPage] = React.useState(targetPlayerData.type === 'player' ? 'main' : 'car');
 	
 	const optionScreen = React.useRef(null);
 	
@@ -121,6 +136,16 @@ const HUDInteraction = ({player}) => {
 				</div>
 			</div>
 			<div className="hud-interaction-circle">
+				{currentPage === 'car' && <Car
+					setCurrentPage={setCurrentPage}
+					noVisualOption={noVisualOption}
+					setNoVisualOption={setNoVisualOption}
+					currentOption={currentOption}
+					setCurrentOption={setCurrentOption}
+					nextOption={nextOption}
+					setNextOption={setNextOption}
+					target={targetPlayerData}
+				/>}
 				{currentPage === 'main' && <MainPage
 					setCurrentPage={setCurrentPage}
 					noVisualOption={noVisualOption}

@@ -29,7 +29,7 @@ const TruckDriverArend = ({store}) => {
 		</div>
 		<div
 			className="job-truck-driver-arend__submit"
-			onClick={() => EventManager.emitServer('job', 'arendTruckDriver', store.truckDriverData.arendPrice)}
+			onClick={() => EventManager.emitServer('jobs', 'arendTruckDriver', store.truckDriverData.arendPrice)}
 		>арендовать
 		</div>
 	</div>;

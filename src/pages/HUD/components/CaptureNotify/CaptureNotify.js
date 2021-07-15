@@ -8,13 +8,15 @@ import './CaptureNotify.scss';
 
 const CaptureNotify = () => {
 	const [fraction, setFraction] = React.useState('Armenian mafia'),
+		[isCaptureSoon, setCaptureSoon] = React.useState(false),
 		[fractionType, setFractionType] = React.useState(null);
 	
 	const screen = React.useRef(null);
 	
 	React.useEffect(() => {
-		EventManager.addHandler('hud', 'showCaptureNotify', fraction => {
+		EventManager.addHandler('hud', 'showCaptureNotify', (fraction, bool) => {
 			setFraction(fraction);
+			setCaptureSoon(bool);
 			screen.current.classList.add('hud-capture-notify_active');
 			
 			setTimeout(() => screen.current.classList.remove('hud-capture-notify_active'), 5000);
@@ -189,7 +191,10 @@ const CaptureNotify = () => {
 		</div>
 		<div className="hud-capture-notify-description">
 			<div className="hud-capture-notify-description__title">
-				Назначили захват {fractionType === 0 ? 'территории' : 'бизнеса'}
+				{isCaptureSoon ?
+					`Начинают захват ${fractionType === 0 ? 'территории' : 'бизнеса'}` :
+					`Назначили захват ${fractionType === 0 ? 'территории' : 'бизнеса'}`
+				}
 			</div>
 			<div className="hud-capture-notify-description__subtitle">Подробнее в меню фракции</div>
 		</div>

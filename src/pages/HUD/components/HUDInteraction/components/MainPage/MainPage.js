@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cn from 'classnames';
+import cn         from 'classnames';
 import {observer} from 'mobx-react-lite';
 
 import './MainPage.scss';
@@ -15,7 +15,7 @@ const MainPage = ({
 	player,
 	transport,
 	business,
-	houses
+	houses,
 }) => {
 	const screen = React.useRef(null);
 	
@@ -265,9 +265,10 @@ const MainPage = ({
 				{moneyIcon}
 			</div>
 			<div
-				className="hud-interactions-main-options__element hud-interactions-main-options__element_fraction"
-				onMouseOver={() => setNoVisualOption('fraction')}
-				onClick={() => setCurrentPage('fraction')}
+				className={cn('hud-interactions-main-options__element hud-interactions-main-options__element_fraction',
+					!player.playerState.fraction.type ? 'hud-interactions-main-options__element_disabled' : null)}
+				onMouseOver={() => player.playerState.fraction.type && setNoVisualOption('fraction')}
+				onClick={() => player.playerState.fraction.type && setCurrentPage('fraction')}
 			>
 				{fractionIcon}
 			</div>

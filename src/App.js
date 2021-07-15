@@ -57,7 +57,7 @@ const App = () => {
 	const [component, setComponent] = React.useState(null),
 		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
-		[isCursorActive, setCursorActive] = React.useState(true),
+		[isCursorActive, setCursorActive] = React.useState(false),
 		[payPrice, setPayPrice] = React.useState(0),
 		[pinCode, setPinCode] = React.useState(null),
 		[gasStation, setGasStation] = React.useState({}),
@@ -146,7 +146,7 @@ const App = () => {
 		{component === 'clothesShop' && <ClothesShop player={playerStore} hudStore={hudStore} store={shopsStore}/>}
 		{component === 'weaponShop' && <WeaponShop player={playerStore} store={shopsStore}/>}
 		{component === 'gasStation' && <GasStation data={gasStation} store={hudStore} player={playerStore}/>}
-		{component === 'job' && <Jobs store={jobsStore} player={playerStore} jobParams={jobParams}/>}
+		{component === 'jobs' && <Jobs store={jobsStore} player={playerStore} jobParams={jobParams}/>}
 		{/*{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}*/}
 		{component === 'crimeMenu' && <CrimeMenu store={fractionMenuStore}/>}
 		{component === 'mafiaMenu' && <MafiaMenu store={fractionMenuStore}/>}

@@ -319,7 +319,7 @@ export default class FractionMenuStore {
 	}
 	
 	setFractionsCaptureStatus(obj) {
-		this.fractionCaptureStatus = obj;
+		this.fractionsCaptureStatus = obj;
 	}
 	
 	getFractionTerritory(fraction) {

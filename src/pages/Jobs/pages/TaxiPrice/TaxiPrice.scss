@@ -1,0 +1,140 @@
+@import '../../../../styles/vars';
+
+.job-taxi-price {
+  position: absolute;
+  top: calc(50% - 70px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 410px;
+  height: 540px;
+  
+  text-shadow: 0 2px 2px $color-black;
+  
+  @media (max-width: 1000px) {
+	width: calc(410px * .7);
+	height: calc(540px * .7);
+	
+	top: calc(50% - calc(70px * .7));
+  }
+  
+  &__bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: .4;
+	
+	width: 100%;
+  }
+  
+  &-content {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+	width: 100%;
+	height: 45%;
+	padding: 0 15px 50px 15px;
+	
+	@media (max-width: 1000px) {
+	  padding: 0 calc(15px * .7) calc(50px * .7) calc(15px * .7);
+	}
+	
+	&-header {
+	  margin-bottom: 20px;
+	  
+	  @media (max-width: 1000px) {
+		margin-bottom: calc(40px * .7);
+	  }
+	  
+	  &__title {
+		font-family: "Baron Neue", sans-serif;
+		font-size: 2rem;
+		margin-bottom: 5px;
+	  }
+	  
+	  &__subtitle {
+		color: $color-yellow;
+		font-size: 1.2rem;
+	  }
+	}
+	
+	&__input {
+	  width: 100%;
+	  padding: 15px;
+	  margin-bottom: 20px;
+	  
+	  background-color: #00000080;
+	  
+	  border: none;
+	  outline: none;
+	  
+	  color: $color-white;
+	  font-family: "TT Norms Regular", sans-serif;
+	  font-size: 1.2rem;
+	  
+	  &::placeholder {
+		font-family: "TT Norms Regular", sans-serif;
+		color: $color-white;
+		opacity: .2;
+	  }
+	}
+	
+	&__description {
+	  font-size: 1.2rem;
+	}
+  }
+  
+  &__submit {
+	position: absolute;
+	bottom: 0;
+	transform: translateY(100%);
+	
+	width: 100%;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	font-family: "Baron Neue", sans-serif;
+	font-size: 2rem;
+	
+	background: #8C8992ae radial-gradient(closest-side at 50% 50%, $color-black-medium-opacity, $color-blank);
+	box-shadow: 0 5px 25px $color-black-high-opacity;
+	cursor: url("../../../../assets/images/cursorPointer.svg"), pointer;
+	
+	overflow: hidden;
+	
+	transition: color .2s;
+	
+	&::before {
+	  content: '';
+	  
+	  position: absolute;
+	  top: 50%;
+	  left: -50%;
+	  transform: translate(-50%, -50%) rotate(-25deg);
+	  
+	  width: 40%;
+	  height: 500%;
+	  
+	  pointer-events: none;
+	  
+	  background: linear-gradient(to right, #C374F230, #FFEF84, #C374F230);
+	  
+	  transition: left .3s ease;
+	}
+	
+	&:hover {
+	  color: $color-yellow;
+	  
+	  &::before {
+		left: 150%;
+	  }
+	}
+	
+	@media (max-width: 1000px) {
+	  height: calc(70px * .7);
+	}
+  }
+}

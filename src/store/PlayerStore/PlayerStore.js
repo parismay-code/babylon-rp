@@ -25,10 +25,10 @@ export default class PlayerStore {
 		level: 0,
 		gender: 0,
 		fraction: {
-			type: 0, // 0 - gov, 1 - pd, 2 - gang, 3 - mafia
+			type: null, // 0 - gov, 1 - pd, 2 - gang, 3 - mafia
 			name: null,
 		},
-		job: null,
+		job: 'taxi',
 		family: {
 			// name: 'Крутые',
 			// icon: null
