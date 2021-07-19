@@ -37,7 +37,7 @@ const HUDInteraction = ({player}) => {
 			poisoning: 100,
 		}),
 		[targetPlayerData, setTargetPlayerData] = React.useState({
-			type: 'car',
+			type: 'player',
 			nickname: 'Paris May',
 			id: 112344,
 			isHandcuffed: false,
@@ -79,7 +79,7 @@ const HUDInteraction = ({player}) => {
 	
 	React.useEffect(() => {
 		EventManager.addHandler('interaction', 'setTargetPlayerData', obj => setTargetPlayerData(obj));
-		EventManager.addHandler('cef::hud:toggleInteraction', (bool) => setVisible(bool));
+		EventManager.addHandler('interaction', 'toggle', bool => setVisible(bool));
 		
 		EventManager.addHandler('interaction', 'setHousesData', array => setHousesData(array));
 		EventManager.addHandler('interaction', 'setBusinessData', array => setBusinessData(array));

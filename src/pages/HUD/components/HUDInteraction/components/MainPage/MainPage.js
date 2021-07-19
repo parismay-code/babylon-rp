@@ -266,9 +266,9 @@ const MainPage = ({
 			</div>
 			<div
 				className={cn('hud-interactions-main-options__element hud-interactions-main-options__element_fraction',
-					!player.playerState.fraction.type ? 'hud-interactions-main-options__element_disabled' : null)}
-				onMouseOver={() => player.playerState.fraction.type && setNoVisualOption('fraction')}
-				onClick={() => player.playerState.fraction.type && setCurrentPage('fraction')}
+					player.playerState.fraction.type === null ? 'hud-interactions-main-options__element_disabled' : null)}
+				onMouseOver={() => player.playerState.fraction.type !== null && setNoVisualOption('fraction')}
+				onClick={() => player.playerState.fraction.type !== null && setCurrentPage('fraction')}
 			>
 				{fractionIcon}
 			</div>
