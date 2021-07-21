@@ -37,27 +37,30 @@ const HUDInteraction = ({player}) => {
 			poisoning: 100,
 		}),
 		[targetPlayerData, setTargetPlayerData] = React.useState({
-			type: 'player',
-			nickname: 'Paris May',
-			id: 112344,
+			type: null,
+			nickname: null,
+			id: 0,
 			isHandcuffed: false,
 			isTied: false,
 			isControlled: false,
 			isBagPut: false,
 			isJailed: false,
-			isInCar: true,
+			isInCar: false,
 			isInFraction: false,
 			carData: {
-				name: 'Lamborghini aventodor 450 RTX',
-				engine: 98,
-				fuel: 69,
+				name: null,
+				engine: 0,
+				fuel: 0,
 				insurance: false,
-				price: 77000,
+				price: 0,
+				hood: false,
+				trunk: false,
+				seatbelt: false,
 				tuning: {
-					suspension: 1,
-					engine: 2,
-					transmission: 5,
-					brakes: 4,
+					suspension: 0,
+					engine: 0,
+					transmission: 0,
+					brakes: 0,
 				},
 			},
 		}),
@@ -137,7 +140,6 @@ const HUDInteraction = ({player}) => {
 			</div>
 			<div className="hud-interaction-circle">
 				{currentPage === 'car' && <Car
-					setCurrentPage={setCurrentPage}
 					noVisualOption={noVisualOption}
 					setNoVisualOption={setNoVisualOption}
 					currentOption={currentOption}

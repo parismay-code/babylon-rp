@@ -465,7 +465,9 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
 							store.capture.access.items.medkit ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
 						onClick={() => store.capture.access.items = {
-							...store.capture.access.items,
+							animation: store.capture.access.items.animation,
+							armour: store.capture.access.items.armour,
+							drug: store.capture.access.items.drug,
 							medkit: !store.capture.access.items.medkit,
 						}}
 					>
@@ -479,9 +481,11 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
 							store.capture.access.items.armour ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {
-							...store.capture.access.items,
+				onClick={() => store.capture.access.items = {
+							animation: store.capture.access.items.animation,
 							armour: !store.capture.access.items.armour,
+							drug: store.capture.access.items.drug,
+							medkit: store.capture.access.items.medkit,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -495,9 +499,11 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
 							store.capture.access.items.drug ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {
-							...store.capture.access.items,
+					onClick={() => store.capture.access.items = {
+							animation: store.capture.access.items.animation,
+							armour: store.capture.access.items.armour,
 							drug: !store.capture.access.items.drug,
+							medkit: store.capture.access.items.medkit,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -511,9 +517,11 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('mafia-menu-set-bizwar-conditions-items-content-element',
 							store.capture.access.items.animation ? 'mafia-menu-set-bizwar-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {
-							...store.capture.access.items,
+			onClick={() => store.capture.access.items = {
 							animation: !store.capture.access.items.animation,
+							armour: store.capture.access.items.armour,
+							drug: store.capture.access.items.drug,
+							medkit: store.capture.access.items.medkit,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-items-content-element-status">
@@ -532,7 +540,9 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
 							store.capture.access.guns.pistol ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
 						onClick={() => store.capture.access.guns = {
-							...store.capture.access.guns,
+							shotgun: store.capture.access.guns.shotgun,
+							smg: store.capture.access.guns.smg,
+							assault: store.capture.access.guns.assault,
 							pistol: !store.capture.access.guns.pistol,
 						}}
 					>
@@ -547,8 +557,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
 							store.capture.access.guns.smg ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
 						onClick={() => store.capture.access.guns = {
-							...store.capture.access.guns,
+							shotgun: store.capture.access.guns.shotgun,
 							smg: !store.capture.access.guns.smg,
+							assault: store.capture.access.guns.assault,
+							pistol: store.capture.access.guns.pistol,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">
@@ -564,8 +576,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
 							store.capture.access.guns.assault ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
 						onClick={() => store.capture.access.guns = {
-							...store.capture.access.guns,
+							shotgun: store.capture.access.guns.shotgun,
+							smg: store.capture.access.guns.smg,
 							assault: !store.capture.access.guns.assault,
+							pistol: store.capture.access.guns.pistol,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">
@@ -581,8 +595,10 @@ const SetBizwar = ({store, setPage, fractionColor, fractionIcon}) => {
 						className={cn('mafia-menu-set-bizwar-conditions-guns-content-element',
 							store.capture.access.guns.shotgun ? 'mafia-menu-set-bizwar-conditions-guns-content-element_active' : null)}
 						onClick={() => store.capture.access.guns = {
-							...store.capture.access.guns,
 							shotgun: !store.capture.access.guns.shotgun,
+							smg: store.capture.access.guns.smg,
+							assault: store.capture.access.guns.assault,
+							pistol: store.capture.access.guns.pistol,
 						}}
 					>
 						<div className="mafia-menu-set-bizwar-conditions-guns-content-element-status">

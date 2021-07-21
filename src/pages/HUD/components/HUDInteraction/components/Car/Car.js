@@ -4,7 +4,6 @@ import InCar  from './pages/InCar';
 import OutCar from './pages/OutCar';
 
 const Car = ({
-	setCurrentPage,
 	noVisualOption,
 	setNoVisualOption,
 	currentOption,
@@ -17,7 +16,6 @@ const Car = ({
 		{
 			target.isInCar ?
 				<InCar
-					setCurrentPage={setCurrentPage}
 					noVisualOption={noVisualOption}
 					setNoVisualOption={setNoVisualOption}
 					currentOption={currentOption}
@@ -27,7 +25,6 @@ const Car = ({
 					target={target}
 				/> :
 				<OutCar
-					setCurrentPage={setCurrentPage}
 					noVisualOption={noVisualOption}
 					setNoVisualOption={setNoVisualOption}
 					currentOption={currentOption}

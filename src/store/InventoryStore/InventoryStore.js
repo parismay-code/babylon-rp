@@ -302,7 +302,7 @@ export default class InventoryStore {
 	}
 	
 	setTradeVisible(bool, tradeTarget) {
-		this.isTrunkVisible = bool;
+		this.isTradeVisible = bool;
 		this.tradeTarget = tradeTarget;
 	}
 	

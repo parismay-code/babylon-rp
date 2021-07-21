@@ -28,7 +28,7 @@ export default class PlayerStore {
 			type: null, // 0 - gov, 1 - pd, 2 - gang, 3 - mafia
 			name: null,
 		},
-		job: 'taxi',
+		job: null,
 		family: {
 			// name: 'Крутые',
 			// icon: null
@@ -148,7 +148,7 @@ export default class PlayerStore {
 		bonuses: [
 			{
 				value: 100,
-				status: true,
+				status: false,
 			},
 			{
 				value: 200,

@@ -132,17 +132,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[12] === 'Families' ? '#91FF5380' :
-								store.allTerritories[12] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[12] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[10] === 'Families' ? '#91FF5380' :
+								store.allTerritories[10] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[10] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[13] === 'Families' ? '#91FF5380' :
-								store.allTerritories[13] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[13] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[11] === 'Families' ? '#91FF5380' :
+								store.allTerritories[11] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[11] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -180,17 +180,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[23] === 'Families' ? '#91FF5380' :
-								store.allTerritories[23] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[23] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[18] === 'Families' ? '#91FF5380' :
+								store.allTerritories[18] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[18] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[24] === 'Families' ? '#91FF5380' :
-								store.allTerritories[24] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[24] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[19] === 'Families' ? '#91FF5380' :
+								store.allTerritories[19] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[19] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -228,17 +228,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[35] === 'Families' ? '#91FF5380' :
-								store.allTerritories[35] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[35] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[29] === 'Families' ? '#91FF5380' :
+								store.allTerritories[29] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[29] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[36] === 'Families' ? '#91FF5380' :
-								store.allTerritories[36] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[36] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[30] === 'Families' ? '#91FF5380' :
+								store.allTerritories[30] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[30] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -268,25 +268,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[45] === 'Families' ? '#91FF5380' :
-								store.allTerritories[45] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[45] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[40] === 'Families' ? '#91FF5380' :
+								store.allTerritories[40] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[40] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[46] === 'Families' ? '#91FF5380' :
-								store.allTerritories[46] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[46] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
-						}}
-					/>
-					<div
-						className="crime-menu-set-capture-map-capture-left__element"
-						style={{
-							backgroundColor: store.allTerritories[47] === 'Families' ? '#91FF5380' :
-								store.allTerritories[47] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[47] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[41] === 'Families' ? '#91FF5380' :
+								store.allTerritories[41] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[41] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -308,25 +300,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[55] === 'Families' ? '#91FF5380' :
-								store.allTerritories[55] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[55] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[50] === 'Families' ? '#91FF5380' :
+								store.allTerritories[50] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[50] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-left__element"
 						style={{
-							backgroundColor: store.allTerritories[56] === 'Families' ? '#91FF5380' :
-								store.allTerritories[56] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[56] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
-						}}
-					/>
-					<div
-						className="crime-menu-set-capture-map-capture-left__element"
-						style={{
-							backgroundColor: store.allTerritories[57] === 'Families' ? '#91FF5380' :
-								store.allTerritories[57] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[57] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[51] === 'Families' ? '#91FF5380' :
+								store.allTerritories[51] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[51] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -345,38 +329,38 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 									store.allTerritories[59] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
+					<div
+						className="crime-menu-set-capture-map-capture-left__element"
+						style={{
+							backgroundColor: store.allTerritories[60] === 'Families' ? '#91FF5380' :
+								store.allTerritories[60] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[60] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+						}}
+					/>
+					<div
+						className="crime-menu-set-capture-map-capture-left__element"
+						style={{
+							backgroundColor: store.allTerritories[61] === 'Families' ? '#91FF5380' :
+								store.allTerritories[61] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[61] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+						}}
+					/>
 				</div>
 				<div className="crime-menu-set-capture-map-capture-right">
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[10] === 'Families' ? '#91FF5380' :
-								store.allTerritories[10] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[10] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[12] === 'Families' ? '#91FF5380' :
+								store.allTerritories[12] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[12] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[11] === 'Families' ? '#91FF5380' :
-								store.allTerritories[11] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[11] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
-						}}
-					/>
-					<div
-						className="crime-menu-set-capture-map-capture-right__element"
-						style={{
-							backgroundColor: store.allTerritories[18] === 'Families' ? '#91FF5380' :
-								store.allTerritories[18] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[18] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
-						}}
-					/>
-					<div
-						className="crime-menu-set-capture-map-capture-right__element"
-						style={{
-							backgroundColor: store.allTerritories[19] === 'Families' ? '#91FF5380' :
-								store.allTerritories[19] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[19] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[13] === 'Families' ? '#91FF5380' :
+								store.allTerritories[13] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[13] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -406,17 +390,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[29] === 'Families' ? '#91FF5380' :
-								store.allTerritories[29] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[29] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[23] === 'Families' ? '#91FF5380' :
+								store.allTerritories[23] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[23] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[30] === 'Families' ? '#91FF5380' :
-								store.allTerritories[30] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[30] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[24] === 'Families' ? '#91FF5380' :
+								store.allTerritories[24] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[24] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -454,25 +438,17 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[40] === 'Families' ? '#91FF5380' :
-								store.allTerritories[40] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[40] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[35] === 'Families' ? '#91FF5380' :
+								store.allTerritories[35] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[35] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[41] === 'Families' ? '#91FF5380' :
-								store.allTerritories[41] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[41] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
-						}}
-					/>
-					<div
-						className="crime-menu-set-capture-map-capture-right__element"
-						style={{
-							backgroundColor: store.allTerritories[41] === 'Families' ? '#91FF5380' :
-								store.allTerritories[41] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[41] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[36] === 'Families' ? '#91FF5380' :
+								store.allTerritories[36] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[36] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -494,17 +470,33 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[50] === 'Families' ? '#91FF5380' :
-								store.allTerritories[50] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[50] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[44] === 'Families' ? '#91FF5380' :
+								store.allTerritories[44] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[44] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[51] === 'Families' ? '#91FF5380' :
-								store.allTerritories[51] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[51] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[45] === 'Families' ? '#91FF5380' :
+								store.allTerritories[45] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[45] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+						}}
+					/>
+					<div
+						className="crime-menu-set-capture-map-capture-right__element"
+						style={{
+							backgroundColor: store.allTerritories[46] === 'Families' ? '#91FF5380' :
+								store.allTerritories[46] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[46] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+						}}
+					/>
+					<div
+						className="crime-menu-set-capture-map-capture-right__element"
+						style={{
+							backgroundColor: store.allTerritories[47] === 'Families' ? '#91FF5380' :
+								store.allTerritories[47] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[47] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -534,17 +526,25 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[60] === 'Families' ? '#91FF5380' :
-								store.allTerritories[60] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[0] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[55] === 'Families' ? '#91FF5380' :
+								store.allTerritories[55] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[55] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
 						className="crime-menu-set-capture-map-capture-right__element"
 						style={{
-							backgroundColor: store.allTerritories[61] === 'Families' ? '#91FF5380' :
-								store.allTerritories[61] === 'Ballas' ? '#C373F380' :
-									store.allTerritories[61] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+							backgroundColor: store.allTerritories[56] === 'Families' ? '#91FF5380' :
+								store.allTerritories[56] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[56] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
+						}}
+					/>
+					<div
+						className="crime-menu-set-capture-map-capture-right__element"
+						style={{
+							backgroundColor: store.allTerritories[57] === 'Families' ? '#91FF5380' :
+								store.allTerritories[57] === 'Ballas' ? '#C373F380' :
+									store.allTerritories[57] === 'Vagos' ? '#FFFF3680' : '#AAB6EF80',
 						}}
 					/>
 					<div
@@ -886,7 +886,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
 							store.capture.access.items.medkit ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {...store.capture.access.items, medkit: !store.capture.access.items.medkit}}
+						onClick={() => store.capture.access.items = {
+							animation: store.capture.access.items.animation,
+							armour: store.capture.access.items.armour,
+							drug: store.capture.access.items.drug,
+							medkit: !store.capture.access.items.medkit,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -898,7 +903,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
 							store.capture.access.items.armour ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {...store.capture.access.items, armour: !store.capture.access.items.armour}}
+						onClick={() => store.capture.access.items = {
+							animation: store.capture.access.items.animation,
+							armour: !store.capture.access.items.armour,
+							drug: store.capture.access.items.drug,
+							medkit: store.capture.access.items.medkit,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -911,7 +921,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
 							store.capture.access.items.drug ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {...store.capture.access.items, drug: !store.capture.access.items.drug}}
+						onClick={() => store.capture.access.items = {
+							animation: store.capture.access.items.animation,
+							armour: store.capture.access.items.armour,
+							drug: !store.capture.access.items.drug,
+							medkit: store.capture.access.items.medkit,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -924,7 +939,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-items-content-element',
 							store.capture.access.items.animation ? 'crime-menu-set-capture-conditions-items-content-element_active' : null)}
-						onClick={() => store.capture.access.items = {...store.capture.access.items, animation: !store.capture.access.items.animation}}
+						onClick={() => store.capture.access.items = {
+							animation: !store.capture.access.items.animation,
+							armour: store.capture.access.items.armour,
+							drug: store.capture.access.items.drug,
+							medkit: store.capture.access.items.medkit,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-items-content-element-status">
 							<div className="crime-menu-set-capture-conditions-items-content-element-status__fill"/>
@@ -941,7 +961,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
 							store.capture.access.guns.pistol ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => store.capture.access.guns = {...store.capture.access.guns, pistol: !store.capture.access.guns.pistol}}
+						onClick={() => store.capture.access.guns = {
+							shotgun: store.capture.access.guns.shotgun,
+							smg: store.capture.access.guns.smg,
+							assault: store.capture.access.guns.assault,
+							pistol: !store.capture.access.guns.pistol,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -953,7 +978,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
 							store.capture.access.guns.smg ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => store.capture.access.guns = {...store.capture.access.guns, smg: !store.capture.access.guns.smg}}
+						onClick={() => store.capture.access.guns = {
+							shotgun: store.capture.access.guns.shotgun,
+							smg: !store.capture.access.guns.smg,
+							assault: store.capture.access.guns.assault,
+							pistol: store.capture.access.guns.pistol,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -967,7 +997,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
 							store.capture.access.guns.assault ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => store.capture.access.guns = {...store.capture.access.guns, assault: !store.capture.access.guns.assault}}
+						onClick={() => store.capture.access.guns = {
+							shotgun: store.capture.access.guns.shotgun,
+							smg: store.capture.access.guns.smg,
+							assault: !store.capture.access.guns.assault,
+							pistol: store.capture.access.guns.pistol,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>
@@ -981,7 +1016,12 @@ const SetCapture = ({store, setPage, fractionColor, fractionIcon}) => {
 					<div
 						className={cn('crime-menu-set-capture-conditions-guns-content-element',
 							store.capture.access.guns.shotgun ? 'crime-menu-set-capture-conditions-guns-content-element_active' : null)}
-						onClick={() => store.capture.access.guns = {...store.capture.access.guns, shotgun: !store.capture.access.guns.shotgun}}
+						onClick={() => store.capture.access.guns = {
+							shotgun: !store.capture.access.guns.shotgun,
+							smg: store.capture.access.guns.smg,
+							assault: store.capture.access.guns.assault,
+							pistol: store.capture.access.guns.pistol,
+						}}
 					>
 						<div className="crime-menu-set-capture-conditions-guns-content-element-status">
 							<div className="crime-menu-set-capture-conditions-guns-content-element-status__fill"/>

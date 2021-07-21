@@ -156,4 +156,4 @@ const GiveKey = ({currentOption, prevOption, targetPlayerData, transport}) => {
 	</div>;
 };
 
-export default React.memo(GiveKey);
+export default  React.memo(GiveKey);

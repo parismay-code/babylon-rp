@@ -1,11 +1,11 @@
 import * as React   from 'react';
 import {observer}   from 'mobx-react-lite';
 import EventManager from 'utils/eventManager';
+import cn    from 'classnames';
 
 import arrow from 'assets/images/inventory/arrow.svg';
 
 import './Trade.scss';
-import cn    from 'classnames';
 
 const Trade = ({
 	store,

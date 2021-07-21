@@ -1,0 +1,162 @@
+@import '../../../../../../../../styles/vars';
+
+.hud-interactions-car-out {
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  opacity: 0;
+  transition: opacity .2s;
+  
+  &-navigation {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 20px);
+	
+	width: 40%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+	font-family: "TT Norms Bold", sans-serif;
+	color: $color-white;
+	
+	@media (max-width: 1280px) {
+	  transform: translate(-50%, 10px);
+	}
+	
+	@media (max-height: 800px) {
+	  transform: translate(-50%, 10px);
+	}
+	
+	&-back {
+	  display: flex;
+	  align-items: center;
+	  
+	  opacity: .5;
+	  
+	  transition: opacity .2s;
+	  
+	  cursor: url("../../../../../../../../assets/images/cursorPointer.svg"), pointer;
+	  
+	  &:hover {
+		opacity: 1;
+	  }
+	  
+	  &__arrow {
+		transform: scaleX(-1);
+		
+		height: 25px;
+		margin-right: 10px;
+		
+		@media (max-width: 1280px) {
+		  height: 12.5px;
+		  margin-right: 5px;
+		}
+		
+		@media (max-height: 800px) {
+		  height: 12.5px;
+		  margin-right: 5px;
+		}
+	  }
+	  
+	  &__title {
+		opacity: .5;
+		
+		@media (max-width: 1280px) {
+		  font-size: .8rem;
+		}
+		
+		@media (max-height: 800px) {
+		  font-size: .8rem;
+		}
+	  }
+	}
+  }
+  
+  &__title {
+	position: absolute;
+	left: 50%;
+	
+	font-family: "TT Norms Regular", sans-serif;
+	transform: translate(-50%, 80px);
+	color: $color-white;
+	text-shadow: 0 2px 2px $color-black;
+	text-align: center;
+	
+	@media (max-width: 1280px) {
+	  transform: translate(-50%, 30px);
+	  
+	  font-size: .7rem;
+	}
+	
+	@media (max-height: 800px) {
+	  transform: translate(-50%, 30px);
+	  
+	  font-size: .7rem;
+	}
+  }
+  
+  &-options {
+	width: 100%;
+	height: 100%;
+	
+	&__element {
+	  position: absolute;
+	  transform: translate(-50%, -50%);
+	  
+	  cursor: url('../../../../../../../../assets/images/cursorPointer.svg'), pointer;
+	  
+	  &_disabled {
+		opacity: .5;
+		cursor: url('../../../../../../../../assets/images/cursorDefault.svg'), default;
+	  }
+	  
+	  & svg {
+		max-height: 35px;
+		max-width: 40px;
+		
+		transition: fill .2s, opacity .2s;
+		
+		@media (max-width: 1280px) {
+		  max-height: 17.5px;
+		  max-width: 20px;
+		}
+		
+		@media (max-height: 800px) {
+		  max-height: 17.5px;
+		  max-width: 20px;
+		}
+	  }
+	  
+	  &_hood {
+		left: 10%;
+		top: 15%;
+	  }
+	  
+	  &_seatbelt {
+		left: 25%;
+		top: 34%;
+	  }
+	  
+	  &_eject {
+		left: 50%;
+		top: 43%;
+	  }
+	  
+	  &_window {
+		left: 75%;
+		top: 34%;
+	  }
+	  
+	  &_trunk {
+		left: 90%;
+		top: 15%;
+	  }
+	}
+  }
+}
