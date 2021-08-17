@@ -55,10 +55,10 @@ export default class PlayerStore {
 		},
 		donate: 0,
 		bank: {
-			account: null,
-			type: null,
-			name: null,
-			createDate: null,
+			account: '1484 8904 3489 1344',
+			type: 'premium',
+			name: 'fleeca',
+			createDate: '10.08.2021',
 		},
 		business: [
 			// {

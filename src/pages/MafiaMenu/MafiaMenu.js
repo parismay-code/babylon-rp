@@ -191,7 +191,7 @@ const MafiaMenu = ({store}) => {
 							height="29.499"
 							viewBox="0 0 31.69 29.499"
 							onClick={() => {
-								if (store.playerAccess.includes('closeStore')) {
+								if (store.playerAccess.includes('manageStore')) {
 									store.setStoreLocked(!store.isStoreLocked);
 									EventManager.emitServer('fraction', 'lockStore', store.isStoreLocked);
 								} else store.addNotify('Вы не можете управлять складом.');

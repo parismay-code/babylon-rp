@@ -128,7 +128,7 @@ export default class InventoryStore {
 			type: 'armour',
 			isPlaced: false,
 			quality: -1,
-			image: 'armour.svg',
+			image: 'armourIcon.svg',
 		},
 		{
 			type: 'watch',

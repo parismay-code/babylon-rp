@@ -24,6 +24,7 @@ import StartScreen   from 'pages/StartScreen';
 import MainMenu      from 'pages/MainMenu';
 import Dialogue      from 'pages/Dialogue';
 import Achievements  from 'pages/Achievements';
+import CrimeStore    from 'pages/CrimeStore';
 
 import Chat from 'pages/HUD/components/Chat/Chat';
 
@@ -54,7 +55,7 @@ const App = () => {
 		jobsStore = useLocalStore(() => new JobsStore()),
 		inventoryStore = useLocalStore(() => new InventoryStore());
 	
-	const [component, setComponent] = React.useState(null),
+	const [component, setComponent] = React.useState('bank'),
 		[characters, setCharacters] = React.useState([]),
 		[adminRedactorData, setAdminRedactorData] = React.useState([]),
 		[isCursorActive, setCursorActive] = React.useState(false),
@@ -150,6 +151,7 @@ const App = () => {
 		{/*{component === 'parking' && <Parking parkingData={parkingData} player={playerStore}/>}*/}
 		{component === 'crimeMenu' && <CrimeMenu store={fractionMenuStore}/>}
 		{component === 'mafiaMenu' && <MafiaMenu store={fractionMenuStore}/>}
+		{component === 'crimeStore' && <CrimeStore store={fractionMenuStore}/>}
 		{component === 'carDealer' && <CarDealer store={shopsStore}/>}
 		{component === 'startScreen' && <StartScreen player={playerStore}/>}
 		{component === 'mainMenu' && <MainMenu player={playerStore} setComponent={setComponent}/>}

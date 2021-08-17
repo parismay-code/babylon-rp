@@ -1,8 +1,4 @@
-import {
-	makeObservable,
-	observable,
-	action,
-} from 'mobx';
+import {action, makeObservable, observable} from 'mobx';
 
 export default class FractionMenuStore {
 	constructor() {
@@ -28,6 +24,7 @@ export default class FractionMenuStore {
 			reprimandLogs: observable,
 			storeLogs: observable,
 			allTerritories: observable,
+			store: observable,
 			
 			fetchFractionName: action.bound,
 			fetchBalance: action.bound,
@@ -113,7 +110,7 @@ export default class FractionMenuStore {
 		// 'changeCars',
 		// 'spawnCars',
 		// 'manage',
-		// 'closeStore',
+		// 'manageStore',
 		// 'manageCapture',
 		// 'sendNews',
 		// 'removeNews',
@@ -124,12 +121,139 @@ export default class FractionMenuStore {
 	balance = 0;
 	news = [];
 	events = [];
-	players = [];
+	players = [
+		{
+			id: 1,
+			nickname: 'basarus basarus',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 23422,
+			nickname: 'Paris May',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			punishment: [],
+			onlineLogs: []
+		},
+		{
+			id: 142431,
+			nickname: 'TrolliZBS Cortez',
+			rank: 1,
+			isOnline: true,
+			joinDate: '29.06.21',
+			punishment: [],
+			onlineLogs: []
+		}
+	];
 	filteredPlayersList = [];
 	ranks = [];
 	awardLogs = [];
 	reprimandLogs = [];
-	storeLogs = [];
+	storeLogs = [
+		{
+			playerId: 23422, // кто взял
+			date: '14:54 24.08.2021',
+			action: 1, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 142431, // кто взял
+			date: '14:54 24.08.2021',
+			action: 1, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+		{
+			playerId: 1, // кто взял
+			date: '14:54 24.08.2021',
+			action: 0, // 0 - взял, 1 - положил
+			item: 'Штурмовая винтовка',
+			count: 1,
+		},
+	];
 	allTerritories = {
 		1: 'Families',
 		2: 'Families',
@@ -203,6 +327,156 @@ export default class FractionMenuStore {
 		70: 'Marabunta',
 		71: 'Marabunta',
 		72: 'Marabunta',
+	};
+	store = {
+		timeout: 5,
+		guns: [
+			{
+				icon: 'meleeIcon.svg',
+				title: 'рукопашные',
+				items: [
+					{
+						name: 'Гаечный ключ',
+						key: '123476234',
+						icon: 'wrench.svg',
+						count: 13,
+					},
+					{
+						name: 'Бита',
+						key: '123467234',
+						icon: 'bat.svg',
+						count: 13,
+					},
+					{
+						name: 'Полицейская дубинка',
+						key: '1121234234',
+						icon: 'nightstick.svg',
+						count: 13,
+					},
+					{
+						name: 'Лом',
+						key: '12323434234',
+						icon: 'crowbar.svg',
+						count: 13,
+					},
+					{
+						name: 'Клюшка для гольфа',
+						key: '1234112234',
+						icon: 'golfclub.svg',
+						count: 13,
+					},
+					{
+						name: 'Топор',
+						key: '1234243334',
+						icon: 'hatchet.svg',
+						count: 13,
+					},
+					{
+						name: 'Фонарик',
+						key: '1234234234',
+						icon: 'flashlight.svg',
+						count: 13,
+					},
+					{
+						name: 'Нож',
+						key: '12342234',
+						icon: 'knife.svg',
+						count: 13,
+					},
+					{
+						name: 'Мачете',
+						key: '123554234',
+						icon: 'machete.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'pistolIcon.svg',
+				title: 'пистолеты',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'smgIcon.svg',
+				title: 'пистолеты пулеметы',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'assaultIcon.svg',
+				title: 'штурмовые винтовки',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'shotgunIcon.svg',
+				title: 'дробовики',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'sniperIcon.svg',
+				title: 'снайперские винтовки',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'armourIcon.svg',
+				title: 'бронежилеты',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+			{
+				icon: 'ammoIcon.svg',
+				title: 'патроны',
+				items: [
+					{
+						name: 'Кастет',
+						key: '1234234',
+						icon: 'test.svg',
+						count: 13,
+					},
+				],
+			},
+		],
+		other: [],
 	};
 	
 	addNotify(text, timeout) {

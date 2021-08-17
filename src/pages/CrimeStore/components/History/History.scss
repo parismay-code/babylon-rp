@@ -1,0 +1,83 @@
+@import '../../../../styles/vars';
+
+.crime-store-history {
+  height: 100%;
+  width: 100%;
+  
+  display: flex;
+  justify-content: space-between;
+  
+  opacity: 0;
+  
+  transition: opacity .2s;
+  
+  &_active {
+	opacity: 1;
+  }
+  
+  &-content {
+	width: 55%;
+	height: 100%;
+	
+	&-header,
+	&-list {
+	  &__element,
+	  &-element {
+		display: flex;
+		align-items: center;
+		
+		&__icon {
+		  width: 20px;
+		}
+		
+		&_type {
+		  width: 120px;
+		}
+	 
+		&_date {
+		  width: 150px;
+		}
+		
+		&_id {
+		  width: 80px;
+		}
+		
+		&_nickname,
+		&_item {
+		  width: 280px;
+		}
+	  }
+	}
+	
+	&-header {
+	  display: flex;
+	  align-items: center;
+	  margin-bottom: 20px;
+	  
+	  opacity: .5;
+	}
+	
+	&-list {
+	  height: 90%;
+	  overflow: auto;
+	  
+	  &::-webkit-scrollbar {
+		width: 2px;
+		
+		background-color: #0000004D;
+	  }
+	  
+	  &::-webkit-scrollbar-thumb {
+		background-color: #FFFFFFB3;
+	  }
+	  
+	  &-element {
+		margin-bottom: 15px;
+	  }
+	}
+  }
+  
+  &__bg {
+	height: 100%;
+  }
+}
